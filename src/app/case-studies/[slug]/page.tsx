@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, ExternalLink, CheckCircle, ArrowRight } from "lucide-react";
 import { caseStudies } from "@/lib/data/case-studies";
+import { categoryColors } from "@/lib/data/categories";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -21,11 +22,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: study.summary,
   };
 }
-
-const categoryColors: Record<string, string> = {
-  "AI-Enhanced Web Platform": "#4f8ef7",
-  "AI Agent": "#9b6dff",
-};
 
 export default async function CaseStudyPage({ params }: Props) {
   const { slug } = await params;

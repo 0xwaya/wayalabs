@@ -2,16 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { caseStudies } from "@/lib/data/case-studies";
+import { categoryColors } from "@/lib/data/categories";
 
 export const metadata: Metadata = {
   title: "Case Studies",
   description:
     "Production AI and web platform work from WayaLabs — Urban Stone portal, Queen City Soundboard, and the OpenClaw agentic automation system.",
-};
-
-const categoryColors: Record<string, string> = {
-  "AI-Enhanced Web Platform": "#4f8ef7",
-  "AI Agent": "#9b6dff",
 };
 
 export default function CaseStudiesPage() {

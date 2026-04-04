@@ -63,16 +63,16 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Invalid project intent." }, { status: 400 });
     }
 
-    // Current implementation records inquiries in server logs.
+    // Log anonymised inquiry for volume tracking — no PII stored in logs.
     // Swap this for email/webhook/CRM integration when infra is ready.
     console.info("[contact-inquiry]", {
       receivedAt: new Date().toISOString(),
       ip,
-      name,
-      email,
-      company,
+      nameLength: name.length,
+      emailDomain: email.split("@")[1] ?? "unknown",
+      hasCompany: company.length > 0,
       intent,
-      message,
+      messageLength: message.length,
     });
 
     return NextResponse.json({ ok: true });

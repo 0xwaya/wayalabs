@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { ButtonLink } from "@/components/ui/Button";
@@ -15,6 +16,7 @@ const navLinks = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-[var(--border)] bg-[var(--background)]/90 backdrop-blur-md">
@@ -33,12 +35,13 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-8" aria-label="Primary navigation">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
+              aria-current={pathname.startsWith(link.href) ? "page" : undefined}
+              className="text-sm text-[var(--muted)] hover:text-[var(--foreground)] transition-colors aria-[current=page]:text-[var(--foreground)]"
             >
               {link.label}
             </Link>
@@ -70,7 +73,8 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="text-sm text-[var(--muted)] hover:text-[var(--foreground)] transition-colors py-1"
+              aria-current={pathname.startsWith(link.href) ? "page" : undefined}
+              className="text-sm text-[var(--muted)] hover:text-[var(--foreground)] transition-colors py-1 aria-[current=page]:text-[var(--foreground)]"
             >
               {link.label}
             </Link>

@@ -67,7 +67,7 @@ export default function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="text-center py-12">
+      <div role="status" aria-live="polite" className="text-center py-12">
         <div className="w-14 h-14 rounded-full bg-[#4f8ef718] flex items-center justify-center mx-auto mb-5">
           <CheckCircle size={28} className="text-[#4f8ef7]" />
         </div>
@@ -184,7 +184,7 @@ export default function ContactForm() {
       </Button>
 
       {error && (
-        <p className="text-sm text-center text-[#ff7e7e]">
+        <p role="alert" aria-live="assertive" className="text-sm text-center text-[#ff7e7e]">
           {error}
         </p>
       )}
