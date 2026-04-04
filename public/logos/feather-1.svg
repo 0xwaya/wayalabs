@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="f1" x1="23" y1="18" x2="98" y2="102" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4f8ef7"/>
+      <stop offset="55%" stop-color="#9b6dff"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Main feather body -->
+  <path d="M94 12C73 15 56 23 43 36C27 52 21 74 23 101C46 94 63 83 76 67C89 51 97 32 94 12Z" fill="url(#f1)"/>
+
+  <!-- Negative quill channel -->
+  <path d="M78 21C65 31 55 44 47 59C42 70 39 79 37 89" stroke="#06060E" stroke-width="5.5" stroke-linecap="round"/>
+
+  <!-- Feather vane cuts -->
+  <path d="M83 31C76 34 69 40 62 48" stroke="#06060E" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+  <path d="M80 43C71 48 64 55 58 63" stroke="#06060E" stroke-width="2.7" stroke-linecap="round" opacity="0.62"/>
+  <path d="M74 55C67 61 61 68 56 75" stroke="#06060E" stroke-width="2.5" stroke-linecap="round" opacity="0.56"/>
+
+  <!-- Tip highlight -->
+  <path d="M88 18C82 21 77 25 73 30" stroke="#FFFFFF" stroke-opacity="0.45" stroke-width="2" stroke-linecap="round"/>
+</svg>

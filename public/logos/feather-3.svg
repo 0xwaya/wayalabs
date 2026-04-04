@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Geometric feather -->
+  <polygon points="90,14 99,34 85,57 67,74 49,88 28,101 31,80 42,57 57,40 74,24" fill="#0C0E1E"/>
+
+  <!-- Accent facets -->
+  <polygon points="90,14 99,34 87,44 74,24" fill="#4f8ef7"/>
+  <polygon points="87,44 76,58 64,68 67,74 85,57" fill="#9b6dff"/>
+  <polygon points="64,68 49,88 28,101 43,74" fill="#22d3ee"/>
+
+  <!-- Vein -->
+  <path d="M74 24C64 35 56 47 49 60C43 71 38 81 34 92" stroke="#F4F7FF" stroke-width="2.4" stroke-linecap="round"/>
+
+  <!-- Segment lines -->
+  <path d="M80 29L70 43" stroke="#06060E" stroke-width="1.7" stroke-linecap="round" opacity="0.55"/>
+  <path d="M73 43L62 58" stroke="#06060E" stroke-width="1.6" stroke-linecap="round" opacity="0.52"/>
+  <path d="M64 57L52 72" stroke="#06060E" stroke-width="1.5" stroke-linecap="round" opacity="0.48"/>
+</svg>

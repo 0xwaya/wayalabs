@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Modular block-style left profile -->
+  <rect x="0" y="0" width="120" height="120" rx="20" fill="#06070F"/>
+
+  <!-- Feather blocks -->
+  <polygon points="92,24 104,40 92,56 76,52 72,34" fill="#4f8ef7"/>
+  <polygon points="78,18 92,24 76,38 66,30" fill="#9b6dff"/>
+  <polygon points="68,24 76,38 64,50 52,42" fill="#22d3ee"/>
+  <polygon points="56,42 64,50 56,64 44,60 42,48" fill="#4f8ef7"/>
+
+  <!-- Head block -->
+  <polygon points="56,26 72,30 76,46 66,58 50,56 44,40" fill="#0A0B13"/>
+  <polygon points="58,30 68,32 70,42 64,50 54,48 50,38" fill="#F6F9FF"/>
+
+  <!-- Beak blocks (left-facing) -->
+  <polygon points="26,42 44,40 50,48 44,58 30,60 22,52" fill="#0A0B13"/>
+  <polygon points="30,44 42,44 45,49 42,55 33,56 28,52" fill="#F6F9FF"/>
+  <polygon points="34,52 42,54 38,60 30,60" fill="#0A0B13"/>
+
+  <!-- Eye module -->
+  <circle cx="60" cy="40" r="5.5" fill="#0A0B13"/>
+  <circle cx="60" cy="40" r="1.8" fill="#F6F9FF"/>
+
+  <!-- Neck modules -->
+  <polygon points="50,56 66,58 64,72 48,74 40,66" fill="#0A0B13"/>
+  <polygon points="48,74 64,72 58,92 40,98 30,86" fill="#0A0B13"/>
+
+  <!-- Accent stroke rails -->
+  <path d="M 86 22 L 72 34 L 62 46" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+  <path d="M 78 16 L 66 30 L 58 42" stroke="#9b6dff" stroke-width="1.6" stroke-linecap="round" opacity="0.8"/>
+
+  <!-- subtle frame -->
+  <rect x="1" y="1" width="118" height="118" rx="19" stroke="#1E2340"/>
+</svg>

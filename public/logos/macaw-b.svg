@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="b-stroke" x1="14" y1="12" x2="112" y2="88" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#4f8ef7"/>
+      <stop offset="50%"  stop-color="#9b6dff"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+
+    <!-- Double-pass glow: blur + source layered -->
+    <filter id="b-glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur1"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.2" result="blur2"/>
+      <feMerge>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="blur2"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="b-glow-sm" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Dark background disk -->
+  <circle cx="60" cy="60" r="58" fill="#050510"/>
+  <!-- Rim ring hint -->
+  <circle cx="60" cy="60" r="56.5" fill="none" stroke="#4f8ef7" stroke-width="0.6" opacity="0.12"/>
+
+  <!-- Ghost fill so the bird reads as a solid form -->
+  <path d="
+    M 46,12 C 68,6 82,16 84,36
+    C 88,36 98,40 108,50
+    C 112,56 110,66 104,70
+    C 101,73 96,73 92,69
+    C 88,73 80,78 68,82
+    C 58,86 46,86 36,80
+    C 24,72 14,60 14,46
+    C 13,30 22,14 46,12 Z"
+    fill="#4f8ef70c"/>
+
+  <!-- MAIN OUTLINE — gradient + double-glow -->
+  <path d="
+    M 46,12 C 68,6 82,16 84,36
+    C 88,36 98,40 108,50
+    C 112,56 110,66 104,70
+    C 101,73 96,73 92,69
+    C 88,73 80,78 68,82
+    C 58,86 46,86 36,80
+    C 24,72 14,60 14,46
+    C 13,30 22,14 46,12 Z"
+    stroke="#9b6dff" stroke-width="1.8" fill="none"
+    filter="url(#b-glow)"/>
+  <!-- Crisp overlay on top of glow -->
+  <path d="
+    M 46,12 C 68,6 82,16 84,36
+    C 88,36 98,40 108,50
+    C 112,56 110,66 104,70
+    C 101,73 96,73 92,69
+    C 88,73 80,78 68,82
+    C 58,86 46,86 36,80
+    C 24,72 14,60 14,46
+    C 13,30 22,14 46,12 Z"
+    stroke="url(#b-stroke)" stroke-width="1.6" fill="none"/>
+
+  <!-- INTERIOR FEATHER TEXTURE LINES -->
+  <!-- Crown-to-eye strands -->
+  <path d="M 52,14 C 56,22 60,28 60,36" stroke="#4f8ef7" stroke-width="0.9" fill="none" opacity="0.42" filter="url(#b-glow-sm)"/>
+  <path d="M 45,17 C 47,25 49,31 51,37" stroke="#9b6dff" stroke-width="0.8" fill="none" opacity="0.38"/>
+  <!-- Back-of-head quill lines -->
+  <path d="M 16,42 C 22,50 26,56 28,64" stroke="#9b6dff" stroke-width="0.8" fill="none" opacity="0.34"/>
+  <path d="M 18,34 C 24,44 26,52 26,62" stroke="#4f8ef7" stroke-width="0.8" fill="none" opacity="0.30"/>
+  <!-- Chest contour -->
+  <path d="M 30,72 C 34,78 38,82 40,86" stroke="#9b6dff" stroke-width="0.8" fill="none" opacity="0.32"/>
+  <!-- Beak ridge (mid-line, upper mandible) -->
+  <path d="M 87,40 C 95,44 103,50 107,58" stroke="#22d3ee" stroke-width="1" fill="none" opacity="0.36" filter="url(#b-glow-sm)"/>
+  <!-- Lower mandible separation -->
+  <path d="M 93,63 C 88,68 82,72 74,76" stroke="#22d3ee" stroke-width="0.8" fill="none" opacity="0.30"/>
+
+  <!-- Facial patch ring -->
+  <ellipse cx="87" cy="54" rx="6.5" ry="5" stroke="#22d3ee" stroke-width="0.9" fill="none" opacity="0.28"/>
+
+  <!-- EYE — glowing outline -->
+  <circle cx="64" cy="30" r="6.5" stroke="#22d3ee" stroke-width="2" fill="none" filter="url(#b-glow)"/>
+  <circle cx="64" cy="30" r="6.5" stroke="#22d3ee" stroke-width="1.4" fill="none"/>
+  <!-- Catch-light -->
+  <circle cx="66" cy="28" r="1.8" fill="white" opacity="0.92"/>
+
+  <!-- CROWN FEATHER SPIKES — three pointed crests with glow -->
+  <path d="M 40,14 L 34,0 L 43,12" stroke="#22d3ee" stroke-width="1.4" fill="none"
+        stroke-linecap="round" stroke-linejoin="round" filter="url(#b-glow)"/>
+  <path d="M 48,11 L 46,-3 L 51,11" stroke="#4f8ef7" stroke-width="1.4" fill="none"
+        stroke-linecap="round" stroke-linejoin="round" filter="url(#b-glow)"/>
+  <path d="M 56,10 L 58,-1 L 62,10" stroke="#9b6dff" stroke-width="1.4" fill="none"
+        stroke-linecap="round" stroke-linejoin="round" filter="url(#b-glow)"/>
+</svg>

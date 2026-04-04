@@ -1,0 +1,211 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Neon glow (tight, bright) -->
+    <filter id="neonGlow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="b1"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="b2"/>
+      <feMerge>
+        <feMergeNode in="b2"/>
+        <feMergeNode in="b1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Soft particle glow -->
+    <filter id="particleGlow" x="-150%" y="-150%" width="400%" height="400%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Ambient base glow (wide, diffuse) -->
+    <filter id="ambientGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10"/>
+    </filter>
+
+    <!-- Blue top-facet gradient: catches bright light -->
+    <linearGradient id="blueFacet" x1="170" y1="28" x2="118" y2="54" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#B8D8FF"/>
+      <stop offset="45%" stop-color="#5B9EFF"/>
+      <stop offset="100%" stop-color="#2563EB"/>
+    </linearGradient>
+
+    <!-- Secondary blue facet (deeper, below top) -->
+    <linearGradient id="midBlueFacet" x1="134" y1="48" x2="90" y2="70" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1D4ED8"/>
+      <stop offset="100%" stop-color="#1e3a8a"/>
+    </linearGradient>
+
+    <!-- Main body gradient — deep navy fading to near-black -->
+    <linearGradient id="bodyGrad" x1="170" y1="28" x2="38" y2="174" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1a3a72"/>
+      <stop offset="40%" stop-color="#0c1b44"/>
+      <stop offset="100%" stop-color="#060a18"/>
+    </linearGradient>
+
+    <!-- Violet facet gradient -->
+    <linearGradient id="violetFacet" x1="112" y1="114" x2="52" y2="164" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#6d28d9"/>
+      <stop offset="100%" stop-color="#9b6dff"/>
+    </linearGradient>
+
+    <!-- Cyan base accent gradient -->
+    <linearGradient id="cyanBase" x1="38" y1="174" x2="76" y2="146" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0891b2"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+
+    <!-- Tip radial glow halo -->
+    <radialGradient id="tipHalo" cx="170" cy="28" r="24" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#93C5FD" stop-opacity="0.55"/>
+      <stop offset="50%" stop-color="#4f8ef7" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#4f8ef7" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Base ambient radial glow -->
+    <radialGradient id="baseHalo" cx="38" cy="174" r="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.50"/>
+      <stop offset="45%" stop-color="#3B82F6" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- ─── BACKGROUND ─── -->
+  <rect width="200" height="200" fill="#000000"/>
+
+  <!-- ─── AMBIENT GLOWS (below feather) ─── -->
+  <!-- Base glow blob -->
+  <ellipse cx="38" cy="176" rx="38" ry="24" fill="url(#baseHalo)"/>
+  <!-- Extra soft base bloom -->
+  <ellipse cx="38" cy="176" rx="22" ry="14" fill="#2563EB" opacity="0.18" filter="url(#ambientGlow)"/>
+
+  <!-- ─── MAIN FEATHER BODY (dark navy silhouette) ─── -->
+  <!-- Full silhouette — clockwise from tip, outer edge, around base, back up inner edge -->
+  <polygon
+    points="170,28  152,14  118,18  84,36  58,62  36,94  26,126  26,152  38,174  58,180  76,168  98,146  120,120  140,96  156,70  165,46"
+    fill="url(#bodyGrad)"
+  />
+
+  <!-- ─── ELECTRIC BLUE TOP FACET ─── -->
+  <!-- Upper-right catch-light: the "face" of the feather in bright electric blue -->
+  <polygon
+    points="170,28  152,14  118,18  132,48  152,52  167,40"
+    fill="url(#blueFacet)"
+    opacity="0.95"
+  />
+  <!-- Glassmorphism edge rim on blue facet -->
+  <polygon
+    points="170,28  152,14  118,18  132,48  152,52  167,40"
+    fill="none"
+    stroke="rgba(255,255,255,0.32)"
+    stroke-width="0.9"
+    stroke-linejoin="round"
+  />
+
+  <!-- ─── SECONDARY BLUE FACET (deeper, adjacent) ─── -->
+  <polygon
+    points="132,48  118,18  84,36  100,64  122,62  136,56"
+    fill="url(#midBlueFacet)"
+    opacity="0.72"
+  />
+  <polygon
+    points="132,48  118,18  84,36  100,64  122,62  136,56"
+    fill="none"
+    stroke="rgba(99,162,255,0.22)"
+    stroke-width="0.7"
+    stroke-linejoin="round"
+  />
+
+  <!-- ─── LIGHTNING BOLT (dark cutout through spine) ─── -->
+  <!-- A solid dark zigzag polygon embedded in the feather body -->
+  <polygon
+    points="122,48  108,68  120,70  104,92  116,96  132,74  120,72  136,50"
+    fill="#00060F"
+    opacity="0.90"
+  />
+  <!-- Subtle blue-electric outline on the bolt edges -->
+  <polygon
+    points="122,48  108,68  120,70  104,92  116,96  132,74  120,72  136,50"
+    fill="none"
+    stroke="rgba(79,142,247,0.55)"
+    stroke-width="0.9"
+    stroke-linejoin="round"
+  />
+
+  <!-- ─── VIOLET FACET (lower body) ─── -->
+  <polygon
+    points="90,114  74,136  52,162  68,170  86,158  108,132  114,114"
+    fill="url(#violetFacet)"
+    opacity="0.84"
+  />
+  <polygon
+    points="90,114  74,136  52,162  68,170  86,158  108,132  114,114"
+    fill="none"
+    stroke="rgba(155,109,255,0.28)"
+    stroke-width="0.8"
+    stroke-linejoin="round"
+  />
+
+  <!-- ─── CYAN FACETS (base / quill area) ─── -->
+  <polygon
+    points="38,174  58,180  74,168  60,158  40,163"
+    fill="url(#cyanBase)"
+    opacity="0.80"
+  />
+  <!-- Small secondary cyan slice at very base-right -->
+  <polygon
+    points="26,152  38,174  40,163  32,148"
+    fill="#22d3ee"
+    opacity="0.38"
+  />
+
+  <!-- ─── OUTER BARB EDGE ACCENT (subtle cyan rim on far-left edge) ─── -->
+  <polyline
+    points="58,62  36,94  26,126  26,152  38,174"
+    fill="none"
+    stroke="rgba(34,211,238,0.32)"
+    stroke-width="1.4"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- ─── WHITE SPINE ARC (central vein, tip to base) ─── -->
+  <!-- Main arc -->
+  <path
+    d="M 170,28 C 152,58 130,88 108,112 C 86,136 62,156 38,174"
+    stroke="#EBF4FF"
+    stroke-width="2.6"
+    stroke-linecap="round"
+    fill="none"
+  />
+  <!-- Subtle inner glow on spine -->
+  <path
+    d="M 170,28 C 152,58 130,88 108,112 C 86,136 62,156 38,174"
+    stroke="#FFFFFF"
+    stroke-width="0.8"
+    stroke-linecap="round"
+    stroke-opacity="0.6"
+    fill="none"
+  />
+
+  <!-- ─── TIP GLOW (neon halo at feather apex) ─── -->
+  <circle cx="170" cy="28" r="22" fill="url(#tipHalo)"/>
+  <!-- Bright neon point at tip -->
+  <circle cx="170" cy="28" r="4" fill="#BFDBFE" filter="url(#neonGlow)" opacity="0.92"/>
+
+  <!-- ─── BASE NEON POINT ─── -->
+  <circle cx="38" cy="174" r="3.2" fill="#4f8ef7" filter="url(#neonGlow)" opacity="0.82"/>
+
+  <!-- ─── PARTICLE SCATTER (quill dust cloud at base) ─── -->
+  <circle cx="32" cy="181" r="1.6" fill="#4f8ef7" filter="url(#particleGlow)" opacity="0.88"/>
+  <circle cx="22" cy="185" r="1.2" fill="#4f8ef7" filter="url(#particleGlow)" opacity="0.65"/>
+  <circle cx="19" cy="173" r="1.1" fill="#22d3ee" filter="url(#particleGlow)" opacity="0.72"/>
+  <circle cx="46" cy="187" r="1.0" fill="#4f8ef7" opacity="0.58"/>
+  <circle cx="14" cy="180" r="0.9" fill="#4f8ef7" opacity="0.42"/>
+  <circle cx="28" cy="192" r="0.8" fill="#22d3ee" opacity="0.45"/>
+  <circle cx="54" cy="190" r="0.7" fill="#9b6dff" opacity="0.42"/>
+  <circle cx="16" cy="165" r="0.7" fill="#4f8ef7" opacity="0.36"/>
+  <circle cx="10" cy="188" r="0.6" fill="#4f8ef7" opacity="0.30"/>
+</svg>

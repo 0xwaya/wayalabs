@@ -50,7 +50,7 @@ export default function TermsPage() {
           <section>
             <h2 className="text-base font-semibold text-[var(--foreground)] mb-2">Contact</h2>
             <p>
-              Questions about these terms can be sent to hello@wayalabs.com.
+              Questions about these terms can be sent to admin@wayalabs.com.
             </p>
           </section>
         </div>

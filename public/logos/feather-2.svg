@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="f2a" x1="22" y1="16" x2="96" y2="103" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="45%" stop-color="#4f8ef7"/>
+      <stop offset="100%" stop-color="#9b6dff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Outer contour -->
+  <path d="M91 13C70 17 52 28 40 42C27 57 22 75 24 99C45 92 63 82 77 66C90 50 98 31 91 13Z" fill="#0B0C18"/>
+  <path d="M91 13C70 17 52 28 40 42C27 57 22 75 24 99C45 92 63 82 77 66C90 50 98 31 91 13Z" stroke="url(#f2a)" stroke-width="2.2"/>
+
+  <!-- Inner feather shard -->
+  <path d="M78 24C64 34 54 46 46 62C42 70 39 79 37 88C52 80 64 69 72 56C79 45 83 34 78 24Z" fill="url(#f2a)" opacity="0.9"/>
+
+  <!-- Cut channels -->
+  <path d="M69 34C63 39 58 45 54 52" stroke="#06060E" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M65 46C58 53 53 60 49 68" stroke="#06060E" stroke-width="2.2" stroke-linecap="round" opacity="0.8"/>
+
+  <!-- Stem -->
+  <path d="M44 67C40 76 37 84 35 93" stroke="#F4F7FF" stroke-opacity="0.75" stroke-width="1.8" stroke-linecap="round"/>
+</svg>

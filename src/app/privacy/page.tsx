@@ -44,14 +44,14 @@ export default function PrivacyPage() {
             <p>
               We retain inquiry data only as long as needed for business and legal purposes.
               You may request access, correction, or deletion by contacting
-              hello@wayalabs.com.
+              admin@wayalabs.com.
             </p>
           </section>
 
           <section>
             <h2 className="text-base font-semibold text-[var(--foreground)] mb-2">Contact</h2>
             <p>
-              Questions about this policy can be sent to hello@wayalabs.com.
+              Questions about this policy can be sent to admin@wayalabs.com.
             </p>
           </section>
         </div>

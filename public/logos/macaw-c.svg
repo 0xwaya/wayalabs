@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="c-clip">
+      <path d="M 46,12 C 68,6 82,16 84,36 C 88,36 98,40 108,50 C 112,56 110,66 104,70 C 101,73 96,73 92,69 C 88,73 80,78 68,82 C 58,86 46,86 36,80 C 24,72 14,60 14,46 C 13,30 22,14 46,12 Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- Base dark fill inside the silhouette -->
+  <path d="M 46,12 C 68,6 82,16 84,36 C 88,36 98,40 108,50 C 112,56 110,66 104,70 C 101,73 96,73 92,69 C 88,73 80,78 68,82 C 58,86 46,86 36,80 C 24,72 14,60 14,46 C 13,30 22,14 46,12 Z"
+    fill="#0d0d22"/>
+
+  <!-- ── GEOMETRIC COLOUR PANELS (all clipped) ── -->
+  <g clip-path="url(#c-clip)">
+
+    <!-- 1. Back of head: deep indigo-purple -->
+    <polygon points="13,26 24,12 42,16 40,36 22,44 13,38"      fill="#6535b8" opacity="0.95"/>
+    <!-- 2. Crown: vivid cyan -->
+    <polygon points="24,12 52,6  68,14 54,22 42,16"             fill="#22d3ee" opacity="0.92"/>
+    <!-- 3. Forehead: electric blue -->
+    <polygon points="52,6  80,10 84,28 72,32 68,14"             fill="#4f8ef7" opacity="0.95"/>
+    <!-- 4. Mid-face: blue-violet blend -->
+    <polygon points="42,16 68,14 72,32 68,48 48,46 30,38 22,44 22,28" fill="#5a7de8" opacity="0.92"/>
+    <!-- 5. Upper beak: teal-steel -->
+    <polygon points="80,10 92,14 112,52 104,62 88,48 80,32 84,28" fill="#5ec8ea" opacity="0.94"/>
+    <!-- 6. Lower face / cheek: purple -->
+    <polygon points="68,48 88,48 104,62 98,74 80,76 70,66 56,66 46,62 40,52" fill="#9b6dff" opacity="0.90"/>
+    <!-- 7. Beak hook tip: bright cyan -->
+    <polygon points="104,62 112,52 112,72 104,74 98,74"          fill="#22d3ee" opacity="0.94"/>
+    <!-- 8. Throat / chest: dark blue-purple -->
+    <polygon points="40,52 56,66 56,82 44,86 28,78 22,64 22,52"  fill="#6840c0" opacity="0.90"/>
+    <!-- 9. Lower neck: deeper purple anchor -->
+    <polygon points="56,82 70,84 72,92 58,94 44,86"              fill="#8044d8" opacity="0.88"/>
+
+    <!-- ── PANEL DIVIDER LINES ── -->
+    <line x1="42"  y1="16"  x2="68"  y2="14"  stroke="#000" stroke-width="0.7" opacity="0.45"/>
+    <line x1="52"  y1="6"   x2="68"  y2="14"  stroke="#000" stroke-width="0.7" opacity="0.45"/>
+    <line x1="68"  y1="14"  x2="72"  y2="32"  stroke="#000" stroke-width="0.7" opacity="0.45"/>
+    <line x1="72"  y1="32"  x2="80"  y2="32"  stroke="#000" stroke-width="0.7" opacity="0.40"/>
+    <line x1="22"  y1="28"  x2="40"  y2="36"  stroke="#000" stroke-width="0.7" opacity="0.40"/>
+    <line x1="40"  y1="36"  x2="68"  y2="48"  stroke="#000" stroke-width="0.7" opacity="0.40"/>
+    <line x1="68"  y1="48"  x2="88"  y2="48"  stroke="#000" stroke-width="0.7" opacity="0.40"/>
+    <line x1="22"  y1="44"  x2="48"  y2="46"  stroke="#000" stroke-width="0.7" opacity="0.38"/>
+    <line x1="48"  y1="46"  x2="68"  y2="48"  stroke="#000" stroke-width="0.7" opacity="0.38"/>
+    <line x1="88"  y1="48"  x2="104" y2="62"  stroke="#000" stroke-width="0.7" opacity="0.40"/>
+    <line x1="40"  y1="52"  x2="22"  y2="52"  stroke="#000" stroke-width="0.7" opacity="0.38"/>
+    <line x1="40"  y1="52"  x2="56"  y2="66"  stroke="#000" stroke-width="0.7" opacity="0.40"/>
+    <line x1="70"  y1="66"  x2="56"  y2="66"  stroke="#000" stroke-width="0.7" opacity="0.38"/>
+    <line x1="56"  y1="66"  x2="56"  y2="82"  stroke="#000" stroke-width="0.7" opacity="0.38"/>
+    <line x1="98"  y1="74"  x2="80"  y2="76"  stroke="#000" stroke-width="0.7" opacity="0.40"/>
+    <line x1="80"  y1="76"  x2="70"  y2="66"  stroke="#000" stroke-width="0.7" opacity="0.40"/>
+  </g>
+
+  <!-- EYE — sits above clip group so it's always crisp -->
+  <circle cx="64" cy="30" r="7.5" fill="#000" opacity="0.88"/>
+  <circle cx="64" cy="30" r="5.5" fill="#0a0a22"/>
+  <circle cx="66" cy="28" r="2.4" fill="white" opacity="0.90"/>
+
+  <!-- SILHOUETTE OUTLINE — final crisp border -->
+  <path d="M 46,12 C 68,6 82,16 84,36 C 88,36 98,40 108,50 C 112,56 110,66 104,70 C 101,73 96,73 92,69 C 88,73 80,78 68,82 C 58,86 46,86 36,80 C 24,72 14,60 14,46 C 13,30 22,14 46,12 Z"
+    fill="none" stroke="#1e1e3e" stroke-width="1.8"/>
+</svg>

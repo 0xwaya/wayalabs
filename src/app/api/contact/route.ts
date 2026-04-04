@@ -78,7 +78,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   } catch {
     return NextResponse.json(
-      { error: "Unable to submit right now. Please email hello@wayalabs.com." },
+      { error: "Unable to submit right now. Please email admin@wayalabs.com." },
       { status: 500 }
     );
   }

@@ -60,10 +60,10 @@ export default function ContactPage() {
                 Prefer email?
               </p>
               <a
-                href="mailto:hello@wayalabs.com"
+                href="mailto:admin@wayalabs.com"
                 className="text-[#4f8ef7] hover:opacity-80 transition-opacity text-sm"
               >
-                hello@wayalabs.com
+                admin@wayalabs.com
               </a>
             </div>
 

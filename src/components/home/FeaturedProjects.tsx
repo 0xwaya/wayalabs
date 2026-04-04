@@ -9,7 +9,8 @@ const projects = [
     category: "AI-Enhanced Web Platform",
     description:
       "Full brand and commerce portal repositioning a commodity granite product through premium UX, structured content, and AI-assisted FAQ — reducing inbound support while establishing SEO presence.",
-    tags: ["Next.js", "AI FAQ", "Structured Data", "Dealer Portal"],
+    tags: ["AI FAQ", "Structured Data", "Dealer Portal"],
+    stack: ["Full Stack", "REST API", "Webhooks", "Next.js"],
     href: "/case-studies/urban-stone",
     externalUrl: "https://urbanstone.co",
     accentColor: "#4f8ef7",
@@ -21,7 +22,8 @@ const projects = [
     category: "AI-Enhanced Web Platform",
     description:
       "Searchable directory connecting artists, studios, and promoters in Charlotte with AI-assisted matching logic, structured profiles, and a booking inquiry flow optimised for local SEO.",
-    tags: ["Next.js", "Semantic Search", "Local SEO", "Booking Flow"],
+    tags: ["Semantic Search", "Local SEO", "Booking Flow"],
+    stack: ["Full Stack", "REST API", "LangGraph", "Webhooks"],
     href: "/case-studies/queen-city-soundboard",
     externalUrl: "https://queencitysoundboard.com",
     accentColor: "#9b6dff",
@@ -33,7 +35,8 @@ const projects = [
     category: "AI Agent",
     description:
       "Internal agentic system automating dev lifecycle tasks — PR review, doc generation, and cross-repo orchestration. Built with modular tools, prompt versioning, and full observability. Now the foundation for client deployments.",
-    tags: ["LLM Orchestration", "Multi-model", "Observability", "CLI"],
+    tags: ["LLM Orchestration", "Multi-model", "Observability"],
+    stack: ["LangGraph", "Full Stack", "REST API", "Webhooks"],
     href: "/case-studies/openclaw-agent",
     externalUrl: "https://github.com/0xwaya",
     accentColor: "#22d3ee",
@@ -63,7 +66,7 @@ export default function FeaturedProjects() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {projects.map(
-            ({ id, title, subtitle, category, description, tags, href, externalUrl, accentColor }) => (
+            ({ id, title, subtitle, category, description, tags, stack, href, externalUrl, accentColor }) => (
               <article
                 key={id}
                 className="group relative flex flex-col rounded-2xl border border-[var(--border)] bg-[var(--card)] overflow-hidden hover:border-opacity-60 transition-all duration-300"
@@ -97,6 +100,23 @@ export default function FeaturedProjects() {
                   </p>
 
                   {/* Tags */}
+                  {/* Stack badges — accent-coloured tech pills */}
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    {stack.map((tech) => (
+                      <span
+                        key={tech}
+                        className="text-xs font-medium rounded-full px-2.5 py-0.5"
+                        style={{
+                          color: accentColor,
+                          background: `${accentColor}1a`,
+                          border: `1px solid ${accentColor}38`,
+                        }}
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  {/* Feature / concept tags */}
                   <div className="flex flex-wrap gap-2 mb-8">
                     {tags.map((tag) => (
                       <span

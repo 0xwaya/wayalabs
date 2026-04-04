@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="a-body" x1="14" y1="12" x2="112" y2="88" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4f8ef7"/>
+      <stop offset="52%" stop-color="#9b6dff"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+    <linearGradient id="a-beak-hi" x1="84" y1="36" x2="112" y2="70" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#80c4ff"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+    <radialGradient id="a-glow" cx="48%" cy="52%" r="50%" gradientUnits="objectBoundingBox">
+      <stop offset="0%" stop-color="#9b6dff" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#06060e" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Radial glow backdrop -->
+  <ellipse cx="58" cy="58" rx="56" ry="52" fill="url(#a-glow)"/>
+
+  <!-- MACAW BODY — head + beak silhouette, facing right -->
+  <path d="
+    M 46,12
+    C 68,6  82,16  84,36
+    C 88,36  98,40  108,50
+    C 112,56  110,66  104,70
+    C 101,73  96,73  92,69
+    C 88,73  80,78  68,82
+    C 58,86  46,86  36,80
+    C 24,72  14,60  14,46
+    C 13,30  22,14  46,12 Z"
+    fill="url(#a-body)"/>
+
+  <!-- Belly / underside depth shadow -->
+  <path d="M 20,64 C 28,76 38,82 50,84 C 36,78 26,70 20,64 Z"
+    fill="#06060e" opacity="0.18"/>
+
+  <!-- Beak upper-edge highlight (lighter teal sheen) -->
+  <path d="
+    M 84,36 C 92,36 100,40 108,50
+    C 112,56 112,62 110,66
+    C 110,56 108,46 102,42
+    C 96,38 90,36 84,36 Z"
+    fill="url(#a-beak-hi)" opacity="0.52"/>
+
+  <!-- Facial patch (macaw bare cheek) -->
+  <ellipse cx="87" cy="54" rx="7" ry="5.5" fill="#06060e" opacity="0.4"/>
+  <ellipse cx="87" cy="54" rx="5.5" ry="4" fill="#120e2a" opacity="0.28"/>
+
+  <!-- Nostril dot -->
+  <circle cx="86" cy="37" r="2.2" fill="#06060e" opacity="0.55"/>
+
+  <!-- Eye socket + iris -->
+  <circle cx="64" cy="30" r="7.5" fill="#06060e" opacity="0.72"/>
+  <circle cx="64" cy="30" r="5.8" fill="#0c0e24"/>
+  <!-- Catch-light -->
+  <circle cx="66.5" cy="28" r="2.6" fill="white" opacity="0.88"/>
+
+  <!-- Mandible separation line -->
+  <path d="M 89,60 C 93,64 98,66 104,70" stroke="#06060e" stroke-width="1.2" opacity="0.35" fill="none"/>
+
+  <!-- CROWN FEATHER WISPS — three small curling points -->
+  <path d="M 44,13 C 40,5 36,0 37,2 C 39,6 41,10 44,13" fill="#22d3ee" opacity="0.78"/>
+  <path d="M 48,11 C 46,2 43,-2 44,0 C 46,5 47,8 48,11" fill="#9b6dff" opacity="0.68"/>
+  <path d="M 54,10 C 55,1 58,-2 60,2 C 56,4 54,7 54,10" fill="#4f8ef7" opacity="0.73"/>
+</svg>

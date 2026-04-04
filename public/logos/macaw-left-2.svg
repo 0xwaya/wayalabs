@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="l2-stroke" x1="88" y1="10" x2="20" y2="96" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4f8ef7"/>
+      <stop offset="50%" stop-color="#9b6dff"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+    <filter id="l2-glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.4" result="g"/>
+      <feMerge>
+        <feMergeNode in="g"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Organic left-facing silhouette -->
+  <path d="M 82 13 C 98 18 107 34 105 52 C 103 68 93 79 77 84 C 67 87 56 87 46 82 C 30 75 22 62 22 46 C 22 30 31 18 46 13 C 57 9 70 9 82 13 Z" fill="#070811"/>
+
+  <!-- Beak opening cut -->
+  <path d="M 23 43 C 32 39 40 40 47 45 C 39 50 39 57 47 63 C 39 66 31 65 24 60 C 20 55 19 49 23 43 Z" fill="#070811"/>
+
+  <!-- Face mask -->
+  <ellipse cx="58" cy="47" rx="22" ry="22" fill="#F8FAFF"/>
+
+  <!-- Beak shape -->
+  <path d="M 44 45 C 55 45 62 50 62 58 C 62 66 56 72 47 73 C 38 74 31 70 29 63 C 36 58 36 50 29 45 C 33 44 38 45 44 45 Z" fill="#0A0B13"/>
+  <path d="M 41 61 C 50 61 57 66 57 72 C 49 75 41 75 34 71 C 36 66 38 63 41 61 Z" fill="#F8FAFF"/>
+
+  <!-- Eye -->
+  <circle cx="60" cy="42" r="7.6" fill="#0A0B13"/>
+  <circle cx="60" cy="42" r="2.2" fill="#F8FAFF"/>
+
+  <!-- Clean crest lines (brand accent) -->
+  <path d="M 78 16 C 70 21 66 28 64 36" stroke="url(#l2-stroke)" stroke-width="2.8" stroke-linecap="round" filter="url(#l2-glow)"/>
+  <path d="M 84 20 C 76 27 72 35 70 44" stroke="url(#l2-stroke)" stroke-width="2.2" stroke-linecap="round" opacity="0.8"/>
+
+  <!-- Feather arc tail (minimal) -->
+  <path d="M 52 84 C 46 94 37 103 25 110" stroke="#0A0B13" stroke-width="7" stroke-linecap="round"/>
+  <path d="M 61 86 C 57 98 49 109 37 116" stroke="#0A0B13" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- Outer contour accent -->
+  <path d="M 88 20 C 98 33 101 49 97 64" stroke="url(#l2-stroke)" stroke-width="2" opacity="0.5" fill="none"/>
+</svg>
