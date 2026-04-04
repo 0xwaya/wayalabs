@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+:root {
+  --background: #06060e;
+  --foreground: #f0f0f8;
+  --muted: #8b8fa8;
+  --border: #1e1e30;
+  --card: #0d0d1f;
+  --accent-blue: #4f8ef7;
+  --accent-purple: #9b6dff;
+  --accent-cyan: #22d3ee;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-card: var(--card);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-purple: var(--accent-purple);
+  --color-accent-cyan: var(--accent-cyan);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family:
+    var(--font-geist-sans),
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(135deg, #4f8ef7 0%, #9b6dff 50%, #22d3ee 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Subtle grid background */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(79, 142, 247, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79, 142, 247, 0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* Glow effects */
+.glow-blue {
+  box-shadow: 0 0 40px rgba(79, 142, 247, 0.15);
+}
+
+.glow-purple {
+  box-shadow: 0 0 40px rgba(155, 109, 255, 0.15);
+}
+
+/* Card styles */
+.card-border {
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2a2a45;
+}
