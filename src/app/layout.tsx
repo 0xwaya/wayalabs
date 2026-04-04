@@ -44,6 +44,27 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "WayaLabs",
+  url: "https://wayalabs.com",
+  logo: "https://wayalabs.com/logo.png",
+  description:
+    "AI solutions studio building chatbots, AI agents, and intelligent web platforms for ambitious businesses.",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Cincinnati",
+    addressRegion: "OH",
+    addressCountry: "US",
+  },
+  sameAs: [
+    "https://github.com/0xwaya",
+    "https://x.com/wayalabs",
+    "https://linkedin.com/company/wayalabs",
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -58,6 +79,10 @@ export default function RootLayout({
         <Navbar />
         <main className="flex-1 pt-16">{children}</main>
         <Footer />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </body>
     </html>
   );

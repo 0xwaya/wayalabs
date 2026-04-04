@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { ButtonLink } from "@/components/ui/Button";
 
 export default function CTABanner() {
   return (
@@ -36,19 +36,13 @@ export default function CTABanner() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#4f8ef7] to-[#9b6dff] text-white font-semibold hover:opacity-90 transition-opacity shadow-lg"
-              >
+              <ButtonLink href="/contact" size="lg" variant="primary">
                 Book a Strategy Call
                 <ArrowRight size={16} />
-              </Link>
-              <Link
-                href="/ai-solutions"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl border border-[var(--border)] text-[var(--foreground)] text-sm font-medium hover:bg-[var(--card)] transition-colors"
-              >
+              </ButtonLink>
+              <ButtonLink href="/ai-solutions" size="lg" variant="secondary">
                 Explore Services
-              </Link>
+              </ButtonLink>
             </div>
 
             {/* Trust signals */}

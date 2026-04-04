@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { ArrowRight, ChevronRight } from "lucide-react";
+import { ButtonLink } from "@/components/ui/Button";
 
 export default function Hero() {
   return (
@@ -26,7 +26,7 @@ export default function Hero() {
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[var(--border)] bg-[var(--card)] text-xs text-[var(--muted)] mb-8">
           <span className="w-1.5 h-1.5 rounded-full bg-[#22d3ee] animate-pulse" />
-          AI Solutions Studio · Charlotte, NC
+          AI Solutions Studio
         </div>
 
         {/* Headline */}
@@ -45,20 +45,14 @@ export default function Hero() {
 
         {/* CTAs */}
         <div className="flex flex-wrap gap-4">
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#4f8ef7] to-[#9b6dff] text-white font-semibold text-sm hover:opacity-90 transition-opacity shadow-lg"
-          >
+          <ButtonLink href="/contact" variant="primary" size="md">
             Book a Strategy Call
             <ArrowRight size={16} />
-          </Link>
-          <Link
-            href="/case-studies"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-[var(--border)] text-[var(--foreground)] text-sm font-medium hover:bg-[var(--card)] transition-colors"
-          >
+          </ButtonLink>
+          <ButtonLink href="/case-studies" variant="secondary" size="md">
             See AI Case Studies
             <ChevronRight size={16} />
-          </Link>
+          </ButtonLink>
         </div>
 
         {/* Social proof strip */}
