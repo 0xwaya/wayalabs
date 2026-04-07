@@ -8,18 +8,6 @@ export const metadata: Metadata = {
     "AI agents for workflow automation, internal operations, and cross-system task orchestration. WayaLabs builds production-grade AI agents that run reliably end-to-end.",
 };
 
-const capabilities = [
-  "Internal workflow automation",
-  "Multi-step research and synthesis",
-  "CRM and ticket triage & routing",
-  "Report generation and distribution",
-  "Cross-system data orchestration",
-  "Monitoring and alerting agents",
-  "Modular tool architecture",
-  "Human-in-the-loop controls",
-  "Full trace logging and replay",
-];
-
 const useCases = [
   {
     title: "Operations Automation Agent",
