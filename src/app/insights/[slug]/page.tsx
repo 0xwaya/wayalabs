@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { CAL_BOOKING_URL } from "@/lib/booking";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, Clock } from "lucide-react";
 import { categoryColors, insightPosts } from "@/lib/data/insights";
@@ -124,13 +125,15 @@ export default async function InsightDetailPage({ params }: Props) {
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">Want this implemented in your stack?</h2>
           <p className="text-[var(--muted)] mb-8">
-            We can turn this pattern into a scoped sprint and a production-ready delivery plan.
+            We can discuss a scoped project and its research, implementation, and evaluation needs.
           </p>
           <Link
-            href="/contact"
+            href={CAL_BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#4f8ef7] to-[#9b6dff] text-white font-semibold hover:opacity-90 transition-opacity"
           >
-            Book a Strategy Call <ArrowRight size={16} />
+            Book a Call <ArrowRight size={16} />
           </Link>
         </div>
       </section>

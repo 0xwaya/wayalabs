@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { CAL_BOOKING_URL } from "@/lib/booking";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { caseStudies } from "@/lib/data/case-studies";
 import { categoryColors } from "@/lib/data/categories";
@@ -112,10 +113,12 @@ export default function CaseStudiesPage() {
             Book a discovery call and let&apos;s map out what AI can do for your business.
           </p>
           <Link
-            href="/contact"
+            href={CAL_BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#4f8ef7] to-[#9b6dff] text-white font-semibold hover:opacity-90 transition-opacity"
           >
-            Book a Strategy Call <ArrowRight size={16} />
+            Book a Call <ArrowRight size={16} />
           </Link>
         </div>
       </section>

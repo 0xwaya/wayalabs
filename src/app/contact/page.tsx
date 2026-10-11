@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Mail, CalendarDays, MessageSquare } from "lucide-react";
 import ContactForm from "@/components/contact/ContactForm";
+import { CAL_BOOKING_URL } from "@/lib/booking";
 
 export const metadata: Metadata = {
-  title: "Contact — Book a Strategy Call",
+  title: "Contact — Book a Call",
   description:
     "Book a strategy call with WayaLabs or send a message. We respond within one business day. No-commitment discovery call to explore your AI opportunity.",
 };
@@ -75,7 +76,7 @@ export default function ContactPage() {
                 Book directly
               </p>
               <a
-                href="https://cal.com/wayalabs"
+                href={CAL_BOOKING_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-[var(--border)] text-sm hover:bg-[var(--card)] transition-colors"
@@ -83,7 +84,7 @@ export default function ContactPage() {
                 <CalendarDays size={15} />
                 Open calendar
               </a>
-              <p className="text-xs text-[var(--muted)] mt-2">30-min discovery · no prep required</p>
+              <p className="text-xs text-[var(--muted)] mt-2">30-min exploratory call or 15-min meeting</p>
             </div>
 
           </div>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { CAL_BOOKING_URL } from "@/lib/booking";
 import { MessageSquare, Cpu, Plug, Globe, BarChart3, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -158,10 +159,12 @@ export default function AISolutionsPage() {
             right AI solution and give you a clear scope before any commitment.
           </p>
           <Link
-            href="/contact"
+            href={CAL_BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#4f8ef7] to-[#9b6dff] text-white font-semibold hover:opacity-90 transition-opacity"
           >
-            Book a Free Discovery Call <ArrowRight size={16} />
+            Book a Call <ArrowRight size={16} />
           </Link>
         </div>
       </section>

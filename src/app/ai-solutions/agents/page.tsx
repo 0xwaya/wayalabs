@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { CAL_BOOKING_URL } from "@/lib/booking";
 import { Cpu, CheckCircle, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -126,7 +127,9 @@ export default function AgentsPage() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
-              href="/contact"
+              href={CAL_BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#4f8ef7] to-[#9b6dff] text-white font-semibold hover:opacity-90 transition-opacity"
             >
               Book a Call <ArrowRight size={16} />

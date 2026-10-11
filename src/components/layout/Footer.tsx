@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CAL_BOOKING_URL } from "@/lib/booking";
 
 // Inline SVGs — lucide-react v0.x removed brand icons
 const IconGitHub = () => (
@@ -32,7 +33,7 @@ const footerLinks = {
     { href: "/insights", label: "Insights" },
   ],
   Contact: [
-    { href: "/contact", label: "Book a Call" },
+    { href: CAL_BOOKING_URL, label: "Book a Call" },
     { href: "mailto:admin@wayalabs.com", label: "admin@wayalabs.com" },
   ],
 };
@@ -104,6 +105,8 @@ export default function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
+                      target={link.href === CAL_BOOKING_URL ? "_blank" : undefined}
+                      rel={link.href === CAL_BOOKING_URL ? "noopener noreferrer" : undefined}
                       className="text-sm text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
                     >
                       {link.label}

@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { ButtonLink } from "@/components/ui/Button";
+import { CAL_BOOKING_URL } from "@/lib/booking";
 
 const navLinks = [
   { href: "/ai-solutions", label: "AI Solutions" },
@@ -52,8 +53,8 @@ export default function Navbar() {
 
         {/* CTA */}
         <div className="hidden md:flex">
-          <ButtonLink href="/contact" size="sm" variant="primary">
-            Book a Strategy Call
+          <ButtonLink href={CAL_BOOKING_URL} target="_blank" rel="noopener noreferrer" size="sm" variant="primary">
+            Book a Call
           </ButtonLink>
         </div>
 
@@ -82,13 +83,15 @@ export default function Navbar() {
             </Link>
           ))}
           <ButtonLink
-            href="/contact"
+            href={CAL_BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => setOpen(false)}
             size="sm"
             variant="primary"
             className="mt-2"
           >
-            Book a Strategy Call
+            Book a Call
           </ButtonLink>
         </div>
       )}
