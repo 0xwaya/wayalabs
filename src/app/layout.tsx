@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: "%s | WayaLabs",
   },
   description:
-    "WayaLabs builds AI chatbots, AI agents, and intelligent web platforms that reduce support load, increase conversion, and automate workflows for ambitious businesses.",
+    "WayaLabs explores AI application architecture, agent orchestration, and integration patterns through project-specific research and development.",
   metadataBase: new URL("https://wayalabs.com"),
   openGraph: {
     type: "website",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     siteName: "WayaLabs",
     title: "WayaLabs — AI Solutions Studio",
     description:
-      "AI chatbots, AI agents, and intelligent web platforms for ambitious businesses.",
+      "AI application architecture and orchestration research. Project capabilities and deployment status are stated explicitly.",
     images: [
       {
         url: "/opengraph-image",
@@ -65,7 +65,7 @@ const jsonLd = {
   url: "https://wayalabs.com",
   logo: "https://wayalabs.com/logo.png",
   description:
-    "AI solutions studio building chatbots, AI agents, and intelligent web platforms for ambitious businesses.",
+    "WayaLabs explores AI application architecture, agent orchestration, and integration patterns through project-specific research and development.",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Cincinnati",

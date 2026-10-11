@@ -26,16 +26,15 @@ describe("services data — smoke tests", () => {
         });
       });
 
-      it("has at least one capability", () => {
-        expect(service.capabilities.length).toBeGreaterThanOrEqual(1);
+      it("has at least one design consideration", () => {
+        expect(service.designConsiderations.length).toBeGreaterThanOrEqual(1);
+        service.designConsiderations.forEach((item) => {
+          expect(item).toBeTruthy();
+        });
       });
 
-      it("has at least one outcome with metric and label", () => {
-        expect(service.outcomes.length).toBeGreaterThanOrEqual(1);
-        service.outcomes.forEach((o) => {
-          expect(o.metric).toBeTruthy();
-          expect(o.label).toBeTruthy();
-        });
+      it("does not publish unverified outcome metrics", () => {
+        expect(service).not.toHaveProperty("outcomes");
       });
     });
   });

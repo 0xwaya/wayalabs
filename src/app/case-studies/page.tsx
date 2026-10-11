@@ -7,7 +7,7 @@ import { categoryColors } from "@/lib/data/categories";
 export const metadata: Metadata = {
   title: "Case Studies",
   description:
-    "Production AI and web platform work from WayaLabs — Urban Stone portal, Queen City Soundboard, and the OpenClaw agentic automation system.",
+    "Selected WayaLabs project notes, including the Urban Stone portal, Queen City Soundboard, and an internal OpenClaw workflow exploration.",
 };
 
 export default function CaseStudiesPage() {
@@ -17,15 +17,15 @@ export default function CaseStudiesPage() {
       <section className="py-24 px-6 grid-bg border-b border-[var(--border)]">
         <div className="max-w-7xl mx-auto">
           <p className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)] mb-4">
-            Case Studies
+            Project Notes
           </p>
           <h1 className="text-5xl font-bold tracking-tight mb-5 max-w-2xl">
-            Shipped work,{" "}
-            <span className="gradient-text">measured results</span>
+            Selected work,{" "}
+            <span className="gradient-text">with clear scope</span>
           </h1>
           <p className="text-lg text-[var(--muted)] max-w-xl leading-relaxed">
-            Three flagship projects that demonstrate how we scope, build, and
-            deliver AI-powered systems from discovery to production.
+            Project descriptions distinguish delivered scope from internal
+            explorations and avoid implying results that have not been measured.
           </p>
         </div>
       </section>

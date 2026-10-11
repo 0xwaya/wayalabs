@@ -5,7 +5,7 @@ import { ArrowRight, ExternalLink } from "lucide-react";
 export const metadata: Metadata = {
   title: "About WayaLabs",
   description:
-    "WayaLabs is an AI solutions studio. We build chatbots, AI agents, and intelligent web platforms for businesses that want measurable results.",
+    "WayaLabs explores AI systems through architecture, orchestration, and project-specific research and development.",
 };
 
 const values = [
@@ -17,12 +17,12 @@ const values = [
   {
     title: "Reliability over novelty",
     description:
-      "We build AI that works in production on a bad day — not just in a demo. Observability, guardrails, and fallback logic are non-negotiable.",
+      "Reliability is evaluated against project-specific acceptance criteria, failure modes, and operational boundaries.",
   },
   {
     title: "Speed without shortcuts",
     description:
-      "Prototype in week 2 means working fast from the start — not skipping architecture, safety, or testing.",
+      "Iterate in reviewable steps without skipping architecture, safety, or testing.",
   },
   {
     title: "Strategy then execution",
@@ -45,22 +45,18 @@ const work = [
     accent: "#9b6dff",
   },
   {
-    name: "OpenClaw Agent System",
-    type: "AI Agent Framework",
-    url: "github.com/0xwaya",
+    name: "OpenClaw Workflow Exploration",
+    type: "Internal R&D · separate from CEO Orchestrator",
+    url: "",
     accent: "#22d3ee",
   },
 ];
 
 const stack = [
-  "Next.js · React · TypeScript",
-  "Tailwind CSS · Radix UI",
-  "OpenAI · Anthropic · Open-weight LLMs",
-  "LangChain · Custom orchestration",
-  "Pinecone · pgvector · Weaviate",
-  "Vercel · AWS · Supabase",
-  "Sanity · Contentful",
-  "Posthog · Sentry · LangSmith",
+  "WayaLabs site: Next.js 16 · React 19 · TypeScript · Tailwind CSS 4",
+  "CEO Orchestrator R&D: Python · Flask · Socket.IO · LangGraph",
+  "CEO job state: SQLite durable queue · single worker process",
+  "CEO model calls: configured provider · verified pricing · usage reservations",
 ];
 
 export default function AboutPage() {
@@ -74,23 +70,23 @@ export default function AboutPage() {
               About
             </p>
             <h1 className="text-5xl font-bold tracking-tight mb-6">
-              We build AI that{" "}
-              <span className="gradient-text">earns its place</span>{" "}
-              in production.
+              AI systems, explored through{" "}
+              <span className="gradient-text">architecture and orchestration.</span>
             </h1>
             <p className="text-lg text-[var(--muted)] leading-relaxed">
-              WayaLabs is an AI solutions studio. We work with
-              businesses that want measurable results from AI — not hype cycles or
-              proof-of-concepts that never ship.
+              WayaLabs researches and develops AI systems. Some concepts are
+              currently under research and development; deployment status and
+              measured outcomes are stated per project.
             </p>
           </div>
 
           {/* What we are */}
           <div className="space-y-4">
             {[
-              { label: "What we are", value: "A focused studio — strategy, implementation, and post-launch optimization under one roof." },
-              { label: "Who we work with", value: "Businesses with clear workflow problems, growth bottlenecks, or customer experience gaps that AI can close." },
-              { label: "What we're not", value: "Not a generic agency that adds 'AI' to every proposal. We scope honestly and decline projects that aren't a good fit." },
+              { label: "What we are", value: "A focused studio exploring AI architecture, implementation, and evaluation." },
+              { label: "What we explore", value: "AI application architecture, agent orchestration, and scoped workflow prototypes." },
+              { label: "How we scope", value: "Start with system boundaries, data access, failure handling, and testable acceptance criteria." },
+              { label: "What is not implied", value: "A prototype or architecture study does not by itself mean production deployment, measured impact, or autonomous operation." },
             ].map(({ label, value }) => (
               <div key={label} className="p-5 rounded-xl border border-[var(--border)] bg-[var(--card)]">
                 <p className="text-xs font-semibold text-[var(--muted)] uppercase tracking-widest mb-1">{label}</p>
@@ -137,7 +133,7 @@ export default function AboutPage() {
               <p className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)] mb-2">
                 Selected Work
               </p>
-              <h2 className="text-2xl font-bold">Shipped projects</h2>
+              <h2 className="text-2xl font-bold">Projects and explorations</h2>
             </div>
             <Link href="/case-studies" className="text-sm text-[#4f8ef7] hover:opacity-80 transition-opacity">
               Full case studies →
@@ -153,15 +149,17 @@ export default function AboutPage() {
                   <p className="font-medium mb-0.5">{name}</p>
                   <p className="text-xs text-[var(--muted)]">{type}</p>
                 </div>
-                <a
-                  href={url.startsWith("github") ? `https://${url}` : `https://${url}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs flex items-center gap-1 hover:opacity-80 transition-opacity mt-auto"
-                  style={{ color: accent }}
-                >
-                  {url} <ExternalLink size={10} />
-                </a>
+                {url && (
+                  <a
+                    href={`https://${url}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs flex items-center gap-1 hover:opacity-80 transition-opacity mt-auto"
+                    style={{ color: accent }}
+                  >
+                    {url} <ExternalLink size={10} />
+                  </a>
+                )}
               </div>
             ))}
           </div>
@@ -175,7 +173,7 @@ export default function AboutPage() {
             <p className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)] mb-2">
               Technology
             </p>
-            <h2 className="text-2xl font-bold">Stack we work in daily</h2>
+            <h2 className="text-2xl font-bold">Technology in current work</h2>
           </div>
           <div className="flex flex-wrap gap-3">
             {stack.map((item) => (

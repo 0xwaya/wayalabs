@@ -30,15 +30,15 @@ const projects = [
   },
   {
     id: "openclaw-agent",
-    title: "OpenClaw Agent System",
-    subtitle: "Agentic Workflow Automation",
+    title: "OpenClaw Workflow Exploration",
+    subtitle: "Internal agent orchestration R&D",
     category: "AI Agent",
     description:
-      "Internal agentic system automating dev lifecycle tasks — PR review, doc generation, and cross-repo orchestration. Built with modular tools, prompt versioning, and full observability. Now the foundation for client deployments.",
-    tags: ["LLM Orchestration", "Multi-model", "Observability"],
-    stack: ["LangGraph", "Full Stack", "REST API", "Webhooks"],
+      "Internal research into operator-directed repository review, documentation, and cross-repository coordination. This is separate from the CEO Executive Orchestrator and is not a client deployment.",
+    tags: ["Research and development", "Human review", "Workflow design"],
+    stack: ["OpenClaw", "Tool boundaries", "Operator-led"],
     href: "/case-studies/openclaw-agent",
-    externalUrl: "https://github.com/0xwaya",
+    externalUrl: null,
     accentColor: "#22d3ee",
   },
 ];
@@ -53,7 +53,7 @@ export default function FeaturedProjects() {
               Case Studies
             </p>
             <h2 className="text-4xl font-bold tracking-tight">
-              Shipped work, measurable results
+              Selected project work
             </h2>
           </div>
           <Link
@@ -137,15 +137,17 @@ export default function FeaturedProjects() {
                     >
                       Read case study <ArrowRight size={14} />
                     </Link>
-                    <a
-                      href={externalUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
-                      aria-label="Visit project"
-                    >
-                      <ExternalLink size={14} />
-                    </a>
+                    {externalUrl && (
+                      <a
+                        href={externalUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
+                        aria-label="Visit project"
+                      >
+                        <ExternalLink size={14} />
+                      </a>
+                    )}
                   </div>
                 </div>
               </article>

@@ -5,7 +5,7 @@ import { MessageSquare, Cpu, Plug, Globe, BarChart3, ArrowRight } from "lucide-r
 export const metadata: Metadata = {
   title: "AI Solutions",
   description:
-    "AI chatbots, AI agents, and AI integrations built for measurable business outcomes. WayaLabs delivers production-grade AI systems from prototype to deployed.",
+    "Research and development across conversational AI, agent orchestration, and system integrations, with project scope and deployment status stated explicitly.",
 };
 
 const primaryServices = [
@@ -13,31 +13,31 @@ const primaryServices = [
     icon: MessageSquare,
     title: "AI Chatbots",
     slug: "chatbots",
-    tagline: "Support, sales, and onboarding — automated.",
+    tagline: "Conversational system R&D",
     description:
-      "Conversational AI deployed on your website, product, or messaging channels. Handles common questions, qualifies leads, and routes complex issues — with your brand voice and your knowledge base.",
+      "Explore conversational interfaces grounded in approved knowledge sources, with explicit escalation and evaluation criteria.",
     accent: "#4f8ef7",
-    outcomes: ["70% ticket deflection", "3× lead capture", "<2s response time"],
+    outcomes: ["Approved source material", "Human escalation", "Quality evaluation"],
   },
   {
     icon: Cpu,
     title: "AI Agents",
     slug: "agents",
-    tagline: "Autonomous workflows for internal operations.",
+    tagline: "Bounded workflow orchestration",
     description:
-      "Goal-directed agents that take real action across your tools — reading emails, updating CRMs, generating reports, routing tickets, and escalating exceptions without human input.",
+      "Research into multi-step agents with scoped tools, explicit routing, durable job state, and human review for consequential actions.",
     accent: "#9b6dff",
-    outcomes: ["80% manual task reduction", "10h+ reclaimed weekly", "99% reliability"],
+    outcomes: ["Role-aware routing", "Tool boundaries", "Human approvals"],
   },
   {
     icon: Plug,
     title: "AI Integrations",
     slug: "integrations",
-    tagline: "Intelligence inside the tools you already use.",
+    tagline: "System integration research",
     description:
-      "LLM connections into your CRM, helpdesk, knowledge base, and APIs — with the data pipelines, security boundaries, and prompt management infrastructure to keep it reliable.",
+      "Explore model connections to existing systems, including identity, data flow, failure handling, and evaluation requirements.",
     accent: "#22d3ee",
-    outcomes: ["Live in 1 week", "4+ systems connected avg.", "Full observability stack"],
+    outcomes: ["Identity and access", "Data retention", "Observability requirements"],
   },
 ];
 
@@ -63,16 +63,16 @@ export default function AISolutionsPage() {
       <section className="py-24 px-6 grid-bg border-b border-[var(--border)]">
         <div className="max-w-7xl mx-auto">
           <p className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)] mb-4">
-            Services
+            Research and development
           </p>
           <h1 className="text-5xl font-bold tracking-tight mb-5 max-w-3xl">
-            AI solutions built for{" "}
-            <span className="gradient-text">real business outcomes</span>
+            AI systems, built from{" "}
+            <span className="gradient-text">clear architecture</span>
           </h1>
           <p className="text-lg text-[var(--muted)] max-w-2xl leading-relaxed">
-            We design, build, and deploy AI systems that reduce manual work, improve
-            customer experience, and create measurable ROI. Every engagement starts
-            with your specific outcome — not a technology preference.
+            WayaLabs explores conversational AI, agent orchestration, and integrations.
+            Capabilities are currently under research and development; project-specific
+            deployment status and measured outcomes are established separately.
           </p>
         </div>
       </section>
@@ -110,10 +110,10 @@ export default function AISolutionsPage() {
                   </Link>
                 </div>
 
-                {/* Right — outcomes */}
+                {/* Right — architecture considerations */}
                 <div className="flex flex-col justify-center gap-4">
                   <p className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)] mb-2">
-                    Typical outcomes
+                    Architecture considerations
                   </p>
                   {outcomes.map((o) => (
                     <div
@@ -135,7 +135,7 @@ export default function AISolutionsPage() {
       <section className="py-16 px-6 bg-[var(--card)] border-t border-[var(--border)]">
         <div className="max-w-7xl mx-auto">
           <p className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)] mb-8">
-            Also available
+            Further research areas
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {additionalServices.map(({ icon: Icon, title, description }) => (

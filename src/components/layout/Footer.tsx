@@ -58,8 +58,9 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-sm text-[var(--muted)] leading-relaxed max-w-xs">
-              AI solutions studio building chatbots, AI agents, and intelligent
-              web platforms for ambitious businesses.
+              AI architecture and orchestration research. Some capabilities are
+              currently under research and development; project scope and deployment
+              status are stated explicitly.
             </p>
             <div className="flex items-center gap-4 mt-6">
               <a

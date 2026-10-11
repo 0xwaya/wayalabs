@@ -69,7 +69,7 @@ export default function TwitterImage() {
             <div style={{ display: "flex", flexDirection: "column" }}>
               <div style={{ fontSize: "34px", fontWeight: 700 }}>WayaLabs</div>
               <div style={{ fontSize: "20px", color: "#aab0cc" }}>
-                AI Solutions Studio
+                Architecture · Orchestration · R&D
               </div>
             </div>
           </div>
@@ -86,18 +86,18 @@ export default function TwitterImage() {
                 marginBottom: "18px",
               }}
             >
-              Chatbots · Agents · Intelligent Web Platforms
+              STATE-OF-THE-ART ORCHESTRATION R&D
             </div>
             <div
               style={{
                 display: "flex",
-                fontSize: "68px",
+                fontSize: "58px",
                 lineHeight: 1.05,
                 fontWeight: 800,
                 marginBottom: "20px",
               }}
             >
-              Build AI that drives real outcomes.
+              CEO Executive Orchestrator
             </div>
             <div
               style={{
@@ -107,17 +107,17 @@ export default function TwitterImage() {
                 color: "#c9cce0",
               }}
             >
-              Production-grade AI systems that reduce support load, increase conversion,
-              and automate workflows.
+              Python · Flask · Socket.IO · LangGraph. Currently under research and
+              development; not a live or production deployment.
             </div>
           </div>
 
           <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
             {[
+              "Python",
               "LangGraph",
-              "AI Agents",
-              "Automations",
-              "Full-Stack Delivery",
+              "Durable Jobs",
+              "Approval Gates",
             ].map((label) => (
               <div
                 key={label}

@@ -1,27 +1,27 @@
-const metrics = [
+const architecture = [
   {
-    value: "70%",
-    label: "Average ticket deflection",
-    sub: "across chatbot deployments",
+    value: "Python",
+    label: "CEO orchestrator runtime",
+    sub: "Current R&D implementation",
     accent: "#4f8ef7",
   },
   {
-    value: "3×",
-    label: "Lead capture lift",
-    sub: "vs. static contact forms",
+    value: "Flask + Socket.IO",
+    label: "Dashboard and chat transport",
+    sub: "Local executive-agent prototype",
     accent: "#9b6dff",
   },
   {
-    value: "80%",
-    label: "Manual task reduction",
-    sub: "with agent automation",
+    value: "LangGraph",
+    label: "Stateful agent orchestration",
+    sub: "CEO routing with selected roles",
     accent: "#22d3ee",
   },
   {
-    value: "1 wk",
-    label: "To first integration",
-    sub: "average time to live",
-    accent: "#4f8ef7",
+    value: "Durable jobs",
+    label: "Single-process worker model",
+    sub: "Persisted status; interrupted work is not replayed",
+    accent: "#22d3ee",
   },
 ];
 
@@ -31,15 +31,15 @@ export default function OutcomeMetrics() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-14">
           <p className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)] mb-3">
-            Measured Impact
+            CEO Orchestrator · R&D
           </p>
           <h2 className="text-4xl font-bold tracking-tight">
-            Numbers from production, not pitches
+            Stack and orchestration
           </h2>
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-          {metrics.map(({ value, label, sub, accent }) => (
+          {architecture.map(({ value, label, sub, accent }) => (
             <div
               key={label}
               className="relative p-8 rounded-2xl border border-[var(--border)] bg-[var(--card)] overflow-hidden"

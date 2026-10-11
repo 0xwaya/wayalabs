@@ -5,37 +5,37 @@ import { Cpu, CheckCircle, ArrowRight } from "lucide-react";
 export const metadata: Metadata = {
   title: "AI Agents",
   description:
-    "AI agents for workflow automation, internal operations, and cross-system task orchestration. WayaLabs builds production-grade AI agents that run reliably end-to-end.",
+    "Planning and implementation of carefully scoped AI agents for workflow automation and internal operations.",
 };
 
 const useCases = [
   {
     title: "Operations Automation Agent",
     description:
-      "Automate repetitive internal ops — daily standup summaries, status report generation, data reconciliation between systems, and exception alerts.",
+      "An R&D opportunity: summarize approved internal updates or flag exceptions for a person to review. Data access and accuracy need validation for each project.",
     industry: "Operations · Finance · HR",
   },
   {
     title: "Triage and Routing Agent",
     description:
-      "Classify inbound support tickets, emails, or leads — then route them to the right person or queue with context already attached. No manual sorting.",
+      "A possible workflow: classify a limited set of inbound requests and suggest a destination. Routing rules and human escalation should be tested before use.",
     industry: "Support · Sales Ops · Customer Success",
   },
   {
     title: "Research and Synthesis Agent",
     description:
-      "Autonomously gather information from multiple sources, extract key data, and produce structured summaries or action-ready briefings.",
+      "A research prototype could organize approved source material into a draft summary. Source coverage, citations, and factual accuracy require review.",
     industry: "Consulting · Legal · Strategy",
   },
 ];
 
-const architecture = [
-  "Modular tool definitions with clear boundaries",
-  "Prompt versioning and evaluation pipeline",
-  "Multi-LLM routing with fallback logic",
-  "Safety layer: role constraints and output moderation",
-  "Structured logging and trace replay",
-  "CLI interface for human-in-the-loop control",
+const designConsiderations = [
+  "Define one bounded workflow and its owner",
+  "Set least-privilege tool access",
+  "Agree on acceptance checks before launch",
+  "Keep human review for consequential actions",
+  "Set explicit data retention and logging rules",
+  "Measure outcomes before making performance claims",
 ];
 
 export default function AgentsPage() {
@@ -53,26 +53,13 @@ export default function AgentsPage() {
             </span>
           </div>
           <h1 className="text-5xl font-bold tracking-tight mb-5 max-w-3xl">
-            Agents that{" "}
-            <span className="gradient-text">act, not just answer</span>
+              AI agents for{" "}
+              <span className="gradient-text">bounded workflows</span>
           </h1>
           <p className="text-lg text-[var(--muted)] max-w-2xl leading-relaxed mb-10">
-            Goal-directed AI systems built to operate reliably in production — reading,
-            writing, routing, and orchestrating tasks across your tools without constant
-            human intervention.
+            Start with a clearly defined task, approved tools, and a human review path.
+            Deployment scope and performance targets are agreed and verified per project.
           </p>
-          <div className="flex flex-wrap gap-6 text-sm">
-            {[
-              { metric: "80%", label: "Manual task reduction" },
-              { metric: "10h+", label: "Weekly hours reclaimed" },
-              { metric: "99%", label: "Workflow reliability" },
-            ].map(({ metric, label }) => (
-              <div key={label}>
-                <div className="text-2xl font-bold text-[#9b6dff]">{metric}</div>
-                <div className="text-[var(--muted)]">{label}</div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -80,9 +67,14 @@ export default function AgentsPage() {
       <section className="py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <p className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)] mb-3">
-            Use Cases
+            R&D Directions
           </p>
-          <h2 className="text-3xl font-bold mb-12">Where AI agents eliminate the most manual work</h2>
+          <h2 className="text-3xl font-bold mb-5">Workflow concepts under research</h2>
+          <p className="text-[var(--muted)] max-w-2xl mb-12">
+            These are discussion starting points, not available product guarantees.
+            Deployment status, controls, and measured performance are established
+            and reported separately for each project.
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {useCases.map(({ title, description, industry }) => (
               <div key={title} className="p-7 rounded-2xl border border-[var(--border)] bg-[var(--card)]">
@@ -103,17 +95,17 @@ export default function AgentsPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <p className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)] mb-3">
-                How we build
+                Design considerations
               </p>
-              <h2 className="text-3xl font-bold mb-6">Production-first agent architecture</h2>
+              <h2 className="text-3xl font-bold mb-6">Agree on boundaries before automation</h2>
               <p className="text-[var(--muted)] leading-relaxed">
-                We don&apos;t ship fragile demos. Every agent system includes observability,
-                human controls, and a safety layer — built from our OpenClaw framework,
-                proven in production.
+                These are project design questions, not claims that every listed control
+                is already deployed. A proposed system should be tested against its
+                acceptance criteria before its results are described as production outcomes.
               </p>
             </div>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {architecture.map((item) => (
+              {designConsiderations.map((item) => (
                 <li key={item} className="flex items-start gap-2.5 text-sm text-[var(--muted)]">
                   <CheckCircle size={15} className="text-[#9b6dff] mt-0.5 flex-shrink-0" />
                   {item}
@@ -127,10 +119,10 @@ export default function AgentsPage() {
       {/* CTA */}
       <section className="py-20 px-6">
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">What would your team do with 10 free hours a week?</h2>
+          <h2 className="text-3xl font-bold mb-4">Start with one bounded workflow</h2>
           <p className="text-[var(--muted)] mb-8">
-            Tell us your highest-volume repetitive task. We&apos;ll scope an agent that automates it
-            end-to-end, with a working prototype in your hands within two weeks.
+            Describe a repetitive task and the tools it touches. We&apos;ll assess its scope,
+            data boundaries, and a practical way to verify whether automation helps.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link

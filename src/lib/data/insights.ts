@@ -18,9 +18,9 @@ export type InsightPost = {
 export const insightPosts: InsightPost[] = [
   {
     slug: "chatbot-deflection-metrics",
-    title: "The only chatbot metrics that actually matter for support teams",
+    title: "Evaluating chatbot quality beyond deflection",
     excerpt:
-      "Deflection rate gets all the attention, but the numbers that drive real business decisions are resolution rate, escalation quality, and CSAT delta. Here is how to instrument them from day one.",
+      "A practical framework for evaluating resolution quality, escalation behavior, and user feedback in a scoped chatbot prototype.",
     category: "AI Chatbots",
     readTime: "6 min read",
     date: "Mar 28, 2026",
@@ -48,9 +48,9 @@ export const insightPosts: InsightPost[] = [
   },
   {
     slug: "rag-vs-finetuning",
-    title: "RAG vs fine-tuning: how to decide in under 10 minutes",
+    title: "RAG vs fine-tuning: choosing an approach for a prototype",
     excerpt:
-      "Most teams reach for fine-tuning when retrieval-augmented generation would be cheaper, faster, and more maintainable. A practical decision framework for choosing the right approach.",
+      "A decision framework for comparing retrieval-augmented generation and fine-tuning against data freshness, traceability, and behavior requirements.",
     category: "AI Integrations",
     readTime: "8 min read",
     date: "Mar 14, 2026",
@@ -78,9 +78,9 @@ export const insightPosts: InsightPost[] = [
   },
   {
     slug: "ai-agent-reliability",
-    title: "Why most AI agents fail in production and how to fix the three root causes",
+    title: "Engineering reliability into agent workflows",
     excerpt:
-      "Flaky tool calls, missing context windows, and no human-in-the-loop path are responsible for the majority of agent failures we have seen. Patterns we use to fix all three.",
+      "Tool contracts, state handling, and human review are architecture concerns to address when researching and prototyping agent workflows.",
     category: "AI Agents",
     readTime: "10 min read",
     date: "Feb 27, 2026",
@@ -108,9 +108,9 @@ export const insightPosts: InsightPost[] = [
   },
   {
     slug: "llm-observability-stack",
-    title: "The minimum viable LLM observability stack for production",
+    title: "Observability questions for an LLM prototype",
     excerpt:
-      "What you need to log, trace, and alert on before you launch any AI feature. A practical starting point that does not require a dedicated ML ops team.",
+      "A starting checklist for request tracing, usage measurement, validation failures, and provider errors during controlled AI development.",
     category: "Infrastructure",
     readTime: "7 min read",
     date: "Feb 10, 2026",
@@ -138,18 +138,18 @@ export const insightPosts: InsightPost[] = [
   },
   {
     slug: "contact-form-to-ai-qualifier",
-    title: "Replacing your contact form with an AI qualifier: a before and after study",
+    title: "Designing an AI lead-qualification experiment",
     excerpt:
-      "We replaced a static contact form with an intent-capturing AI qualifier on a client site and measured the results over 45 days. The numbers were surprising.",
+      "A project-scoping framework for testing structured lead intake without assuming conversion gains or autonomous CRM updates.",
     category: "AI Chatbots",
     readTime: "5 min read",
     date: "Jan 22, 2026",
     accent: "#4f8ef7",
     sections: {
       context:
-        "Static forms collect low-context leads and create heavy follow-up overhead. AI qualification can pre-structure demand and route faster.",
+        "A proposed AI qualification flow should be compared with the current form using agreed measures and explicit consent, data, and routing boundaries.",
       approach:
-        "Replace static fields with a guided AI flow that captures urgency, budget band, integration needs, and desired timeline, then writes a structured summary into CRM.",
+        "Prototype a guided intake flow against a synthetic or approved test dataset first. Keep CRM writes disabled until permissions, review, and acceptance checks are approved.",
       checklist: [
         "Define qualification fields before launch",
         "Map AI capture to CRM schema",
@@ -179,7 +179,7 @@ export const insightPosts: InsightPost[] = [
       context:
         "Teams often start by selecting models and tools instead of defining business outcomes and constraints.",
       approach:
-        "Begin with one high-value workflow, define baseline metrics, and map only the dependencies needed to ship a measurable v1 in 2-3 weeks.",
+        "Begin with one bounded workflow, define acceptance checks, and map only the dependencies needed for a reviewable first iteration.",
       checklist: [
         "Write one-sentence business outcome",
         "Capture baseline KPI and target delta",

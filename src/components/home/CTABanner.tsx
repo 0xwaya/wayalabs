@@ -24,32 +24,33 @@ export default function CTABanner() {
           {/* Content */}
           <div className="relative px-8 py-16 text-center">
             <p className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)] mb-4">
-              Let&apos;s work together
+              CEO Executive Orchestrator · R&D
             </p>
             <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-5">
-              Ready to build AI that{" "}
-              <span className="gradient-text">actually works</span>?
+              Explore agent{" "}
+              <span className="gradient-text">orchestration research</span>
             </h2>
             <p className="text-[var(--muted)] max-w-xl mx-auto mb-10 leading-relaxed">
-              Tell us what you want to automate, improve, or build. We&apos;ll
-              respond within one business day with a clear path forward.
+              Currently under research and development. The prototype explores
+              Python, Flask, Socket.IO, and LangGraph orchestration; it is not a
+              live service or production deployment.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <ButtonLink href="/contact" size="lg" variant="primary">
-                Book a Strategy Call
+              <ButtonLink href="/lab/ceo-agent" size="lg" variant="primary">
+                View R&D walkthrough
                 <ArrowRight size={16} />
               </ButtonLink>
-              <ButtonLink href="/ai-solutions" size="lg" variant="secondary">
-                Explore Services
+              <ButtonLink href="/case-studies" size="lg" variant="secondary">
+                Project notes
               </ButtonLink>
             </div>
 
             {/* Trust signals */}
             <div className="mt-12 flex flex-wrap justify-center gap-8 text-xs text-[var(--muted)]">
-              <span>✓ Response within 1 business day</span>
-              <span>✓ No-commitment discovery call</span>
-              <span>✓ Working prototype in week 2</span>
+              <span>Human review</span>
+              <span>Scoped tool access</span>
+              <span>Approval-gated artifacts</span>
             </div>
           </div>
         </div>

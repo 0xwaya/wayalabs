@@ -6,28 +6,28 @@ const services = [
     icon: MessageSquare,
     title: "AI Chatbots",
     description:
-      "Conversational AI for support, sales, and onboarding — tuned to your knowledge base and deployed on your channels.",
+      "R&D and project-scoping for conversational experiences grounded in approved knowledge sources and clear human escalation paths.",
     href: "/ai-solutions/chatbots",
     accent: "#4f8ef7",
-    outcomes: ["70% ticket deflection", "3× lead capture", "<2s response"],
+    focus: ["Approved source material", "Escalation boundaries", "Evaluation questions"],
   },
   {
     icon: Cpu,
     title: "AI Agents",
     description:
-      "Goal-directed systems that read, write, route, and operate across your tools — replacing repetitive manual work reliably.",
+      "Research into bounded, multi-step workflows with explicit tool permissions, durable state, and review before consequential actions.",
     href: "/ai-solutions/agents",
     accent: "#9b6dff",
-    outcomes: ["80% task reduction", "10h+ saved weekly", "99% reliability"],
+    focus: ["Tool permissions", "Orchestration design", "Human approvals"],
   },
   {
     icon: Plug,
     title: "AI Integrations",
     description:
-      "Connect LLMs to your CRM, docs, and APIs with the right data pipelines, security boundaries, and observability.",
+      "Explore model connections to existing systems with attention to data flow, access scope, and operational requirements.",
     href: "/ai-solutions/integrations",
     accent: "#22d3ee",
-    outcomes: ["Live in 1 week", "4+ systems connected", "Full observability"],
+    focus: ["Data boundaries", "Identity and access", "Failure handling"],
   },
 ];
 
@@ -41,17 +41,17 @@ export default function ServicesGrid() {
             Services
           </p>
           <h2 className="text-4xl font-bold tracking-tight mb-4">
-            Three ways AI creates leverage
+            Areas of AI research and implementation
           </h2>
           <p className="text-[var(--muted)] leading-relaxed">
-            Every engagement starts with a clear outcome. We match the right AI
-            system to the problem — then build it to production quality.
+            Project scope and deployment status vary. Work begins with architecture,
+            data boundaries, and acceptance criteria rather than assumed outcomes.
           </p>
         </div>
 
         {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {services.map(({ icon: Icon, title, description, href, accent, outcomes }) => (
+          {services.map(({ icon: Icon, title, description, href, accent, focus }) => (
             <Link
               key={href}
               href={href}
@@ -71,12 +71,12 @@ export default function ServicesGrid() {
                 {description}
               </p>
 
-              {/* Outcomes */}
+              {/* Design focus */}
               <ul className="space-y-1.5 mb-6">
-                {outcomes.map((o) => (
-                  <li key={o} className="flex items-center gap-2 text-xs text-[var(--muted)]">
+                {focus.map((item) => (
+                  <li key={item} className="flex items-center gap-2 text-xs text-[var(--muted)]">
                     <span className="w-1 h-1 rounded-full" style={{ background: accent }} />
-                    {o}
+                    {item}
                   </li>
                 ))}
               </ul>

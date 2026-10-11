@@ -125,7 +125,7 @@ export default async function CaseStudyPage({ params }: Props) {
           {/* Impact */}
           <div>
             <h2 className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)] mb-6">
-              Measured Impact
+              {study.impactHeading ?? "Project Outcomes"}
             </h2>
             <div className="grid grid-cols-1 gap-3">
               {study.impact.map((item, i) => (
@@ -172,6 +172,14 @@ export default async function CaseStudyPage({ params }: Props) {
             >
               ← All Case Studies
             </Link>
+            {study.demoUrl && (
+              <Link
+                href={study.demoUrl}
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl border border-[var(--border)] text-sm font-medium hover:bg-[var(--card)] transition-colors"
+              >
+                Open CEO guided sample <ArrowRight size={16} />
+              </Link>
+            )}
           </div>
         </div>
       </section>

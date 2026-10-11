@@ -20,6 +20,8 @@ export const caseStudies = [
       "CDN-optimised image delivery for high-res stone textures",
     ],
     timeline: "6 weeks from discovery to launch",
+    impactHeading: "Project Outcomes",
+    demoUrl: undefined,
     impact: [
       "Dealer referral traffic increased measurably within 30 days",
       "Support inbound reduced by AI-assisted FAQ coverage",
@@ -49,6 +51,8 @@ export const caseStudies = [
       "Analytics instrumentation for match quality improvement",
     ],
     timeline: "5 weeks to initial launch",
+    impactHeading: "Project Outcomes",
+    demoUrl: undefined,
     impact: [
       "Platform launched with 50+ artist profiles at go-live",
       "Booking inquiry flow operational from day one",
@@ -59,33 +63,33 @@ export const caseStudies = [
   },
   {
     id: "openclaw-agent",
-    title: "OpenClaw Agentic Automation System",
-    client: "Internal / WayaLabs",
-    url: "github.com/0xwaya",
+    title: "OpenClaw Workflow Exploration",
+    client: "Internal exploration",
+    url: "",
     category: "AI Agent",
     tags: ["AI Agent", "Workflow Automation", "LLM Orchestration"],
     summary:
-      "An internal agentic system built to automate development workflows — from code review assistance to documentation generation and cross-repo task orchestration. Now the foundation for client agent deployments.",
+      "An internal exploration of how an OpenClaw-based assistant could support software-development workflows. This project note describes scope only; no client deployment or measured productivity result is claimed.",
     problem:
-      "Repetitive development lifecycle tasks — PR reviews, documentation updates, context switching across repos — were consuming disproportionate engineering time. We needed an autonomous system that could handle these reliably.",
+      "The exploration considered whether an operator-directed assistant could help with recurring repository review, documentation, and cross-repository coordination tasks.",
     approach:
-      "We designed a modular agent architecture with clear tool boundaries, a prompt/version management system, and observability baked in from the start. Built iteratively with real production feedback.",
+      "The work remained an internal prototype and planning effort. Any suggested code or documentation changes require human review; this page does not represent an autonomous production service.",
     architecture: [
-      "Modular agent runtime with pluggable tool definitions",
-      "Prompt versioning and evaluation pipeline",
-      "Multi-LLM routing (OpenAI + Anthropic with fallback logic)",
-      "Safety layer: role constraints, input sanitisation, output moderation",
-      "Structured logging and trace replay for debugging",
-      "CLI interface for human-in-the-loop control",
+      "OpenClaw-based internal assistant exploration",
+      "Workflow themes: repository review, documentation, and coordination",
+      "Operator direction and human review remain essential",
+      "Not the CEO Executive Orchestrator or its public sampler",
     ],
-    timeline: "Ongoing — initial version in 3 weeks, production in 6",
+    timeline: "Internal exploration; ongoing",
+    impactHeading: "Scope and limits",
     impact: [
-      "Documentation generation time reduced by ~85%",
-      "Code review pre-checks automated end-to-end",
-      "Pattern now deployed for 2 client automation engagements",
+      "No measured productivity or reliability result is published",
+      "No client deployment is claimed",
+      "Private runtime details and operator data are not part of this case study",
     ],
     nextIteration:
-      "Multi-agent coordination layer and external client deployment packaging.",
+      "Any future external demonstration requires a separately reviewed public-safe copy and evidence. This case study does not describe or expose the private runtime.",
+    demoUrl: "/lab/ceo-agent",
   },
 ] as const;
 
