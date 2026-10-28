@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "About WayaLabs",
   description:
     "WayaLabs explores AI systems through architecture, orchestration, and project-specific research and development.",
+  alternates: { canonical: "/about" },
 };
 
 const values = [
@@ -33,7 +34,7 @@ const values = [
 
 const work = [
   {
-    name: "Urban Stone / Amazon Granite Portal",
+    name: "Urban Stone Collective",
     type: "AI-Enhanced Web Platform",
     url: "urbanstone.co",
     accent: "#4f8ef7",

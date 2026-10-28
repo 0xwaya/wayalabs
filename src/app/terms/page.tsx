@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: "Terms of Service",
   description:
     "Terms of service for WayaLabs engagements and website usage.",
+  alternates: { canonical: "/terms" },
 };
 
 export default function TermsPage() {

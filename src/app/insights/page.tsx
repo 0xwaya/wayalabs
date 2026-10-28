@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "AI Insights",
   description:
     "Practical guides, case breakdowns, and technical deep-dives on building production AI systems. From WayaLabs — an AI solutions studio.",
+  alternates: { canonical: "/insights" },
 };
 
 export default function InsightsPage() {

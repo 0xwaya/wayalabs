@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
     "Privacy policy for WayaLabs, including what data we collect and how we process it.",
+  alternates: { canonical: "/privacy" },
 };
 
 export default function PrivacyPage() {

@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "AI Chatbots",
   description:
     "Research and development for conversational AI, grounded in scoped source material, evaluation, and human escalation requirements.",
+  alternates: { canonical: "/ai-solutions/chatbots" },
 };
 
 const capabilities = [

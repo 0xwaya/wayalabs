@@ -4,13 +4,13 @@ import { ArrowRight, ExternalLink } from "lucide-react";
 const projects = [
   {
     id: "urban-stone",
-    title: "Urban Stone",
-    subtitle: "Amazon Granite Rebrand Portal",
+    title: "Urban Stone Collective",
+    subtitle: "Countertop Fabrication — Website & Lead System",
     category: "AI-Enhanced Web Platform",
     description:
-      "Full brand and commerce portal repositioning a commodity granite product through premium UX, structured content, and AI-assisted FAQ — reducing inbound support while establishing SEO presence.",
-    tags: ["AI FAQ", "Structured Data", "Dealer Portal"],
-    stack: ["Full Stack", "REST API", "Webhooks", "Next.js"],
+      "Website and lead system for a granite, quartz, and quartzite countertop fabricator serving greater Cincinnati and Northern Kentucky — quote capture routed to the sales inbox, contractor portal, Spanish-language page, and AI chat assistant.",
+    tags: ["Lead Capture", "Structured Data", "Contractor Portal"],
+    stack: ["Next.js", "Vercel", "Webhooks", "Zapier"],
     href: "/case-studies/urban-stone",
     externalUrl: "https://urbanstone.co",
     accentColor: "#4f8ef7",
@@ -18,12 +18,12 @@ const projects = [
   {
     id: "queen-city-soundboard",
     title: "Queen City Soundboard",
-    subtitle: "Local Music Discovery Platform",
+    subtitle: "Cincinnati & NKY Live Events Guide",
     category: "AI-Enhanced Web Platform",
     description:
-      "Searchable directory connecting artists, studios, and promoters in Charlotte with AI-assisted matching logic, structured profiles, and a booking inquiry flow optimised for local SEO.",
-    tags: ["Semantic Search", "Local SEO", "Booking Flow"],
-    stack: ["Full Stack", "REST API", "LangGraph", "Webhooks"],
+      "A guide to live music, comedy, and cultural events across Cincinnati and Northern Kentucky — local event calendar, official ticket links, city pages, and an event submission flow for venues and promoters.",
+    tags: ["Event Calendar", "Structured Data", "Local SEO"],
+    stack: ["Next.js", "REST API", "Webhooks"],
     href: "/case-studies/queen-city-soundboard",
     externalUrl: "https://queencitysoundboard.com",
     accentColor: "#9b6dff",

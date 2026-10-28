@@ -8,7 +8,8 @@ import { categoryColors } from "@/lib/data/categories";
 export const metadata: Metadata = {
   title: "Case Studies",
   description:
-    "Selected WayaLabs project notes, including the Urban Stone portal, Queen City Soundboard, and an internal OpenClaw workflow exploration.",
+    "Selected WayaLabs project notes, including Urban Stone Collective, Queen City Soundboard, and an internal OpenClaw workflow exploration.",
+  alternates: { canonical: "/case-studies" },
 };
 
 export default function CaseStudiesPage() {

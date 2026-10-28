@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "AI Solutions",
   description:
     "Research and development across conversational AI, agent orchestration, and system integrations, with project scope and deployment status stated explicitly.",
+  alternates: { canonical: "/ai-solutions" },
 };
 
 const primaryServices = [

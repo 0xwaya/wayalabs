@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Our Process",
   description:
     "How WayaLabs scopes, builds, and delivers AI systems — from discovery to post-launch optimisation. A structured 4-phase framework built for speed and reliability.",
+  alternates: { canonical: "/process" },
 };
 
 const phases = [

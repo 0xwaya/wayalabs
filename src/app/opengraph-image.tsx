@@ -86,7 +86,7 @@ export default function OpenGraphImage() {
                 marginBottom: "18px",
               }}
             >
-              STATE-OF-THE-ART ORCHESTRATION R&D
+              AI SOLUTIONS STUDIO
             </div>
             <div
               style={{
@@ -97,7 +97,7 @@ export default function OpenGraphImage() {
                 marginBottom: "20px",
               }}
             >
-              CEO Executive Orchestrator
+              WayaLabs
             </div>
             <div
               style={{
@@ -107,8 +107,8 @@ export default function OpenGraphImage() {
                 color: "#c9cce0",
               }}
             >
-              Python · Flask · Socket.IO · LangGraph. Currently under research and
-              development; not a live or production deployment.
+              AI architecture, implementation, and evaluation — from research to
+              working platforms.
             </div>
           </div>
 

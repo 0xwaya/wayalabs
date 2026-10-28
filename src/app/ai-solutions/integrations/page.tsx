@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "AI Integrations",
   description:
     "Research and development for AI integrations, with project-specific scope, access boundaries, and deployment status stated explicitly.",
+  alternates: { canonical: "/ai-solutions/integrations" },
 };
 
 const capabilities = [

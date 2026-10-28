@@ -92,6 +92,7 @@ const prismColorways = [
 export const metadata = {
   title: "Logo Preview — WayaLabs Dev",
   robots: { index: false, follow: false },
+  alternates: { canonical: "/logos" },
 };
 
 export default function LogosPage() {
