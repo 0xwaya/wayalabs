@@ -22,6 +22,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: study.title,
     description: study.summary,
     alternates: { canonical: `/case-studies/${study.id}` },
+    openGraph: {
+      description: study.summary,
+      url: `/case-studies/${study.id}`,
+      images: [{ url: "/og.png", width: 1200, height: 630, alt: "WayaLabs ribbon mark and Wayalabs.com" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      description: study.summary,
+      images: ["/og.png"],
+    },
   };
 }
 

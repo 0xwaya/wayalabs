@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   description:
     "Privacy policy for WayaLabs, including what data we collect and how we process it.",
   alternates: { canonical: "/privacy" },
+  openGraph: { url: "/privacy" },
 };
 
 export default function PrivacyPage() {

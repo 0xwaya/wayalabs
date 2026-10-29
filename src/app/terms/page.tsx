@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   description:
     "Terms of service for WayaLabs engagements and website usage.",
   alternates: { canonical: "/terms" },
+  openGraph: { url: "/terms" },
 };
 
 export default function TermsPage() {

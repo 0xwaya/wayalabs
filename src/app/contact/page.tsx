@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   description:
     "Book a strategy call with WayaLabs or send a message. We respond within one business day. No-commitment discovery call to explore your AI opportunity.",
   alternates: { canonical: "/contact" },
+  openGraph: { url: "/contact" },
 };
 
 const trustSignals = [

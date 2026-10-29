@@ -8,9 +8,9 @@ const projects = [
     subtitle: "Countertop Fabrication — Website & Lead System",
     category: "AI-Enhanced Web Platform",
     description:
-      "Website and lead system for a granite, quartz, and quartzite countertop fabricator serving greater Cincinnati and Northern Kentucky — quote capture routed to the sales inbox, contractor portal, Spanish-language page, and AI chat assistant.",
-    tags: ["Lead Capture", "Structured Data", "Contractor Portal"],
-    stack: ["Next.js", "Vercel", "Webhooks", "Zapier"],
+      "Website and lead system for a granite, quartz, and quartzite countertop fabricator serving greater Cincinnati and Northern Kentucky. Quote requests and the Onyx chat route to the sales inbox. A lead-sourcer checks extra sources only when they are switched on.",
+    tags: ["Lead Capture", "Lead sourcer", "Contractor Portal"],
+    stack: ["Next.js", "Supabase", "Resend"],
     href: "/case-studies/urban-stone",
     externalUrl: "https://urbanstone.co",
     accentColor: "#d7dbe3",
@@ -21,9 +21,9 @@ const projects = [
     subtitle: "Cincinnati & NKY Live Events Guide",
     category: "AI-Enhanced Web Platform",
     description:
-      "A guide to live music, comedy, and cultural events across Cincinnati and Northern Kentucky — local event calendar, official ticket links, city pages, and an event submission flow for venues and promoters.",
+      "A guide to live music, comedy, and cultural events across Cincinnati and Northern Kentucky. Local calendar, official ticket links, city pages, and event submissions held for review. Social images are hosted by the site. Posting them is not automated yet.",
     tags: ["Event Calendar", "Structured Data", "Local SEO"],
-    stack: ["Next.js", "REST API", "Webhooks"],
+    stack: ["Next.js 16", "Supabase", "Vercel"],
     href: "/case-studies/queen-city-soundboard",
     externalUrl: "https://queencitysoundboard.com",
     accentColor: "#c5cad3",
@@ -40,6 +40,19 @@ const projects = [
     href: "/case-studies/openclaw-agent",
     externalUrl: null,
     accentColor: "#f3f4f6",
+  },
+  {
+    id: "grok-operators",
+    title: "Grok operator environments",
+    subtitle: "Isolated checkouts, review before any push",
+    category: "AI Agent",
+    description:
+      "Grok sessions work inside one checkout per project, and a Python virtual environment when the runtime needs one. They draft changes for the live sites and the other agents, then stop for approval. Scheduled work stays native to each project.",
+    tags: ["Human review", "Isolated environments", "Native workflows"],
+    stack: ["Grok", "Python venv", "Per-project checkout"],
+    href: "/case-studies/grok-operators",
+    externalUrl: null,
+    accentColor: "#d7dbe3",
   },
 ];
 
@@ -64,7 +77,7 @@ export default function FeaturedProjects() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {projects.map(
             ({ id, title, subtitle, category, description, tags, stack, href, externalUrl, accentColor }) => (
               <article

@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   description:
     "WayaLabs explores AI systems through architecture, orchestration, and project-specific research and development.",
   alternates: { canonical: "/about" },
+  openGraph: { url: "/about" },
 };
 
 const values = [
@@ -46,6 +47,12 @@ const work = [
     accent: "#c5cad3",
   },
   {
+    name: "Grok operator environments",
+    type: "Internal workflow · isolated checkouts, human approval",
+    url: "",
+    accent: "#d7dbe3",
+  },
+  {
     name: "OpenClaw Workflow Exploration",
     type: "Internal R&D · separate from CEO Orchestrator",
     url: "",
@@ -55,6 +62,9 @@ const work = [
 
 const stack = [
   "WayaLabs site: Next.js 16 · React 19 · TypeScript · Tailwind CSS 4",
+  "Urban Stone: Next.js 15 Pages · Supabase · Resend",
+  "Queen City Soundboard: Next.js 16 App Router · Supabase · Vercel",
+  "Operator sessions: Grok, one checkout per project, Python venv where the runtime needs it",
   "CEO Orchestrator R&D: Python · Flask · Socket.IO · LangGraph",
   "CEO job state: SQLite durable queue · single worker process",
   "CEO model calls: configured provider · verified pricing · usage reservations",

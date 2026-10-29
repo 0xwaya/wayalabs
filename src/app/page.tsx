@@ -6,7 +6,10 @@ import FeaturedProjects from "@/components/home/FeaturedProjects";
 import ProcessFramework from "@/components/home/ProcessFramework";
 import CTABanner from "@/components/home/CTABanner";
 
-export const metadata: Metadata = { alternates: { canonical: "/" } };
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  openGraph: { url: "https://wayalabs.com" },
+};
 
 export default function HomePage() {
   return (

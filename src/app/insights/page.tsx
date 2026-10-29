@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   description:
     "Practical guides, case breakdowns, and technical deep-dives on building production AI systems. From WayaLabs — an AI solutions studio.",
   alternates: { canonical: "/insights" },
+  openGraph: { url: "/insights" },
 };
 
 export default function InsightsPage() {

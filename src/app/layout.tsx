@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { siteDescription } from "@/lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,17 +20,12 @@ export const metadata: Metadata = {
     default: "WayaLabs — AI Solutions Studio",
     template: "%s | WayaLabs",
   },
-  description:
-    "WayaLabs explores AI application architecture, agent orchestration, and integration patterns through project-specific research and development.",
+  description: siteDescription,
   metadataBase: new URL("https://wayalabs.com"),
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://wayalabs.com",
     siteName: "WayaLabs",
-    title: "WayaLabs — AI Solutions Studio",
-    description:
-      "AI application architecture and orchestration research. Project capabilities and deployment status are stated explicitly.",
     images: [
       {
         url: "/og.png",
@@ -41,9 +37,6 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "WayaLabs — AI Solutions Studio",
-    description:
-      "AI chatbots, AI agents, and intelligent web platforms for ambitious businesses.",
     creator: "@wayalabs",
     images: ["/og.png"],
   },
@@ -69,8 +62,7 @@ const jsonLd = {
   name: "WayaLabs",
   url: "https://wayalabs.com",
   logo: "https://wayalabs.com/apple-touch-icon.png",
-  description:
-    "WayaLabs explores AI application architecture, agent orchestration, and integration patterns through project-specific research and development.",
+  description: siteDescription,
   address: {
     "@type": "PostalAddress",
     addressLocality: "Cincinnati",

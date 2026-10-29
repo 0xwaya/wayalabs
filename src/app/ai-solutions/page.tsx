@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   description:
     "Research and development across conversational AI, agent orchestration, and system integrations, with project scope and deployment status stated explicitly.",
   alternates: { canonical: "/ai-solutions" },
+  openGraph: { url: "/ai-solutions" },
 };
 
 const primaryServices = [

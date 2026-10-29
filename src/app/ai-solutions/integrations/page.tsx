@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   description:
     "Research and development for AI integrations, with project-specific scope, access boundaries, and deployment status stated explicitly.",
   alternates: { canonical: "/ai-solutions/integrations" },
+  openGraph: { url: "/ai-solutions/integrations" },
 };
 
 const capabilities = [

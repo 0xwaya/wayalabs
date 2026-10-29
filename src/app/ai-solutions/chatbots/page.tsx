@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   description:
     "Research and development for conversational AI, grounded in scoped source material, evaluation, and human escalation requirements.",
   alternates: { canonical: "/ai-solutions/chatbots" },
+  openGraph: { url: "/ai-solutions/chatbots" },
 };
 
 const capabilities = [

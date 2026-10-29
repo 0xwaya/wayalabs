@@ -52,6 +52,7 @@ export default function Hero() {
           {[
             "Urban Stone Collective",
             "Queen City Soundboard",
+            "Grok operator environments",
             "OpenClaw Workflow Exploration",
           ].map((name) => (
             <span

@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   description:
     "Planning and implementation of carefully scoped AI agents for workflow automation and internal operations.",
   alternates: { canonical: "/ai-solutions/agents" },
+  openGraph: { url: "/ai-solutions/agents" },
 };
 
 const useCases = [

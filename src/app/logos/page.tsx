@@ -93,6 +93,7 @@ export const metadata = {
   title: "Logo Preview — WayaLabs Dev",
   robots: { index: false, follow: false },
   alternates: { canonical: "/logos" },
+  openGraph: { url: "/logos" },
 };
 
 export default function LogosPage() {
