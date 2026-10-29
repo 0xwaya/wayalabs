@@ -24,7 +24,7 @@ export const insightPosts: InsightPost[] = [
     category: "AI Chatbots",
     readTime: "6 min read",
     date: "Mar 28, 2026",
-    accent: "#4f8ef7",
+    accent: "#d7dbe3",
     sections: {
       context:
         "Teams often optimize for deflection in isolation, then discover that unresolved edge cases and poor handoff quality quietly damage customer trust. High deflection is only useful when it preserves experience quality.",
@@ -54,7 +54,7 @@ export const insightPosts: InsightPost[] = [
     category: "AI Integrations",
     readTime: "8 min read",
     date: "Mar 14, 2026",
-    accent: "#22d3ee",
+    accent: "#f3f4f6",
     sections: {
       context:
         "RAG and fine-tuning solve different problems. RAG helps with changing knowledge and traceability, while fine-tuning helps with stable behavior and specialized style.",
@@ -84,7 +84,7 @@ export const insightPosts: InsightPost[] = [
     category: "AI Agents",
     readTime: "10 min read",
     date: "Feb 27, 2026",
-    accent: "#9b6dff",
+    accent: "#c5cad3",
     sections: {
       context:
         "Most agent failures are systems failures, not model failures. Reliability depends on tool contracts, state handling, and escalation controls.",
@@ -114,7 +114,7 @@ export const insightPosts: InsightPost[] = [
     category: "Infrastructure",
     readTime: "7 min read",
     date: "Feb 10, 2026",
-    accent: "#4f8ef7",
+    accent: "#d7dbe3",
     sections: {
       context:
         "Without observability, teams learn about quality regressions from customers first. That is too late.",
@@ -144,7 +144,7 @@ export const insightPosts: InsightPost[] = [
     category: "AI Chatbots",
     readTime: "5 min read",
     date: "Jan 22, 2026",
-    accent: "#4f8ef7",
+    accent: "#d7dbe3",
     sections: {
       context:
         "A proposed AI qualification flow should be compared with the current form using agreed measures and explicit consent, data, and routing boundaries.",
@@ -174,7 +174,7 @@ export const insightPosts: InsightPost[] = [
     category: "Strategy",
     readTime: "9 min read",
     date: "Jan 8, 2026",
-    accent: "#9b6dff",
+    accent: "#c5cad3",
     sections: {
       context:
         "Teams often start by selecting models and tools instead of defining business outcomes and constraints.",
@@ -199,9 +199,9 @@ export const insightPosts: InsightPost[] = [
 ];
 
 export const categoryColors: Record<string, string> = {
-  "AI Chatbots": "#4f8ef7",
-  "AI Agents": "#9b6dff",
-  "AI Integrations": "#22d3ee",
-  Infrastructure: "#4f8ef7",
-  Strategy: "#9b6dff",
+  "AI Chatbots": "#d7dbe3",
+  "AI Agents": "#c5cad3",
+  "AI Integrations": "#f3f4f6",
+  Infrastructure: "#d7dbe3",
+  Strategy: "#c5cad3",
 };

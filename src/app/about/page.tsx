@@ -37,19 +37,19 @@ const work = [
     name: "Urban Stone Collective",
     type: "AI-Enhanced Web Platform",
     url: "urbanstone.co",
-    accent: "#4f8ef7",
+    accent: "#d7dbe3",
   },
   {
     name: "Queen City Soundboard",
     type: "AI-Enhanced Web Platform",
     url: "queencitysoundboard.com",
-    accent: "#9b6dff",
+    accent: "#c5cad3",
   },
   {
     name: "OpenClaw Workflow Exploration",
     type: "Internal R&D · separate from CEO Orchestrator",
     url: "",
-    accent: "#22d3ee",
+    accent: "#f3f4f6",
   },
 ];
 
@@ -116,7 +116,7 @@ export default function AboutPage() {
                 <div
                   aria-hidden
                   className="absolute top-0 left-0 w-12 h-0.5"
-                  style={{ background: "linear-gradient(90deg, #4f8ef7, transparent)" }}
+                  style={{ background: "linear-gradient(90deg, #d7dbe3, transparent)" }}
                 />
                 <h3 className="text-lg font-semibold mb-3">{title}</h3>
                 <p className="text-sm text-[var(--muted)] leading-relaxed">{description}</p>
@@ -136,7 +136,7 @@ export default function AboutPage() {
               </p>
               <h2 className="text-2xl font-bold">Projects and explorations</h2>
             </div>
-            <Link href="/case-studies" className="text-sm text-[#4f8ef7] hover:opacity-80 transition-opacity">
+            <Link href="/case-studies" className="text-sm text-[#d7dbe3] hover:opacity-80 transition-opacity">
               Full case studies →
             </Link>
           </div>
@@ -199,7 +199,7 @@ export default function AboutPage() {
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#4f8ef7] to-[#9b6dff] text-white font-semibold hover:opacity-90 transition-opacity"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#f3f4f6] text-[#07080c] hover:bg-[#d7dbe3] font-semibold hover:opacity-90 transition-opacity"
           >
             Get in Touch <ArrowRight size={16} />
           </Link>

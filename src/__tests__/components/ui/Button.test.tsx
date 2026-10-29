@@ -26,7 +26,7 @@ describe("Button", () => {
 
   it("applies primary variant gradient class by default", () => {
     render(<Button>Primary</Button>);
-    expect(screen.getByRole("button").className).toContain("bg-gradient-to-r");
+    expect(screen.getByRole("button").className).toContain("bg-[#f3f4f6]");
   });
 
   it("applies secondary variant border class", () => {
@@ -86,7 +86,7 @@ describe("ButtonLink", () => {
 
   it("applies primary variant gradient class by default", () => {
     render(<ButtonLink href="/">Home</ButtonLink>);
-    expect(screen.getByRole("link").className).toContain("bg-gradient-to-r");
+    expect(screen.getByRole("link").className).toContain("bg-[#f3f4f6]");
   });
 
   it("applies secondary variant border class", () => {

@@ -48,11 +48,11 @@ export default function Footer() {
             <Link href="/" className="flex items-center gap-2 mb-4">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/logos/wayalabs-mark.svg"
+                src="/logos/wayalabs-mark.png"
                 alt="WayaLabs logo mark"
-                width={32}
-                height={32}
-                className="shrink-0"
+                width={44}
+                height={28}
+                className="h-7 w-auto shrink-0"
               />
               <span className="font-semibold text-[var(--foreground)] tracking-tight">
                 WayaLabs

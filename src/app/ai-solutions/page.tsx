@@ -18,7 +18,7 @@ const primaryServices = [
     tagline: "Conversational system R&D",
     description:
       "Explore conversational interfaces grounded in approved knowledge sources, with explicit escalation and evaluation criteria.",
-    accent: "#4f8ef7",
+    accent: "#d7dbe3",
     outcomes: ["Approved source material", "Human escalation", "Quality evaluation"],
   },
   {
@@ -28,7 +28,7 @@ const primaryServices = [
     tagline: "Bounded workflow orchestration",
     description:
       "Research into multi-step agents with scoped tools, explicit routing, durable job state, and human review for consequential actions.",
-    accent: "#9b6dff",
+    accent: "#c5cad3",
     outcomes: ["Role-aware routing", "Tool boundaries", "Human approvals"],
   },
   {
@@ -38,7 +38,7 @@ const primaryServices = [
     tagline: "System integration research",
     description:
       "Explore model connections to existing systems, including identity, data flow, failure handling, and evaluation requirements.",
-    accent: "#22d3ee",
+    accent: "#f3f4f6",
     outcomes: ["Identity and access", "Data retention", "Observability requirements"],
   },
 ];
@@ -163,7 +163,7 @@ export default function AISolutionsPage() {
             href={CAL_BOOKING_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#4f8ef7] to-[#9b6dff] text-white font-semibold hover:opacity-90 transition-opacity"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#f3f4f6] text-[#07080c] hover:bg-[#d7dbe3] font-semibold hover:opacity-90 transition-opacity"
           >
             Book a Call <ArrowRight size={16} />
           </Link>

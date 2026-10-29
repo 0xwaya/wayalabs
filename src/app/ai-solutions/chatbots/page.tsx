@@ -47,8 +47,8 @@ export default function ChatbotsPage() {
       <section className="py-24 px-6 grid-bg border-b border-[var(--border)]">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-11 h-11 rounded-xl flex items-center justify-center bg-[#4f8ef718]">
-              <MessageSquare size={22} className="text-[#4f8ef7]" />
+            <div className="w-11 h-11 rounded-xl flex items-center justify-center bg-[#d7dbe318]">
+              <MessageSquare size={22} className="text-[#d7dbe3]" />
             </div>
             <span className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)]">
               Conversational AI · R&D
@@ -78,7 +78,7 @@ export default function ChatbotsPage() {
               <div key={title} className="p-7 rounded-2xl border border-[var(--border)] bg-[var(--card)]">
                 <h3 className="text-lg font-semibold mb-3">{title}</h3>
                 <p className="text-sm text-[var(--muted)] leading-relaxed mb-5">{description}</p>
-                <span className="text-xs text-[#4f8ef7] border border-[#4f8ef730] rounded-full px-3 py-1">
+                <span className="text-xs text-[#d7dbe3] border border-[#d7dbe330] rounded-full px-3 py-1">
                   {industry}
                 </span>
               </div>
@@ -104,7 +104,7 @@ export default function ChatbotsPage() {
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {capabilities.map((cap) => (
                 <li key={cap} className="flex items-start gap-2.5 text-sm text-[var(--muted)]">
-                  <CheckCircle size={15} className="text-[#4f8ef7] mt-0.5 flex-shrink-0" />
+                  <CheckCircle size={15} className="text-[#d7dbe3] mt-0.5 flex-shrink-0" />
                   {cap}
                 </li>
               ))}
@@ -126,7 +126,7 @@ export default function ChatbotsPage() {
               href={CAL_BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#4f8ef7] to-[#9b6dff] text-white font-semibold hover:opacity-90 transition-opacity"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#f3f4f6] text-[#07080c] hover:bg-[#d7dbe3] font-semibold hover:opacity-90 transition-opacity"
             >
               Book a Call <ArrowRight size={16} />
             </Link>

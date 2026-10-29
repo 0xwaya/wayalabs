@@ -13,7 +13,7 @@ const projects = [
     stack: ["Next.js", "Vercel", "Webhooks", "Zapier"],
     href: "/case-studies/urban-stone",
     externalUrl: "https://urbanstone.co",
-    accentColor: "#4f8ef7",
+    accentColor: "#d7dbe3",
   },
   {
     id: "queen-city-soundboard",
@@ -26,7 +26,7 @@ const projects = [
     stack: ["Next.js", "REST API", "Webhooks"],
     href: "/case-studies/queen-city-soundboard",
     externalUrl: "https://queencitysoundboard.com",
-    accentColor: "#9b6dff",
+    accentColor: "#c5cad3",
   },
   {
     id: "openclaw-agent",
@@ -39,7 +39,7 @@ const projects = [
     stack: ["OpenClaw", "Tool boundaries", "Operator-led"],
     href: "/case-studies/openclaw-agent",
     externalUrl: null,
-    accentColor: "#22d3ee",
+    accentColor: "#f3f4f6",
   },
 ];
 
@@ -58,7 +58,7 @@ export default function FeaturedProjects() {
           </div>
           <Link
             href="/case-studies"
-            className="inline-flex items-center gap-2 text-sm text-[#4f8ef7] hover:opacity-80 transition-opacity whitespace-nowrap"
+            className="inline-flex items-center gap-2 text-sm text-[#d7dbe3] hover:opacity-80 transition-opacity whitespace-nowrap"
           >
             All case studies <ArrowRight size={14} />
           </Link>

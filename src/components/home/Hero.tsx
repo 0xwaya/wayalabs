@@ -4,28 +4,18 @@ import { ButtonLink } from "@/components/ui/Button";
 export default function Hero() {
   return (
     <section className="relative min-h-[90vh] flex items-center grid-bg overflow-hidden">
-      {/* Ambient glow orbs */}
-      <div
-        aria-hidden
-        className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-20"
-        style={{
-          background:
-            "radial-gradient(circle, #4f8ef7 0%, transparent 70%)",
-        }}
-      />
-      <div
-        aria-hidden
-        className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full blur-3xl opacity-15"
-        style={{
-          background:
-            "radial-gradient(circle, #9b6dff 0%, transparent 70%)",
-        }}
-      />
-
       <div className="relative max-w-7xl mx-auto px-6 py-24">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/logos/wayalabs-mark.png"
+          alt=""
+          width={1130}
+          height={714}
+          className="mb-10 h-auto w-full max-w-xl"
+        />
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[var(--border)] bg-[var(--card)] text-xs text-[var(--muted)] mb-8">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#22d3ee] animate-pulse" />
+          <span className="w-1.5 h-1.5 rounded-full bg-[#f3f4f6] animate-pulse" />
           AI Solutions Studio
         </div>
 

@@ -12,7 +12,7 @@ export default function CTABanner() {
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(135deg, rgba(79,142,247,0.12) 0%, rgba(155,109,255,0.1) 50%, rgba(34,211,238,0.08) 100%)",
+                "linear-gradient(135deg, rgba(215,219,227,0.12) 0%, rgba(215,219,227,0.1) 50%, rgba(243,244,246,0.08) 100%)",
             }}
           />
           {/* Grid overlay */}

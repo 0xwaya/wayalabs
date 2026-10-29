@@ -14,7 +14,7 @@ const phases = [
     number: "01",
     title: "Discover",
     duration: "Week 1",
-    accent: "#4f8ef7",
+    accent: "#d7dbe3",
     description:
       "We start by understanding your business deeply — not by pitching technology. Discovery is a structured working session, not a slide deck.",
     activities: [
@@ -31,7 +31,7 @@ const phases = [
     number: "02",
     title: "Prototype",
     duration: "Weeks 2–3",
-    accent: "#9b6dff",
+    accent: "#c5cad3",
     description:
       "A working system on your real data — not a demo. Prototype sprints are tight, feedback-driven, and designed to surface what matters early.",
     activities: [
@@ -48,7 +48,7 @@ const phases = [
     number: "03",
     title: "Deploy",
     duration: "Weeks 4–5",
-    accent: "#22d3ee",
+    accent: "#f3f4f6",
     description:
       "Production-grade engineering. Every deployment includes observability, guardrails, integration tests, and a clear escalation path.",
     activities: [
@@ -65,7 +65,7 @@ const phases = [
     number: "04",
     title: "Optimise",
     duration: "Ongoing",
-    accent: "#4f8ef7",
+    accent: "#d7dbe3",
     description:
       "AI systems degrade without ongoing attention. Optimise is a continuous loop — evaluating outputs, improving prompts, and evolving the system with your business.",
     activities: [
@@ -204,7 +204,7 @@ export default function ProcessPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {principles.map(({ title, description }) => (
               <div key={title} className="p-6 rounded-2xl border border-[var(--border)] bg-[var(--background)]">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#4f8ef7] mb-4" />
+                <div className="w-1.5 h-1.5 rounded-full bg-[#d7dbe3] mb-4" />
                 <h3 className="font-semibold mb-2">{title}</h3>
                 <p className="text-sm text-[var(--muted)] leading-relaxed">{description}</p>
               </div>
@@ -223,7 +223,7 @@ export default function ProcessPage() {
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#4f8ef7] to-[#9b6dff] text-white font-semibold hover:opacity-90 transition-opacity"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#f3f4f6] text-[#07080c] hover:bg-[#d7dbe3] font-semibold hover:opacity-90 transition-opacity"
           >
             Book a Discovery Call <ArrowRight size={16} />
           </Link>

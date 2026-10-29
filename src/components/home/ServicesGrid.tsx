@@ -8,7 +8,7 @@ const services = [
     description:
       "R&D and project-scoping for conversational experiences grounded in approved knowledge sources and clear human escalation paths.",
     href: "/ai-solutions/chatbots",
-    accent: "#4f8ef7",
+    accent: "#d7dbe3",
     focus: ["Approved source material", "Escalation boundaries", "Evaluation questions"],
   },
   {
@@ -17,7 +17,7 @@ const services = [
     description:
       "Research into bounded, multi-step workflows with explicit tool permissions, durable state, and review before consequential actions.",
     href: "/ai-solutions/agents",
-    accent: "#9b6dff",
+    accent: "#c5cad3",
     focus: ["Tool permissions", "Orchestration design", "Human approvals"],
   },
   {
@@ -26,7 +26,7 @@ const services = [
     description:
       "Explore model connections to existing systems with attention to data flow, access scope, and operational requirements.",
     href: "/ai-solutions/integrations",
-    accent: "#22d3ee",
+    accent: "#f3f4f6",
     focus: ["Data boundaries", "Identity and access", "Failure handling"],
   },
 ];

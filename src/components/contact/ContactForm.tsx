@@ -68,8 +68,8 @@ export default function ContactForm() {
   if (submitted) {
     return (
       <div role="status" aria-live="polite" className="text-center py-12">
-        <div className="w-14 h-14 rounded-full bg-[#4f8ef718] flex items-center justify-center mx-auto mb-5">
-          <CheckCircle size={28} className="text-[#4f8ef7]" />
+        <div className="w-14 h-14 rounded-full bg-[#d7dbe318] flex items-center justify-center mx-auto mb-5">
+          <CheckCircle size={28} className="text-[#d7dbe3]" />
         </div>
         <h3 className="text-2xl font-bold mb-3">Message received</h3>
         <p className="text-[var(--muted)]">
@@ -105,8 +105,8 @@ export default function ContactForm() {
               onClick={() => setIntent(value)}
               className={`p-3 rounded-xl border text-left text-sm transition-all ${
                 intent === value
-                  ? "border-[#4f8ef7] bg-[#4f8ef718] text-[var(--foreground)]"
-                  : "border-[var(--border)] bg-[var(--background)] text-[var(--muted)] hover:border-[#4f8ef760]"
+                  ? "border-[#d7dbe3] bg-[#d7dbe318] text-[var(--foreground)]"
+                  : "border-[var(--border)] bg-[var(--background)] text-[var(--muted)] hover:border-[#d7dbe360]"
               }`}
             >
               <div className="font-medium">{label}</div>

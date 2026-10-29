@@ -4,18 +4,18 @@
  */
 
 const finalMark = {
-  file: "/logos/wayalabs-mark.svg",
+  file: "/logos/wayalabs-mark.png",
   name: "WayaLabs Mark",
   description:
-    "Production logo. Geometric feather with premium navy / blue / cyan / violet gradient facets, lightning-bolt spine cutout, glassmorphism edge highlights, neon tip glow, and particle quill dust.",
+    "Production logo. Silver-white ribbon W on near-black. Navbar, footer, and favicon use this mark.",
 };
 
 const versions = [
   {
     id: "mark",
-    file: "/logos/wayalabs-mark.svg",
+    file: "/logos/wayalabs-mark.png",
     name: "WayaLabs Mark (Production)",
-    description: "Final production mark. Wired into Navbar, Footer, and favicon.",
+    description: "Silver ribbon W. Wired into Navbar, Footer, and favicon.",
     recommended: true,
   },
   {
@@ -109,15 +109,15 @@ export default function LogosPage() {
             Logo Mark — <span className="gradient-text">Production Mark Selected</span>
           </h1>
           <p className="text-muted max-w-xl leading-relaxed">
-            Final mark chosen and wired into the site. Brand palette: blue{" "}
-            <code className="text-[#4f8ef7]">#4f8ef7</code>, purple{" "}
-            <code className="text-[#9b6dff]">#9b6dff</code>, cyan{" "}
-            <code className="text-[#22d3ee]">#22d3ee</code>.
+            Final mark chosen and wired into the site. Brand palette: near-black{" "}
+            <code className="text-[#d7dbe3]">#07080c</code>, silver{" "}
+            <code className="text-[#d7dbe3]">#d7dbe3</code>, ink{" "}
+            <code className="text-[#f3f4f6]">#f3f4f6</code>.
           </p>
         </div>
 
         {/* ── FINAL PRODUCTION MARK hero showcase ── */}
-        <div className="rounded-2xl border border-[#4f8ef740] bg-card overflow-hidden mb-10">
+        <div className="rounded-2xl border border-[#d7dbe340] bg-card overflow-hidden mb-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
             {/* Dark stage — large mark */}
             <div className="bg-[#000000] flex items-center justify-center py-16 px-10">
@@ -133,7 +133,7 @@ export default function LogosPage() {
             {/* Details */}
             <div className="p-10 flex flex-col justify-center gap-6">
               <div>
-                <span className="text-[10px] font-semibold uppercase tracking-widest px-2.5 py-1 rounded-full bg-[#4f8ef720] text-[#4f8ef7] border border-[#4f8ef740] mb-4 inline-block">
+                <span className="text-[10px] font-semibold uppercase tracking-widest px-2.5 py-1 rounded-full bg-[#d7dbe320] text-[#d7dbe3] border border-[#d7dbe340] mb-4 inline-block">
                   Production Mark
                 </span>
                 <h2 className="text-2xl font-bold mt-2 mb-2">{finalMark.name}</h2>
@@ -183,12 +183,12 @@ export default function LogosPage() {
               <div
                 key={v.id}
                 className={`rounded-xl border bg-card overflow-hidden flex flex-col ${
-                  v.recommended ? "border-[#4f8ef740]" : "border-border"
+                  v.recommended ? "border-[#d7dbe340]" : "border-border"
                 }`}
               >
                 <div className="bg-[#06060e] flex items-center justify-center py-6 relative">
                   {v.recommended && (
-                    <span className="absolute top-2 right-2 text-[9px] font-semibold uppercase tracking-widest px-1.5 py-0.5 rounded-full bg-[#4f8ef720] text-[#4f8ef7] border border-[#4f8ef740]">
+                    <span className="absolute top-2 right-2 text-[9px] font-semibold uppercase tracking-widest px-1.5 py-0.5 rounded-full bg-[#d7dbe320] text-[#d7dbe3] border border-[#d7dbe340]">
                       Active
                     </span>
                   )}

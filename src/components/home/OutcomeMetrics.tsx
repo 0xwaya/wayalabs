@@ -3,25 +3,25 @@ const architecture = [
     value: "Python",
     label: "CEO orchestrator runtime",
     sub: "Current R&D implementation",
-    accent: "#4f8ef7",
+    accent: "#d7dbe3",
   },
   {
     value: "Flask + Socket.IO",
     label: "Dashboard and chat transport",
     sub: "Local executive-agent prototype",
-    accent: "#9b6dff",
+    accent: "#c5cad3",
   },
   {
     value: "LangGraph",
     label: "Stateful agent orchestration",
     sub: "CEO routing with selected roles",
-    accent: "#22d3ee",
+    accent: "#f3f4f6",
   },
   {
     value: "Durable jobs",
     label: "Single-process worker model",
     sub: "Persisted status; interrupted work is not replayed",
-    accent: "#22d3ee",
+    accent: "#f3f4f6",
   },
 ];
 

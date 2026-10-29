@@ -17,7 +17,7 @@ export default function OpenGraphImage() {
           display: "flex",
           position: "relative",
           background:
-            "radial-gradient(circle at top right, rgba(155,109,255,0.20), transparent 30%), radial-gradient(circle at bottom left, rgba(34,211,238,0.16), transparent 30%), linear-gradient(135deg, #06060e 0%, #0b1020 55%, #11172b 100%)",
+            "radial-gradient(circle at top right, rgba(215,219,227,0.20), transparent 30%), radial-gradient(circle at bottom left, rgba(243,244,246,0.16), transparent 30%), linear-gradient(135deg, #06060e 0%, #0b1020 55%, #11172b 100%)",
           color: "#f0f0f8",
           fontFamily: "sans-serif",
           overflow: "hidden",
@@ -28,7 +28,7 @@ export default function OpenGraphImage() {
             position: "absolute",
             inset: 0,
             backgroundImage:
-              "linear-gradient(rgba(79, 142, 247, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(79, 142, 247, 0.06) 1px, transparent 1px)",
+              "linear-gradient(rgba(215, 219, 227, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(215, 219, 227, 0.06) 1px, transparent 1px)",
             backgroundSize: "64px 64px",
           }}
         />
@@ -56,12 +56,13 @@ export default function OpenGraphImage() {
                 width: "72px",
                 height: "72px",
                 borderRadius: "20px",
-                background: "linear-gradient(135deg, #4f8ef7, #9b6dff 55%, #22d3ee)",
+                background: "linear-gradient(135deg, #d7dbe3, #c5cad3 55%, #f3f4f6)",
                 alignItems: "center",
                 justifyContent: "center",
-                boxShadow: "0 0 40px rgba(155, 109, 255, 0.35)",
+                boxShadow: "0 0 40px rgba(215, 219, 227, 0.35)",
                 fontSize: "30px",
                 fontWeight: 800,
+                color: "#07080c",
               }}
             >
               W
@@ -82,7 +83,7 @@ export default function OpenGraphImage() {
                 fontWeight: 700,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
-                color: "#7dd3fc",
+                color: "#d7dbe3",
                 marginBottom: "18px",
               }}
             >
@@ -125,7 +126,7 @@ export default function OpenGraphImage() {
                   display: "flex",
                   padding: "14px 22px",
                   borderRadius: "999px",
-                  border: "1px solid rgba(155,109,255,0.35)",
+                  border: "1px solid rgba(215,219,227,0.35)",
                   background: "rgba(13, 13, 31, 0.72)",
                   color: "#f0f0f8",
                   fontSize: "21px",

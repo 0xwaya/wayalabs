@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function InsightsPage() {
   const [featured, ...rest] = insightPosts;
-  const accent = categoryColors[featured.category] ?? "#4f8ef7";
+  const accent = categoryColors[featured.category] ?? "#d7dbe3";
 
   return (
     <div className="min-h-screen">
@@ -86,7 +86,7 @@ export default function InsightsPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {rest.map((post) => {
-              const color = categoryColors[post.category] ?? "#4f8ef7";
+              const color = categoryColors[post.category] ?? "#d7dbe3";
               return (
                 <article
                   key={post.slug}
@@ -134,11 +134,11 @@ export default function InsightsPage() {
               type="email"
               required
               placeholder="you@company.com"
-              className="flex-1 px-4 py-2.5 rounded-xl border border-[var(--border)] bg-[var(--background)] text-sm focus:outline-none focus:border-[#4f8ef7] transition-colors"
+              className="flex-1 px-4 py-2.5 rounded-xl border border-[var(--border)] bg-[var(--background)] text-sm focus:outline-none focus:border-[#d7dbe3] transition-colors"
             />
             <button
               type="submit"
-              className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#4f8ef7] to-[#9b6dff] text-white text-sm font-medium hover:opacity-90 transition-opacity whitespace-nowrap"
+              className="px-5 py-2.5 rounded-xl bg-[#f3f4f6] text-[#07080c] hover:bg-[#d7dbe3] text-sm font-medium hover:opacity-90 transition-opacity whitespace-nowrap"
             >
               Subscribe
             </button>

@@ -79,7 +79,7 @@ export default function CeoScenarioSampler() {
             <ArrowLeft size={15} /> OpenClaw project note
           </Link>
           <div className="flex flex-wrap items-center gap-3 mb-4">
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#22d3ee]">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#f3f4f6]">
               State-of-the-art orchestration R&D
             </span>
             <span className="text-xs border border-amber-400/40 text-amber-200 px-2.5 py-1 rounded-full">
@@ -114,7 +114,7 @@ export default function CeoScenarioSampler() {
 
             <div className="border-y border-[var(--border)] py-8 min-h-64" aria-live="polite">
               <div className="flex items-center gap-3 mb-5">
-                <span className="text-xs font-semibold text-[#22d3ee] border border-[#22d3ee]/30 px-2.5 py-1 rounded-full">
+                <span className="text-xs font-semibold text-[#f3f4f6] border border-[#f3f4f6]/30 px-2.5 py-1 rounded-full">
                   {turn.role}
                 </span>
                 <h3 className="text-lg font-semibold">{turn.title}</h3>
@@ -131,7 +131,7 @@ export default function CeoScenarioSampler() {
               aria-valuenow={activeStep + 1}
             >
               <div
-                className="h-full bg-[#22d3ee] transition-[width] duration-300 motion-reduce:transition-none"
+                className="h-full bg-[#f3f4f6] transition-[width] duration-300 motion-reduce:transition-none"
                 style={{ width: `${((activeStep + 1) / turns.length) * 100}%` }}
               />
             </div>
@@ -150,7 +150,7 @@ export default function CeoScenarioSampler() {
                 <button
                   type="button"
                   onClick={() => setPlaying(false)}
-                  className="inline-flex items-center gap-2 bg-[#22d3ee] text-[#061018] px-3 py-2 text-sm font-semibold"
+                  className="inline-flex items-center gap-2 bg-[#f3f4f6] text-[#061018] px-3 py-2 text-sm font-semibold"
                   aria-label="Pause scenario playback"
                 >
                   <Pause size={15} /> Pause
@@ -160,7 +160,7 @@ export default function CeoScenarioSampler() {
                   type="button"
                   onClick={() => setPlaying(true)}
                   disabled={reducedMotion || activeStep === turns.length - 1}
-                  className="inline-flex items-center gap-2 bg-[#22d3ee] text-[#061018] px-3 py-2 text-sm font-semibold disabled:opacity-40"
+                  className="inline-flex items-center gap-2 bg-[#f3f4f6] text-[#061018] px-3 py-2 text-sm font-semibold disabled:opacity-40"
                   aria-label="Play scenario playback"
                   title={reducedMotion ? "Automatic playback is off for reduced motion" : undefined}
                 >
@@ -211,7 +211,7 @@ export default function CeoScenarioSampler() {
             </p>
             <Link
               href="/case-studies/openclaw-agent"
-              className="inline-flex items-center gap-2 mt-7 text-sm text-[#22d3ee] hover:opacity-80"
+              className="inline-flex items-center gap-2 mt-7 text-sm text-[#f3f4f6] hover:opacity-80"
             >
               About the separate OpenClaw exploration <ArrowRight size={14} />
             </Link>

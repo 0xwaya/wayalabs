@@ -55,8 +55,8 @@ export default function IntegrationsPage() {
       <section className="py-24 px-6 grid-bg border-b border-[var(--border)]">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-11 h-11 rounded-xl flex items-center justify-center bg-[#22d3ee18]">
-              <Plug size={22} className="text-[#22d3ee]" />
+            <div className="w-11 h-11 rounded-xl flex items-center justify-center bg-[#f3f4f618]">
+              <Plug size={22} className="text-[#f3f4f6]" />
             </div>
             <span className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)]">
               Integrations · R&D
@@ -86,7 +86,7 @@ export default function IntegrationsPage() {
               <div key={title} className="p-7 rounded-2xl border border-[var(--border)] bg-[var(--card)]">
                 <h3 className="text-lg font-semibold mb-3">{title}</h3>
                 <p className="text-sm text-[var(--muted)] leading-relaxed mb-5">{description}</p>
-                <span className="text-xs text-[#22d3ee] border border-[#22d3ee30] rounded-full px-3 py-1">
+                <span className="text-xs text-[#f3f4f6] border border-[#f3f4f630] rounded-full px-3 py-1">
                   {industry}
                 </span>
               </div>
@@ -107,7 +107,7 @@ export default function IntegrationsPage() {
               <ul className="space-y-3">
                 {capabilities.map((cap) => (
                   <li key={cap} className="flex items-start gap-2.5 text-sm text-[var(--muted)]">
-                    <CheckCircle size={15} className="text-[#22d3ee] mt-0.5 flex-shrink-0" />
+                    <CheckCircle size={15} className="text-[#f3f4f6] mt-0.5 flex-shrink-0" />
                     {cap}
                   </li>
                 ))}
@@ -121,7 +121,7 @@ export default function IntegrationsPage() {
               <ul className="space-y-3">
                 {architectureAreas.map((item) => (
                   <li key={item} className="flex items-start gap-2.5 text-sm text-[var(--muted)]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#22d3ee] mt-1.5 flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#f3f4f6] mt-1.5 flex-shrink-0" />
                     {item}
                   </li>
                 ))}
@@ -144,7 +144,7 @@ export default function IntegrationsPage() {
               href={CAL_BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#4f8ef7] to-[#9b6dff] text-white font-semibold hover:opacity-90 transition-opacity"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#f3f4f6] text-[#07080c] hover:bg-[#d7dbe3] font-semibold hover:opacity-90 transition-opacity"
             >
               Book a Call <ArrowRight size={16} />
             </Link>

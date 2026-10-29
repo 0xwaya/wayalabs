@@ -46,8 +46,8 @@ export default function ContactPage() {
             <div className="space-y-4">
               {trustSignals.map(({ icon: Icon, label }) => (
                 <div key={label} className="flex items-center gap-3 text-sm text-[var(--muted)]">
-                  <div className="w-8 h-8 rounded-lg bg-[#4f8ef718] flex items-center justify-center flex-shrink-0">
-                    <Icon size={15} className="text-[#4f8ef7]" />
+                  <div className="w-8 h-8 rounded-lg bg-[#d7dbe318] flex items-center justify-center flex-shrink-0">
+                    <Icon size={15} className="text-[#d7dbe3]" />
                   </div>
                   {label}
                 </div>
@@ -63,7 +63,7 @@ export default function ContactPage() {
               </p>
               <a
                 href="mailto:admin@wayalabs.com"
-                className="text-[#4f8ef7] hover:opacity-80 transition-opacity text-sm"
+                className="text-[#d7dbe3] hover:opacity-80 transition-opacity text-sm"
               >
                 admin@wayalabs.com
               </a>

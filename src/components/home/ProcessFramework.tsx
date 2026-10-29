@@ -5,7 +5,7 @@ const steps = [
     description:
       "We map your current workflows, identify the highest-leverage AI opportunity, and define measurable success criteria before writing a line of code.",
     duration: "Week 1",
-    accent: "#4f8ef7",
+    accent: "#d7dbe3",
   },
   {
     number: "02",
@@ -13,7 +13,7 @@ const steps = [
     description:
       "A working proof-of-concept — not slides. You see the AI behaving on your real data, with feedback loops from your team built into the sprint.",
     duration: "Weeks 2–3",
-    accent: "#9b6dff",
+    accent: "#c5cad3",
   },
   {
     number: "03",
@@ -21,7 +21,7 @@ const steps = [
     description:
       "Production-grade build with observability, guardrails, and integration testing. Every system launches with monitoring and a clear escalation path.",
     duration: "Weeks 4–5",
-    accent: "#22d3ee",
+    accent: "#f3f4f6",
   },
   {
     number: "04",
@@ -29,7 +29,7 @@ const steps = [
     description:
       "Post-launch, we run evaluation cycles — reviewing conversation logs, agent traces, and conversion data — to continuously improve output quality.",
     duration: "Ongoing",
-    accent: "#4f8ef7",
+    accent: "#d7dbe3",
   },
 ];
 
