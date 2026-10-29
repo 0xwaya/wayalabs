@@ -30,13 +30,13 @@ const projects = [
   },
   {
     id: "openclaw-agent",
-    title: "OpenClaw Workflow Exploration",
-    subtitle: "Internal agent orchestration R&D",
+    title: "OpenClaw, private Echo runtime",
+    subtitle: "Cloud network, sandbox, gated tools",
     category: "AI Agent",
     description:
-      "Internal research into operator-directed repository review, documentation, and cross-repository coordination. This is separate from the CEO Executive Orchestrator and is not a client deployment.",
-    tags: ["Research and development", "Human review", "Workflow design"],
-    stack: ["OpenClaw", "Tool boundaries", "Operator-led"],
+      "Echo keeps OpenClaw in a private cloud network. The session is sandboxed, and tool use sits behind gates. It is not a client deployment, and the private configuration is not published here.",
+    tags: ["Sandbox", "Gated tools", "Private network"],
+    stack: ["OpenClaw", "Cloud network", "Owner approval"],
     href: "/case-studies/openclaw-agent",
     externalUrl: null,
     accentColor: "#f3f4f6",

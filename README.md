@@ -23,7 +23,7 @@ Current public project notes live in `src/lib/data/case-studies.ts` and on [waya
 - Urban Stone Collective — live Next.js site, OpenAI chat, sales webhook, unattended lead-sourcer
 - Queen City Soundboard — live Next.js 16 event guide on Supabase
 - Grok operator environments — isolated checkouts and virtual environments, human approval before a push
-- OpenClaw workflow exploration — separate internal assistant research, not a client deployment
+- OpenClaw, private Echo runtime — cloud network, sandbox, gated tools. The private configuration is not in this repo
 
 The homepage, Open Graph, Twitter, and organization JSON-LD share one description from `src/lib/site.ts`. Page-level titles and descriptions override it. Do not set `title`, `description`, or `url` on the root `openGraph` or `twitter` objects, or inner pages will keep advertising the homepage.
 

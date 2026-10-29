@@ -53,8 +53,8 @@ const work = [
     accent: "#d7dbe3",
   },
   {
-    name: "OpenClaw Workflow Exploration",
-    type: "Internal R&D · separate from CEO Orchestrator",
+    name: "OpenClaw, private Echo runtime",
+    type: "Private cloud network · sandbox · gated tools",
     url: "",
     accent: "#f3f4f6",
   },

@@ -68,33 +68,34 @@ export const caseStudies = [
   },
   {
     id: "openclaw-agent",
-    title: "OpenClaw Workflow Exploration",
-    client: "Internal exploration",
+    title: "OpenClaw, private Echo runtime",
+    client: "Internal runtime",
     url: "",
     category: "AI Agent",
-    tags: ["AI Agent", "Workflow Automation", "LLM Orchestration"],
+    tags: ["OpenClaw", "Sandbox", "Gated tools"],
     summary:
-      "An internal exploration of how an OpenClaw-based assistant could support software-development workflows. This project note describes scope only; no client deployment or measured productivity result is claimed.",
+      "Echo is the private OpenClaw deployment. It runs in a private cloud network, with the session sandboxed and tool use behind gates. This note states that boundary only. It is not a client deployment, and no measured result is published.",
     problem:
-      "The exploration considered whether an operator-directed assistant could help with recurring repository review, documentation, and cross-repository coordination tasks.",
+      "An assistant that can review repositories and draft work also needs a place to run where a mistake stays inside the network, and where a high-impact action cannot proceed on its own.",
     approach:
-      "The work remained an internal prototype and planning effort. Any suggested code or documentation changes require human review; this page does not represent an autonomous production service.",
+      "Echo keeps OpenClaw inside a private cloud network. The session runs in a sandbox. If that sandbox network is not there, the session does not fall back to an open network. Tool use is gated: ordinary work stays in the sandbox, and high-impact actions wait for the owner. Other agents cannot grant that approval.",
     architecture: [
-      "OpenClaw-based internal assistant exploration",
-      "Workflow themes: repository review, documentation, and coordination",
-      "Operator direction and human review remain essential",
-      "Not the CEO Executive Orchestrator or its public sampler",
+      "Private cloud network. Echo is not a public service",
+      "Container sandbox for the session, with no fallback to the host network",
+      "Gates on tool use. Host execution is denied unless the owner approves",
+      "Separate from the CEO Executive Orchestrator sampler and from Grok operator sessions",
+      "Private configuration stays in the private repository",
     ],
-    timeline: "Internal exploration; ongoing",
+    timeline: "Private runtime; ongoing",
     impactHeading: "Scope and limits",
     impact: [
+      "Contained in a private cloud network, with a sandbox and gated tools",
       "No measured productivity or reliability result is published",
       "No client deployment is claimed",
-      "Private runtime details and operator data are not part of this case study",
     ],
     nextIteration:
-      "Any future external demonstration requires a separately reviewed public-safe copy and evidence. This case study does not describe or expose the private runtime.",
-    demoUrl: "/lab/ceo-agent",
+      "Keep the private runtime unpublished here. A public demonstration would need its own reviewed copy and evidence.",
+    demoUrl: undefined,
   },
   {
     id: "grok-operators",
