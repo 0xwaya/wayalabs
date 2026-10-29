@@ -32,10 +32,10 @@ export const metadata: Metadata = {
       "AI application architecture and orchestration research. Project capabilities and deployment status are stated explicitly.",
     images: [
       {
-        url: "/opengraph-image",
+        url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "WayaLabs AI solutions studio social preview",
+        alt: "WayaLabs ribbon mark and Wayalabs.com",
       },
     ],
   },
@@ -45,17 +45,22 @@ export const metadata: Metadata = {
     description:
       "AI chatbots, AI agents, and intelligent web platforms for ambitious businesses.",
     creator: "@wayalabs",
-    images: ["/twitter-image"],
+    images: ["/og.png"],
   },
   robots: {
     index: true,
     follow: true,
   },
-    icons: {
-      icon: [
-        { url: "/favicon.svg", type: "image/svg+xml" },
-      ],
-    },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "48x48", type: "image/x-icon" },
+      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16.png", sizes: "16x16", type: "image/png" },
+      { url: "/icon.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    shortcut: "/favicon.ico",
+  },
 };
 
 const jsonLd = {
@@ -63,7 +68,7 @@ const jsonLd = {
   "@type": "Organization",
   name: "WayaLabs",
   url: "https://wayalabs.com",
-  logo: "https://wayalabs.com/logo.png",
+  logo: "https://wayalabs.com/apple-touch-icon.png",
   description:
     "WayaLabs explores AI application architecture, agent orchestration, and integration patterns through project-specific research and development.",
   address: {
