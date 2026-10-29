@@ -8,9 +8,9 @@ const projects = [
     subtitle: "Countertop Fabrication — Website & Lead System",
     category: "AI-Enhanced Web Platform",
     description:
-      "Website and lead system for a granite, quartz, and quartzite countertop fabricator serving greater Cincinnati and Northern Kentucky. Quote requests and the Onyx chat route to the sales inbox. A lead-sourcer checks extra sources only when they are switched on.",
-    tags: ["Lead Capture", "Lead sourcer", "Contractor Portal"],
-    stack: ["Next.js", "Supabase", "Resend"],
+      "Website and lead system for a granite, quartz, and quartzite countertop fabricator serving greater Cincinnati and Northern Kentucky. Quote requests and the Onyx chat route to the sales inbox. Onyx uses the OpenAI API. A lead-sourcer runs unattended and delivers matched leads to that same inbox.",
+    tags: ["Lead Capture", "Lead sourcer", "Onyx chat"],
+    stack: ["Next.js", "OpenAI", "Supabase"],
     href: "/case-studies/urban-stone",
     externalUrl: "https://urbanstone.co",
     accentColor: "#d7dbe3",

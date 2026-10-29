@@ -11,25 +11,27 @@ export const caseStudies = [
     problem:
       "Urban Stone Collective fabricates and installs custom countertops for homeowners, remodelers, and builders, with a 3–5 day turnaround from deposit to install. It needed a fast, credible web presence that turns local search traffic into quote requests and routes every lead to the sales inbox without manual copying.",
     approach:
-      "We built a Next.js site on Vercel. Quote requests and the on-site Onyx chat both hand a lead to the sales webhook. Trade partners use a contractor portal with magic-link sign-in. A separate lead-sourcer checks public sources only when that source is explicitly switched on, and it writes a run report instead of contacting anyone.",
+      "We built a Next.js site on Vercel. Quote requests and the on-site Onyx chat both hand a lead to the sales webhook. Onyx answers through the OpenAI API, using Urban Stone's playbook, and falls back to the on-site knowledge base if that call fails. Trade partners use a contractor portal with magic-link sign-in. A lead-sourcer runs unattended three times a day and, in live mode, delivers matched leads to the sales inbox. It does not contact the people who posted.",
     architecture: [
       "Next.js Pages router on Vercel, React 19",
+      "Onyx chat → OpenAI API, with the Urban Stone playbook as the prompt",
       "Quote form and Onyx chat → API route → sales webhook",
       "Contractor portal with Supabase access control and Resend mail",
       "Spanish-language page (/es) and coverage page",
       "Schema.org HomeAndConstructionBusiness, Service, and FAQPage markup",
-      "Lead-sourcer on GitHub Actions. County permits and Facebook Marketplace stay off until a repo flag enables them, with per-run caps",
+      "Lead-sourcer on GitHub Actions, unattended at 8:00, 12:00, and 5:00 ET, in live mode",
     ],
     timeline: "Live at urbanstone.co; ongoing iteration",
     impactHeading: "What's live",
     demoUrl: undefined,
     impact: [
-      "Quote requests route automatically to the sales inbox",
+      "A scheduled lead-sourcer runs unattended and delivers matched leads to the sales inbox",
+      "Onyx, the on-site chat, answers through the OpenAI API and can hand a project to the sales inbox",
       "Trade partners have a dedicated contractor portal",
       "English- and Spanish-speaking customers are served from one site",
     ],
     nextIteration:
-      "Keep lead-sourcer sources opt-in until lead quality is reviewed. Move social publishing into this project's own backend so campaign images are scheduled by Urban Stone, not by an outside uploader.",
+      "Move social publishing into this project's own backend so campaign images are scheduled by Urban Stone, not by an outside uploader.",
   },
   {
     id: "queen-city-soundboard",

@@ -62,7 +62,7 @@ const work = [
 
 const stack = [
   "WayaLabs site: Next.js 16 · React 19 · TypeScript · Tailwind CSS 4",
-  "Urban Stone: Next.js 15 Pages · Supabase · Resend",
+  "Urban Stone: Next.js 15 Pages · OpenAI chat · Supabase · unattended lead-sourcer",
   "Queen City Soundboard: Next.js 16 App Router · Supabase · Vercel",
   "Operator sessions: Grok, one checkout per project, Python venv where the runtime needs it",
   "CEO Orchestrator R&D: Python · Flask · Socket.IO · LangGraph",
