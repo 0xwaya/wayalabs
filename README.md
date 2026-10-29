@@ -20,7 +20,7 @@ This repository contains the source for **wayalabs.com** — a full rebuild repo
 
 Current public project notes live in `src/lib/data/case-studies.ts` and on [wayalabs.com/case-studies](https://wayalabs.com/case-studies):
 
-- Urban Stone Collective — live Next.js site, OpenAI chat, sales webhook, unattended lead-sourcer
+- Urban Stone Collective — live Next.js site, Ollama chat, sales webhook, unattended lead-sourcer
 - Queen City Soundboard — live Next.js 16 event guide on Supabase
 - Grok operator environments — isolated checkouts and virtual environments, human approval before a push
 - OpenClaw, private Echo runtime — cloud network, sandbox, gated tools. The private configuration is not in this repo
