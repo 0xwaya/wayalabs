@@ -11,27 +11,29 @@ export const caseStudies = [
     problem:
       "Urban Stone Collective fabricates and installs custom countertops for homeowners, remodelers, and builders, with a 3–5 day turnaround from deposit to install. It needed a fast, credible web presence that turns local search traffic into quote requests and routes every lead to the sales inbox without manual copying.",
     approach:
-      "We built a Next.js site on Vercel. Quote requests and the on-site Onyx chat both hand a lead to the sales webhook. Onyx answers through Ollama, using Urban Stone's playbook, and falls back to the on-site knowledge base if that call fails. Trade partners use a contractor portal with magic-link sign-in. A lead-sourcer runs unattended three times a day and, in live mode, delivers matched leads to the sales inbox. It does not contact the people who posted.",
+      "We built a Next.js site on Vercel. Quote requests, the on-site Onyx chat, and contractor estimates email sales@ through Resend. After that email succeeds, the contact and intake are saved into a private Supabase CRM and matched to an existing contact by email, phone, or company. Onyx answers through Ollama, using Urban Stone's playbook, and falls back to the on-site knowledge base if that call fails. Trade partners use a contractor portal with magic-link sign-in. A permit-only lead-sourcer runs unattended three times a day. In live mode it emails matched Hamilton County, Cincinnati, and Butler County permits to sales@, then files them in that same CRM. It does not contact the contractor. Reddit, Craigslist, Facebook, and the old sales webhook are retired.",
     architecture: [
       "Next.js Pages router on Vercel, React 19",
       "Onyx chat → Ollama, with the Urban Stone playbook as the prompt",
-      "Quote form and Onyx chat → API route → sales webhook",
+      "Quote form, Onyx chat, and contractor estimates → Resend email to sales@, then a private Supabase CRM intake",
+      "CRM writes go through one service-role function. Row-level security is on and anonymous access is denied",
       "Contractor portal with Supabase access control and Resend mail",
       "Spanish-language page (/es) and coverage page",
       "Schema.org HomeAndConstructionBusiness, Service, and FAQPage markup",
-      "Lead-sourcer on GitHub Actions, unattended at 8:00, 12:00, and 5:00 ET, in live mode",
+      "Lead-sourcer on GitHub Actions at 8:00, 12:00, and 5:00 ET: Hamilton County, Cincinnati, and Butler County permits only",
     ],
     timeline: "Live at urbanstone.co; ongoing iteration",
     impactHeading: "What's live",
     demoUrl: undefined,
     impact: [
-      "A scheduled lead-sourcer runs unattended and delivers matched leads to the sales inbox",
+      "Permit leads from Hamilton County, Cincinnati, and Butler County are emailed to sales@ and saved to the CRM",
+      "Website quote, chat, and contractor-estimate leads go to sales@ by email and into the same CRM",
       "Onyx, the on-site chat, answers through Ollama and can hand a project to the sales inbox",
       "Trade partners have a dedicated contractor portal",
       "English- and Spanish-speaking customers are served from one site",
     ],
     nextIteration:
-      "Move social publishing into this project's own backend so campaign images are scheduled by Urban Stone, not by an outside uploader.",
+      "Give the CRM a simple inbox for new intakes, and retry a save that fails after the sales email has already gone out. Move social publishing into this project's own backend so campaign images are scheduled by Urban Stone, not by an outside uploader.",
   },
   {
     id: "queen-city-soundboard",

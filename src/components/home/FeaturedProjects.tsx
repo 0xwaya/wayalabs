@@ -8,8 +8,8 @@ const projects = [
     subtitle: "Countertop Fabrication — Website & Lead System",
     category: "AI-Enhanced Web Platform",
     description:
-      "Website and lead system for a granite, quartz, and quartzite countertop fabricator serving greater Cincinnati and Northern Kentucky. Quote requests and the Onyx chat route to the sales inbox. Onyx uses Ollama. A lead-sourcer runs unattended and delivers matched leads to that same inbox.",
-    tags: ["Lead Capture", "Lead sourcer", "Onyx chat"],
+      "Website and lead system for a granite, quartz, and quartzite countertop fabricator serving greater Cincinnati and Northern Kentucky. Quote requests and the Onyx chat email sales@. Onyx uses Ollama. A permit lead-sourcer runs unattended, and new leads are filed in a private CRM.",
+    tags: ["Lead Capture", "Permit sourcer", "CRM"],
     stack: ["Next.js", "Ollama", "Supabase"],
     href: "/case-studies/urban-stone",
     externalUrl: "https://urbanstone.co",
