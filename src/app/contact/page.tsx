@@ -3,11 +3,12 @@ import { Mail, CalendarDays, MessageSquare } from "lucide-react";
 import ContactForm from "@/components/contact/ContactForm";
 import { CAL_BOOKING_URL } from "@/lib/booking";
 import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
+import { discoveryCreditSentence } from "@/lib/data/offers";
 
 export const metadata: Metadata = {
   title: "Contact — Book a Call",
   description:
-    "Book a discovery call with WayaLabs. New customers pay $1,200 for discovery, down from $2,000. That fee is credited if a build starts within 60 days.",
+    `Book a discovery call with WayaLabs. ${discoveryCreditSentence}`,
   alternates: { canonical: "/contact" },
   openGraph: { url: "/contact" },
 };

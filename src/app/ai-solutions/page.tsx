@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CAL_BOOKING_URL } from "@/lib/booking";
 import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
+import { discoveryCreditSentence } from "@/lib/data/offers";
 import { MessageSquare, Cpu, Plug, Globe, BarChart3, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "AI Solutions",
   description:
-    "Research and development across conversational AI, agent orchestration, and system integrations. New customers pay $1,200 for discovery. That fee is credited if a build starts within 60 days.",
+    `Research and development across conversational AI, agent orchestration, and system integrations. ${discoveryCreditSentence}`,
   alternates: { canonical: "/ai-solutions" },
   openGraph: { url: "/ai-solutions" },
 };

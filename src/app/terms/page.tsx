@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import { DISCOVERY_CREDIT_DAYS, discoveryOffer, formatUsd } from "@/lib/data/offers";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
   description:
-    "Terms of service for WayaLabs engagements, including the 40% new-customer discount and the 60-day discovery credit.",
+    "Terms of service for WayaLabs engagements, including the discovery sprint and the 60-day discovery credit.",
   alternates: { canonical: "/terms" },
   openGraph: { url: "/terms" },
 };
@@ -34,14 +35,12 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="text-base font-semibold text-[var(--foreground)] mb-2">New customer discount</h2>
+            <h2 className="text-base font-semibold text-[var(--foreground)] mb-2">Discovery credit</h2>
             <p>
-              An organization that has not paid WayaLabs before receives 40% off its first
-              invoice. Discovery is $1,200, reduced from $2,000. If a platform or lead-system
-              build starts within 60 days, the discovery amount paid is credited on that
-              invoice and the build is not also discounted. Watch and build-block plans are
-              not discounted. WayaLabs may refuse the discount or the credit when the
-              organization, or a predecessor, has already paid.
+              Discovery is {formatUsd(discoveryOffer.priceUsd)}. If a platform or lead-system
+              build starts within {DISCOVERY_CREDIT_DAYS} days, the discovery amount paid is
+              credited on that invoice. The credit applies once. WayaLabs may refuse the credit
+              when the organization, or a predecessor, has already paid for that discovery.
             </p>
           </section>
 

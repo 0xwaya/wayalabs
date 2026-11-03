@@ -18,7 +18,7 @@ This repository contains the source for **wayalabs.com** — a full rebuild repo
 - **AI Integrations** — LLM + CRM + docs + APIs with observability built in
 - **AI-Enhanced Web Platforms** — frontend + backend intelligence in one build
 
-New customers receive 40% off the first invoice. Discovery is $1,200, down from $2,000, and that fee is credited if a build starts within 60 days. Public page: [wayalabs.com/offers](https://wayalabs.com/offers). The rest of the ladder is `docs/internal/offer-kit.md`. Do not publish that ladder.
+Discovery is $1,200. A platform build is $10,000–$18,000. A lead system is $7,000–$14,000. The discovery fee is credited if that build starts within 60 days. Public page: [wayalabs.com/offers](https://wayalabs.com/offers). Watch, the build block, and agent pilots stay in `docs/internal/offer-kit.md`.
 
 Current public project notes live in `src/lib/data/case-studies.ts` and on [wayalabs.com/case-studies](https://wayalabs.com/case-studies):
 

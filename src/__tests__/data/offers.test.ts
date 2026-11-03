@@ -1,34 +1,47 @@
 import { describe, expect, it } from "vitest";
 import {
   DISCOVERY_CREDIT_DAYS,
-  NEW_CUSTOMER_DISCOUNT_PERCENT,
+  discoveryCreditSentence,
   discoveryOffer,
-  discountedUsd,
-  newCustomerDiscoveryUsd,
-  newCustomerRules,
+  leadSystemOffer,
+  offerRules,
+  offersPageDescription,
+  platformOffer,
 } from "@/lib/data/offers";
 
-describe("new customer offer", () => {
-  it("is a 40% discount on the discovery list price", () => {
-    expect(NEW_CUSTOMER_DISCOUNT_PERCENT).toBe(40);
-    expect(discoveryOffer.listPriceUsd).toBe(2000);
-    expect(newCustomerDiscoveryUsd).toBe(1200);
-    expect(discountedUsd(2000)).toBe(1200);
+describe("public offers", () => {
+  it("prices discovery at $1,200 and describes the week", () => {
+    expect(discoveryOffer.priceUsd).toBe(1200);
+    expect(discoveryOffer.duration).toBe("One week");
+    expect(discoveryOffer.includes.join(" ")).toMatch(/go or no-go/);
+    expect(discoveryOffer.includes.join(" ")).toMatch(/data boundary/i);
   });
 
-  it("rounds half-up to the nearest dollar", () => {
-    expect(discountedUsd(100)).toBe(60);
+  it("publishes the live platform and lead-system ranges", () => {
+    expect(platformOffer.priceFromUsd).toBe(10_000);
+    expect(platformOffer.priceToUsd).toBe(18_000);
+    expect(leadSystemOffer.priceFromUsd).toBe(7_000);
+    expect(leadSystemOffer.priceToUsd).toBe(14_000);
+    expect(platformOffer.summary).toMatch(/still being improved/);
+    expect(leadSystemOffer.summary).toMatch(/still being improved/);
+    expect(leadSystemOffer.summary).toMatch(/Onyx/);
   });
 
-  it("keeps the internal ladder off this module", () => {
-    expect(discoveryOffer).not.toHaveProperty("platform");
-    expect(discoveryOffer).not.toHaveProperty("retainer");
-  });
-
-  it("states that the discount is once, on the first invoice", () => {
+  it("credits discovery once within 60 days and does not discount", () => {
     expect(DISCOVERY_CREDIT_DAYS).toBe(60);
-    expect(newCustomerRules.join(" ")).toMatch(/first invoice only/);
-    expect(newCustomerRules.join(" ")).toMatch(/credited/);
-    expect(newCustomerRules.join(" ")).toMatch(/not discounted/);
+    expect(offerRules.join(" ")).toMatch(/credited/);
+    expect(offerRules.join(" ")).toMatch(/once/);
+    expect(discoveryCreditSentence).not.toMatch(/40%/);
+    expect(offersPageDescription).not.toMatch(/40%/);
+    expect(offersPageDescription).toMatch(/\$1,200/);
+    expect(offersPageDescription).toMatch(/\$10,000/);
+    expect(offersPageDescription).toMatch(/\$7,000/);
+  });
+
+  it("keeps watch, the build block, and agent pilots off this module", () => {
+    const blob = JSON.stringify({ discoveryOffer, platformOffer, leadSystemOffer, offerRules });
+    expect(blob).not.toMatch(/watch/i);
+    expect(blob).not.toMatch(/build block/i);
+    expect(blob).not.toMatch(/agent/i);
   });
 });
