@@ -27,6 +27,7 @@ const footerLinks = {
     { href: "/ai-solutions/integrations", label: "AI Integrations" },
   ],
   Company: [
+    { href: "/offers", label: "New customers" },
     { href: "/case-studies", label: "Case Studies" },
     { href: "/process", label: "Our Process" },
     { href: "/about", label: "About" },

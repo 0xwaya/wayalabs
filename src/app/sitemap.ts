@@ -7,6 +7,7 @@ const BASE_URL = "https://wayalabs.com";
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     { url: BASE_URL, priority: 1.0, changeFrequency: "weekly" as const },
+    { url: `${BASE_URL}/offers`, priority: 0.9, changeFrequency: "monthly" as const },
     { url: `${BASE_URL}/ai-solutions`, priority: 0.9, changeFrequency: "monthly" as const },
     { url: `${BASE_URL}/ai-solutions/chatbots`, priority: 0.9, changeFrequency: "monthly" as const },
     { url: `${BASE_URL}/ai-solutions/agents`, priority: 0.9, changeFrequency: "monthly" as const },

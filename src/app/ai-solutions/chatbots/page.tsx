@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CAL_BOOKING_URL } from "@/lib/booking";
+import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
 import { MessageSquare, CheckCircle, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "AI Chatbots",
   description:
-    "Research and development for conversational AI, grounded in scoped source material, evaluation, and human escalation requirements.",
+    "Research and development for conversational AI, grounded in scoped source material and human escalation. New customers receive 40% off the first engagement.",
   alternates: { canonical: "/ai-solutions/chatbots" },
   openGraph: { url: "/ai-solutions/chatbots" },
 };
@@ -138,6 +139,7 @@ export default function ChatbotsPage() {
               See Case Studies
             </Link>
           </div>
+          <NewCustomerNote centered />
         </div>
       </section>
     </div>

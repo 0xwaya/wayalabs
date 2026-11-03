@@ -18,6 +18,8 @@ This repository contains the source for **wayalabs.com** — a full rebuild repo
 - **AI Integrations** — LLM + CRM + docs + APIs with observability built in
 - **AI-Enhanced Web Platforms** — frontend + backend intelligence in one build
 
+New customers receive 40% off the first invoice. The public page is [wayalabs.com/offers](https://wayalabs.com/offers): discovery is $2,100, down from $3,500. The rest of the ladder, including what is not discounted, is the internal kit at `docs/internal/offer-kit.md`. Do not publish that ladder.
+
 Current public project notes live in `src/lib/data/case-studies.ts` and on [wayalabs.com/case-studies](https://wayalabs.com/case-studies):
 
 - Urban Stone Collective — live Next.js site, Onyx chat on Ollama, Resend to sales@, permit lead-sourcer, private Supabase CRM

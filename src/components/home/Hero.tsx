@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import { ButtonLink } from "@/components/ui/Button";
 import { CAL_BOOKING_URL } from "@/lib/booking";
+import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
 
 export default function Hero() {
   return (
@@ -58,6 +59,7 @@ export default function Hero() {
             CEO orchestrator research
           </Link>
         </p>
+        <NewCustomerNote />
 
         {/* Social proof strip */}
         <div className="mt-16 flex flex-wrap items-center gap-8">

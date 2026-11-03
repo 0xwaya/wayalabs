@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { ButtonLink } from "@/components/ui/Button";
 import { CAL_BOOKING_URL } from "@/lib/booking";
+import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
 
 export default function CTABanner() {
   return (
@@ -58,6 +59,7 @@ export default function CTABanner() {
               <span>Named systems</span>
               <span>Go or no-go</span>
             </div>
+            <NewCustomerNote centered />
           </div>
         </div>
       </div>

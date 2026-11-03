@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CAL_BOOKING_URL } from "@/lib/booking";
+import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, Clock } from "lucide-react";
 import { categoryColors, insightPosts } from "@/lib/data/insights";
@@ -137,6 +138,7 @@ export default async function InsightDetailPage({ params }: Props) {
           >
             Book a Call <ArrowRight size={16} />
           </Link>
+          <NewCustomerNote centered />
         </div>
       </section>
     </div>

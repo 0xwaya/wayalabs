@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import { Mail, CalendarDays, MessageSquare } from "lucide-react";
 import ContactForm from "@/components/contact/ContactForm";
 import { CAL_BOOKING_URL } from "@/lib/booking";
+import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
 
 export const metadata: Metadata = {
   title: "Contact — Book a Call",
   description:
-    "Book a strategy call with WayaLabs or send a message. We respond within one business day. No-commitment discovery call to explore your AI opportunity.",
+    "Book a discovery call with WayaLabs. New customers receive 40% off the first engagement: discovery is $2,100, down from $3,500. We reply within one business day.",
   alternates: { canonical: "/contact" },
   openGraph: { url: "/contact" },
 };
@@ -34,6 +35,7 @@ export default function ContactPage() {
             Tell us what you want to build or automate. We&apos;ll respond with a clear,
             honest assessment — and a path forward if it&apos;s a good fit.
           </p>
+          <NewCustomerNote />
         </div>
       </section>
 

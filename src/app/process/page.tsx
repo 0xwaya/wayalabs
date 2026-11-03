@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
 
 export const metadata: Metadata = {
   title: "Our Process",
   description:
-    "How WayaLabs scopes, builds, and delivers AI systems — from discovery to post-launch optimisation. A structured 4-phase framework built for speed and reliability.",
+    "How WayaLabs scopes, builds, and delivers AI systems, from discovery to post-launch work. New customers receive 40% off the first engagement. Discovery is $2,100.",
   alternates: { canonical: "/process" },
   openGraph: { url: "/process" },
 };
@@ -228,6 +229,7 @@ export default function ProcessPage() {
           >
             Book a Discovery Call <ArrowRight size={16} />
           </Link>
+          <NewCustomerNote centered />
         </div>
       </section>
     </div>

@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CAL_BOOKING_URL } from "@/lib/booking";
+import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
 import { Cpu, CheckCircle, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "AI Agents",
   description:
-    "Planning and implementation of carefully scoped AI agents for workflow automation and internal operations.",
+    "Planning and implementation of carefully scoped AI agents for workflow automation and internal operations. New customers receive 40% off the first engagement.",
   alternates: { canonical: "/ai-solutions/agents" },
   openGraph: { url: "/ai-solutions/agents" },
 };
@@ -143,6 +144,7 @@ export default function AgentsPage() {
               See Agent Case Study
             </Link>
           </div>
+          <NewCustomerNote centered />
         </div>
       </section>
     </div>

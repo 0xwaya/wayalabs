@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Terms of Service",
   description:
-    "Terms of service for WayaLabs engagements and website usage.",
+    "Terms of service for WayaLabs engagements, including the 40% new-customer discount on the first invoice.",
   alternates: { canonical: "/terms" },
   openGraph: { url: "/terms" },
 };
@@ -30,6 +30,18 @@ export default function TermsPage() {
             <p>
               All client services are governed by signed agreements that define scope, timelines,
               deliverables, and payment terms.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-base font-semibold text-[var(--foreground)] mb-2">New customer discount</h2>
+            <p>
+              An organization that has not paid WayaLabs before receives 40% off its first
+              invoice. The published first engagement is the discovery sprint at $2,100,
+              reduced from the $3,500 list price. The discount applies once. Later invoices,
+              care retainers, and agent work are not discounted. The invoice shows the list
+              amount, the discount, and the amount due. WayaLabs may refuse the discount when
+              the organization, or a predecessor, has already paid.
             </p>
           </section>
 

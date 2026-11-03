@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, ExternalLink } from "lucide-react";
+import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
 
 export const metadata: Metadata = {
   title: "About WayaLabs",
   description:
-    "WayaLabs explores AI systems through architecture, orchestration, and project-specific research and development.",
+    "WayaLabs explores AI systems through architecture, orchestration, and project-specific research and development. New customers receive 40% off the first engagement.",
   alternates: { canonical: "/about" },
   openGraph: { url: "/about" },
 };
@@ -213,6 +214,7 @@ export default function AboutPage() {
           >
             Get in Touch <ArrowRight size={16} />
           </Link>
+          <NewCustomerNote centered />
         </div>
       </section>
     </div>

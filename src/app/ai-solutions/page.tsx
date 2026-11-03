@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CAL_BOOKING_URL } from "@/lib/booking";
+import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
 import { MessageSquare, Cpu, Plug, Globe, BarChart3, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "AI Solutions",
   description:
-    "Research and development across conversational AI, agent orchestration, and system integrations, with project scope and deployment status stated explicitly.",
+    "Research and development across conversational AI, agent orchestration, and system integrations. New customers receive 40% off the first engagement. Discovery is $2,100.",
   alternates: { canonical: "/ai-solutions" },
   openGraph: { url: "/ai-solutions" },
 };
@@ -168,6 +169,7 @@ export default function AISolutionsPage() {
           >
             Book a Call <ArrowRight size={16} />
           </Link>
+          <NewCustomerNote centered />
         </div>
       </section>
     </div>

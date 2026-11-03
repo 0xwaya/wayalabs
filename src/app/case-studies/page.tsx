@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CAL_BOOKING_URL } from "@/lib/booking";
+import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { caseStudies } from "@/lib/data/case-studies";
 import { categoryColors } from "@/lib/data/categories";
@@ -8,7 +9,7 @@ import { categoryColors } from "@/lib/data/categories";
 export const metadata: Metadata = {
   title: "Case Studies",
   description:
-    "Selected WayaLabs project notes for Urban Stone Collective, Queen City Soundboard, Grok operator environments, and the private Echo runtime for OpenClaw.",
+    "Selected WayaLabs project notes for Urban Stone Collective, Queen City Soundboard, Grok operator environments, and the private Echo runtime for OpenClaw. New customers receive 40% off the first engagement.",
   alternates: { canonical: "/case-studies" },
   openGraph: { url: "/case-studies" },
 };
@@ -122,6 +123,7 @@ export default function CaseStudiesPage() {
           >
             Book a Call <ArrowRight size={16} />
           </Link>
+          <NewCustomerNote centered />
         </div>
       </section>
     </div>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { CAL_BOOKING_URL } from "@/lib/booking";
+import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
 import { ArrowLeft, ExternalLink, CheckCircle, ArrowRight } from "lucide-react";
 import { caseStudies } from "@/lib/data/case-studies";
 import { categoryColors } from "@/lib/data/categories";
@@ -195,6 +196,7 @@ export default async function CaseStudyPage({ params }: Props) {
               </Link>
             )}
           </div>
+          <NewCustomerNote centered />
         </div>
       </section>
     </div>

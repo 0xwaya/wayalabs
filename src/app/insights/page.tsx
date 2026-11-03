@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Clock } from "lucide-react";
 import { insightPosts, categoryColors } from "@/lib/data/insights";
+import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
 
 export const metadata: Metadata = {
   title: "AI Insights",
   description:
-    "Practical guides, case breakdowns, and technical deep-dives on building production AI systems. From WayaLabs — an AI solutions studio.",
+    "Practical guides from WayaLabs, an AI solutions studio. New customers receive 40% off the first engagement.",
   alternates: { canonical: "/insights" },
   openGraph: { url: "/insights" },
 };
@@ -144,6 +145,7 @@ export default function InsightsPage() {
               Subscribe
             </button>
           </form>
+          <NewCustomerNote centered />
         </div>
       </section>
     </div>
