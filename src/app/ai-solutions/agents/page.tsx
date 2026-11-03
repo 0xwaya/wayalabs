@@ -7,7 +7,7 @@ import { Cpu, CheckCircle, ArrowRight } from "lucide-react";
 export const metadata: Metadata = {
   title: "AI Agents",
   description:
-    "Planning and implementation of carefully scoped AI agents for workflow automation and internal operations. New customers pay $1,200 for discovery. That fee is credited if a build starts within 60 days.",
+    "Planning and implementation of carefully scoped AI agents for workflow automation and internal operations. Discovery is $1,200. That fee is credited if a build starts within 60 days.",
   alternates: { canonical: "/ai-solutions/agents" },
   openGraph: { url: "/ai-solutions/agents" },
 };

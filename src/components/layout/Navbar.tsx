@@ -9,7 +9,7 @@ import { CAL_BOOKING_URL } from "@/lib/booking";
 
 const navLinks = [
   { href: "/ai-solutions", label: "AI Solutions" },
-  { href: "/offers", label: "Offers" },
+  { href: "/offers", label: "Discovery" },
   { href: "/case-studies", label: "Case Studies" },
   { href: "/process", label: "Process" },
   { href: "/about", label: "About" },

@@ -7,7 +7,7 @@ import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
 export const metadata: Metadata = {
   title: "Contact — Book a Call",
   description:
-    "Book a discovery call with WayaLabs. New customers pay $1,200 for discovery, down from $2,000. That fee is credited if a build starts within 60 days.",
+    "Book a discovery call with WayaLabs. Discovery is $1,200. That fee is credited if a build starts within 60 days.",
   alternates: { canonical: "/contact" },
   openGraph: { url: "/contact" },
 };
