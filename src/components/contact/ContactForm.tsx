@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { ArrowRight, CheckCircle } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import { Button, ButtonLink } from "@/components/ui/Button";
 import { Input, Textarea } from "@/components/ui/Input";
+import { CAL_BOOKING_URL } from "@/lib/booking";
 
 type Intent = "chatbot" | "agent" | "integration" | "platform" | "unsure";
 
@@ -72,10 +73,19 @@ export default function ContactForm() {
           <CheckCircle size={28} className="text-[#d7dbe3]" />
         </div>
         <h3 className="text-2xl font-bold mb-3">Message received</h3>
-        <p className="text-[var(--muted)]">
-          We&apos;ll respond within one business day. Check your inbox — and feel free to book a
-          call directly below if you&apos;d prefer to move faster.
+        <p className="text-[var(--muted)] mb-6">
+          We&apos;ll reply within one business day. You can also book a time now.
         </p>
+        <ButtonLink
+          href={CAL_BOOKING_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          size="sm"
+          variant="secondary"
+        >
+          Book a discovery call
+          <ArrowRight size={14} />
+        </ButtonLink>
       </div>
     );
   }

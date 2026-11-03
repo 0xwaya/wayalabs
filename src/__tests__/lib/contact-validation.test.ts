@@ -82,6 +82,16 @@ describe("getClientIp", () => {
     expect(getClientIp(req)).toBe("203.0.113.42");
   });
 
+  it("prefers the platform x-real-ip over a caller-supplied forwarded list", () => {
+    const req = new Request("http://localhost", {
+      headers: {
+        "x-real-ip": "198.51.100.10",
+        "x-forwarded-for": "203.0.113.5, 198.51.100.10",
+      },
+    });
+    expect(getClientIp(req)).toBe("198.51.100.10");
+  });
+
   it("returns 'unknown' when no forwarding header is present", () => {
     const req = new Request("http://localhost");
     expect(getClientIp(req)).toBe("unknown");

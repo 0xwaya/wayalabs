@@ -26,10 +26,11 @@ export default function Navbar() {
         <Link href="/" className="flex items-center gap-2 group">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/logos/wayalabs-mark.png"
+              src="/logos/wayalabs-mark-nav.png"
               alt="WayaLabs logo mark"
-              width={44}
-              height={28}
+              width={168}
+              height={106}
+              decoding="async"
               className="h-7 w-auto shrink-0"
             />
           <span className="font-semibold text-[var(--foreground)] tracking-tight">

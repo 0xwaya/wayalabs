@@ -1,5 +1,7 @@
+import Link from "next/link";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import { ButtonLink } from "@/components/ui/Button";
+import { CAL_BOOKING_URL } from "@/lib/booking";
 
 export default function Hero() {
   return (
@@ -11,6 +13,8 @@ export default function Hero() {
           alt=""
           width={1130}
           height={714}
+          fetchPriority="high"
+          decoding="async"
           className="mb-10 h-auto w-full max-w-xl"
         />
         {/* Badge */}
@@ -27,22 +31,33 @@ export default function Hero() {
 
         {/* Sub-headline */}
         <p className="text-lg sm:text-xl text-[var(--muted)] max-w-2xl mb-10 leading-relaxed">
-          WayaLabs researches and develops AI systems. A focused studio exploring
-          AI architecture, implementation, and evaluation — and building practical
-          web platforms and automations for real businesses.
+          Practical web platforms and operator-reviewed automations. Live work
+          includes Urban Stone Collective and Queen City Soundboard. New work
+          starts with a scoped discovery call.
         </p>
 
         {/* CTAs */}
         <div className="flex flex-wrap gap-4">
-          <ButtonLink href="/case-studies" variant="primary" size="md">
-            View Case Studies
+          <ButtonLink
+            href={CAL_BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="primary"
+            size="md"
+          >
+            Book a discovery call
             <ArrowRight size={16} />
           </ButtonLink>
-          <ButtonLink href="/lab/ceo-agent" variant="secondary" size="md">
-            CEO Orchestrator R&D
+          <ButtonLink href="/case-studies" variant="secondary" size="md">
+            View live work
             <ChevronRight size={16} />
           </ButtonLink>
         </div>
+        <p className="mt-4 text-sm text-[var(--muted)]">
+          <Link href="/lab/ceo-agent" className="hover:text-[var(--foreground)] transition-colors">
+            CEO orchestrator research
+          </Link>
+        </p>
 
         {/* Social proof strip */}
         <div className="mt-16 flex flex-wrap items-center gap-8">

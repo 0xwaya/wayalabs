@@ -37,7 +37,7 @@ The homepage, Open Graph, Twitter, and organization JSON-LD share one descriptio
 | Language | TypeScript 5 | Full type safety across components and data |
 | Styling | Tailwind CSS 4 | Design tokens, utility-first, zero runtime |
 | Icons | Lucide React | Consistent, tree-shakeable icon set |
-| Animation | Framer Motion | Lightweight, production-safe motion |
+| Motion | CSS transitions | No animation runtime on the page |
 | Deployment | Vercel (target) | Edge network, preview URLs, zero config |
 
 ---
@@ -126,19 +126,11 @@ Copy `.env.example` to `.env.local` and fill in values. **Never commit `.env.loc
 
 ```bash
 # .env.example — commit this file, not .env.local
-# Contact form / email
-CONTACT_API_KEY=
-
-# Analytics
-NEXT_PUBLIC_ANALYTICS_ID=
-
-# Calendar embed (Calendly / Cal.com)
-NEXT_PUBLIC_CALENDAR_URL=
-
-# CMS (if Sanity/Contentful is added)
-SANITY_PROJECT_ID=
-SANITY_DATASET=
-SANITY_API_TOKEN=
+# Contact form. Both are required before /api/contact accepts an inquiry.
+# CONTACT_FROM_EMAIL must be a verified Resend sender.
+RESEND_API_KEY=
+CONTACT_FROM_EMAIL=
+CONTACT_TO_EMAIL=admin@wayalabs.com
 ```
 
 ---

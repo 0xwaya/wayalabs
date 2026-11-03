@@ -1,21 +1,27 @@
 import { NextResponse } from "next/server";
+import { deliverInquiry } from "@/lib/contact-delivery";
 import {
   getClientIp,
   isRateLimited,
+  isContactIntent,
   isValidEmail,
   sanitize,
-  ALLOWED_INTENTS,
 } from "@/lib/contact-validation";
-import type { ContactIntent } from "@/lib/contact-validation";
 
 type ContactPayload = {
   name: string;
   email: string;
   company?: string;
   message: string;
-  intent?: ContactIntent;
+  intent?: unknown;
   website?: string;
 };
+
+const MAX_BODY_CHARS = 8_000;
+
+function asText(value: unknown): string {
+  return typeof value === "string" ? value : "";
+}
 
 export async function POST(request: Request) {
   try {
@@ -27,18 +33,38 @@ export async function POST(request: Request) {
       );
     }
 
-    const body = (await request.json()) as Partial<ContactPayload>;
+    const declaredLength = Number(request.headers.get("content-length") ?? "0");
+    if (Number.isFinite(declaredLength) && declaredLength > MAX_BODY_CHARS) {
+      return NextResponse.json({ error: "Request is too large." }, { status: 413 });
+    }
+
+    const raw = await request.text();
+    if (raw.length > MAX_BODY_CHARS) {
+      return NextResponse.json({ error: "Request is too large." }, { status: 413 });
+    }
+
+    let parsed: unknown;
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      return NextResponse.json({ error: "Invalid request." }, { status: 400 });
+    }
+    if (typeof parsed !== "object" || parsed === null || Array.isArray(parsed)) {
+      return NextResponse.json({ error: "Invalid request." }, { status: 400 });
+    }
+    const body = parsed as Partial<ContactPayload>;
 
     // Honeypot: bots often fill hidden fields.
-    if (body.website && body.website.trim().length > 0) {
+    const website = asText(body.website);
+    if (website.trim().length > 0) {
       return NextResponse.json({ ok: true });
     }
 
-    const name = sanitize(body.name ?? "");
-    const email = sanitize(body.email ?? "").toLowerCase();
-    const company = sanitize(body.company ?? "");
-    const message = sanitize(body.message ?? "");
-    const intent = body.intent ?? "unsure";
+    const name = sanitize(asText(body.name));
+    const email = sanitize(asText(body.email)).toLowerCase();
+    const company = sanitize(asText(body.company));
+    const message = sanitize(asText(body.message));
+    const intent = asText(body.intent) || "unsure";
 
     if (name.length < 2 || name.length > 100) {
       return NextResponse.json({ error: "Please enter a valid name." }, { status: 400 });
@@ -59,21 +85,24 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!ALLOWED_INTENTS.includes(intent)) {
+    if (!isContactIntent(intent)) {
       return NextResponse.json({ error: "Invalid project intent." }, { status: 400 });
     }
 
-    // Log anonymised inquiry for volume tracking — no PII stored in logs.
-    // Swap this for email/webhook/CRM integration when infra is ready.
+    // Volume only. The message, name, and address go to email, not logs.
     console.info("[contact-inquiry]", {
       receivedAt: new Date().toISOString(),
-      ip,
       nameLength: name.length,
       emailDomain: email.split("@")[1] ?? "unknown",
       hasCompany: company.length > 0,
       intent,
       messageLength: message.length,
     });
+
+    const delivery = await deliverInquiry({ name, email, company, message, intent });
+    if (!delivery.ok) {
+      return NextResponse.json({ error: delivery.error }, { status: delivery.status });
+    }
 
     return NextResponse.json({ ok: true });
   } catch {

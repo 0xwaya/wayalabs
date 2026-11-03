@@ -27,7 +27,8 @@ coverage/
 # ── Environment & secrets — NEVER COMMIT ─────────────────────
 .env
 .env.*
-!.env.example        # commit only the template, never the values
+# Commit the template only. Never commit values.
+!.env.example
 .env.local
 .env.development
 .env.development.local

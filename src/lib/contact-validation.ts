@@ -13,14 +13,23 @@ export const ALLOWED_INTENTS: ContactIntent[] = [
   "unsure",
 ];
 
+export function isContactIntent(value: string): value is ContactIntent {
+  return (ALLOWED_INTENTS as readonly string[]).includes(value);
+}
+
 export function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
 export function getClientIp(request: Request): string {
+  // Prefer the platform-set address. The left-most X-Forwarded-For value is
+  // client-controlled when the request reaches the app directly.
+  const realIp = request.headers.get("x-real-ip")?.split(",")[0]?.trim();
+  if (realIp) return realIp;
+
   const forwardedFor = request.headers.get("x-forwarded-for");
   if (forwardedFor) {
-    return forwardedFor.split(",")[0]?.trim() ?? "unknown";
+    return forwardedFor.split(",")[0]?.trim() || "unknown";
   }
   return "unknown";
 }
@@ -35,6 +44,15 @@ export function isRateLimited(
 ): boolean {
   const now = Date.now();
   const windowStart = now - RATE_LIMIT_WINDOW_MS;
+
+  if (log.size > 512) {
+    for (const [key, stamps] of log) {
+      const recent = stamps.filter((timestamp) => timestamp >= windowStart);
+      if (recent.length === 0) log.delete(key);
+      else log.set(key, recent);
+    }
+  }
+
   const requests = log.get(ip) ?? [];
   const recentRequests = requests.filter((timestamp) => timestamp >= windowStart);
 
