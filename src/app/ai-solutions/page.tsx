@@ -7,7 +7,7 @@ import { MessageSquare, Cpu, Plug, Globe, BarChart3, ArrowRight } from "lucide-r
 export const metadata: Metadata = {
   title: "AI Solutions",
   description:
-    "Research and development across conversational AI, agent orchestration, and system integrations. New customers receive 40% off the first engagement. Discovery is $2,100.",
+    "Research and development across conversational AI, agent orchestration, and system integrations. New customers pay $1,200 for discovery. That fee is credited if a build starts within 60 days.",
   alternates: { canonical: "/ai-solutions" },
   openGraph: { url: "/ai-solutions" },
 };

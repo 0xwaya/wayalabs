@@ -6,6 +6,7 @@ import {
   NEW_CUSTOMER_DISCOUNT_PERCENT,
   discoveryOffer,
   formatUsd,
+  DISCOVERY_CREDIT_DAYS,
   newCustomerDiscoveryUsd,
   newCustomerRules,
 } from "@/lib/data/offers";
@@ -15,7 +16,7 @@ const listPrice = formatUsd(discoveryOffer.listPriceUsd);
 
 export const metadata: Metadata = {
   title: "40% off for new customers",
-  description: `New customers receive ${NEW_CUSTOMER_DISCOUNT_PERCENT}% off their first WayaLabs engagement. The discovery sprint is ${introPrice}, down from ${listPrice}. Later work is quoted at the standard rate.`,
+  description: `New customers receive ${NEW_CUSTOMER_DISCOUNT_PERCENT}% off their first WayaLabs engagement. Discovery is ${introPrice}, down from ${listPrice}. That fee is credited if a build starts within ${DISCOVERY_CREDIT_DAYS} days.`,
   alternates: { canonical: "/offers" },
   openGraph: { url: "/offers" },
 };
@@ -50,7 +51,8 @@ export default function OffersPage() {
           </h1>
           <p className="text-lg text-[var(--muted)] max-w-2xl leading-relaxed">
             A new organization pays {introPrice} for the discovery sprint, down from {listPrice}.
-            The discount is on the first invoice only. It is not a standing rate.
+            If a build starts within {DISCOVERY_CREDIT_DAYS} days, that fee is credited on the build.
+            The build is not also discounted.
           </p>
         </div>
       </section>
@@ -89,6 +91,7 @@ export default function OffersPage() {
           <p className="text-[var(--muted)] mb-8">
             The call confirms whether the organization is new. The invoice shows the
             list price, the {NEW_CUSTOMER_DISCOUNT_PERCENT}% discount, and the amount due.
+            A build started within {DISCOVERY_CREDIT_DAYS} days credits that fee.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link

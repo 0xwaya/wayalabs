@@ -6,7 +6,7 @@ import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
 export const metadata: Metadata = {
   title: "Our Process",
   description:
-    "How WayaLabs scopes, builds, and delivers AI systems, from discovery to post-launch work. New customers receive 40% off the first engagement. Discovery is $2,100.",
+    "How WayaLabs scopes, builds, and delivers AI systems, from discovery to post-launch work. New customers pay $1,200 for discovery. That fee is credited if a build starts within 60 days.",
   alternates: { canonical: "/process" },
   openGraph: { url: "/process" },
 };

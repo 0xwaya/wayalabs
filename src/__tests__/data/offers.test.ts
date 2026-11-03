@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  DISCOVERY_CREDIT_DAYS,
   NEW_CUSTOMER_DISCOUNT_PERCENT,
   discoveryOffer,
   discountedUsd,
@@ -10,9 +11,9 @@ import {
 describe("new customer offer", () => {
   it("is a 40% discount on the discovery list price", () => {
     expect(NEW_CUSTOMER_DISCOUNT_PERCENT).toBe(40);
-    expect(discoveryOffer.listPriceUsd).toBe(3500);
-    expect(newCustomerDiscoveryUsd).toBe(2100);
-    expect(discountedUsd(3500)).toBe(2100);
+    expect(discoveryOffer.listPriceUsd).toBe(2000);
+    expect(newCustomerDiscoveryUsd).toBe(1200);
+    expect(discountedUsd(2000)).toBe(1200);
   });
 
   it("rounds half-up to the nearest dollar", () => {
@@ -25,7 +26,9 @@ describe("new customer offer", () => {
   });
 
   it("states that the discount is once, on the first invoice", () => {
+    expect(DISCOVERY_CREDIT_DAYS).toBe(60);
     expect(newCustomerRules.join(" ")).toMatch(/first invoice only/);
+    expect(newCustomerRules.join(" ")).toMatch(/credited/);
     expect(newCustomerRules.join(" ")).toMatch(/not discounted/);
   });
 });
