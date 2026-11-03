@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   DISCOVERY_CREDIT_DAYS,
+  discoveryCreditSentence,
   discoveryOffer,
   discoveryRules,
 } from "@/lib/data/offers";
@@ -20,6 +21,10 @@ describe("discovery offer", () => {
 
   it("credits the amount paid within 60 days and does not discount the build", () => {
     expect(DISCOVERY_CREDIT_DAYS).toBe(60);
+    expect(discoveryCreditSentence).toBe(
+      "Discovery is $1,200. That fee is credited if a build starts within 60 days.",
+    );
+    expect(discoveryCreditSentence).not.toMatch(/40%/);
     expect(discoveryRules.join(" ")).toMatch(/credited/);
     expect(discoveryRules.join(" ")).toMatch(/not discounted/);
   });

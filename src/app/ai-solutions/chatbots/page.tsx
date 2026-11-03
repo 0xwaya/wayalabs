@@ -3,11 +3,12 @@ import Link from "next/link";
 import { CAL_BOOKING_URL } from "@/lib/booking";
 import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
 import { MessageSquare, CheckCircle, ArrowRight } from "lucide-react";
+import { discoveryCreditSentence } from "@/lib/data/offers";
 
 export const metadata: Metadata = {
   title: "AI Chatbots",
   description:
-    "Research and development for conversational AI, grounded in scoped source material and human escalation. Discovery is $1,200. That fee is credited if a build starts within 60 days.",
+    `Research and development for conversational AI, grounded in scoped source material and human escalation. ${discoveryCreditSentence}`,
   alternates: { canonical: "/ai-solutions/chatbots" },
   openGraph: { url: "/ai-solutions/chatbots" },
 };

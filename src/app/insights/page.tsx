@@ -3,11 +3,12 @@ import Link from "next/link";
 import { ArrowRight, Clock } from "lucide-react";
 import { insightPosts, categoryColors } from "@/lib/data/insights";
 import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
+import { discoveryCreditSentence } from "@/lib/data/offers";
 
 export const metadata: Metadata = {
   title: "AI Insights",
   description:
-    "Practical guides from WayaLabs, an AI solutions studio. Discovery is $1,200. That fee is credited if a build starts within 60 days.",
+    `Practical guides from WayaLabs, an AI solutions studio. ${discoveryCreditSentence}`,
   alternates: { canonical: "/insights" },
   openGraph: { url: "/insights" },
 };

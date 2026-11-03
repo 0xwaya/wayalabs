@@ -20,3 +20,6 @@ export const discoveryRules = [
 export function formatUsd(amount: number): string {
   return `$${amount.toLocaleString("en-US")}`;
 }
+
+export const discoveryCreditSentence = `Discovery is ${formatUsd(discoveryOffer.priceUsd)}. That fee is credited if a build starts within ${DISCOVERY_CREDIT_DAYS} days.`;
+

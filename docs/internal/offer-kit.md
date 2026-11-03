@@ -11,6 +11,8 @@ Updated 3 November 2026. Operator list prices, set under published one-week and 
 - The build is not discounted.
 - Watch and build-block plans are never reduced.
 - Agent pilots are not for sale.
+- Do not attach support-deflection rates, conversion rates, or response-time claims. Quote a shipped pattern: Urban Stone Collective or Queen City Soundboard.
+- The CEO orchestrator and the private Echo runtime stay off the invoice.
 
 ## Ladder
 

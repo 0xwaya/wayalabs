@@ -130,6 +130,37 @@ export const caseStudies = [
       "Give each live product a native scheduler for its own social and lead workflows, and keep the Grok operator on drafting and review.",
     demoUrl: undefined,
   },
+  {
+    id: "discovery-credit-offer",
+    title: "Discovery sprint — price and credit",
+    client: "WayaLabs (public offer)",
+    url: "wayalabs.com/offers",
+    category: "Offer & scoping",
+    tags: ["Discovery", "First engagement", "Credit"],
+    summary:
+      "Discovery is $1,200 for a one-week sprint. If a platform or lead-system build starts within 60 days, that fee is credited on the build invoice. The build is not discounted.",
+    problem:
+      "The first engagement needed one published price, and a clear rule for what happens if the work continues. A percentage off a higher list, or a second discount on the build, would make the next invoice ambiguous.",
+    approach:
+      "The public offer is the discovery price and the 60-day credit. The price is the same for every organization. It is not a percentage off a higher list. The price and the window live in one module. The rest of the ladder stays in the internal offer kit and is not published.",
+    architecture: [
+      "Discovery is $1,200. The public page does not show a higher list price",
+      "Credit window: 60 days. The fee paid is credited on a platform or lead-system build",
+      "The build is not discounted. There is no percentage discount",
+      "The public page and the terms state the discovery price and the credit only",
+    ],
+    timeline: "Stated on /offers",
+    impactHeading: "What's published",
+    demoUrl: undefined,
+    impact: [
+      "Discovery is $1,200 for the one-week sprint",
+      "The amount paid is credited if a platform or lead-system build starts within 60 days",
+      "There is no percentage discount",
+      "The build is not discounted",
+    ],
+    nextIteration:
+      "Keep unpublished plan names off the public page. The price and the 60-day window already come from one module on every public description.",
+  },
 ] as const;
 
 export type CaseStudy = (typeof caseStudies)[number];

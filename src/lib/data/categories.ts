@@ -2,4 +2,5 @@
 export const categoryColors: Record<string, string> = {
   "AI-Enhanced Web Platform": "#d7dbe3",
   "AI Agent": "#c5cad3",
+  "Offer & scoping": "#d7dbe3",
 };

@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
+import {
+  DISCOVERY_CREDIT_DAYS,
+  discoveryCreditSentence,
+  discoveryOffer,
+  formatUsd,
+} from "@/lib/data/offers";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
-  description:
-    "Terms of service for WayaLabs engagements, including the $1,200 discovery sprint and the 60-day credit.",
+  description: `Terms of service for WayaLabs engagements. ${discoveryCreditSentence}`,
   alternates: { canonical: "/terms" },
   openGraph: { url: "/terms" },
 };
@@ -36,9 +41,10 @@ export default function TermsPage() {
           <section>
             <h2 className="text-base font-semibold text-[var(--foreground)] mb-2">Discovery</h2>
             <p>
-              Discovery is $1,200. If a platform or lead-system build starts within 60 days,
-              the discovery amount paid is credited on that invoice. The build is not
-              discounted. There is no percentage discount.
+              Discovery is {formatUsd(discoveryOffer.priceUsd)}. If a platform or lead-system
+              build starts within {DISCOVERY_CREDIT_DAYS} days, the discovery amount paid
+              is credited on that invoice. The build is not discounted. There is no
+              percentage discount.
             </p>
           </section>
 
