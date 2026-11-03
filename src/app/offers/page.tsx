@@ -4,6 +4,8 @@ import { ArrowRight } from "lucide-react";
 import { CAL_BOOKING_URL } from "@/lib/booking";
 import {
   discoveryOffer,
+  discoveryOutcomes,
+  discoverySummary,
   formatUsd,
   DISCOVERY_CREDIT_DAYS,
   discoveryRules,
@@ -13,7 +15,7 @@ const price = formatUsd(discoveryOffer.priceUsd);
 
 export const metadata: Metadata = {
   title: "Discovery sprint",
-  description: `Discovery is ${price}. That fee is credited if a build starts within ${DISCOVERY_CREDIT_DAYS} days. There is no percentage discount.`,
+  description: discoverySummary,
   alternates: { canonical: "/offers" },
   openGraph: { url: "/offers" },
 };
@@ -40,16 +42,31 @@ export default function OffersPage() {
       <section className="py-24 px-6 grid-bg border-b border-[var(--border)]">
         <div className="max-w-7xl mx-auto">
           <p className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)] mb-4">
-            Discovery
+            Onboarding
           </p>
           <h1 className="text-5xl font-bold tracking-tight mb-5 max-w-3xl">
             One week.{" "}
             <span className="gradient-text">{price}.</span>
           </h1>
           <p className="text-lg text-[var(--muted)] max-w-2xl leading-relaxed">
-            Discovery is {price}. If a build starts within {DISCOVERY_CREDIT_DAYS} days,
-            that fee is credited on the build. There is no percentage discount.
+            {discoverySummary}
           </p>
+        </div>
+      </section>
+
+      <section className="py-20 px-6 border-b border-[var(--border)]">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)] mb-8">
+            What the week is for
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {discoveryOutcomes.map((item) => (
+              <div key={item.title} className="p-6 rounded-2xl border border-[var(--border)]">
+                <h3 className="text-lg font-semibold mb-3">{item.title}</h3>
+                <p className="text-sm text-[var(--muted)] leading-relaxed">{item.body}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -82,8 +99,8 @@ export default function OffersPage() {
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">Book the discovery sprint</h2>
           <p className="text-[var(--muted)] mb-8">
-            The invoice is {price}. A build started within {DISCOVERY_CREDIT_DAYS} days
-            credits that fee. The build itself is not discounted.
+            One week, a written brief, and a go or no-go. The invoice is {price}. A
+            build started within {DISCOVERY_CREDIT_DAYS} days credits that fee.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link

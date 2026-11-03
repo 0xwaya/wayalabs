@@ -1,6 +1,6 @@
 # WayaLabs offer kit
 
-Internal. Do not publish this ladder. The public page is [/offers](https://wayalabs.com/offers). It may show the discovery price and the 60-day credit only.
+Internal. Do not publish this ladder. The public page is [/offers](https://wayalabs.com/offers). It may describe the discovery sprint, its price, and the 60-day credit. It may not publish the rest of this ladder.
 
 Updated 3 November 2026. Operator list prices, set under published one-week and custom-site bands. Not booked revenue. The 40% new-customer discount is withdrawn. Discovery is $1,200 for every organization.
 
