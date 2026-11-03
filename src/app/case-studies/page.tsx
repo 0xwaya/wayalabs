@@ -4,12 +4,13 @@ import { CAL_BOOKING_URL } from "@/lib/booking";
 import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { caseStudies } from "@/lib/data/case-studies";
+import { discoveryCreditSentence } from "@/lib/data/offers";
 import { categoryColors } from "@/lib/data/categories";
 
 export const metadata: Metadata = {
   title: "Case Studies",
   description:
-    "Selected WayaLabs project notes for Urban Stone Collective, Queen City Soundboard, Grok operator environments, and the private Echo runtime for OpenClaw. Discovery is $1,200. That fee is credited if a build starts within 60 days.",
+    `Selected WayaLabs project notes for Urban Stone Collective, Queen City Soundboard, Grok operator environments, and the private Echo runtime for OpenClaw. ${discoveryCreditSentence}`,
   alternates: { canonical: "/case-studies" },
   openGraph: { url: "/case-studies" },
 };

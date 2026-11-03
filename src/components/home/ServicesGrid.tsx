@@ -6,7 +6,7 @@ const services = [
     icon: MessageSquare,
     title: "AI Chatbots",
     description:
-      "R&D and project-scoping for conversational experiences grounded in approved knowledge sources and clear human escalation paths.",
+      "A custom chatbot for the business, grounded in approved sources, with a human handoff. A client deployment is live.",
     href: "/ai-solutions/chatbots",
     accent: "#d7dbe3",
     focus: ["Approved source material", "Escalation boundaries", "Evaluation questions"],
@@ -15,7 +15,7 @@ const services = [
     icon: Cpu,
     title: "AI Agents",
     description:
-      "Research into bounded, multi-step workflows with explicit tool permissions, durable state, and review before consequential actions.",
+      "Agents and orchestrators are under research. They are not for sale. The work covers tool permissions, durable state, and review before consequential actions.",
     href: "/ai-solutions/agents",
     accent: "#c5cad3",
     focus: ["Tool permissions", "Orchestration design", "Human approvals"],
@@ -41,7 +41,7 @@ export default function ServicesGrid() {
             Services
           </p>
           <h2 className="text-4xl font-bold tracking-tight mb-4">
-            Areas of AI research and implementation
+            Chatbots are live. Agents stay in research.
           </h2>
           <p className="text-[var(--muted)] leading-relaxed">
             Project scope and deployment status vary. Work begins with architecture,

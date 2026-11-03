@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CAL_BOOKING_URL } from "@/lib/booking";
 import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
+import { discoveryCreditSentence } from "@/lib/data/offers";
 import { Cpu, CheckCircle, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "AI Agents",
   description:
-    "Planning and implementation of carefully scoped AI agents for workflow automation and internal operations. Discovery is $1,200. That fee is credited if a build starts within 60 days.",
+    `Agents and orchestrators are under research and are not for sale. ${discoveryCreditSentence}`,
   alternates: { canonical: "/ai-solutions/agents" },
   openGraph: { url: "/ai-solutions/agents" },
 };
@@ -53,16 +54,17 @@ export default function AgentsPage() {
               <Cpu size={22} className="text-[#c5cad3]" />
             </div>
             <span className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)]">
-              AI Agents
+              AI Agents · Research
             </span>
           </div>
           <h1 className="text-5xl font-bold tracking-tight mb-5 max-w-3xl">
-              AI agents for{" "}
-              <span className="gradient-text">bounded workflows</span>
+              Agents and orchestrators are{" "}
+              <span className="gradient-text">under research</span>
           </h1>
           <p className="text-lg text-[var(--muted)] max-w-2xl leading-relaxed mb-10">
-            Start with a clearly defined task, approved tools, and a human review path.
-            Deployment scope and performance targets are agreed and verified per project.
+            These are not for sale. A private runtime is running. A client agent is
+            scoped only after that research says it is ready. The work stays bounded:
+            one task, approved tools, and a person reviewing consequential actions.
           </p>
         </div>
       </section>

@@ -5,10 +5,11 @@ import OutcomeMetrics from "@/components/home/OutcomeMetrics";
 import FeaturedProjects from "@/components/home/FeaturedProjects";
 import ProcessFramework from "@/components/home/ProcessFramework";
 import CTABanner from "@/components/home/CTABanner";
-import { siteDescription } from "@/lib/site";
+import { discoveryCreditSentence } from "@/lib/data/offers";
 
 export const metadata: Metadata = {
-  description: siteDescription,
+  description:
+    `WayaLabs builds a custom web stack and automation for the business. Chatbots are live. Agents and orchestrators stay in research. ${discoveryCreditSentence}`,
   alternates: { canonical: "/" },
   openGraph: { url: "https://wayalabs.com" },
 };

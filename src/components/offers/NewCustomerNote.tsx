@@ -1,9 +1,5 @@
 import Link from "next/link";
-import {
-  DISCOVERY_CREDIT_DAYS,
-  discoveryOffer,
-  formatUsd,
-} from "@/lib/data/offers";
+import { DISCOVERY_CREDIT_DAYS, discoveryOffer, formatUsd } from "@/lib/data/offers";
 
 export function NewCustomerNote({ centered = false }: { centered?: boolean }) {
   return (
@@ -11,7 +7,7 @@ export function NewCustomerNote({ centered = false }: { centered?: boolean }) {
       <Link href="/offers" className="text-[var(--foreground)] underline underline-offset-4">
         Discovery is {formatUsd(discoveryOffer.priceUsd)}
       </Link>
-      . That fee is credited if a build starts within {DISCOVERY_CREDIT_DAYS} days.
+      . That fee is credited in full if a platform or lead-system build for that business starts within {DISCOVERY_CREDIT_DAYS} days of payment.
     </p>
   );
 }

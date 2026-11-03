@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CAL_BOOKING_URL } from "@/lib/booking";
 import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
+import { discoveryCreditSentence } from "@/lib/data/offers";
 import { MessageSquare, Cpu, Plug, Globe, BarChart3, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "AI Solutions",
   description:
-    "Research and development across conversational AI, agent orchestration, and system integrations. Discovery is $1,200. That fee is credited if a build starts within 60 days.",
+    `Custom chatbots are live. Agents and orchestrators stay in research. ${discoveryCreditSentence}`,
   alternates: { canonical: "/ai-solutions" },
   openGraph: { url: "/ai-solutions" },
 };
@@ -17,9 +18,9 @@ const primaryServices = [
     icon: MessageSquare,
     title: "AI Chatbots",
     slug: "chatbots",
-    tagline: "Conversational system R&D",
+    tagline: "Live, custom for the business",
     description:
-      "Explore conversational interfaces grounded in approved knowledge sources, with explicit escalation and evaluation criteria.",
+      "A chatbot grounded in approved sources, with a human handoff. A client deployment is live and still being improved. The client business is not for sale.",
     accent: "#d7dbe3",
     outcomes: ["Approved source material", "Human escalation", "Quality evaluation"],
   },
@@ -27,9 +28,9 @@ const primaryServices = [
     icon: Cpu,
     title: "AI Agents",
     slug: "agents",
-    tagline: "Bounded workflow orchestration",
+    tagline: "Agents and orchestrators in research",
     description:
-      "Research into multi-step agents with scoped tools, explicit routing, durable job state, and human review for consequential actions.",
+      "Research into multi-step agents and orchestrators with scoped tools, explicit routing, durable job state, and human review. Not for sale.",
     accent: "#c5cad3",
     outcomes: ["Role-aware routing", "Tool boundaries", "Human approvals"],
   },
@@ -67,16 +68,15 @@ export default function AISolutionsPage() {
       <section className="py-24 px-6 grid-bg border-b border-[var(--border)]">
         <div className="max-w-7xl mx-auto">
           <p className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)] mb-4">
-            Research and development
+            Solutions
           </p>
           <h1 className="text-5xl font-bold tracking-tight mb-5 max-w-3xl">
-            AI systems, built from{" "}
-            <span className="gradient-text">clear architecture</span>
+            A custom stack, with{" "}
+            <span className="gradient-text">chat live and agents in research</span>
           </h1>
           <p className="text-lg text-[var(--muted)] max-w-2xl leading-relaxed">
-            WayaLabs explores conversational AI, agent orchestration, and integrations.
-            Capabilities are currently under research and development; project-specific
-            deployment status and measured outcomes are established separately.
+            Chatbots are live and custom built for the business. Agents and orchestrators
+            stay in research and are not for sale. Client businesses are not for sale.
           </p>
         </div>
       </section>
@@ -139,7 +139,7 @@ export default function AISolutionsPage() {
       <section className="py-16 px-6 bg-[var(--card)] border-t border-[var(--border)]">
         <div className="max-w-7xl mx-auto">
           <p className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)] mb-8">
-            Further research areas
+            Related builds
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {additionalServices.map(({ icon: Icon, title, description }) => (

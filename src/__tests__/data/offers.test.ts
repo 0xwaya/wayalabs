@@ -1,26 +1,52 @@
 import { describe, expect, it } from "vitest";
 import {
   DISCOVERY_CREDIT_DAYS,
+  discoveryCreditSentence,
   discoveryOffer,
-  discoveryRules,
+  leadSystemOffer,
+  offerRules,
+  offersPageDescription,
+  platformOffer,
 } from "@/lib/data/offers";
 
-describe("discovery offer", () => {
-  it("is a flat price, not a percentage discount", () => {
+describe("public offers", () => {
+  it("prices discovery at $1,200 and describes the week", () => {
     expect(discoveryOffer.priceUsd).toBe(1200);
-    expect(discoveryOffer).not.toHaveProperty("listPriceUsd");
-    expect(discoveryRules.join(" ")).not.toMatch(/40%/);
-    expect(discoveryRules.join(" ")).toMatch(/not a percentage/);
+    expect(discoveryOffer.duration).toBe("One week");
+    expect(discoveryOffer.includes.join(" ")).toMatch(/go or no-go/);
+    expect(discoveryOffer.includes.join(" ")).toMatch(/data boundary/i);
   });
 
-  it("keeps the internal ladder off this module", () => {
-    expect(discoveryOffer).not.toHaveProperty("platform");
-    expect(discoveryOffer).not.toHaveProperty("retainer");
+  it("publishes the live platform and lead-system ranges", () => {
+    expect(platformOffer.priceFromUsd).toBe(10_000);
+    expect(platformOffer.priceToUsd).toBe(18_000);
+    expect(leadSystemOffer.priceFromUsd).toBe(7_000);
+    expect(leadSystemOffer.priceToUsd).toBe(14_000);
+    expect(platformOffer.summary).toMatch(/custom built/);
+    expect(platformOffer.summary).toMatch(/not for sale/);
+    expect(leadSystemOffer.summary).toMatch(/custom built/);
+    expect(leadSystemOffer.summary).toMatch(/live/);
+    expect(leadSystemOffer.summary).toMatch(/not for sale/);
   });
 
-  it("credits the amount paid within 60 days and does not discount the build", () => {
+  it("credits discovery once within 60 days and does not discount", () => {
     expect(DISCOVERY_CREDIT_DAYS).toBe(60);
-    expect(discoveryRules.join(" ")).toMatch(/credited/);
-    expect(discoveryRules.join(" ")).toMatch(/not discounted/);
+    expect(offerRules.join(" ")).toMatch(/credited in full/);
+    expect(offerRules.join(" ")).toMatch(/once/);
+    expect(offerRules.join(" ")).toMatch(/not refused/);
+    expect(offerRules.join(" ")).not.toMatch(/refuse the credit/);
+    expect(discoveryCreditSentence).toMatch(/in full/);
+    expect(discoveryCreditSentence).not.toMatch(/40%/);
+    expect(offersPageDescription).not.toMatch(/40%/);
+    expect(offersPageDescription).toMatch(/\$1,200/);
+    expect(offersPageDescription).toMatch(/\$10,000/);
+    expect(offersPageDescription).toMatch(/\$7,000/);
+  });
+
+  it("keeps watch, the build block, and agent pilots off this module", () => {
+    const blob = JSON.stringify({ discoveryOffer, platformOffer, leadSystemOffer, offerRules });
+    expect(blob).not.toMatch(/watch/i);
+    expect(blob).not.toMatch(/build block/i);
+    expect(blob).not.toMatch(/agent/i);
   });
 });

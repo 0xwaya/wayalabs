@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
+import { discoveryCreditSentence } from "@/lib/data/offers";
 
 export const metadata: Metadata = {
   title: "About WayaLabs",
   description:
-    "WayaLabs explores AI systems through architecture, orchestration, and project-specific research and development. Discovery is $1,200. That fee is credited if a build starts within 60 days.",
+    `WayaLabs builds a custom stack for the business. Chatbots are live. Agents and orchestrators stay in research. ${discoveryCreditSentence}`,
   alternates: { canonical: "/about" },
   openGraph: { url: "/about" },
 };
@@ -86,9 +87,8 @@ export default function AboutPage() {
               <span className="gradient-text">architecture and orchestration.</span>
             </h1>
             <p className="text-lg text-[var(--muted)] leading-relaxed">
-              WayaLabs researches and develops AI systems. Some concepts are
-              currently under research and development; deployment status and
-              measured outcomes are stated per project.
+              WayaLabs builds a custom stack for the business. Chatbots are live.
+              Agents and orchestrators stay in research. Client businesses are not for sale.
             </p>
           </div>
 

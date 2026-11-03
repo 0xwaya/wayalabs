@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CAL_BOOKING_URL } from "@/lib/booking";
 import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
+import { discoveryCreditSentence } from "@/lib/data/offers";
 import { Plug, CheckCircle, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "AI Integrations",
   description:
-    "Research and development for AI integrations, with project-specific scope, access boundaries, and deployment status stated explicitly. Discovery is $1,200. That fee is credited if a build starts within 60 days.",
+    `Research and development for AI integrations, with project-specific scope, access boundaries, and deployment status stated explicitly. ${discoveryCreditSentence}`,
   alternates: { canonical: "/ai-solutions/integrations" },
   openGraph: { url: "/ai-solutions/integrations" },
 };
