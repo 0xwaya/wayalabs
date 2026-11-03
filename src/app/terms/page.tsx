@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Terms of Service",
   description:
-    "Terms of service for WayaLabs engagements, including the 40% new-customer discount on the first invoice.",
+    "Terms of service for WayaLabs engagements, including the 40% new-customer discount and the 60-day discovery credit.",
   alternates: { canonical: "/terms" },
   openGraph: { url: "/terms" },
 };
@@ -37,11 +37,11 @@ export default function TermsPage() {
             <h2 className="text-base font-semibold text-[var(--foreground)] mb-2">New customer discount</h2>
             <p>
               An organization that has not paid WayaLabs before receives 40% off its first
-              invoice. The published first engagement is the discovery sprint at $2,100,
-              reduced from the $3,500 list price. The discount applies once. Later invoices,
-              care retainers, and agent work are not discounted. The invoice shows the list
-              amount, the discount, and the amount due. WayaLabs may refuse the discount when
-              the organization, or a predecessor, has already paid.
+              invoice. Discovery is $1,200, reduced from $2,000. If a platform or lead-system
+              build starts within 60 days, the discovery amount paid is credited on that
+              invoice and the build is not also discounted. Watch and build-block plans are
+              not discounted. WayaLabs may refuse the discount or the credit when the
+              organization, or a predecessor, has already paid.
             </p>
           </section>
 

@@ -9,7 +9,7 @@ import { categoryColors } from "@/lib/data/categories";
 export const metadata: Metadata = {
   title: "Case Studies",
   description:
-    "Selected WayaLabs project notes for Urban Stone Collective, Queen City Soundboard, Grok operator environments, and the private Echo runtime for OpenClaw. New customers receive 40% off the first engagement.",
+    "Selected WayaLabs project notes for Urban Stone Collective, Queen City Soundboard, Grok operator environments, and the private Echo runtime for OpenClaw. New customers pay $1,200 for discovery. That fee is credited if a build starts within 60 days.",
   alternates: { canonical: "/case-studies" },
   openGraph: { url: "/case-studies" },
 };
