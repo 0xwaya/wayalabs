@@ -5,10 +5,10 @@ import OutcomeMetrics from "@/components/home/OutcomeMetrics";
 import FeaturedProjects from "@/components/home/FeaturedProjects";
 import ProcessFramework from "@/components/home/ProcessFramework";
 import CTABanner from "@/components/home/CTABanner";
+import { siteDescription } from "@/lib/site";
 
 export const metadata: Metadata = {
-  description:
-    "WayaLabs builds practical web platforms and operator-reviewed automations. New customers pay $1,200 for discovery, down from $2,000. That fee is credited if a build starts within 60 days.",
+  description: siteDescription,
   alternates: { canonical: "/" },
   openGraph: { url: "https://wayalabs.com" },
 };

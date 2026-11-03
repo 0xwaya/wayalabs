@@ -7,7 +7,7 @@ import { Plug, CheckCircle, ArrowRight } from "lucide-react";
 export const metadata: Metadata = {
   title: "AI Integrations",
   description:
-    "Research and development for AI integrations, with project-specific scope, access boundaries, and deployment status stated explicitly. New customers pay $1,200 for discovery. That fee is credited if a build starts within 60 days.",
+    "Research and development for AI integrations, with project-specific scope, access boundaries, and deployment status stated explicitly. Discovery is $1,200. That fee is credited if a build starts within 60 days.",
   alternates: { canonical: "/ai-solutions/integrations" },
   openGraph: { url: "/ai-solutions/integrations" },
 };

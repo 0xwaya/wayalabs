@@ -7,7 +7,7 @@ import { MessageSquare, CheckCircle, ArrowRight } from "lucide-react";
 export const metadata: Metadata = {
   title: "AI Chatbots",
   description:
-    "Research and development for conversational AI, grounded in scoped source material and human escalation. New customers pay $1,200 for discovery. That fee is credited if a build starts within 60 days.",
+    "Research and development for conversational AI, grounded in scoped source material and human escalation. Discovery is $1,200. That fee is credited if a build starts within 60 days.",
   alternates: { canonical: "/ai-solutions/chatbots" },
   openGraph: { url: "/ai-solutions/chatbots" },
 };

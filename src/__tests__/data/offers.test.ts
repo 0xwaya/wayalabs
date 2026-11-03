@@ -1,23 +1,16 @@
 import { describe, expect, it } from "vitest";
 import {
   DISCOVERY_CREDIT_DAYS,
-  NEW_CUSTOMER_DISCOUNT_PERCENT,
   discoveryOffer,
-  discountedUsd,
-  newCustomerDiscoveryUsd,
-  newCustomerRules,
+  discoveryRules,
 } from "@/lib/data/offers";
 
-describe("new customer offer", () => {
-  it("is a 40% discount on the discovery list price", () => {
-    expect(NEW_CUSTOMER_DISCOUNT_PERCENT).toBe(40);
-    expect(discoveryOffer.listPriceUsd).toBe(2000);
-    expect(newCustomerDiscoveryUsd).toBe(1200);
-    expect(discountedUsd(2000)).toBe(1200);
-  });
-
-  it("rounds half-up to the nearest dollar", () => {
-    expect(discountedUsd(100)).toBe(60);
+describe("discovery offer", () => {
+  it("is a flat price, not a percentage discount", () => {
+    expect(discoveryOffer.priceUsd).toBe(1200);
+    expect(discoveryOffer).not.toHaveProperty("listPriceUsd");
+    expect(discoveryRules.join(" ")).not.toMatch(/40%/);
+    expect(discoveryRules.join(" ")).toMatch(/not a percentage/);
   });
 
   it("keeps the internal ladder off this module", () => {
@@ -25,10 +18,9 @@ describe("new customer offer", () => {
     expect(discoveryOffer).not.toHaveProperty("retainer");
   });
 
-  it("states that the discount is once, on the first invoice", () => {
+  it("credits the amount paid within 60 days and does not discount the build", () => {
     expect(DISCOVERY_CREDIT_DAYS).toBe(60);
-    expect(newCustomerRules.join(" ")).toMatch(/first invoice only/);
-    expect(newCustomerRules.join(" ")).toMatch(/credited/);
-    expect(newCustomerRules.join(" ")).toMatch(/not discounted/);
+    expect(discoveryRules.join(" ")).toMatch(/credited/);
+    expect(discoveryRules.join(" ")).toMatch(/not discounted/);
   });
 });

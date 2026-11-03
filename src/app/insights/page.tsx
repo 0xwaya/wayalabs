@@ -7,7 +7,7 @@ import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
 export const metadata: Metadata = {
   title: "AI Insights",
   description:
-    "Practical guides from WayaLabs, an AI solutions studio. New customers pay $1,200 for discovery. That fee is credited if a build starts within 60 days.",
+    "Practical guides from WayaLabs, an AI solutions studio. Discovery is $1,200. That fee is credited if a build starts within 60 days.",
   alternates: { canonical: "/insights" },
   openGraph: { url: "/insights" },
 };
