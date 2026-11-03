@@ -34,7 +34,7 @@ export default function Hero() {
         <p className="text-lg sm:text-xl text-[var(--muted)] max-w-2xl mb-10 leading-relaxed">
           Practical web platforms and operator-reviewed automations. Live work
           includes Urban Stone Collective and Queen City Soundboard. New work
-          starts with a scoped discovery call.
+          starts with the one-week discovery sprint.
         </p>
 
         {/* CTAs */}
@@ -55,6 +55,12 @@ export default function Hero() {
           </ButtonLink>
         </div>
         <p className="mt-4 text-sm text-[var(--muted)]">
+          <Link href="/offers" className="hover:text-[var(--foreground)] transition-colors">
+            What the week includes
+          </Link>
+          <span className="mx-2" aria-hidden>
+            ·
+          </span>
           <Link href="/lab/ceo-agent" className="hover:text-[var(--foreground)] transition-colors">
             CEO orchestrator research
           </Link>

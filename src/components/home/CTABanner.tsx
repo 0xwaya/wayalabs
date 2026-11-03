@@ -33,9 +33,8 @@ export default function CTABanner() {
               <span className="gradient-text">anyone builds it</span>
             </h2>
             <p className="text-[var(--muted)] max-w-xl mx-auto mb-10 leading-relaxed">
-              A discovery call maps the workflow, the systems involved, and whether
-              a build is the right next step. You leave with a written brief, not
-              a promised metric.
+              Discovery is the onboarding week. You leave with a written brief: the
+              outcome, the systems in scope, the data boundary, and a go or no-go.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
