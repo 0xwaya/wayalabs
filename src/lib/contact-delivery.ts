@@ -45,7 +45,18 @@ export function renderInquiry(inquiry: Inquiry): { subject: string; text: string
   };
 }
 
-export function contactDeliveryConfig(env: NodeJS.ProcessEnv = process.env) {
+/**
+ * Mail keys plus an index signature so this accepts `process.env` and the
+ * partial objects used in tests. `ProcessEnv` alone requires `NODE_ENV`.
+ */
+export type MailEnv = {
+  RESEND_API_KEY?: string;
+  CONTACT_FROM_EMAIL?: string;
+  CONTACT_TO_EMAIL?: string;
+  [key: string]: string | undefined;
+};
+
+export function contactDeliveryConfig(env: MailEnv = process.env) {
   const apiKey = env.RESEND_API_KEY?.trim() ?? "";
   const from = env.CONTACT_FROM_EMAIL?.trim() ?? "";
   const to = env.CONTACT_TO_EMAIL?.trim() || "admin@wayalabs.com";
@@ -59,7 +70,7 @@ export function contactDeliveryConfig(env: NodeJS.ProcessEnv = process.env) {
 
 export async function deliverInquiry(
   inquiry: Inquiry,
-  env: NodeJS.ProcessEnv = process.env,
+  env: MailEnv = process.env,
   fetchImpl: typeof fetch = fetch,
 ): Promise<DeliveryResult> {
   if (!isMailbox(inquiry.email)) {
