@@ -60,9 +60,8 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-sm text-[var(--muted)] leading-relaxed max-w-xs">
-              AI architecture and orchestration research. Some capabilities are
-              currently under research and development; project scope and deployment
-              status are stated explicitly.
+              Custom stacks and automations for the business. Chatbots are live.
+              Agents and orchestrators stay in research. Client businesses are not for sale.
             </p>
             <div className="flex items-center gap-4 mt-6">
               <a

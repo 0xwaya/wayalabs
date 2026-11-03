@@ -3,9 +3,9 @@ export const services = [
     id: "chatbots",
     title: "AI Chatbots",
     slug: "chatbots",
-    tagline: "Conversational system research",
+    tagline: "Live conversational systems",
     description:
-      "Research and development for conversational interfaces using approved source material, project-specific evaluation, and defined human escalation.",
+      "A custom chatbot for the business, grounded in approved source material, with a human handoff. A client deployment is live and still being improved.",
     icon: "MessageSquare",
     designConsiderations: [
       "Approved knowledge sources",
@@ -18,9 +18,9 @@ export const services = [
     id: "agents",
     title: "AI Agents",
     slug: "agents",
-    tagline: "Bounded agent orchestration R&D",
+    tagline: "Agents and orchestrators in research",
     description:
-      "Research into scoped multi-step workflows with explicit routing, limited tool permissions, durable state, and human review boundaries.",
+      "Research into scoped agents and orchestrators, with explicit routing, limited tool permissions, durable state, and human review. Not for sale.",
     icon: "Cpu",
     designConsiderations: [
       "Role-aware graph routing",

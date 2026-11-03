@@ -8,7 +8,7 @@ import { MessageSquare, CheckCircle, ArrowRight } from "lucide-react";
 export const metadata: Metadata = {
   title: "AI Chatbots",
   description:
-    `Research and development for conversational AI, grounded in scoped source material and human escalation. ${discoveryCreditSentence}`,
+    `Custom chatbots are live, grounded in approved sources, with a human handoff. ${discoveryCreditSentence}`,
   alternates: { canonical: "/ai-solutions/chatbots" },
   openGraph: { url: "/ai-solutions/chatbots" },
 };
@@ -26,19 +26,19 @@ const useCases = [
   {
     title: "Customer Support AI",
     description:
-      "A possible prototype could draft responses to approved FAQ topics and identify cases for human review. Data access and handoff behavior require project-specific validation.",
+      "Answers from the sources the business approves, then hands the conversation to a person when the question is outside that scope.",
     industry: "E-commerce · SaaS · Local Services",
   },
   {
     title: "Sales Assistant AI",
     description:
-      "A possible workflow could collect structured answers to an agreed set of questions. Consent, data handling, and routing rules must be defined before deployment.",
+      "Collects the questions the business chooses, then sends that lead to email and a private record.",
     industry: "B2B SaaS · Professional Services · Home Services",
   },
   {
     title: "Onboarding Assistant",
     description:
-      "A prototype could help users navigate approved setup material. Coverage and answer quality should be evaluated against representative questions.",
+      "Walks a user through the setup material the business approves, and escalates when the answer is not in that material.",
     industry: "SaaS · Platforms · Marketplaces",
   },
 ];
@@ -54,17 +54,17 @@ export default function ChatbotsPage() {
               <MessageSquare size={22} className="text-[#d7dbe3]" />
             </div>
             <span className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)]">
-              Conversational AI · R&D
+              Conversational AI · Live
             </span>
           </div>
           <h1 className="text-5xl font-bold tracking-tight mb-5 max-w-3xl">
-            Conversational systems, designed around{" "}
-            <span className="gradient-text">sources and boundaries</span>
+            A chatbot custom built around{" "}
+            <span className="gradient-text">sources and a handoff</span>
           </h1>
           <p className="text-lg text-[var(--muted)] max-w-2xl leading-relaxed mb-10">
-            Currently under research and development. Prototype scope, supported
-            channels, and deployment status are established per project; no support,
-            conversion, or response-time result is assumed.
+            On-site chat is live for a client and still being improved. A new chatbot
+            is custom built for the business. The client business is not for sale.
+            No support rate or response time is claimed.
           </p>
         </div>
       </section>
@@ -73,9 +73,9 @@ export default function ChatbotsPage() {
       <section className="py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <p className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)] mb-3">
-            R&D Directions
+            What a custom chatbot includes
           </p>
-          <h2 className="text-3xl font-bold mb-12">Conversation workflows to evaluate</h2>
+          <h2 className="text-3xl font-bold mb-12">Workflows built for the business</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {useCases.map(({ title, description, industry }) => (
               <div key={title} className="p-7 rounded-2xl border border-[var(--border)] bg-[var(--card)]">
@@ -100,8 +100,8 @@ export default function ChatbotsPage() {
               </p>
               <h2 className="text-3xl font-bold mb-6">Scope before integration</h2>
               <p className="text-[var(--muted)] leading-relaxed">
-                These are potential design requirements, not included or deployed
-                controls. The implementation must be evaluated against an agreed scope.
+                Each chatbot is scoped to the business: the sources it may use, when a
+                person takes over, and what happens if the model call fails.
               </p>
             </div>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -119,10 +119,10 @@ export default function ChatbotsPage() {
       {/* CTA */}
       <section className="py-20 px-6">
         <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-3xl font-bold mb-4">Explore a bounded conversation workflow</h2>
+              <h2 className="text-3xl font-bold mb-4">Scope a chatbot for the business</h2>
           <p className="text-[var(--muted)] mb-8">
-            Describe a conversation workflow, its approved sources, and its escalation
-            needs. We can discuss feasibility and evaluation criteria.
+            Bring the sources it should use and the point where a person takes over.
+            The build is custom. The live client business is not for sale.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link

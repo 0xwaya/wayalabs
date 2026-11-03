@@ -110,12 +110,13 @@ export default function OffersPage() {
             Engagements
           </p>
           <h1 className="text-5xl font-bold tracking-tight mb-5 max-w-3xl">
-            Discovery, then the <span className="gradient-text">build that is already live</span>
+            A stack <span className="gradient-text">custom built for the business</span>
           </h1>
           <p className="text-lg text-[var(--muted)] max-w-2xl leading-relaxed">
             A discovery sprint is {discoveryPrice}. A platform build is {platformPrice}. A lead
-            system is {leadPrice}. If that build starts within {DISCOVERY_CREDIT_DAYS} days, the
-            discovery fee is credited on the build invoice.
+            system is {leadPrice}. Each one is built for that business. Live client sites show
+            the same kind of stack. Those businesses are not for sale. If the build starts within{" "}
+            {DISCOVERY_CREDIT_DAYS} days of the discovery payment, that fee is credited in full.
           </p>
         </div>
       </section>
@@ -161,9 +162,9 @@ export default function OffersPage() {
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">Book the discovery sprint</h2>
           <p className="text-[var(--muted)] mb-8">
-            The call confirms the outcome and the systems in scope. The invoice is {discoveryPrice}.
-            A platform or lead-system build started within {DISCOVERY_CREDIT_DAYS} days credits that
-            fee.
+            The call confirms the outcome and the systems in scope for that business. The invoice
+            is {discoveryPrice}. A platform or lead-system build started within {DISCOVERY_CREDIT_DAYS}{" "}
+            days of that payment credits the fee in full. The credit is not refused.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link

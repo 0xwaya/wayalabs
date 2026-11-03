@@ -22,15 +22,20 @@ describe("public offers", () => {
     expect(platformOffer.priceToUsd).toBe(18_000);
     expect(leadSystemOffer.priceFromUsd).toBe(7_000);
     expect(leadSystemOffer.priceToUsd).toBe(14_000);
-    expect(platformOffer.summary).toMatch(/still being improved/);
-    expect(leadSystemOffer.summary).toMatch(/still being improved/);
-    expect(leadSystemOffer.summary).toMatch(/Onyx/);
+    expect(platformOffer.summary).toMatch(/custom built/);
+    expect(platformOffer.summary).toMatch(/not for sale/);
+    expect(leadSystemOffer.summary).toMatch(/custom built/);
+    expect(leadSystemOffer.summary).toMatch(/live/);
+    expect(leadSystemOffer.summary).toMatch(/not for sale/);
   });
 
   it("credits discovery once within 60 days and does not discount", () => {
     expect(DISCOVERY_CREDIT_DAYS).toBe(60);
-    expect(offerRules.join(" ")).toMatch(/credited/);
+    expect(offerRules.join(" ")).toMatch(/credited in full/);
     expect(offerRules.join(" ")).toMatch(/once/);
+    expect(offerRules.join(" ")).toMatch(/not refused/);
+    expect(offerRules.join(" ")).not.toMatch(/refuse the credit/);
+    expect(discoveryCreditSentence).toMatch(/in full/);
     expect(discoveryCreditSentence).not.toMatch(/40%/);
     expect(offersPageDescription).not.toMatch(/40%/);
     expect(offersPageDescription).toMatch(/\$1,200/);

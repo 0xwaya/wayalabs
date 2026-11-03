@@ -37,10 +37,10 @@ export default function TermsPage() {
           <section>
             <h2 className="text-base font-semibold text-[var(--foreground)] mb-2">Discovery credit</h2>
             <p>
-              Discovery is {formatUsd(discoveryOffer.priceUsd)}. If a platform or lead-system
-              build starts within {DISCOVERY_CREDIT_DAYS} days, the discovery amount paid is
-              credited on that invoice. The credit applies once. WayaLabs may refuse the credit
-              when the organization, or a predecessor, has already paid for that discovery.
+              Discovery is {formatUsd(discoveryOffer.priceUsd)}. The {DISCOVERY_CREDIT_DAYS} days
+              start on the date that fee is paid. If a platform or lead-system build for that
+              business starts within those days, the discovery amount paid is credited in full
+              on that build invoice. The credit applies once, to that one build. It is not refused.
             </p>
           </section>
 

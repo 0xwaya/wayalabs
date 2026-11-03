@@ -13,12 +13,12 @@
 
 This repository contains the source for **wayalabs.com** — a full rebuild repositioning WayaLabs from a Web3-forward studio to an AI solutions company focused on:
 
-- **AI Chatbots** — customer support deflection, lead capture, onboarding
-- **AI Agents** — workflow automation, internal ops, cross-system orchestration
+- **AI Chatbots** — live, custom built for the business. Client brands are not for sale
+- **AI Agents** — agents and orchestrators stay in research and are not for sale
 - **AI Integrations** — LLM + CRM + docs + APIs with observability built in
 - **AI-Enhanced Web Platforms** — frontend + backend intelligence in one build
 
-Discovery is $1,200. A platform build is $10,000–$18,000. A lead system is $7,000–$14,000. The discovery fee is credited if that build starts within 60 days. Public page: [wayalabs.com/offers](https://wayalabs.com/offers). Watch, the build block, and agent pilots stay in `docs/internal/offer-kit.md`.
+Discovery is $1,200. A platform build is $10,000–$18,000. A lead system is $7,000–$14,000. Each is custom built for the buyer. The discovery fee is credited in full if that build starts within 60 days of payment, and the credit is not refused. Public page: [wayalabs.com/offers](https://wayalabs.com/offers). Watch, the build block, and agent pilots stay in `docs/internal/offer-kit.md`.
 
 Current public project notes live in `src/lib/data/case-studies.ts` and on [wayalabs.com/case-studies](https://wayalabs.com/case-studies):
 

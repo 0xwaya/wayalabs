@@ -9,7 +9,7 @@ import { discoveryCreditSentence } from "@/lib/data/offers";
 
 export const metadata: Metadata = {
   description:
-    `WayaLabs builds practical web platforms and operator-reviewed automations. ${discoveryCreditSentence}`,
+    `WayaLabs builds a custom web stack and automation for the business. Chatbots are live. Agents and orchestrators stay in research. ${discoveryCreditSentence}`,
   alternates: { canonical: "/" },
   openGraph: { url: "https://wayalabs.com" },
 };
