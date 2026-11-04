@@ -9,11 +9,13 @@ import { CAL_BOOKING_URL } from "@/lib/booking";
 
 const navLinks = [
   { href: "/ai-solutions", label: "AI Solutions" },
+  { href: "/services", label: "Packages" },
   { href: "/offers", label: "Offers" },
   { href: "/case-studies", label: "Case Studies" },
   { href: "/process", label: "Process" },
   { href: "/about", label: "About" },
   { href: "/insights", label: "Insights" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function Navbar() {
@@ -28,14 +30,14 @@ export default function Navbar() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/logos/wayalabs-mark-nav.png"
-              alt="WayaLabs logo mark"
+              alt="Wayalabs logo mark"
               width={168}
               height={106}
               decoding="async"
               className="h-7 w-auto shrink-0"
             />
           <span className="font-semibold text-[var(--foreground)] tracking-tight">
-            WayaLabs
+            Wayalabs
           </span>
         </Link>
 

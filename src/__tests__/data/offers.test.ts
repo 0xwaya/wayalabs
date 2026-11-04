@@ -23,10 +23,10 @@ describe("public offers", () => {
     expect(leadSystemOffer.priceFromUsd).toBe(7_000);
     expect(leadSystemOffer.priceToUsd).toBe(14_000);
     expect(platformOffer.summary).toMatch(/custom built/);
-    expect(platformOffer.summary).toMatch(/not for sale/);
+    expect(platformOffer.summary).toMatch(/client/);
     expect(leadSystemOffer.summary).toMatch(/custom built/);
     expect(leadSystemOffer.summary).toMatch(/live/);
-    expect(leadSystemOffer.summary).toMatch(/not for sale/);
+    expect(leadSystemOffer.summary).toMatch(/client/);
   });
 
   it("credits discovery once within 60 days and does not discount", () => {

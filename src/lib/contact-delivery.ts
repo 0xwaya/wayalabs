@@ -33,7 +33,7 @@ export function renderInquiry(inquiry: Inquiry): { subject: string; text: string
   const subjectName = inquiry.name.replace(/[\r\n]+/g, " ").slice(0, 100);
   const subjectIntent = inquiry.intent.replace(/[\r\n]+/g, " ").slice(0, 40);
   return {
-    subject: `WayaLabs inquiry (${subjectIntent}): ${subjectName}`,
+    subject: `Wayalabs inquiry (${subjectIntent}): ${subjectName}`,
     text: [
       `Name: ${inquiry.name}`,
       `Email: ${inquiry.email}`,

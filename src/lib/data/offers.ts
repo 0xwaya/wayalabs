@@ -23,12 +23,12 @@ export const platformOffer = {
   priceFromUsd: 10_000,
   priceToUsd: 18_000,
   summary:
-    "A site, forms, email, a data store, and a handoff, custom built for the business. The same kind of stack is live for clients and still being improved. Those businesses are not for sale.",
+    "A site, forms, email, a data store, and a handoff, custom built for the business. The same kind of stack is live for clients today; those brands are client work, shown as proof.",
   includes: [
     "The public site and the forms a visitor uses.",
     "Email delivery for those forms.",
     "A data store for the records the operator keeps.",
-    "A handoff the operator can run without WayaLabs in the loop.",
+    "A handoff the operator can run without Wayalabs in the loop.",
   ],
 } as const;
 
@@ -38,7 +38,7 @@ export const leadSystemOffer = {
   priceFromUsd: 7_000,
   priceToUsd: 14_000,
   summary:
-    "Intake or chat, email, a CRM, and one scheduled job, custom built for the business. On-site chat of this kind is live and still being improved. The client business is not for sale.",
+    "Intake or chat, email, a CRM, and one scheduled job, custom built for the business. On-site chat of this kind is live for a client today, shown here as proof of the work.",
   includes: [
     "An intake form or an on-site chat.",
     "Email to the operator when a lead arrives.",

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOpenGraph } from "@/lib/seo";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { CAL_BOOKING_URL } from "@/lib/booking";
@@ -21,19 +22,19 @@ export const metadata: Metadata = {
   title: "Discovery, platform builds, and lead systems",
   description: offersPageDescription,
   alternates: { canonical: "/offers" },
-  openGraph: { url: "/offers" },
+  openGraph: pageOpenGraph("/offers"),
 };
 
 const seller = {
   "@type": "Organization",
-  name: "WayaLabs",
+  name: "Wayalabs",
   url: "https://wayalabs.com",
 };
 
 const offerJsonLd = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  name: "WayaLabs engagements",
+  name: "Wayalabs engagements",
   url: "https://wayalabs.com/offers",
   itemListElement: [
     {
@@ -115,7 +116,7 @@ export default function OffersPage() {
           <p className="text-lg text-[var(--muted)] max-w-2xl leading-relaxed">
             A discovery sprint is {discoveryPrice}. A platform build is {platformPrice}. A lead
             system is {leadPrice}. Each one is built for that business. Live client sites show
-            the same kind of stack. Those businesses are not for sale. If the build starts within{" "}
+            the same kind of stack; those brands are client projects shown as proof. If the build starts within{" "}
             {DISCOVERY_CREDIT_DAYS} days of the discovery payment, that fee is credited in full.
           </p>
         </div>

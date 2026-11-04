@@ -122,7 +122,7 @@ export const caseStudies = [
     timeline: "In use across the studio repos; ongoing",
     impactHeading: "Scope and limits",
     impact: [
-      "Used to review and update the WayaLabs, Queen City Soundboard, and Urban Stone repositories",
+      "Used to review and update the Wayalabs, Queen City Soundboard, and Urban Stone repositories",
       "No unattended posting, purchasing, or deployment",
       "Credentials stay with the project that owns them",
     ],

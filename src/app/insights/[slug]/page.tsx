@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOpenGraph } from "@/lib/seo";
 import Link from "next/link";
 import { CAL_BOOKING_URL } from "@/lib/booking";
 import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
@@ -26,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: post.title,
     description: post.excerpt,
     alternates: { canonical: `/insights/${slug}` },
-    openGraph: { url: `/insights/${slug}` },
+    openGraph: pageOpenGraph(`/insights/${slug}`),
   };
 }
 

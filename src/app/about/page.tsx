@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
+import { pageOpenGraph } from "@/lib/seo";
 import Link from "next/link";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
 import { discoveryCreditSentence } from "@/lib/data/offers";
 
 export const metadata: Metadata = {
-  title: "About WayaLabs",
+  title: "About Wayalabs",
   description:
-    `WayaLabs builds a custom stack for the business. Chatbots are live. Agents and orchestrators stay in research. ${discoveryCreditSentence}`,
+    `Wayalabs builds a custom stack for the business. Chatbots are live. Agents and orchestrators stay in research. ${discoveryCreditSentence}`,
   alternates: { canonical: "/about" },
-  openGraph: { url: "/about" },
+  openGraph: pageOpenGraph("/about"),
 };
 
 const values = [
@@ -63,7 +64,7 @@ const work = [
 ];
 
 const stack = [
-  "WayaLabs site: Next.js 16 · React 19 · TypeScript · Tailwind CSS 4",
+  "Wayalabs site: Next.js 16 · React 19 · TypeScript · Tailwind CSS 4",
   "Urban Stone: Next.js 15 Pages · Onyx on Ollama · Resend to sales@ · permit lead-sourcer · private Supabase CRM",
   "Queen City Soundboard: Next.js 16 App Router · Supabase · Vercel",
   "Operator sessions: Grok, one checkout per project, Python venv where the runtime needs it",
@@ -87,8 +88,8 @@ export default function AboutPage() {
               <span className="gradient-text">architecture and orchestration.</span>
             </h1>
             <p className="text-lg text-[var(--muted)] leading-relaxed">
-              WayaLabs builds a custom stack for the business. Chatbots are live.
-              Agents and orchestrators stay in research. Client businesses are not for sale.
+              Wayalabs builds a custom stack for the business. Chatbots are live.
+              Client brands shown here are client projects, not our products. Agents and orchestrators are coming soon.
             </p>
           </div>
 

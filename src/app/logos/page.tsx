@@ -1,3 +1,4 @@
+import { pageOpenGraph } from "@/lib/seo";
 /**
  * DEV PREVIEW — Logo comparison page.
  * Remove this route before final deployment or gate behind auth.
@@ -5,7 +6,7 @@
 
 const finalMark = {
   file: "/logos/wayalabs-mark.png",
-  name: "WayaLabs Mark",
+  name: "Wayalabs Mark",
   description:
     "Production logo. Silver-white ribbon W on near-black. Navbar, footer, and favicon use this mark.",
 };
@@ -14,7 +15,7 @@ const versions = [
   {
     id: "mark",
     file: "/logos/wayalabs-mark.png",
-    name: "WayaLabs Mark (Production)",
+    name: "Wayalabs Mark (Production)",
     description: "Silver ribbon W. Wired into Navbar, Footer, and favicon.",
     recommended: true,
   },
@@ -90,10 +91,10 @@ const prismColorways = [
 ];
 
 export const metadata = {
-  title: "Logo Preview — WayaLabs Dev",
+  title: "Logo Preview — Wayalabs Dev",
   robots: { index: false, follow: false },
   alternates: { canonical: "/logos" },
-  openGraph: { url: "/logos" },
+  openGraph: pageOpenGraph("/logos"),
 };
 
 export default function LogosPage() {
@@ -125,7 +126,7 @@ export default function LogosPage() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={finalMark.file}
-                alt="WayaLabs production logo mark"
+                alt="Wayalabs production logo mark"
                 width={180}
                 height={180}
               />
@@ -147,12 +148,12 @@ export default function LogosPage() {
                 <div className="flex items-center gap-2.5 bg-[#06060e] rounded-xl px-4 py-3 border border-border">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={finalMark.file} alt="" aria-hidden width={32} height={32} />
-                  <span className="font-semibold text-foreground tracking-tight">WayaLabs</span>
+                  <span className="font-semibold text-foreground tracking-tight">Wayalabs</span>
                 </div>
                 <div className="flex items-center gap-2 bg-[#06060e] rounded-xl px-3 py-2.5 border border-border w-fit">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={finalMark.file} alt="" aria-hidden width={22} height={22} />
-                  <span className="font-semibold text-foreground tracking-tight text-sm">WayaLabs</span>
+                  <span className="font-semibold text-foreground tracking-tight text-sm">Wayalabs</span>
                 </div>
               </div>
 

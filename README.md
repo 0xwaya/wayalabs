@@ -1,4 +1,4 @@
-# WayaLabs
+# Wayalabs
 
 > **AI solutions studio** — building chatbots, AI agents, and intelligent web platforms for ambitious businesses.
 
@@ -11,7 +11,7 @@
 
 ## Overview
 
-This repository contains the source for **wayalabs.com** — a full rebuild repositioning WayaLabs from a Web3-forward studio to an AI solutions company focused on:
+This repository contains the source for **wayalabs.com** — a full rebuild repositioning Wayalabs from a Web3-forward studio to an AI solutions company focused on:
 
 - **AI Chatbots** — live, custom built for the business. Client brands are not for sale
 - **AI Agents** — agents and orchestrators stay in research and are not for sale
@@ -180,4 +180,4 @@ Configure these environment variables in the Vercel dashboard (Settings → Envi
 
 ## License
 
-MIT © [WayaLabs](https://wayalabs.com)
+MIT © [Wayalabs](https://wayalabs.com)

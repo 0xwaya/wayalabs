@@ -26,7 +26,7 @@ export default function Hero() {
 
         {/* Headline */}
         <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-6 max-w-4xl">
-          WayaLabs{" "}
+          Wayalabs{" "}
           <span className="gradient-text">AI Solutions Studio</span>
         </h1>
 

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOpenGraph } from "@/lib/seo";
 import Link from "next/link";
 import { CAL_BOOKING_URL } from "@/lib/booking";
 import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
@@ -10,9 +11,9 @@ import { categoryColors } from "@/lib/data/categories";
 export const metadata: Metadata = {
   title: "Case Studies",
   description:
-    `Selected WayaLabs project notes for Urban Stone Collective, Queen City Soundboard, Grok operator environments, and the private Echo runtime for OpenClaw. ${discoveryCreditSentence}`,
+    `Selected Wayalabs project notes for Urban Stone Collective, Queen City Soundboard, Grok operator environments, and the private Echo runtime for OpenClaw. ${discoveryCreditSentence}`,
   alternates: { canonical: "/case-studies" },
-  openGraph: { url: "/case-studies" },
+  openGraph: pageOpenGraph("/case-studies"),
 };
 
 export default function CaseStudiesPage() {

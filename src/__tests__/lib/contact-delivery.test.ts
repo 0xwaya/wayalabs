@@ -27,7 +27,7 @@ describe("renderInquiry", () => {
 describe("isFromAddress", () => {
   it("accepts a mailbox and a single display-name form", () => {
     expect(isFromAddress("admin@wayalabs.com")).toBe(true);
-    expect(isFromAddress("WayaLabs <admin@wayalabs.com>")).toBe(true);
+    expect(isFromAddress("Wayalabs <admin@wayalabs.com>")).toBe(true);
   });
 
   it("rejects header breaks and extra mailboxes", () => {
@@ -57,7 +57,7 @@ describe("deliverInquiry", () => {
       inquiry,
       {
         RESEND_API_KEY: "re_test",
-        CONTACT_FROM_EMAIL: "WayaLabs <admin@wayalabs.com>",
+        CONTACT_FROM_EMAIL: "Wayalabs <admin@wayalabs.com>",
         CONTACT_TO_EMAIL: "admin@wayalabs.com",
       },
       fetchImpl,
@@ -68,7 +68,7 @@ describe("deliverInquiry", () => {
     const headers = calls[0]?.init?.headers as Record<string, string>;
     expect(headers.Authorization).toBe("Bearer re_test");
     const body = JSON.parse(String(calls[0]?.init?.body));
-    expect(body.from).toBe("WayaLabs <admin@wayalabs.com>");
+    expect(body.from).toBe("Wayalabs <admin@wayalabs.com>");
     expect(body.to).toEqual(["admin@wayalabs.com"]);
     expect(body.reply_to).toBe("ada@example.com");
     expect(body.text).toContain("Analytical Engines");
@@ -80,7 +80,7 @@ describe("deliverInquiry", () => {
       inquiry,
       {
         RESEND_API_KEY: "re_test",
-        CONTACT_FROM_EMAIL: "WayaLabs <admin@wayalabs.com>",
+        CONTACT_FROM_EMAIL: "Wayalabs <admin@wayalabs.com>",
       },
       fetchImpl,
     );
@@ -96,7 +96,7 @@ describe("deliverInquiry", () => {
       inquiry,
       {
         RESEND_API_KEY: "re_test",
-        CONTACT_FROM_EMAIL: "WayaLabs <admin@wayalabs.com>",
+        CONTACT_FROM_EMAIL: "Wayalabs <admin@wayalabs.com>",
       },
       fetchImpl,
     );

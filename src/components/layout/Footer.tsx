@@ -50,18 +50,18 @@ export default function Footer() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/logos/wayalabs-mark.png"
-                alt="WayaLabs logo mark"
+                alt="Wayalabs logo mark"
                 width={44}
                 height={28}
                 className="h-7 w-auto shrink-0"
               />
               <span className="font-semibold text-[var(--foreground)] tracking-tight">
-                WayaLabs
+                Wayalabs
               </span>
             </Link>
             <p className="text-sm text-[var(--muted)] leading-relaxed max-w-xs">
               Custom stacks and automations for the business. Chatbots are live.
-              Agents and orchestrators stay in research. Client businesses are not for sale.
+              We build tech stacks and LLM/AI integrations. Agents and orchestrators are coming soon.
             </p>
             <div className="flex items-center gap-4 mt-6">
               <a
@@ -120,7 +120,7 @@ export default function Footer() {
 
         <div className="border-t border-[var(--border)] pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-xs text-[var(--muted)]">
-            © {new Date().getFullYear()} WayaLabs. All rights reserved.
+            © {new Date().getFullYear()} Wayalabs. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             <Link

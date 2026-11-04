@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOpenGraph } from "@/lib/seo";
 import { Mail, CalendarDays, MessageSquare } from "lucide-react";
 import ContactForm from "@/components/contact/ContactForm";
 import { CAL_BOOKING_URL } from "@/lib/booking";
@@ -8,9 +9,9 @@ import { discoveryCreditSentence } from "@/lib/data/offers";
 export const metadata: Metadata = {
   title: "Contact — Book a Call",
   description:
-    `Book a discovery call with WayaLabs. ${discoveryCreditSentence}`,
+    `Book a discovery call with Wayalabs. ${discoveryCreditSentence}`,
   alternates: { canonical: "/contact" },
-  openGraph: { url: "/contact" },
+  openGraph: pageOpenGraph("/contact"),
 };
 
 const trustSignals = [

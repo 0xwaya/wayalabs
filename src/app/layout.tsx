@@ -17,21 +17,21 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "WayaLabs — AI Solutions Studio",
-    template: "%s | WayaLabs",
+    default: "Wayalabs — AI Solutions Studio",
+    template: "%s | Wayalabs",
   },
   description: siteDescription,
   metadataBase: new URL("https://wayalabs.com"),
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: "WayaLabs",
+    siteName: "Wayalabs",
     images: [
       {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "WayaLabs ribbon mark and Wayalabs.com",
+        alt: "Wayalabs ribbon mark and Wayalabs.com",
       },
     ],
   },
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "WayaLabs",
+  name: "Wayalabs",
   url: "https://wayalabs.com",
   logo: "https://wayalabs.com/apple-touch-icon.png",
   description: siteDescription,

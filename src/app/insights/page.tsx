@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOpenGraph } from "@/lib/seo";
 import Link from "next/link";
 import { ArrowRight, Clock } from "lucide-react";
 import { insightPosts, categoryColors } from "@/lib/data/insights";
@@ -8,9 +9,9 @@ import { discoveryCreditSentence } from "@/lib/data/offers";
 export const metadata: Metadata = {
   title: "AI Insights",
   description:
-    `Practical guides from WayaLabs, an AI solutions studio. ${discoveryCreditSentence}`,
+    `Practical guides from Wayalabs, an AI solutions studio. ${discoveryCreditSentence}`,
   alternates: { canonical: "/insights" },
-  openGraph: { url: "/insights" },
+  openGraph: pageOpenGraph("/insights"),
 };
 
 export default function InsightsPage() {

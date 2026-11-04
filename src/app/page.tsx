@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOpenGraph } from "@/lib/seo";
 import Hero from "@/components/home/Hero";
 import ServicesGrid from "@/components/home/ServicesGrid";
 import OutcomeMetrics from "@/components/home/OutcomeMetrics";
@@ -9,9 +10,9 @@ import { discoveryCreditSentence } from "@/lib/data/offers";
 
 export const metadata: Metadata = {
   description:
-    `WayaLabs builds a custom web stack and automation for the business. Chatbots are live. Agents and orchestrators stay in research. ${discoveryCreditSentence}`,
+    `Wayalabs builds a custom web stack and automation for the business. Chatbots are live. Agents and orchestrators stay in research. ${discoveryCreditSentence}`,
   alternates: { canonical: "/" },
-  openGraph: { url: "https://wayalabs.com" },
+  openGraph: pageOpenGraph("https://wayalabs.com"),
 };
 
 export default function HomePage() {

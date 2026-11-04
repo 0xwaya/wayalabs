@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOpenGraph } from "@/lib/seo";
 import Link from "next/link";
 import { CAL_BOOKING_URL } from "@/lib/booking";
 import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
   description:
     `Custom chatbots are live. Agents and orchestrators stay in research. ${discoveryCreditSentence}`,
   alternates: { canonical: "/ai-solutions" },
-  openGraph: { url: "/ai-solutions" },
+  openGraph: pageOpenGraph("/ai-solutions"),
 };
 
 const primaryServices = [
@@ -20,7 +21,7 @@ const primaryServices = [
     slug: "chatbots",
     tagline: "Live, custom for the business",
     description:
-      "A chatbot grounded in approved sources, with a human handoff. A client deployment is live and still being improved. The client business is not for sale.",
+      "A chatbot grounded in approved sources, with a human handoff. A client deployment is live and actively improved; the client brand is shown as proof.",
     accent: "#d7dbe3",
     outcomes: ["Approved source material", "Human escalation", "Quality evaluation"],
   },
@@ -30,7 +31,7 @@ const primaryServices = [
     slug: "agents",
     tagline: "Agents and orchestrators in research",
     description:
-      "Research into multi-step agents and orchestrators with scoped tools, explicit routing, durable job state, and human review. Not for sale.",
+      "Research into multi-step agents and orchestrators with scoped tools, explicit routing, durable job state, and human review. Coming in the near future.",
     accent: "#c5cad3",
     outcomes: ["Role-aware routing", "Tool boundaries", "Human approvals"],
   },
@@ -76,7 +77,7 @@ export default function AISolutionsPage() {
           </h1>
           <p className="text-lg text-[var(--muted)] max-w-2xl leading-relaxed">
             Chatbots are live and custom built for the business. Agents and orchestrators
-            stay in research and are not for sale. Client businesses are not for sale.
+            are coming in the near future. Client brands shown are client projects, not products.
           </p>
         </div>
       </section>

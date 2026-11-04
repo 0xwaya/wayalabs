@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOpenGraph } from "@/lib/seo";
 import Link from "next/link";
 import { CAL_BOOKING_URL } from "@/lib/booking";
 import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
   description:
     `Custom chatbots are live, grounded in approved sources, with a human handoff. ${discoveryCreditSentence}`,
   alternates: { canonical: "/ai-solutions/chatbots" },
-  openGraph: { url: "/ai-solutions/chatbots" },
+  openGraph: pageOpenGraph("/ai-solutions/chatbots"),
 };
 
 const capabilities = [
@@ -63,7 +64,7 @@ export default function ChatbotsPage() {
           </h1>
           <p className="text-lg text-[var(--muted)] max-w-2xl leading-relaxed mb-10">
             On-site chat is live for a client and still being improved. A new chatbot
-            is custom built for the business. The client business is not for sale.
+            is custom built for the business. The client brand is shown as proof of work.
             No support rate or response time is claimed.
           </p>
         </div>
@@ -122,7 +123,7 @@ export default function ChatbotsPage() {
               <h2 className="text-3xl font-bold mb-4">Scope a chatbot for the business</h2>
           <p className="text-[var(--muted)] mb-8">
             Bring the sources it should use and the point where a person takes over.
-            The build is custom. The live client business is not for sale.
+            The build is custom, and the same approach is available for your business.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link

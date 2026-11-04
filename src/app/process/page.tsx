@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOpenGraph } from "@/lib/seo";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
@@ -7,9 +8,9 @@ import { discoveryCreditSentence } from "@/lib/data/offers";
 export const metadata: Metadata = {
   title: "Our Process",
   description:
-    `How WayaLabs scopes, builds, and delivers AI systems, from discovery to post-launch work. ${discoveryCreditSentence}`,
+    `How Wayalabs scopes, builds, and delivers AI systems, from discovery to post-launch work. ${discoveryCreditSentence}`,
   alternates: { canonical: "/process" },
-  openGraph: { url: "/process" },
+  openGraph: pageOpenGraph("/process"),
 };
 
 const phases = [

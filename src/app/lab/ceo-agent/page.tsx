@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOpenGraph } from "@/lib/seo";
 import CeoScenarioSampler from "@/components/ceo/CeoScenarioSampler";
 
 export const metadata: Metadata = {
@@ -6,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "A static illustrative scenario showing how a CEO executive orchestrator could structure a planning discussion. Not a live model result.",
   alternates: { canonical: "/lab/ceo-agent" },
-  openGraph: { url: "/lab/ceo-agent" },
+  openGraph: pageOpenGraph("/lab/ceo-agent"),
 };
 
 export default function CeoAgentSamplePage() {

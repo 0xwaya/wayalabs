@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOpenGraph } from "@/lib/seo";
 import Link from "next/link";
 import { CAL_BOOKING_URL } from "@/lib/booking";
 import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
@@ -8,9 +9,9 @@ import { Cpu, CheckCircle, ArrowRight } from "lucide-react";
 export const metadata: Metadata = {
   title: "AI Agents",
   description:
-    `Agents and orchestrators are under research and are not for sale. ${discoveryCreditSentence}`,
+    `Agents and orchestrators are in active development and coming to Wayalabs clients in the near future. ${discoveryCreditSentence}`,
   alternates: { canonical: "/ai-solutions/agents" },
-  openGraph: { url: "/ai-solutions/agents" },
+  openGraph: pageOpenGraph("/ai-solutions/agents"),
 };
 
 const useCases = [
@@ -59,10 +60,10 @@ export default function AgentsPage() {
           </div>
           <h1 className="text-5xl font-bold tracking-tight mb-5 max-w-3xl">
               Agents and orchestrators are{" "}
-              <span className="gradient-text">under research</span>
+              <span className="gradient-text">coming soon</span>
           </h1>
           <p className="text-lg text-[var(--muted)] max-w-2xl leading-relaxed mb-10">
-            These are not for sale. A private runtime is running. A client agent is
+            They are not a product yet, but they are coming soon. A private runtime is running. A client agent is
             scoped only after that research says it is ready. The work stays bounded:
             one task, approved tools, and a person reviewing consequential actions.
           </p>

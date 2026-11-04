@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import { pageOpenGraph } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "Privacy policy for WayaLabs, including what data we collect and how we process it.",
+    "Privacy policy for Wayalabs, including what data we collect and how we process it.",
   alternates: { canonical: "/privacy" },
-  openGraph: { url: "/privacy" },
+  openGraph: pageOpenGraph("/privacy"),
 };
 
 export default function PrivacyPage() {

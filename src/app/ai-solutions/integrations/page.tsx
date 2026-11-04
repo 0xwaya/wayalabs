@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOpenGraph } from "@/lib/seo";
 import Link from "next/link";
 import { CAL_BOOKING_URL } from "@/lib/booking";
 import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
   description:
     `Research and development for AI integrations, with project-specific scope, access boundaries, and deployment status stated explicitly. ${discoveryCreditSentence}`,
   alternates: { canonical: "/ai-solutions/integrations" },
-  openGraph: { url: "/ai-solutions/integrations" },
+  openGraph: pageOpenGraph("/ai-solutions/integrations"),
 };
 
 const capabilities = [
@@ -45,7 +46,7 @@ const useCases = [
 
 const architectureAreas = [
   "Python · Flask · Socket.IO · LangGraph (CEO R&D prototype)",
-  "Next.js · React · TypeScript · Tailwind CSS (WayaLabs site)",
+  "Next.js · React · TypeScript · Tailwind CSS (Wayalabs site)",
   "Provider selection and pricing verified per deployment",
   "Identity, retention, and egress boundaries defined per project",
   "Acceptance checks and operational monitoring agreed before release",

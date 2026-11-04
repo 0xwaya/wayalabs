@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
+import { pageOpenGraph } from "@/lib/seo";
 import { DISCOVERY_CREDIT_DAYS, discoveryOffer, formatUsd } from "@/lib/data/offers";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
   description:
-    "Terms of service for WayaLabs engagements, including the discovery sprint and the 60-day discovery credit.",
+    "Terms of service for Wayalabs engagements, including the discovery sprint and the 60-day discovery credit.",
   alternates: { canonical: "/terms" },
-  openGraph: { url: "/terms" },
+  openGraph: pageOpenGraph("/terms"),
 };
 
 export default function TermsPage() {
@@ -48,14 +49,14 @@ export default function TermsPage() {
             <h2 className="text-base font-semibold text-[var(--foreground)] mb-2">Intellectual property</h2>
             <p>
               Unless otherwise defined in a signed agreement, all website content is owned by
-              WayaLabs. Reproduction or redistribution requires prior written permission.
+              Wayalabs. Reproduction or redistribution requires prior written permission.
             </p>
           </section>
 
           <section>
             <h2 className="text-base font-semibold text-[var(--foreground)] mb-2">Limitation of liability</h2>
             <p>
-              WayaLabs is not liable for indirect or consequential damages resulting from use of
+              Wayalabs is not liable for indirect or consequential damages resulting from use of
               this website. Service liabilities are limited by applicable contract terms.
             </p>
           </section>

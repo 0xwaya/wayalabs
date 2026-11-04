@@ -20,7 +20,7 @@ export const services = [
     slug: "agents",
     tagline: "Agents and orchestrators in research",
     description:
-      "Research into scoped agents and orchestrators, with explicit routing, limited tool permissions, durable state, and human review. Not for sale.",
+      "Research into scoped agents and orchestrators, with explicit routing, limited tool permissions, durable state, and human review. Coming in the near future as a Wayalabs product.",
     icon: "Cpu",
     designConsiderations: [
       "Role-aware graph routing",

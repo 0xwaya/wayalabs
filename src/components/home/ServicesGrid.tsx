@@ -15,7 +15,7 @@ const services = [
     icon: Cpu,
     title: "AI Agents",
     description:
-      "Agents and orchestrators are under research. They are not for sale. The work covers tool permissions, durable state, and review before consequential actions.",
+      "Agents and orchestrators are in active development and coming in the near future. The work covers tool permissions, durable state, and review before consequential actions.",
     href: "/ai-solutions/agents",
     accent: "#c5cad3",
     focus: ["Tool permissions", "Orchestration design", "Human approvals"],
