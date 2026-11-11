@@ -6,11 +6,12 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { ButtonLink } from "@/components/ui/Button";
 import { CAL_BOOKING_URL } from "@/lib/booking";
+import { showOffersInNavigation } from "@/lib/site";
 
 const navLinks = [
   { href: "/ai-solutions", label: "AI Solutions" },
   { href: "/services", label: "Packages" },
-  { href: "/offers", label: "Offers" },
+  ...(showOffersInNavigation ? [{ href: "/offers", label: "Offers" }] : []),
   { href: "/case-studies", label: "Case Studies" },
   { href: "/process", label: "Process" },
   { href: "/about", label: "About" },
