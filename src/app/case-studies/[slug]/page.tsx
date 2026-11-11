@@ -154,14 +154,16 @@ export default async function CaseStudyPage({ params }: Props) {
           </div>
 
           {/* Next iteration */}
-          <div className="p-6 rounded-2xl border border-[var(--border)] bg-[var(--background)]"
-            style={{ borderLeftColor: accent, borderLeftWidth: 3 }}
-          >
-            <h2 className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)] mb-3">
-              Next Iteration Roadmap
-            </h2>
-            <p className="text-[var(--muted)] leading-relaxed">{study.nextIteration}</p>
-          </div>
+          {study.nextIteration ? (
+            <div className="p-6 rounded-2xl border border-[var(--border)] bg-[var(--background)]"
+              style={{ borderLeftColor: accent, borderLeftWidth: 3 }}
+            >
+              <h2 className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)] mb-3">
+                Next Iteration Roadmap
+              </h2>
+              <p className="text-[var(--muted)] leading-relaxed">{study.nextIteration}</p>
+            </div>
+          ) : null}
         </div>
       </section>
 
