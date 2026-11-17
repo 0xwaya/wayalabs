@@ -1,37 +1,53 @@
-# Wayalabs
+<p align="center">
+  <a href="https://wayalabs.com">
+    <img src="docs/brand/wayalabs-mark-badge.png" alt="Wayalabs" width="360" />
+  </a>
+</p>
 
-> **AI solutions studio** — building chatbots, AI agents, and intelligent web platforms for ambitious businesses.
+<h1 align="center">Wayalabs</h1>
 
-[![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://typescriptlang.org)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
-[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+<p align="center">
+  Wayalabs is an AI solutions studio that builds custom chatbots, AI integrations (LLM + CRM + docs + APIs), and AI-enhanced web platforms.<br />
+  Chatbots are live. Agents and orchestrators stay in research and are coming soon, not for sale yet.
+</p>
+
+<p align="center">
+  <a href="https://wayalabs.com"><strong>wayalabs.com</strong></a>
+</p>
+
+<p align="center">
+  <a href="https://nextjs.org"><img alt="Next.js 16" src="https://img.shields.io/badge/Next.js-16-black?logo=next.js" /></a>
+  <a href="https://typescriptlang.org"><img alt="TypeScript 5" src="https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white" /></a>
+  <a href="https://tailwindcss.com"><img alt="Tailwind CSS 4" src="https://img.shields.io/badge/Tailwind-4-06B6D4?logo=tailwindcss&logoColor=white" /></a>
+</p>
 
 ---
 
 ## Overview
 
-This repository contains the source for **wayalabs.com** — a full rebuild repositioning Wayalabs from a Web3-forward studio to an AI solutions company focused on:
+This repository is the source for [wayalabs.com](https://wayalabs.com).
 
-- **AI Chatbots** — live, custom built for the business. Client brands are not for sale
-- **AI Agents** — agents and orchestrators stay in research and are not for sale
-- **AI Integrations** — LLM + CRM + docs + APIs with observability built in
-- **AI-Enhanced Web Platforms** — frontend + backend intelligence in one build
-
-Discovery is $1,200. A platform build is $10,000–$18,000. A lead system is $7,000–$14,000. Each is custom built for the buyer. The discovery fee is credited in full if that build starts within 60 days of payment, and the credit is not refused. Public page: [wayalabs.com/offers](https://wayalabs.com/offers). Watch, the build block, and agent pilots stay in `docs/internal/offer-kit.md`.
-
-Current public project notes live in `src/lib/data/case-studies.ts` and on [wayalabs.com/case-studies](https://wayalabs.com/case-studies):
-
-- Urban Stone Collective — live Next.js site, Onyx chat on Ollama, Resend to sales@, permit lead-sourcer, private Supabase CRM
-- Queen City Soundboard — live Next.js 16 event guide on Supabase
-- Grok operator environments — isolated checkouts and virtual environments, human approval before a push
-- OpenClaw, private Echo runtime — cloud network, sandbox, gated tools. The private configuration is not in this repo
+- **AI Chatbots** — live, and custom built for the business
+- **AI Integrations** — LLM + CRM + docs + APIs
+- **AI-Enhanced Web Platforms** — frontend and backend intelligence in one build
+- **AI Agents** — agents and orchestrators stay in research and are coming soon, not for sale yet
 
 The homepage, Open Graph, Twitter, and organization JSON-LD share one description from `src/lib/site.ts`. Page-level titles and descriptions override it. Do not set `title`, `description`, or `url` on the root `openGraph` or `twitter` objects, or inner pages will keep advertising the homepage.
 
 ---
 
-## Tech Stack
+## Case studies
+
+Selected work from `src/lib/data/case-studies.ts`. Client brands are clients. Full notes: [wayalabs.com/case-studies](https://wayalabs.com/case-studies).
+
+- [Urban Stone Collective](https://wayalabs.com/case-studies/urban-stone) — Client. Website and lead system for a granite, quartz, and quartzite countertop fabricator serving greater Cincinnati and Northern Kentucky.
+- [Queen City Soundboard](https://wayalabs.com/case-studies/queen-city-soundboard) — Client. Guide to live music, comedy, and cultural events across Cincinnati and Northern Kentucky, with a local calendar and official ticket links.
+- [Grok operator environments](https://wayalabs.com/case-studies/grok-operators) — Research, not a client product. Isolated checkouts, with a person approving changes before a push. Not for sale.
+- [OpenClaw, private Echo runtime](https://wayalabs.com/case-studies/openclaw-agent) — Research, not a client deployment. Private runtime with a sandbox and gated tools. Not for sale.
+
+---
+
+## Tech stack
 
 | Layer | Choice | Reason |
 |---|---|---|
@@ -40,52 +56,61 @@ The homepage, Open Graph, Twitter, and organization JSON-LD share one descriptio
 | Styling | Tailwind CSS 4 | Design tokens, utility-first, zero runtime |
 | Icons | Lucide React | Consistent, tree-shakeable icon set |
 | Motion | CSS transitions | No animation runtime on the page |
-| Deployment | Vercel (target) | Edge network, preview URLs, zero config |
+| Tests | Vitest | Component and data smoke tests |
+| Deployment | Vercel | Production host, preview URLs on pull requests |
 
 ---
 
-## Project Structure
+## Project structure
 
 ```
 src/
-├── app/                          # Next.js App Router pages
+├── app/                          # Next.js App Router
 │   ├── page.tsx                  # Home
-│   ├── layout.tsx                # Root layout (Navbar + Footer)
-│   ├── ai-solutions/             # Service pages
+│   ├── layout.tsx                # Root layout, metadata, Navbar + Footer
+│   ├── ai-solutions/
 │   │   ├── page.tsx              # Services index
 │   │   ├── chatbots/page.tsx
 │   │   ├── agents/page.tsx
 │   │   └── integrations/page.tsx
-│   ├── case-studies/             # Project case studies
+│   ├── services/page.tsx         # Packages
+│   ├── case-studies/
 │   │   ├── page.tsx
 │   │   └── [slug]/page.tsx
 │   ├── process/page.tsx
 │   ├── about/page.tsx
-│   ├── insights/page.tsx
-│   └── contact/page.tsx
+│   ├── insights/
+│   │   ├── page.tsx
+│   │   └── [slug]/page.tsx
+│   ├── contact/page.tsx
+│   ├── lab/ceo-agent/page.tsx    # Orchestrator research sampler
+│   ├── api/contact/route.ts      # Contact form delivery
+│   ├── privacy/page.tsx
+│   ├── terms/page.tsx
+│   ├── offers/page.tsx           # In the repo; hidden from navigation
+│   └── logos/page.tsx            # Dev logo comparison; not in navigation
 ├── components/
-│   ├── home/                     # Homepage sections
-│   │   ├── Hero.tsx
-│   │   ├── ServicesGrid.tsx
-│   │   ├── OutcomeMetrics.tsx
-│   │   ├── FeaturedProjects.tsx
-│   │   ├── ProcessFramework.tsx
-│   │   └── CTABanner.tsx
-│   ├── layout/                   # Global layout components
-│   │   ├── Navbar.tsx
-│   │   └── Footer.tsx
-│   └── ui/                       # Reusable UI primitives
-│       └── SectionWrapper.tsx
+│   ├── home/                     # Hero, services, projects, process, CTA
+│   ├── layout/                   # Navbar, Footer
+│   ├── contact/ContactForm.tsx
+│   ├── services/                 # Package sections
+│   ├── ceo/CeoScenarioSampler.tsx
+│   └── ui/                       # Button, Input, SectionWrapper
 └── lib/
-    ├── data/                     # Static content data
-    │   ├── services.ts
-    │   └── case-studies.ts
-    └── utils.ts                  # cn() and shared helpers
+    ├── site.ts                   # Shared description; navigation flags
+    ├── seo.ts                    # Per-page Open Graph helper
+    ├── booking.ts
+    ├── contact-validation.ts
+    ├── contact-delivery.ts
+    ├── data/                     # services, case-studies, insights, categories, offers
+    └── utils.ts                  # cn()
 ```
+
+`showOffersInNavigation` in `src/lib/site.ts` is false, so Offers stays out of the header, mobile menu, and footer. Tests live in `src/__tests__`.
 
 ---
 
-## Getting Started
+## Getting started
 
 ### Prerequisites
 
@@ -114,15 +139,18 @@ Open [http://localhost:3000](http://localhost:3000).
 ### Available scripts
 
 ```bash
-npm run dev        # Development server with Turbopack
-npm run build      # Production build
-npm run start      # Serve production build locally
-npm run lint       # ESLint
+npm run dev            # Development server with Turbopack
+npm run build          # Production build
+npm run start          # Serve production build locally
+npm run lint           # ESLint
+npm run test           # Vitest once
+npm run test:watch     # Vitest watch mode
+npm run test:coverage  # Vitest with coverage
 ```
 
 ---
 
-## Environment Variables
+## Environment variables
 
 Copy `.env.example` to `.env.local` and fill in values. **Never commit `.env.local` or any file containing real secrets.**
 
@@ -137,40 +165,39 @@ CONTACT_TO_EMAIL=admin@wayalabs.com
 
 ---
 
-## Security Practices
+## Security practices
 
-- All secrets and API keys are excluded via `.gitignore` — see the env section above
-- No credentials are hard-coded anywhere in source
-- `.env.example` ships with keys but no values — copy and fill locally
-- `rel="noopener noreferrer"` on all outbound links
-- Input sanitisation enforced at any future API route boundary
-- CSP headers planned for production deployment
+- Secrets and API keys stay out of git. `.env.example` lists the keys with empty values
+- No credentials are hard-coded in source
+- `/api/contact` sanitizes input, checks the payload, and rate-limits requests
+- Content-Security-Policy and the other response headers are set in `next.config.ts`
+- Outbound links use `rel="noopener noreferrer"`
 
 ---
 
 ## Deployment
 
-Deployed to **Vercel** from the `main` branch. Preview deployments are generated automatically for every pull request.
+The site is deployed on **Vercel** from the `main` branch. Preview deployments are generated for every pull request.
 
 ```bash
 # Manual production deploy via Vercel CLI
 npx vercel --prod
 ```
 
-Configure these environment variables in the Vercel dashboard (Settings → Environment Variables) — **do not use `.env.production` in the repo**.
+Configure environment variables in the Vercel dashboard (Settings → Environment Variables). Do not commit `.env.production`.
 
 ---
 
 ## Contributing
 
 1. Branch from `main` — use `feat/`, `fix/`, or `chore/` prefixes
-2. Run `npm run lint` before opening a PR
+2. Run `npm run lint` and `npm run test` before opening a PR
 3. PRs require at least one passing review before merge to `main`
 4. Never commit secrets, tokens, or credentials
 
 ---
 
-## Related Repositories
+## Related repositories
 
 | Repo | Description |
 |---|---|
