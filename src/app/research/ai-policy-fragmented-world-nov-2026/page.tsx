@@ -38,10 +38,10 @@ export default function AIPolicyResearchNote() {
           <section>
             <h2 className="text-2xl font-bold mb-4">1. Executive Summary</h2>
             <p className="leading-relaxed text-[var(--muted)] mb-4">
-              There is no single global rulebook for AI. The first UN Global Dialogue on AI Governance (Geneva, July 6–7, 2026) produced a co-chairs&apos; summary, not binding rules. Three main approaches now sit side by side:
+              There is no single global rulebook for AI. The first UN Global Dialogue on AI Governance (Geneva, July 6–7, 2026) produced a co-chairs' summary, not binding rules. Three main approaches now sit side by side:
             </p>
             <ul className="space-y-3 text-[var(--muted)] leading-relaxed">
-              <li><strong className="text-[var(--foreground)]">United States</strong> — Innovation first. Voluntary commitments, executive action, and export controls. At APEC in Shenzhen on November 19, 2026, President Trump said the US opposes &quot;any form of globalist regulation&quot; of AI.</li>
+              <li><strong className="text-[var(--foreground)]">United States</strong> — Innovation first. Voluntary commitments, executive action, and export controls. At APEC in Shenzhen on November 19, 2026, President Trump said the US opposes "any form of globalist regulation" of AI.</li>
               <li><strong className="text-[var(--foreground)]">China</strong> — State direction at home, institution-building abroad via the World AI Cooperation Organization (WAICO), founded in Shanghai on July 16, 2026 with 29 founding members.</li>
               <li><strong className="text-[var(--foreground)]">European Union</strong> — Comprehensive risk-based regulation via the AI Act, with high-risk deadlines delayed by the 2026 AI Omnibus.</li>
             </ul>
@@ -50,18 +50,23 @@ export default function AIPolicyResearchNote() {
             </p>
           </section>
 
+          <figure className="my-10">
+            <img src="/research/6hH9r.jpg" alt="AI Policy Blocs: Pax Silica vs WAICO, November 2026" className="w-full rounded-xl border border-[var(--border)]" />
+            <figcaption className="text-xs text-[var(--muted)] mt-2 text-center">AI Policy Blocs, November 2026 — Pax Silica (US-led) and WAICO (China-led) with limited membership overlap.</figcaption>
+          </figure>
+
           <section>
             <h2 className="text-2xl font-bold mb-4">2. Current Global AI Policy Landscape</h2>
             <h3 className="text-lg font-semibold mt-6 mb-2">UN track</h3>
             <p className="leading-relaxed text-[var(--muted)]">
-              The Global Dialogue (under General Assembly resolution 79/325) brought more than 3,000 participants. Co-chairs noted convergence on development potential, compute divides, human rights, and the view that no single actor can govern AI alone. Next session: New York, May 2027. Secretary-General Guterres warned that &quot;the danger is not technology. The danger is technology without accountability.&quot;
+              The Global Dialogue (under General Assembly resolution 79/325) brought more than 3,000 participants. Co-chairs noted convergence on development potential, compute divides, human rights, and the view that no single actor can govern AI alone. Next session: New York, May 2027. Secretary-General Guterres warned that "the danger is not technology. The danger is technology without accountability."
             </p>
 
             <h3 className="text-lg font-semibold mt-6 mb-2">United States</h3>
             <ul className="space-y-2 text-[var(--muted)] leading-relaxed list-disc pl-5">
-              <li>July 23, 2025: America&apos;s AI Action Plan and EO 14319 (&quot;Preventing Woke AI in the Federal Government&quot;).</li>
+              <li>July 23, 2025: America's AI Action Plan and EO 14319 ("Preventing Woke AI in the Federal Government").</li>
               <li>September 29, 2026: White House Accord on Frontier Responsibilities (voluntary; signed by Google, Anthropic, Meta, OpenAI, xAI, Nvidia). Four layers including independent external auditor and board committee.</li>
-              <li>November 19, 2026 (APEC Shenzhen): Trump rejected &quot;any form of globalist regulation or anything to control and stifle SI.&quot;</li>
+              <li>November 19, 2026 (APEC Shenzhen): Trump rejected "any form of globalist regulation or anything to control and stifle SI."</li>
               <li>Export controls remain the primary binding tool.</li>
             </ul>
 
@@ -83,6 +88,10 @@ export default function AIPolicyResearchNote() {
 
           <section>
             <h2 className="text-2xl font-bold mb-4">3. US-China AI Race Dynamics</h2>
+            <figure className="my-8">
+              <img src="/research/xUG8i.jpg" alt="New AI Compute Capacity Share 2022–June 2026" className="w-full rounded-xl border border-[var(--border)]" />
+              <figcaption className="text-xs text-[var(--muted)] mt-2 text-center">Source: Epoch AI. US received ~72% of new AI compute capacity from 2022 through June 2026.</figcaption>
+            </figure>
             <div className="grid sm:grid-cols-2 gap-4 mb-6">
               <div className="p-5 rounded-xl border border-[var(--border)] bg-[var(--card)]">
                 <h3 className="font-semibold mb-2">US leads</h3>
@@ -118,6 +127,10 @@ export default function AIPolicyResearchNote() {
 
           <section>
             <h2 className="text-2xl font-bold mb-4">5. Wayalabs Approach: Practical Guardrails</h2>
+            <figure className="my-8">
+              <img src="/research/11s1R.jpg" alt="Architecture-First Guardrails layers" className="w-full rounded-xl border border-[var(--border)]" />
+              <figcaption className="text-xs text-[var(--muted)] mt-2 text-center">Architecture-first guardrails: input boundaries, human approval gates, evaluation, and continuous monitoring.</figcaption>
+            </figure>
             <p className="leading-relaxed text-[var(--muted)] mb-4">
               Wayalabs treats guardrails as architectural and operational requirements rather than post-hoc policy overlays. Core practices from published work:
             </p>
@@ -129,7 +142,7 @@ export default function AIPolicyResearchNote() {
               <li>No unattended posting, purchasing, or deployment of consequential actions.</li>
             </ul>
             <p className="mt-4 text-sm text-[var(--muted)] italic">
-              These practices are illustrative of one studio&apos;s approach. They can support compliance readiness but do not replace applicable state, federal, or foreign rules.
+              These practices are illustrative of one studio's approach. They can support compliance readiness but do not replace applicable state, federal, or foreign rules.
             </p>
           </section>
 
@@ -164,7 +177,7 @@ export default function AIPolicyResearchNote() {
           </section>
 
           <div className="pt-8 border-t border-[var(--border)]">
-            <p className="text-sm text-[var(--muted)]">Prepared by Wayalabs. Facts as of November 22, 2026. Primary sources include UN co-chairs&apos; summary, White House documents, State Department Pax Silica releases, Epoch AI compute data, USCC 2026 report, and congressional releases on BAAJA and the SAFE AI Act outline.</p>
+            <p className="text-sm text-[var(--muted)]">Prepared by Wayalabs. Facts as of November 22, 2026. Primary sources include UN co-chairs' summary, White House documents, State Department Pax Silica releases, Epoch AI compute data, USCC 2026 report, and congressional releases on BAAJA and the SAFE AI Act outline.</p>
           </div>
         </div>
       </article>
