@@ -27,24 +27,27 @@ export const insightPosts: InsightPost[] = [
     accent: "#c5cad3",
     sections: {
       context:
-        "As of November 22, 2026, global AI governance remains fragmented. The United States prioritizes innovation and technological leadership through voluntary industry commitments and targeted export controls. China advances a state-directed model focused on self-sufficiency, open-weight models, and capacity-building via WAICO. Competing coalitions—US-led Pax Silica and China-led WAICO—show little membership overlap. The US retains the lead in frontier models and compute; China gains in open weights, efficiency, and infrastructure scale.",
+        "As of November 22, 2026, global AI governance remains fragmented. The United States prioritizes innovation and technological leadership through voluntary industry commitments and targeted export controls. China advances a state-directed model focused on self-sufficiency, open-weight models, and capacity-building via the World Artificial Intelligence Cooperation Organization (WAICO). Competing coalitions—US-led Pax Silica for supply-chain security and China-led WAICO for Global South engagement—shape the landscape alongside UN dialogues and the EU’s regulatory framework. The US maintains a lead in frontier models and compute, while China gains ground in adoption, efficiency, and infrastructure. Recent US developments include Senate passage of BAAJA, a bipartisan SAFE AI Act outline, and tightened chip controls. California’s SB 53 has required frontier safety frameworks since January 2026.",
       approach:
-        "Wayalabs treats guardrails as architectural and operational requirements rather than post-hoc policy overlays. Core practices: begin with system boundaries, data access limits, failure modes, and testable acceptance criteria. Chatbots use only approved source material with explicit escalation and human handoff. Agents (still in research) require tool permissions, durable state, and mandatory human review before consequential actions. Deployment includes observability, monitoring, and clear escalation paths. No unattended posting, purchasing, or deployment.",
+        "Wayalabs treats guardrails as architectural and operational requirements rather than post-hoc policy overlays. Core practices drawn from Wayalabs R&D and published work: begin with system boundaries, data access limits, failure modes, and testable acceptance criteria. Chatbots use only approved source material, include explicit escalation boundaries and human handoff, and are evaluated against defined questions. Agents (still in research) incorporate tool permissions, durable state management, and mandatory human review before any consequential action. Deployment includes observability, integration testing, monitoring, and clear escalation paths. Operational examples include isolated checkouts, sandboxed runtimes with gated tools, and operator sessions that draft changes and stop for human approval. No unattended posting, purchasing, or deployment. This layered model—input boundaries, process controls with human gates, output evaluation, and continuous monitoring—operates independently of shifting national regulations while remaining compatible with emerging federal or state safety expectations.",
       checklist: [
-        "Document data boundaries and acceptance criteria at project start",
+        "Document data boundaries and acceptance criteria at the start of every project",
         "Implement human approval gates for tool use and high-impact actions",
-        "Maintain audit logs and evaluation cycles",
-        "Treat voluntary commitments and legislative outlines as signals, not settled law",
+        "Maintain audit logs and evaluation cycles for compliance readiness and quality",
+        "Treat voluntary industry commitments and emerging legislative outlines as signals rather than settled law",
         "Prefer verifiable, scoped deployments over unconstrained autonomy",
+        "Define system boundaries, failure modes, and testable criteria before building",
+        "Enforce approved source material and explicit escalation for chatbots",
       ],
       metrics: [
         "Boundary compliance rate",
         "Human review latency and precision",
-        "Incident detection time",
+        "Incident detection and reporting time",
         "Evaluation coverage against acceptance criteria",
+        "Escalation quality and handoff success",
       ],
       takeaway:
-        "Organizations that embed clear boundaries, human oversight, and continuous evaluation from the architecture stage can operate effectively amid policy fragmentation. Wayalabs’ approach illustrates one such practical path.",
+        "The AI policy environment in late 2026 is defined by competition between innovation-first and state-directed models, with limited formal global coordination. Technical leadership remains concentrated, but diffusion and adoption dynamics are shifting. Organizations that embed clear boundaries, human oversight, and continuous evaluation from the architecture stage can operate effectively amid this fragmentation. Wayalabs’ approach illustrates one such practical path. Prepared by Wayalabs (wayalabs.com).",
     },
   },
   {
