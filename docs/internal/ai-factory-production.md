@@ -4,7 +4,7 @@ Internal plan. Replaces mock tick agents with real bots, webhooks, and connector
 
 **Status:** planning  
 **Prototype:** `prototypes/ai-factory` · live `ai-factory-pink.vercel.app`  
-**Reuse:** lead-engine Supabase patterns, Resend, `CRON_SECRET` cron auth
+**Reuse:** Neon Postgres (`wayalabs` project), Resend, `CRON_SECRET` cron auth
 
 ---
 
@@ -128,17 +128,19 @@ Every outbound call: timeout, retry with jitter, idempotency key = `runId:stepId
 
 #### Cross-provider purchase dedupe (P1)
 
-`(provider, event_id)` alone is not enough: Shopify `orders/paid` and Stripe `payment_intent.succeeded` for the same checkout are different keys and would double-book.
+`(provider, event_id)` alone is not enough: Shopify `orders/paid` and Stripe `payment_intent.succeeded` for the same checkout are different native keys and would double-book.
 
 Before inserting a credit:
 
-1. Extract `commerce_key` in priority order:
-   - Stripe PaymentIntent / Charge id (`pi_…` / `ch_…`)
-   - else Shopify order id / checkout token
-   - else `run_id` + provider external id (last resort)
-2. Stamp every related webhook with that `commerce_key`
-3. **Ledger unique constraint:** `unique(tenant_id, commerce_key, entry_kind)` for `credit` — second source stores the webhook but does **not** create another credit
-4. Prefer a single **book-of-record provider per bay** (v1 CART: Stripe if PaymentIntent present, else Shopify). Secondary provider events attach as evidence only
+1. Collect **all** native ids on the event (`collectNativeKeys`) — Stripe PI/Charge, Shopify order/checkout, run fallback
+2. **Alias correlation:** `linkCommerceAliases` writes every native id → one canonical in `factory_commerce_aliases`
+   - When Stripe metadata carries `shopify_order_id` (or Shopify carries a payment intent id), both ids land on the same graph in one ingest
+   - A later Shopify-only event still resolves to the Stripe canonical via `resolveAndCanonicalizeCommerceKey`
+3. Book using the **canonical** key only
+4. **Ledger unique constraint:** one `credit` per `(tenant_id, commerce_key)` — second source stores the webhook as evidence only
+5. Book-of-record preference when creating a *new* canonical: Stripe PI → Charge → Shopify order → checkout → run fallback
+
+Helpers live in `prototypes/ai-factory/src/lib/factory/commerce-key.ts`.
 
 #### Refunds & disputes (P2)
 
@@ -159,9 +161,17 @@ Rules:
 
 ---
 
-## Data model (Supabase)
+## Data model (Neon)
 
-Extend the existing Wayalabs project (service role only; no anon RLS exposure).
+**Project:** Neon org `wayalabs` · project `wayalabs` (`quiet-cherry-92183008`) · region `aws-us-east-2` · DB `wayalabs`  
+**Access:** pooled `DATABASE_URL` from Vercel / server only. RLS enabled; no anon browser key. Owner role for app queries.
+
+Already provisioned on Neon:
+
+- CRM: `contacts`, `leads`, `sourced_candidates` (ported from `supabase/migrations/`)
+- `factory_commerce_aliases` — alias → canonical commerce_key
+
+Still to migrate (Phase 1):
 
 ```
 tenants                 -- later multi-customer; v1 single Wayalabs row
@@ -182,6 +192,7 @@ Constraints (enforce in migration):
 
 - `webhook_events`: `unique(provider, event_id)`
 - `ledger_entries`: one **credit** per `(tenant_id, commerce_key)`; reversals unique on `(tenant_id, commerce_key, refund_id)`
+- `factory_commerce_aliases`: `alias` PK → `canonical`
 
 Cash on the floor = `sum(ledger_entries.amount_cents)` filtered by tenant (credits positive, refunds/disputes negative). Keep a cached balance on `tenants` updated transactionally.
 
@@ -242,7 +253,7 @@ Aligned with Wayalabs agent posture (approved sources, human gates, no unattende
 | Floor UI | `prototypes/ai-factory` (then `0xwaya/ai-factory`) | Vercel project `ai-factory` |
 | Control + hooks API | same app `src/app/api/**` | Vercel |
 | Workers | Vercel Workflow **or** separate worker service | start with Workflow / queue |
-| DB | Supabase `wayalabs` | shared with lead engine |
+| DB | Neon project `wayalabs` | shared with lead engine CRM |
 | Connectors | `src/lib/connectors/*` | in-process first |
 
 Promote to standalone repo when control plane + one live funnel are stable.
@@ -251,8 +262,7 @@ Promote to standalone repo when control plane + one live funnel are stable.
 
 ```
 FACTORY_MODE=sandbox|shadow|live
-SUPABASE_URL=
-SUPABASE_SERVICE_ROLE_KEY=
+DATABASE_URL=                 # Neon pooled connection (wayalabs project)
 STRIPE_SECRET_KEY=
 STRIPE_WEBHOOK_SECRET=
 SHOPIFY_SHOP=
@@ -265,6 +275,8 @@ FACTORY_APPROVAL_CHANNEL=
 CRON_SECRET=
 ```
 
+Legacy `SUPABASE_URL` / `SUPABASE_SERVICE_ROLE_KEY` remain optional until the lead-engine CRM client is swapped to `@neondatabase/serverless`.
+
 ---
 
 ## Phased delivery
@@ -272,14 +284,16 @@ CRON_SECRET=
 ### Phase 0 — Contract freeze (this doc)
 
 - [x] Map mock agents → bots / connectors / proofs
-- [ ] Freeze `ProofEvent` + `StepJob` TypeScript types in prototype
-- [ ] OpenAPI sketch for `/api/hooks/*` and `/api/factory/runs`
+- [x] Freeze `ProofEvent` + `StepJob` TypeScript types in prototype (`prototypes/ai-factory/src/lib/factory/`)
+- [x] OpenAPI sketch for `/api/hooks/*` and `/api/factory/runs` (`prototypes/ai-factory/openapi/factory-v0.yaml`)
 
 ### Phase 1 — Durable skeleton (no live side effects)
 
-- [ ] Supabase migrations: runs, steps, ledger, webhook_events, bots
+- [x] Neon project `wayalabs` provisioned; CRM tables + `factory_commerce_aliases` applied
+- [ ] Neon migrations: runs, steps, ledger, webhook_events, bots
+- [ ] CRM client: swap Supabase JS → `@neondatabase/serverless` + `DATABASE_URL`
 - [ ] Server `GET state` from DB; floor can dual-read (feature flag)
-- [ ] Webhook receivers: Stripe + Shopify verify + persist (no booking yet)
+- [ ] Webhook receivers: Stripe + Shopify verify + persist + alias link (no booking yet)
 - [ ] Connector health pings on a cron (`/api/factory/connectors/health`)
 - [ ] Keep sandbox tick path for visitors without creds
 
@@ -316,6 +330,7 @@ CRON_SECRET=
 
 | Phase | Done when |
 |---|---|
+| 0 | Live TS contracts + OpenAPI sketch checked in; commerce_key dedupe helpers tested |
 | 1 | Webhook replay is idempotent; runs survive deploy; sandbox still playable |
 | 2 | Operator can approve/reject a draft email from a Flash Drop run |
 | 3 | $1 real (or Stripe live) payment with `run_id` appears on CART tile + ledger |
@@ -336,11 +351,11 @@ CRON_SECRET=
 
 ## Immediate next engineering slice
 
-Smallest vertical that teaches the architecture without live risk:
+Phase 0 done. Neon CRM live. Smallest Phase 1 vertical without live risk:
 
-1. Add `src/lib/factory/types-live.ts` — `ProofEvent`, `StepJob`, `LedgerEntry`
-2. Migration `factory_webhook_events` + `factory_ledger_entries`
-3. `POST /api/hooks/stripe` — verify, store, no side effects
+1. Migration `factory_webhook_events` + `factory_ledger_entries` (honor `commerce_key` uniques)
+2. Point Vercel `DATABASE_URL` at Neon project `quiet-cherry-92183008` (pooled)
+3. `POST /api/hooks/stripe` — verify, store, `linkCommerceAliases`, no booking yet
 4. Floor panel **Proof rail** reading last events (service-backed)
 5. Feature flag: `FACTORY_MODE=sandbox` default on Vercel
 
