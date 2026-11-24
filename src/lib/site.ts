@@ -8,4 +8,4 @@ export const showOffersInNavigation = true;
 
 /** One description for the document head, Open Graph, Twitter, and JSON-LD. */
 export const siteDescription =
-  `Wayalabs builds a custom web stack and automation for the business. Chatbots are live. Agents and orchestrators stay in research. ${discoveryCreditSentence}`;
+  `Wayalabs builds lead systems for local trade and platforms for local listings. Chatbots ship inside those builds. Agents stay in research. ${discoveryCreditSentence}`;

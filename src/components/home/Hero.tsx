@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import { ButtonLink } from "@/components/ui/Button";
 import { CAL_BOOKING_URL } from "@/lib/booking";
@@ -18,26 +17,22 @@ export default function Hero() {
           decoding="async"
           className="mb-10 h-auto w-full max-w-xl"
         />
-        {/* Badge */}
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[var(--border)] bg-[var(--card)] text-xs text-[var(--muted)] mb-8">
           <span className="w-1.5 h-1.5 rounded-full bg-[#f3f4f6] animate-pulse" />
-          AI Solutions Studio
+          Lead systems and platforms
         </div>
 
-        {/* Headline */}
         <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-6 max-w-4xl">
           Wayalabs{" "}
-          <span className="gradient-text">AI Solutions Studio</span>
+          <span className="gradient-text">for operators who need leads</span>
         </h1>
 
-        {/* Sub-headline */}
         <p className="text-lg sm:text-xl text-[var(--muted)] max-w-2xl mb-10 leading-relaxed">
-          Practical web platforms and operator-reviewed automations. Live work
-          includes Urban Stone Collective and Queen City Soundboard. New work
-          starts with a scoped discovery call.
+          Custom lead systems for local trade and service businesses. Platforms for
+          local listings and calendars. Live proof: Urban Stone Collective and Queen
+          City Soundboard. New work starts with discovery.
         </p>
 
-        {/* CTAs */}
         <div className="flex flex-wrap gap-4">
           <ButtonLink
             href={CAL_BOOKING_URL}
@@ -50,28 +45,17 @@ export default function Hero() {
             <ArrowRight size={16} />
           </ButtonLink>
           <ButtonLink href="/offers" variant="secondary" size="md">
-            Discovery, lead system, platform
+            See discovery, lead system, platform
             <ChevronRight size={16} />
           </ButtonLink>
         </div>
-        <p className="mt-4 text-sm text-[var(--muted)]">
-          <Link href="/lab/ceo-agent" className="hover:text-[var(--foreground)] transition-colors">
-            CEO orchestrator research
-          </Link>
-        </p>
         <NewCustomerNote />
 
-        {/* Social proof strip */}
         <div className="mt-16 flex flex-wrap items-center gap-8">
           <span className="text-xs text-[var(--muted)] uppercase tracking-widest">
-            Selected projects
+            Live client proof
           </span>
-          {[
-            "Urban Stone Collective",
-            "Queen City Soundboard",
-            "Grok operator environments",
-            "OpenClaw, private Echo runtime",
-          ].map((name) => (
+          {["Urban Stone Collective", "Queen City Soundboard"].map((name) => (
             <span
               key={name}
               className="text-xs text-[var(--muted)] border border-[var(--border)] rounded-full px-3 py-1"

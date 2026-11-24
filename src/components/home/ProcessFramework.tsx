@@ -3,7 +3,7 @@ const steps = [
     number: "01",
     title: "Discover",
     description:
-      "We map your current workflows, identify the highest-leverage AI opportunity, and define measurable success criteria before writing a line of code.",
+      "One week. Outcome, systems in and out, data boundary, and a written go or no-go — before anyone builds.",
     duration: "Week 1",
     accent: "#d7dbe3",
   },
@@ -11,7 +11,7 @@ const steps = [
     number: "02",
     title: "Prototype",
     description:
-      "A working proof-of-concept — not slides. You see the AI behaving on your real data, with feedback loops from your team built into the sprint.",
+      "A working slice on your real intake or content — not slides. Feedback from the operator is built into the sprint.",
     duration: "Weeks 2–3",
     accent: "#c5cad3",
   },
@@ -19,15 +19,15 @@ const steps = [
     number: "03",
     title: "Deploy",
     description:
-      "Production-grade build with observability, guardrails, and integration testing. Every system launches with monitoring and a clear escalation path.",
+      "Lead system or platform goes live with a handoff the operator can run without Wayalabs in the loop.",
     duration: "Weeks 4–5",
     accent: "#f3f4f6",
   },
   {
     number: "04",
-    title: "Optimise",
+    title: "Handoff & care",
     description:
-      "Post-launch, we run evaluation cycles — reviewing conversation logs, agent traces, and conversion data — to continuously improve output quality.",
+      "At close we invite ongoing monitoring and scheduled build capacity. Recurring care is offered at handoff — not as a public SKU list.",
     duration: "Ongoing",
     accent: "#d7dbe3",
   },
@@ -42,11 +42,11 @@ export default function ProcessFramework() {
             Delivery Framework
           </p>
           <h2 className="text-4xl font-bold tracking-tight mb-4">
-            From idea to production in weeks, not months
+            Discovery, build, handoff
           </h2>
           <p className="text-[var(--muted)] max-w-xl mx-auto">
-            A structured process that starts with outcomes, moves fast, and stays
-            accountable at every stage.
+            Same kit shape every time. Customize knowledge, CRM fields, and the one
+            job — not the whole architecture.
           </p>
         </div>
 

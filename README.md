@@ -7,8 +7,8 @@
 <h1 align="center">Wayalabs</h1>
 
 <p align="center">
-  Wayalabs is an AI solutions studio that builds custom chatbots, AI integrations (LLM + CRM + docs + APIs), and AI-enhanced web platforms.<br />
-  Chatbots are live. Agents and orchestrators stay in research and are coming soon, not for sale yet.
+  Wayalabs builds lead systems for local trade and platforms for local listings.<br />
+  Discovery first. Chatbots ship inside those builds. Agents stay in research — not for sale.
 </p>
 
 <p align="center">

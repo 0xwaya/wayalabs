@@ -8,7 +8,7 @@ import { discoveryCreditSentence } from "@/lib/data/offers";
 export const metadata: Metadata = {
   title: "Our Process",
   description:
-    `How Wayalabs scopes, builds, and delivers AI systems, from discovery to post-launch work. ${discoveryCreditSentence}`,
+    `How Wayalabs runs discovery, then a lead system or platform build, then operator handoff. ${discoveryCreditSentence}`,
   alternates: { canonical: "/process" },
   openGraph: pageOpenGraph("/process"),
 };
@@ -20,16 +20,16 @@ const phases = [
     duration: "Week 1",
     accent: "#d7dbe3",
     description:
-      "We start by understanding your business deeply — not by pitching technology. Discovery is a structured working session, not a slide deck.",
+      "One week for that business. Outcome, systems in and out, data boundary, and a written go or no-go — before anyone builds.",
     activities: [
-      "Stakeholder alignment on the single most valuable outcome",
-      "Workflow mapping and pain point prioritisation",
-      "System inventory — what you have, what connects, what's missing",
-      "Define measurable success criteria (KPIs, benchmarks, baselines)",
-      "ICP and use-case scoping for AI feature prioritisation",
-      "Identify data sources, access patterns, and compliance constraints",
+      "Name the outcome, who it is for, and what done looks like",
+      "Map systems in scope and systems left out",
+      "Write the data boundary: what is stored, who can read it, what the operator keeps",
+      "Choose lead system or platform (or a clear no-go)",
+      "Price inside the published band by complexity only",
+      "Confirm discovery credit timing if the answer is go",
     ],
-    deliverable: "A scoped brief with clear outcome, architecture sketch, and timeline estimate.",
+    deliverable: "A written brief and go or no-go. Same template every engagement.",
   },
   {
     number: "02",
@@ -37,16 +37,16 @@ const phases = [
     duration: "Weeks 2–3",
     accent: "#c5cad3",
     description:
-      "A working system on your real data — not a demo. Prototype sprints are tight, feedback-driven, and designed to surface what matters early.",
+      "A working slice on your real intake or content — not slides. Same kit shape; customize knowledge, CRM fields, and the one job.",
     activities: [
-      "Working proof-of-concept on your actual knowledge base or workflow",
-      "Daily async progress updates with async feedback loops",
-      "Iteration sessions with your team to tune behavior and edge cases",
-      "Initial safety layer and output validation",
-      "Prompt versioning from the first run — no throwaway work",
-      "Benchmark run against defined success criteria",
+      "Stand up the kit path (lead system or platform) on real operator data",
+      "Wire intake or forms to email, then the store when in scope",
+      "Operator feedback on handoff and edge cases",
+      "Approved knowledge only when chat is in scope; escalation path checked",
+      "Keep work versioned — no throwaway demos",
+      "Confirm the single scheduled job if the brief named one",
     ],
-    deliverable: "A deployed prototype your team can interact with, evaluate, and provide structured feedback on.",
+    deliverable: "A runnable prototype the operator can try, with notes that carry into production.",
   },
   {
     number: "03",
@@ -54,52 +54,52 @@ const phases = [
     duration: "Weeks 4–5",
     accent: "#f3f4f6",
     description:
-      "Production-grade engineering. Every deployment includes observability, guardrails, integration tests, and a clear escalation path.",
+      "Lead system or platform goes live. The operator can run it without Wayalabs in the loop.",
     activities: [
-      "Production-hardened codebase with CI/CD pipeline",
-      "Full observability stack — logging, tracing, and alerting",
-      "Safety layer: moderation, role constraints, input sanitisation",
-      "Integration testing across all connected systems",
-      "Staging environment with load testing",
-      "Launch runbook with rollback procedure",
+      "Ship the public site, forms, chat, or job named in the brief",
+      "Email delivery and CRM match rules verified end to end",
+      "Data boundary enforced in the live config",
+      "Basic observability for intake and failures",
+      "Operator walkthrough of the handoff path",
+      "Launch checklist against the discovery brief",
     ],
-    deliverable: "A live system with monitoring, documented handoff, and on-call support through go-live.",
+    deliverable: "A live lead system or platform with a draft operator handoff.",
   },
   {
     number: "04",
-    title: "Optimise",
+    title: "Handoff & care",
     duration: "Ongoing",
     accent: "#d7dbe3",
     description:
-      "AI systems degrade without ongoing attention. Optimise is a continuous loop — evaluating outputs, improving prompts, and evolving the system with your business.",
+      "Every build closes with an operator handoff. We invite ongoing monitoring and scheduled build capacity at that moment — so the system does not sit unattended after launch.",
     activities: [
-      "Weekly conversation log review and failure mode analysis",
-      "Prompt A/B testing and model evaluation cycles",
-      "Conversion and funnel analysis for customer-facing AI",
-      "Capacity planning as usage scales",
-      "New use case identification from production patterns",
-      "Quarterly system health review and roadmap planning",
+      "Operator handoff: how to run the system without Wayalabs in the loop",
+      "Data boundary restated for the operator",
+      "Invitation to ongoing monitoring and small fixes",
+      "Optional scheduled build capacity for feature work",
+      "Conversation or intake log review when chat or forms are in scope",
+      "No new SKUs invented at close — use the published ladder only",
     ],
-    deliverable: "Continuous improvement reports, prompt version history, and a live roadmap for the next iteration.",
+    deliverable: "Handoff note plus a clear invite for post-launch care. Recurring pricing is confirmed at close, not on the public offers page.",
   },
 ];
 
 const principles = [
   {
-    title: "Outcomes before technology",
-    description: "We choose the tool after we understand the problem — not before. If AI isn't the right lever, we'll say so.",
+    title: "One ladder only",
+    description: "Discovery, lead system, or platform. Agents stay in research and are not sold as a pilot.",
   },
   {
-    title: "No throwaway prototypes",
-    description: "Everything built in week 2 is versioned and carries forward into production. We don't start over.",
+    title: "Same kit, custom edges",
+    description: "Reuse the Urban Stone or Queen City Soundboard shape. Customize knowledge, fields, and the one job — not the whole architecture.",
   },
   {
-    title: "Observability from day one",
-    description: "Every system ships with logging, tracing, and alerting. You always know what the AI is doing.",
+    title: "Operator can run it",
+    description: "Every build ends with a handoff the operator uses without Wayalabs in the loop.",
   },
   {
-    title: "Safety is not optional",
-    description: "Input sanitisation, output moderation, and role constraints are included in every build — not an afterthought.",
+    title: "Care at close",
+    description: "Invite ongoing monitoring and scheduled capacity at handoff. Do not invent a new SKU on the invoice.",
   },
 ];
 
@@ -113,12 +113,12 @@ export default function ProcessPage() {
             How We Work
           </p>
           <h1 className="text-5xl font-bold tracking-tight mb-5 max-w-3xl">
-            Prototype to production in{" "}
-            <span className="gradient-text">weeks, not quarters</span>
+            Discovery, build,{" "}
+            <span className="gradient-text">handoff</span>
           </h1>
           <p className="text-lg text-[var(--muted)] max-w-2xl leading-relaxed">
-            A four-phase framework designed for fast, reliable AI delivery — with
-            clear ownership, measurable checkpoints, and no surprises.
+            Same process as the homepage framework: discovery week, lead system or
+            platform kit, live deploy, then operator handoff and care invite.
           </p>
         </div>
       </section>

@@ -1,33 +1,33 @@
 import Link from "next/link";
-import { MessageSquare, Cpu, Plug, ArrowRight } from "lucide-react";
+import { ClipboardList, MessageSquare, LayoutTemplate, ArrowRight } from "lucide-react";
 
-const services = [
+const offerings = [
+  {
+    icon: ClipboardList,
+    title: "Discovery sprint",
+    description:
+      "One week. Written brief and a go or no-go. Fee credited in full on a lead system or platform build within 60 days.",
+    href: "/offers",
+    accent: "#d7dbe3",
+    focus: ["Outcome and systems map", "Data boundary", "Named next build"],
+  },
   {
     icon: MessageSquare,
-    title: "AI Chatbots",
+    title: "Lead system",
     description:
-      "A custom chatbot for the business, grounded in approved sources, with a human handoff. A client deployment is live.",
-    href: "/ai-solutions/chatbots",
-    accent: "#d7dbe3",
-    focus: ["Approved source material", "Escalation boundaries", "Evaluation questions"],
-  },
-  {
-    icon: Cpu,
-    title: "AI Agents",
-    description:
-      "Agents and orchestrators are in active development and coming in the near future. The work covers tool permissions, durable state, and review before consequential actions.",
-    href: "/ai-solutions/agents",
+      "Intake or chat, email, CRM, and one approved job — the Urban Stone pattern, custom for the business.",
+    href: "/offers",
     accent: "#c5cad3",
-    focus: ["Tool permissions", "Orchestration design", "Human approvals"],
+    focus: ["Form or on-site chat", "Private CRM", "One scheduled job"],
   },
   {
-    icon: Plug,
-    title: "AI Integrations",
+    icon: LayoutTemplate,
+    title: "Platform build",
     description:
-      "Explore model connections to existing systems with attention to data flow, access scope, and operational requirements.",
-    href: "/ai-solutions/integrations",
+      "Site, forms, email, data store, and operator handoff — the Queen City Soundboard pattern, custom for the business.",
+    href: "/offers",
     accent: "#f3f4f6",
-    focus: ["Data boundaries", "Identity and access", "Failure handling"],
+    focus: ["Public site and forms", "Operator data store", "Runnable handoff"],
   },
 ];
 
@@ -35,29 +35,26 @@ export default function ServicesGrid() {
   return (
     <section className="py-24 px-6 bg-[var(--card)]">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <div className="mb-14 max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)] mb-3">
-            Services
+            What we sell
           </p>
           <h2 className="text-4xl font-bold tracking-tight mb-4">
-            Chatbots are live. Agents stay in research.
+            Discovery, then a lead system or platform
           </h2>
           <p className="text-[var(--muted)] leading-relaxed">
-            Project scope and deployment status vary. Work begins with architecture,
-            data boundaries, and acceptance criteria rather than assumed outcomes.
+            One commercial ladder. Chatbots ship inside lead systems when the brief
+            calls for them. Agents and orchestrators stay in research — not for sale.
           </p>
         </div>
 
-        {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {services.map(({ icon: Icon, title, description, href, accent, focus }) => (
+          {offerings.map(({ icon: Icon, title, description, href, accent, focus }) => (
             <Link
-              key={href}
+              key={title}
               href={href}
               className="group relative p-8 rounded-2xl border border-[var(--border)] bg-[var(--background)] hover:border-[var(--accent-blue)] transition-all duration-300 hover:glow-blue flex flex-col"
             >
-              {/* Icon */}
               <div
                 className="w-11 h-11 rounded-xl flex items-center justify-center mb-6"
                 style={{ background: `${accent}18` }}
@@ -65,13 +62,11 @@ export default function ServicesGrid() {
                 <Icon size={22} style={{ color: accent }} />
               </div>
 
-              {/* Content */}
               <h3 className="text-xl font-semibold mb-3">{title}</h3>
               <p className="text-sm text-[var(--muted)] leading-relaxed mb-6 flex-1">
                 {description}
               </p>
 
-              {/* Design focus */}
               <ul className="space-y-1.5 mb-6">
                 {focus.map((item) => (
                   <li key={item} className="flex items-center gap-2 text-xs text-[var(--muted)]">
@@ -81,12 +76,11 @@ export default function ServicesGrid() {
                 ))}
               </ul>
 
-              {/* CTA row */}
               <span
                 className="text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all"
                 style={{ color: accent }}
               >
-                Learn more <ArrowRight size={14} />
+                See offers <ArrowRight size={14} />
               </span>
             </Link>
           ))}
