@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import {
   createSession,
+  getFunnelBlockers,
   getState,
   migrateState,
   resetState,
@@ -14,16 +15,16 @@ beforeEach(() => {
   resetState();
 });
 
-function runUntil(
-  missionId: string,
-  status: "completed" | "failed" | "active",
-  maxTicks = 50,
-) {
+/** Drive an active funnel until it pays out and resets to available. */
+function runFunnel(missionId: string, maxTicks = 60) {
+  const before = getState().questsCompleted;
   let guard = 0;
-  while (
-    getState().missions.find((m) => m.id === missionId)?.status !== status &&
-    guard < maxTicks
-  ) {
+  while (getState().questsCompleted <= before && guard < maxTicks) {
+    const status = getState().missions.find((m) => m.id === missionId)?.status;
+    if (status !== "active" && getState().questsCompleted <= before) {
+      // Funnel never started / stalled
+      break;
+    }
     tick();
     guard += 1;
   }
@@ -80,7 +81,7 @@ describe("startMission", () => {
     expect(state.missions.find((m) => m.id === "ms-nc-support")?.status).toBe(
       "available",
     );
-    expect(state.logs[0]?.message).toMatch(/already running/i);
+    expect(state.logs[0]?.message).toMatch(/Already running/i);
   });
 
   it("blocks missions that need locked agents", () => {
@@ -88,7 +89,7 @@ describe("startMission", () => {
     expect(state.missions.find((m) => m.id === "ms-nc-support")?.status).toBe(
       "available",
     );
-    expect(state.logs[0]?.message).toMatch(/Need unlocked support/i);
+    expect(state.logs[0]?.message).toMatch(/Unlock support/i);
   });
 
   it("rejects unknown missions", () => {
@@ -96,9 +97,9 @@ describe("startMission", () => {
     expect(state.logs[0]?.message).toMatch(/cannot start/i);
   });
 
-  it("allows replaying a completed mission", () => {
+  it("allows relaunching after payout", () => {
     startMission("ms-nc-flash");
-    runUntil("ms-nc-flash", "completed");
+    runFunnel("ms-nc-flash");
     const again = startMission("ms-nc-flash");
     expect(again.missions.find((m) => m.id === "ms-nc-flash")?.status).toBe(
       "active",
@@ -106,13 +107,32 @@ describe("startMission", () => {
   });
 });
 
+describe("getFunnelBlockers", () => {
+  it("flags locked support on Ticket Storm before bay L2", () => {
+    const blockers = getFunnelBlockers(getState(), "ms-nc-support");
+    expect(blockers.some((b) => b.code === "locked_role" && b.role === "support")).toBe(
+      true,
+    );
+  });
+
+  it("clears blockers after Reply Drone unlocks", () => {
+    for (let i = 0; i < 3; i++) {
+      startMission("ms-nc-flash");
+      runFunnel("ms-nc-flash");
+    }
+    const blockers = getFunnelBlockers(getState(), "ms-nc-support");
+    expect(blockers.filter((b) => b.code === "locked_role")).toHaveLength(0);
+  });
+});
+
 describe("tick game loop", () => {
   it("completes a funnel and books revenue + XP", () => {
     startMission("ms-nc-flash");
-    const state = runUntil("ms-nc-flash", "completed");
+    const state = runFunnel("ms-nc-flash");
     const mission = state.missions.find((m) => m.id === "ms-nc-flash");
-    expect(mission?.status).toBe("completed");
-    expect(mission?.progress).toBe(100);
+    expect(mission?.status).toBe("available");
+    expect(mission?.progress).toBe(0);
+    expect(state.questsCompleted).toBe(1);
     expect(state.globalXp).toBeGreaterThanOrEqual(55);
     expect(state.lifetimeRevenue).toBeGreaterThanOrEqual(420);
     expect(state.cash).toBeGreaterThan(750);
@@ -123,10 +143,9 @@ describe("tick game loop", () => {
   });
 
   it("levels Neon Cart and unlocks Reply Drone after enough XP", () => {
-    // xpToNext at L1 = 120; flash reward = 55 → need 3 completions
     for (let i = 0; i < 3; i++) {
       startMission("ms-nc-flash");
-      runUntil("ms-nc-flash", "completed");
+      runFunnel("ms-nc-flash");
     }
     const state = getState();
     const neon = state.factories.find((f) => f.id === "fx-neon-cart");
@@ -134,14 +153,25 @@ describe("tick game loop", () => {
     const support = state.agents.find((a) => a.id === "ag-nc-sup");
     expect(support?.status).not.toBe("locked");
   });
+
+  it("keeps funnel progress monotonic within a run", () => {
+    startMission("ms-nc-flash");
+    let last = 0;
+    for (let i = 0; i < 8; i++) {
+      const state = tick();
+      const mission = state.missions.find((m) => m.id === "ms-nc-flash");
+      if (!mission || mission.status !== "active") break;
+      expect(mission.progress).toBeGreaterThanOrEqual(last);
+      last = mission.progress;
+    }
+  });
 });
 
 describe("command level unlock", () => {
   it("unlocks Signal Hub when lifetime revenue reaches command 3 (~$1600)", () => {
-    // Flash pays $420; 4 clears (+streak cash) crosses $1600 lifetime
     for (let i = 0; i < 4; i++) {
       startMission("ms-nc-flash");
-      runUntil("ms-nc-flash", "completed");
+      runFunnel("ms-nc-flash");
     }
     const state = getState();
     expect(state.lifetimeRevenue).toBeGreaterThanOrEqual(1600);
@@ -156,12 +186,11 @@ describe("streak + session", () => {
   it("tracks questsCompleted and streak income bonuses", () => {
     for (let i = 0; i < 3; i++) {
       startMission("ms-nc-flash");
-      runUntil("ms-nc-flash", "completed");
+      runFunnel("ms-nc-flash");
     }
     const state = getState();
     expect(state.questsCompleted).toBe(3);
     expect(state.streak).toBe(3);
-    // Base 420*3 + streak $75 on the 3rd clear
     expect(state.lifetimeRevenue).toBeGreaterThanOrEqual(420 * 3 + 75);
     expect(state.globalXp).toBeGreaterThanOrEqual(185);
     expect(state.logs.some((l) => l.kind === "bonus")).toBe(true);
@@ -172,8 +201,11 @@ describe("streak + session", () => {
     startMission("ms-fl-batch");
     const mid = tick();
     expect(mid.missions.filter((m) => m.status === "active")).toHaveLength(2);
-    runUntil("ms-nc-flash", "completed");
-    runUntil("ms-fl-batch", "completed");
+    runFunnel("ms-nc-flash");
+    // Forge may still be active or already paid — finish if needed
+    if (getState().missions.find((m) => m.id === "ms-fl-batch")?.status === "active") {
+      runFunnel("ms-fl-batch");
+    }
     const state = getState();
     expect(state.factories.find((f) => f.id === "fx-neon-cart")?.revenue).toBeGreaterThan(0);
     expect(state.factories.find((f) => f.id === "fx-forge-line")?.revenue).toBeGreaterThan(0);

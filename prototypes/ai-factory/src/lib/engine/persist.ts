@@ -1,7 +1,7 @@
 import { migrateState } from "./orchestrator";
 import type { OrchestratorState } from "./types";
 
-export const STORAGE_KEY = "wayalabs-ai-factory-v3";
+export const STORAGE_KEY = "wayalabs-ai-factory-v4";
 
 export function loadPersistedState(): OrchestratorState | null {
   if (typeof window === "undefined") return null;

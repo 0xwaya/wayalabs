@@ -168,6 +168,82 @@ function pickAgent(
   );
 }
 
+function missionStepTotal(mission: Mission): number {
+  return Math.max(mission.steps.length, mission.requiredRoles.length);
+}
+
+/** Deterministic funnel progress from step index + in-step agent work. */
+function syncMissionProgress(mission: Mission, agentProgress = 0) {
+  const total = missionStepTotal(mission);
+  if (total <= 0) {
+    mission.progress = 0;
+    return;
+  }
+  const stepShare = 100 / total;
+  const within = Math.min(1, Math.max(0, agentProgress / 100));
+  mission.progress = Math.min(
+    99,
+    Math.round(mission.stepIndex * stepShare + within * stepShare),
+  );
+}
+
+export type FunnelBlocker =
+  | { code: "active"; message: string }
+  | { code: "cash"; message: string }
+  | { code: "locked_factory"; message: string }
+  | { code: "locked_role"; role: AgentRole; message: string };
+
+/** Why a funnel cannot launch right now (empty = ready). */
+export function getFunnelBlockers(
+  state: OrchestratorState,
+  missionId: string,
+): FunnelBlocker[] {
+  const mission = state.missions.find((m) => m.id === missionId);
+  if (!mission) return [{ code: "locked_factory", message: "Funnel not found." }];
+
+  const blockers: FunnelBlocker[] = [];
+  const factory = state.factories.find((f) => f.id === mission.factoryId);
+  if (!factory?.unlocked) {
+    blockers.push({
+      code: "locked_factory",
+      message: "Bay still locked — grow lifetime revenue.",
+    });
+    return blockers;
+  }
+
+  if (state.cash < MIN_CASH_TO_LAUNCH) {
+    blockers.push({
+      code: "cash",
+      message: `Need ${formatUsd(MIN_CASH_TO_LAUNCH)} cash to launch.`,
+    });
+  }
+
+  const active = state.missions.find(
+    (m) => m.factoryId === mission.factoryId && m.status === "active",
+  );
+  if (active && active.id !== mission.id) {
+    blockers.push({
+      code: "active",
+      message: `Already running "${active.title}".`,
+    });
+  }
+
+  for (const role of mission.requiredRoles) {
+    const agent = state.agents.find(
+      (a) => a.factoryId === mission.factoryId && a.role === role,
+    );
+    if (!agent || agent.status === "locked" || agent.status === "error") {
+      blockers.push({
+        code: "locked_role",
+        role,
+        message: `Unlock ${role} (factory L${agent?.unlockLevel ?? "?"} required).`,
+      });
+    }
+  }
+
+  return blockers;
+}
+
 function mockTaskFor(role: AgentRole, step: string): string {
   const verbs: Record<AgentRole, string> = {
     inventory: "counting & syncing",
@@ -193,56 +269,28 @@ function selectFactoryOn(s: OrchestratorState, factoryId: string) {
 
 function startMissionOn(s: OrchestratorState, missionId: string) {
   const mission = s.missions.find((m) => m.id === missionId);
-  // Allow replay of completed quests so the income loop can continue.
-  if (!mission || (mission.status !== "available" && mission.status !== "completed")) {
+  // available | completed | failed can (re)launch; active cannot.
+  if (
+    !mission ||
+    (mission.status !== "available" &&
+      mission.status !== "completed" &&
+      mission.status !== "failed")
+  ) {
     pushLog(s, "system", `Mission ${missionId} cannot start.`);
     return;
   }
 
+  const blockers = getFunnelBlockers(s, missionId);
+  if (blockers.length > 0) {
+    pushLog(s, "mission", blockers[0]!.message, mission.factoryId);
+    return;
+  }
+
   const factory = s.factories.find((f) => f.id === mission.factoryId);
-  if (!factory?.unlocked) {
-    pushLog(s, "system", "Factory locked — cannot start mission.");
-    return;
-  }
-
-  if (s.cash < MIN_CASH_TO_LAUNCH) {
-    pushLog(
-      s,
-      "mission",
-      `Need ${formatUsd(MIN_CASH_TO_LAUNCH)} operating cash to launch — clear a payout first.`,
-      mission.factoryId,
-    );
-    return;
-  }
-
-  const active = s.missions.find(
-    (m) => m.factoryId === mission.factoryId && m.status === "active",
-  );
-  if (active) {
-    pushLog(
-      s,
-      "mission",
-      `${factory.name} already running "${active.title}".`,
-      factory.id,
-    );
-    return;
-  }
-
-  for (const role of mission.requiredRoles) {
-    const agent = pickAgent(s, mission.factoryId, role);
-    if (!agent) {
-      pushLog(
-        s,
-        "mission",
-        `Need unlocked ${role} agent for "${mission.title}". Level up the factory.`,
-        mission.factoryId,
-      );
-      return;
-    }
-  }
+  if (!factory) return;
 
   mission.status = "active";
-  mission.progress = 5;
+  mission.progress = 0;
   mission.stepIndex = 0;
   s.selectedFactoryId = mission.factoryId;
 
@@ -252,6 +300,7 @@ function startMissionOn(s: OrchestratorState, missionId: string) {
     lead.status = "working";
     lead.progress = 12;
     lead.lastTask = mockTaskFor(lead.role, mission.steps[0] ?? mission.title);
+    syncMissionProgress(mission, lead.progress);
   }
 
   pushLog(
@@ -267,7 +316,6 @@ function completeMission(
   mission: Mission,
   parallelEligible: boolean,
 ) {
-  mission.status = "completed";
   mission.progress = 100;
   s.questsCompleted += 1;
   s.streak += 1;
@@ -315,6 +363,12 @@ function completeMission(
       agent.progress = 0;
     }
   }
+
+  // Reset funnel to a clean Launch state so the board doesn't stick on
+  // completed/failed cards with stale step checklists.
+  mission.status = "available";
+  mission.progress = 0;
+  mission.stepIndex = 0;
 }
 
 function advanceMission(
@@ -344,10 +398,11 @@ function advanceMission(
       agent.role,
       mission.steps[mission.stepIndex] ?? mission.title,
     );
+    syncMissionProgress(mission, agent.progress);
     pushLog(
       s,
       "route",
-      `Step ${mission.stepIndex + 1}: ${agent.name} (${role})`,
+      `Step ${mission.stepIndex + 1}/${missionStepTotal(mission)}: ${agent.name} (${role})`,
       mission.factoryId,
     );
   }
@@ -360,18 +415,14 @@ function advanceMission(
     agent.progress = 100;
     levelAgent(s, agent, 6);
     mission.stepIndex += 1;
-    const total = Math.max(mission.steps.length, mission.requiredRoles.length);
-    mission.progress = Math.min(99, Math.round((mission.stepIndex / total) * 100));
+    syncMissionProgress(mission, 0);
 
-    if (mission.stepIndex >= total) {
+    if (mission.stepIndex >= missionStepTotal(mission)) {
       completeMission(s, mission, parallelEligible);
     }
   } else if (agent.status === "working") {
     agent.progress = Math.min(100, agent.progress + pace);
-    mission.progress = Math.min(
-      95,
-      mission.progress + 7 + Math.floor(Math.random() * 4),
-    );
+    syncMissionProgress(mission, agent.progress);
   }
 }
 
