@@ -108,6 +108,14 @@ src/
 
 `showOffersInNavigation` in `src/lib/site.ts` is true, so Offers appears in the header, mobile menu, and footer. `/services` permanently redirects to `/offers`. Tests live in `src/__tests__`.
 
+### Product prototypes
+
+Standalone demos that are **not** part of the wayalabs.com Next app:
+
+| Path | What |
+|---|---|
+| `prototypes/ai-factory` | Gamified multi-agent orchestration (Neon Cart + Forge Line + locked Signal Hub). Run with `cd prototypes/ai-factory && npm install && npm run dev`. |
+
 ---
 
 ## Getting started
