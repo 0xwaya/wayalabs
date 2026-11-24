@@ -116,14 +116,46 @@ Every outbound call: timeout, retry with jitter, idempotency key = `runId:stepId
 `POST /api/hooks/:provider` with per-provider secret.
 
 1. Verify signature (Stripe/Shopify HMAC; shared secret for others)
-2. Dedupe on `(provider, event_id)`
-3. Map → `ProofEvent` (`payment_captured`, `order_paid`, `shipment_delivered`, `ticket_resolved`, …)
-4. Attach to open Run when correlation id present (`metadata.run_id` / order tag)
-5. Else credit bay **inbox** for operator attach
-6. Append **ledger** row → bump `cash` / `lifetime_revenue` / bay `revenue`
-7. Advance or complete the Run step if waiting on that proof
+2. **Ingress dedupe** on `(provider, event_id)` — drop exact redeliveries
+3. Map → `ProofEvent` (`payment_captured`, `order_paid`, `shipment_delivered`, `ticket_resolved`, `payment_refunded`, `dispute_opened`, …)
+4. Resolve **canonical commerce id** before booking (see below)
+5. Attach to open Run when correlation id present (`metadata.run_id` / order tag)
+6. Else credit bay **inbox** for operator attach
+7. Append **ledger** row only if the commerce key is new (or amount delta for partial refund)
+8. Advance or complete the Run step if waiting on that proof
 
 **Never** book revenue from bot self-report alone in live mode.
+
+#### Cross-provider purchase dedupe (P1)
+
+`(provider, event_id)` alone is not enough: Shopify `orders/paid` and Stripe `payment_intent.succeeded` for the same checkout are different keys and would double-book.
+
+Before inserting a credit:
+
+1. Extract `commerce_key` in priority order:
+   - Stripe PaymentIntent / Charge id (`pi_…` / `ch_…`)
+   - else Shopify order id / checkout token
+   - else `run_id` + provider external id (last resort)
+2. Stamp every related webhook with that `commerce_key`
+3. **Ledger unique constraint:** `unique(tenant_id, commerce_key, entry_kind)` for `credit` — second source stores the webhook but does **not** create another credit
+4. Prefer a single **book-of-record provider per bay** (v1 CART: Stripe if PaymentIntent present, else Shopify). Secondary provider events attach as evidence only
+
+#### Refunds & disputes (P2)
+
+Credits must reverse when money comes back.
+
+| Provider event | Ledger action |
+|---|---|
+| Stripe `charge.refunded` / `refund.created` | Idempotent `reversal` (or partial) keyed by `commerce_key` + refund id |
+| Stripe `charge.dispute.created` / funds withdrawn | `reversal` (dispute); later `credit` if won |
+| Shopify refund webhook | Same pattern via shared `commerce_key` |
+
+Rules:
+
+- Reversals are **new rows** (never mutate the original credit)
+- Floor cash / lifetime = `sum(amount_cents)` including negatives
+- Partial refunds: book `-refunded_cents`; allow multiple reversals while `|sum(reversals)| ≤ original credit`
+- Idempotency: `unique(tenant_id, provider, event_id)` on webhook_events; ledger reversals unique on `(commerce_key, refund_id)`
 
 ---
 
@@ -140,12 +172,18 @@ runs                    -- active production runs
 run_steps               -- status, bot_id, artifacts, approval
 connectors              -- provider, status, scopes, last_health
 connector_secrets       -- vaulted refs (never in client)
-webhook_events          -- raw + normalized, unique(provider, event_id)
-ledger_entries          -- amount_cents, currency, source_event_id, bay_id, run_id
+webhook_events          -- raw + normalized, unique(provider, event_id); commerce_key
+ledger_entries          -- amount_cents (+/-), currency, entry_kind (credit|reversal|fee),
+                           commerce_key, source_event_id, bay_id, run_id
 approvals               -- pending tool executions
 ```
 
-Cash on the floor = `sum(ledger_entries)` filtered by tenant (not a mutable float alone). Keep a cached balance on `tenants` updated transactionally.
+Constraints (enforce in migration):
+
+- `webhook_events`: `unique(provider, event_id)`
+- `ledger_entries`: one **credit** per `(tenant_id, commerce_key)`; reversals unique on `(tenant_id, commerce_key, refund_id)`
+
+Cash on the floor = `sum(ledger_entries.amount_cents)` filtered by tenant (credits positive, refunds/disputes negative). Keep a cached balance on `tenants` updated transactionally.
 
 ---
 
@@ -281,6 +319,7 @@ CRON_SECRET=
 | 1 | Webhook replay is idempotent; runs survive deploy; sandbox still playable |
 | 2 | Operator can approve/reject a draft email from a Flash Drop run |
 | 3 | $1 real (or Stripe live) payment with `run_id` appears on CART tile + ledger |
+| 3b | Same checkout from Stripe + Shopify books **once**; refund webhook posts reversal and floor cash drops |
 | 4 | Two bays book from different providers in one day without double-count |
 | 5 | Second tenant isolated; no cross-ledger bleed |
 
