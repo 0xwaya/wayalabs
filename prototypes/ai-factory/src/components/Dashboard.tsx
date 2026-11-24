@@ -397,9 +397,8 @@ export default function Dashboard({ initial }: { initial: PublicState }) {
             ))}
           </div>
           <p className="mt-4 text-xs text-[var(--muted)]">
-            Keys: T tick · A auto · 1–3 factory · Shift+R reset. Working agents
-            burn opex — keep cash flowing. Signal Hub unlocks at ~$1,600
-            lifetime (command 3).
+            Hotkeys: T tick · A auto · 1–3 bay · Shift+R reset. Running crews
+            burn cash — keep the lines paying. Hub unlocks near $1,600 lifetime.
           </p>
         </aside>
       </section>
