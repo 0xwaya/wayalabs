@@ -52,4 +52,5 @@ Attach Watch ($400 / month) by default at handoff. Offer Build block ($1,200 / m
 - Funnel tracking: `funnel-metrics.md`
 - Capacity: `capacity.md`
 - Agents wording: `agents-messaging.md`
+- Studio lead engine: `wayalabs-lead-engine.md`
 
