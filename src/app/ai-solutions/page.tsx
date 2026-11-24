@@ -9,7 +9,7 @@ import { MessageSquare, Cpu, Plug, Globe, BarChart3, ArrowRight } from "lucide-r
 export const metadata: Metadata = {
   title: "AI Solutions",
   description:
-    `Custom chatbots are live. Agents and orchestrators stay in research. ${discoveryCreditSentence}`,
+    `Lead systems and platforms for local operators. Chatbots ship inside live builds. Agentic workflows and agent integrations are scoped in discovery. ${discoveryCreditSentence}`,
   alternates: { canonical: "/ai-solutions" },
   openGraph: pageOpenGraph("/ai-solutions"),
 };
@@ -29,9 +29,9 @@ const primaryServices = [
     icon: Cpu,
     title: "AI Agents",
     slug: "agents",
-    tagline: "Agents and orchestrators in research",
+    tagline: "Workflows · integrations · discovery-scoped",
     description:
-      "Research into multi-step agents and orchestrators with scoped tools, explicit routing, durable job state, and human review. Coming in the near future.",
+      "Agentic workflows and agent integrations (OpenClaw, Grok, and similar) with scoped tools, explicit routing, durable job state, and human review. No standalone pilot package — starts with discovery.",
     accent: "#c5cad3",
     outcomes: ["Role-aware routing", "Tool boundaries", "Human approvals"],
   },
@@ -50,15 +50,15 @@ const primaryServices = [
 const additionalServices = [
   {
     icon: Globe,
-    title: "AI-Enhanced Web Platforms",
+    title: "Platform builds",
     description:
-      "Full-stack web builds with personalization, intelligent search, and automated content workflows built in from day one.",
+      "Site, forms, email, data store, and operator handoff — the published platform offer on /offers.",
   },
   {
     icon: BarChart3,
-    title: "Optimization Retainers",
+    title: "Post-launch care",
     description:
-      "Ongoing model evaluation, prompt improvement, behavior monitoring, and capacity planning as your AI systems grow and evolve.",
+      "Monitoring and scheduled build capacity invited at handoff. Pricing confirmed at close, not as a public SKU list.",
   },
 ];
 
@@ -72,12 +72,13 @@ export default function AISolutionsPage() {
             Solutions
           </p>
           <h1 className="text-5xl font-bold tracking-tight mb-5 max-w-3xl">
-            A custom stack, with{" "}
-            <span className="gradient-text">chat live and agents in research</span>
+            Lead systems, platforms, and{" "}
+            <span className="gradient-text">agentic workflows</span>
           </h1>
           <p className="text-lg text-[var(--muted)] max-w-2xl leading-relaxed">
-            Chatbots are live and custom built for the business. Agents and orchestrators
-            are coming in the near future. Client brands shown are client projects, not products.
+            Chatbots ship inside live lead systems. Agentic workflows and agent
+            integrations are scoped in discovery. Client brands shown are client
+            projects, not products for purchase.
           </p>
         </div>
       </section>

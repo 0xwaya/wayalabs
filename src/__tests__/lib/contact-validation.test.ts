@@ -16,6 +16,7 @@ describe("isContactIntent", () => {
       "lead-system",
       "platform",
       "chatbot",
+      "agentic",
       "unsure",
     ]);
     for (const intent of ALLOWED_INTENTS) {
@@ -23,7 +24,7 @@ describe("isContactIntent", () => {
     }
   });
 
-  it("rejects retired package and agent intents", () => {
+  it("rejects retired package intents", () => {
     expect(isContactIntent("agent")).toBe(false);
     expect(isContactIntent("integration")).toBe(false);
     expect(isContactIntent("Launch Site")).toBe(false);

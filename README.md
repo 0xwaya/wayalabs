@@ -8,7 +8,7 @@
 
 <p align="center">
   Wayalabs builds lead systems for local trade and platforms for local listings.<br />
-  Discovery first. Chatbots ship inside those builds. Agents stay in research — not for sale.
+  Discovery first. Chatbots ship inside those builds. Agentic workflows scoped when the brief names them.
 </p>
 
 <p align="center">
@@ -27,10 +27,9 @@
 
 This repository is the source for [wayalabs.com](https://wayalabs.com).
 
-- **AI Chatbots** — live, and custom built for the business
-- **AI Integrations** — LLM + CRM + docs + APIs
-- **AI-Enhanced Web Platforms** — frontend and backend intelligence in one build
-- **AI Agents** — agents and orchestrators stay in research and are coming soon, not for sale yet
+- **Discovery → Lead system / Platform** — the public commercial ladder on `/offers`
+- **AI Chatbots** — live inside lead systems, custom for the business
+- **AI Agents** — agentic workflows and integrations (OpenClaw, Grok, etc.), scoped in discovery
 
 The homepage, Open Graph, Twitter, and organization JSON-LD share one description from `src/lib/site.ts`. Page-level titles and descriptions override it. Do not set `title`, `description`, or `url` on the root `openGraph` or `twitter` objects, or inner pages will keep advertising the homepage.
 
@@ -42,8 +41,8 @@ Selected work from `src/lib/data/case-studies.ts`. Client brands are clients. Fu
 
 - [Urban Stone Collective](https://wayalabs.com/case-studies/urban-stone) — Client. Website and lead system for a granite, quartz, and quartzite countertop fabricator serving greater Cincinnati and Northern Kentucky.
 - [Queen City Soundboard](https://wayalabs.com/case-studies/queen-city-soundboard) — Client. Guide to live music, comedy, and cultural events across Cincinnati and Northern Kentucky, with a local calendar and official ticket links.
-- [Grok operator environments](https://wayalabs.com/case-studies/grok-operators) — Research, not a client product. Isolated checkouts, with a person approving changes before a push. Not for sale.
-- [OpenClaw, private Echo runtime](https://wayalabs.com/case-studies/openclaw-agent) — Research, not a client deployment. Private runtime with a sandbox and gated tools. Not for sale.
+- [Grok operator environments](https://wayalabs.com/case-studies/grok-operators) — Studio research. Isolated checkouts, person approves before a push. Informs client Grok integrations.
+- [OpenClaw, private Echo runtime](https://wayalabs.com/case-studies/openclaw-agent) — Studio research. Private runtime with sandbox and gated tools. Informs client OpenClaw integrations.
 
 ---
 

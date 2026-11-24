@@ -4,7 +4,7 @@ export const caseStudies = [
     title: "Urban Stone Collective — Countertop Website & Lead System",
     client: "Urban Stone Collective (Amazon Granite LLC)",
     url: "urbanstone.co",
-    category: "AI-Enhanced Web Platform",
+    category: "Lead system",
     tags: ["Local Business", "Lead Capture", "Automation"],
     summary:
       "Website and lead system for Urban Stone Collective, a granite, quartz, and quartzite countertop fabrication and installation company serving greater Cincinnati and Northern Kentucky.",
@@ -38,7 +38,7 @@ export const caseStudies = [
     title: "Queen City Soundboard",
     client: "Queen City Soundboard",
     url: "queencitysoundboard.com",
-    category: "AI-Enhanced Web Platform",
+    category: "Platform",
     tags: ["Local Events", "Event Calendar", "Structured Data"],
     summary:
       "\"Sounds of the Queen City\" — a guide to live music, comedy, and cultural events across Cincinnati and Northern Kentucky, with a local event calendar and official ticket links.",
@@ -71,7 +71,7 @@ export const caseStudies = [
     title: "OpenClaw, private Echo runtime",
     client: "Internal runtime",
     url: "",
-    category: "AI Agent",
+    category: "Studio research",
     tags: ["OpenClaw", "Sandbox", "Gated tools"],
     summary:
       "Echo is the private OpenClaw deployment. It runs in a private cloud network, with the session sandboxed and tool use behind gates. This note states that boundary only. It is not a client deployment, and no measured result is published.",
@@ -102,7 +102,7 @@ export const caseStudies = [
     title: "Grok operator environments",
     client: "Internal studio workflow",
     url: "",
-    category: "AI Agent",
+    category: "Studio research",
     tags: ["Grok", "Virtual environments", "Human review"],
     summary:
       "Grok sessions run in an isolated checkout, and in a Python virtual environment when the project needs one. They review the studio repos, draft changes, and stop for a person to approve. They do not post, purchase, or deploy on their own.",

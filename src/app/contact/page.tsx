@@ -35,7 +35,9 @@ export default function ContactPage() {
           </h1>
           <p className="text-lg text-[var(--muted)] max-w-xl leading-relaxed">
             Tell us the outcome you need. We&apos;ll map systems in and out, the data
-            boundary, and whether a lead system or platform build is the right next step.
+            boundary, and whether a lead system or platform build is next — including the
+            earliest start if concurrent builds are full. Agentic workflows are scoped
+            in discovery when they fit.
           </p>
           <NewCustomerNote />
         </div>

@@ -44,7 +44,8 @@ export default function ServicesGrid() {
           </h2>
           <p className="text-[var(--muted)] leading-relaxed">
             One commercial ladder. Chatbots ship inside lead systems when the brief
-            calls for them. Agents and orchestrators stay in research — not for sale.
+            calls for them. Agentic workflows and agent integrations are scoped in
+            discovery into the named build.
           </p>
         </div>
 

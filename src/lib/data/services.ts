@@ -18,9 +18,9 @@ export const services = [
     id: "agents",
     title: "AI Agents",
     slug: "agents",
-    tagline: "Agents and orchestrators in research",
+    tagline: "Workflows and integrations, scoped in discovery",
     description:
-      "Research into scoped agents and orchestrators, with explicit routing, limited tool permissions, durable state, and human review. Coming in the near future as a Wayalabs product.",
+      "Agentic workflows and agent integrations (OpenClaw, Grok, and similar) with explicit routing, limited tool permissions, durable state, and human review. No standalone pilot SKU — scoped in discovery into the named build.",
     icon: "Cpu",
     designConsiderations: [
       "Role-aware graph routing",

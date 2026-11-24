@@ -9,12 +9,14 @@ export type ContactIntent =
   | "lead-system"
   | "platform"
   | "chatbot"
+  | "agentic"
   | "unsure";
 export const ALLOWED_INTENTS: ContactIntent[] = [
   "discovery",
   "lead-system",
   "platform",
   "chatbot",
+  "agentic",
   "unsure",
 ];
 

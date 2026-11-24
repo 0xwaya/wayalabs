@@ -62,7 +62,7 @@ export default function Footer() {
             </Link>
             <p className="text-sm text-[var(--muted)] leading-relaxed max-w-xs">
               Lead systems for local trade. Platforms for local listings. Discovery
-              first. Agents stay in research — not for sale.
+              first. Agentic workflows scoped when the brief names them.
             </p>
             <div className="flex items-center gap-4 mt-6">
               <a

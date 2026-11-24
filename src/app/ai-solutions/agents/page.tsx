@@ -7,30 +7,30 @@ import { discoveryCreditSentence } from "@/lib/data/offers";
 import { Cpu, CheckCircle, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "AI Agents",
+  title: "AI Agents — workflows and integrations",
   description:
-    `Agents and orchestrators are in active development and coming to Wayalabs clients in the near future. ${discoveryCreditSentence}`,
+    `Wayalabs implements agentic workflows and integrates agents such as OpenClaw and Grok when discovery names them. No standalone agent-pilot SKU — those builds start with discovery. ${discoveryCreditSentence}`,
   alternates: { canonical: "/ai-solutions/agents" },
   openGraph: pageOpenGraph("/ai-solutions/agents"),
 };
 
 const useCases = [
   {
-    title: "Operations Automation Agent",
+    title: "Operations workflow",
     description:
-      "An R&D opportunity: summarize approved internal updates or flag exceptions for a person to review. Data access and accuracy need validation for each project.",
+      "Summarize approved internal updates or flag exceptions for a person to review. Scoped tools, data access, and acceptance checks are set in discovery.",
     industry: "Operations · Finance · HR",
   },
   {
-    title: "Triage and Routing Agent",
+    title: "Triage and routing",
     description:
-      "A possible workflow: classify a limited set of inbound requests and suggest a destination. Routing rules and human escalation should be tested before use.",
+      "Classify a limited set of inbound requests and suggest a destination. Routing rules and human escalation are tested before go-live.",
     industry: "Support · Sales Ops · Customer Success",
   },
   {
-    title: "Research and Synthesis Agent",
+    title: "Research and synthesis",
     description:
-      "A research prototype could organize approved source material into a draft summary. Source coverage, citations, and factual accuracy require review.",
+      "Organize approved source material into a draft summary. Source coverage, citations, and accuracy require operator review.",
     industry: "Consulting · Legal · Strategy",
   },
 ];
@@ -47,7 +47,6 @@ const designConsiderations = [
 export default function AgentsPage() {
   return (
     <div className="min-h-screen">
-      {/* Hero */}
       <section className="py-24 px-6 grid-bg border-b border-[var(--border)]">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-6">
@@ -55,32 +54,31 @@ export default function AgentsPage() {
               <Cpu size={22} className="text-[#c5cad3]" />
             </div>
             <span className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)]">
-              AI Agents · Research
+              AI Agents · Scoped builds
             </span>
           </div>
           <h1 className="text-5xl font-bold tracking-tight mb-5 max-w-3xl">
-              Agents and orchestrators are{" "}
-              <span className="gradient-text">coming soon</span>
+            Agentic workflows,{" "}
+            <span className="gradient-text">scoped in discovery</span>
           </h1>
           <p className="text-lg text-[var(--muted)] max-w-2xl leading-relaxed mb-10">
-            They are not a product yet, but they are coming soon. A private runtime is running. A client agent is
-            scoped only after that research says it is ready. The work stays bounded:
-            one task, approved tools, and a person reviewing consequential actions.
+            We implement agentic workflows and integrate agents — including OpenClaw,
+            Grok, and similar runtimes — when the brief names them. There is no
+            standalone agent-pilot package on the public ladder. Those builds start
+            with discovery, the same as a lead system or platform.
           </p>
         </div>
       </section>
 
-      {/* Use cases */}
       <section className="py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <p className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)] mb-3">
-            R&D Directions
+            Example directions
           </p>
-          <h2 className="text-3xl font-bold mb-5">Workflow concepts under research</h2>
+          <h2 className="text-3xl font-bold mb-5">Workflows we can scope</h2>
           <p className="text-[var(--muted)] max-w-2xl mb-12">
-            These are discussion starting points, not available product guarantees.
-            Deployment status, controls, and measured performance are established
-            and reported separately for each project.
+            Starting points for discovery — not fixed product guarantees. Deployment
+            status, controls, and measured performance are set per engagement.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {useCases.map(({ title, description, industry }) => (
@@ -96,7 +94,6 @@ export default function AgentsPage() {
         </div>
       </section>
 
-      {/* Architecture */}
       <section className="py-16 px-6 bg-[var(--card)] border-y border-[var(--border)]">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -106,9 +103,9 @@ export default function AgentsPage() {
               </p>
               <h2 className="text-3xl font-bold mb-6">Agree on boundaries before automation</h2>
               <p className="text-[var(--muted)] leading-relaxed">
-                These are project design questions, not claims that every listed control
-                is already deployed. A proposed system should be tested against its
-                acceptance criteria before its results are described as production outcomes.
+                Studio research (Echo, operator sessions) informs how we gate tools and
+                keep a person in the loop. Client work uses those patterns inside a
+                named build — not as an unscoped pilot SKU.
               </p>
             </div>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -123,13 +120,13 @@ export default function AgentsPage() {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="py-20 px-6">
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">Agents stay in research</h2>
+          <h2 className="text-3xl font-bold mb-4">Start with discovery</h2>
           <p className="text-[var(--muted)] mb-8">
-            Agent pilots are not for sale. For live work today, start with discovery toward
-            a lead system or platform build.
+            If an agentic workflow or agent integration is the right next step, we name
+            it in the brief and build it into the engagement — lead system, platform, or
+            scoped integration.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link

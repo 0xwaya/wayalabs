@@ -8,7 +8,7 @@ import { discoveryCreditSentence } from "@/lib/data/offers";
 export const metadata: Metadata = {
   title: "About Wayalabs",
   description:
-    `Wayalabs builds a custom stack for the business. Chatbots are live. Agents and orchestrators stay in research. ${discoveryCreditSentence}`,
+    `Wayalabs builds lead systems for local trade and platforms for local listings. Agentic workflows and agent integrations are scoped in discovery. ${discoveryCreditSentence}`,
   alternates: { canonical: "/about" },
   openGraph: pageOpenGraph("/about"),
 };
@@ -39,25 +39,25 @@ const values = [
 const work = [
   {
     name: "Urban Stone Collective",
-    type: "AI-Enhanced Web Platform",
+    type: "Lead system · live client",
     url: "urbanstone.co",
     accent: "#d7dbe3",
   },
   {
     name: "Queen City Soundboard",
-    type: "AI-Enhanced Web Platform",
+    type: "Platform · live client",
     url: "queencitysoundboard.com",
     accent: "#c5cad3",
   },
   {
     name: "Grok operator environments",
-    type: "Internal workflow · isolated checkouts, human approval",
+    type: "Studio research · internal workflow",
     url: "",
     accent: "#d7dbe3",
   },
   {
     name: "OpenClaw, private Echo runtime",
-    type: "Private cloud network · sandbox · gated tools",
+    type: "Studio research · private runtime",
     url: "",
     accent: "#f3f4f6",
   },
@@ -84,12 +84,14 @@ export default function AboutPage() {
               About
             </p>
             <h1 className="text-5xl font-bold tracking-tight mb-6">
-              AI systems, explored through{" "}
-              <span className="gradient-text">architecture and orchestration.</span>
+              Lead systems and platforms for{" "}
+              <span className="gradient-text">operators who need leads.</span>
             </h1>
             <p className="text-lg text-[var(--muted)] leading-relaxed">
-              Wayalabs builds a custom stack for the business. Chatbots are live.
-              Client brands shown here are client projects, not our products. Agents and orchestrators are coming soon.
+              Wayalabs builds lead systems for local trade and platforms for local
+              listings. Chatbots ship inside those builds. Agentic workflows and agent
+              integrations (OpenClaw, Grok, and similar) are scoped in discovery. Client
+              brands shown here are client projects, not our products.
             </p>
           </div>
 
@@ -207,7 +209,7 @@ export default function AboutPage() {
           <h2 className="text-3xl font-bold mb-4">Work with us</h2>
           <p className="text-[var(--muted)] mb-8">
             We take on a limited number of builds at a time. Start with discovery toward a
-            lead system or platform — agents stay in research.
+            lead system, platform, or discovery-scoped agentic workflow.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link

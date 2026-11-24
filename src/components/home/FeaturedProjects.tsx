@@ -32,9 +32,9 @@ const projects = [
     id: "openclaw-agent",
     title: "OpenClaw, private Echo runtime",
     subtitle: "Cloud network, sandbox, gated tools",
-    category: "Research · not for sale",
+    category: "Studio research",
     description:
-      "Echo keeps OpenClaw in a private cloud network. The session is sandboxed, and tool use sits behind gates. It is not a client deployment, and the private configuration is not published here.",
+      "Echo keeps OpenClaw in a private cloud network. The session is sandboxed, and tool use sits behind gates. Studio research that informs how we integrate agents for clients — not a client brand for sale.",
     tags: ["Sandbox", "Gated tools", "Private network"],
     stack: ["OpenClaw", "Cloud network", "Owner approval"],
     href: "/case-studies/openclaw-agent",
@@ -45,9 +45,9 @@ const projects = [
     id: "grok-operators",
     title: "Grok operator environments",
     subtitle: "Isolated checkouts, review before any push",
-    category: "Research · not for sale",
+    category: "Studio research",
     description:
-      "Grok sessions work inside one checkout per project, and a Python virtual environment when the runtime needs one. They draft changes for the live sites and the other agents, then stop for approval. Scheduled work stays native to each project.",
+      "Grok sessions work inside one checkout per project, and a Python virtual environment when the runtime needs one. They draft changes, then stop for approval. The same class of agent can be integrated into a client build when discovery names it.",
     tags: ["Human review", "Isolated environments", "Native workflows"],
     stack: ["Grok", "Python venv", "Per-project checkout"],
     href: "/case-studies/grok-operators",
@@ -66,7 +66,7 @@ export default function FeaturedProjects() {
               Case Studies
             </p>
             <h2 className="text-4xl font-bold tracking-tight">
-              Client proof first. Research labeled.
+              Client proof first. Studio research labeled.
             </h2>
           </div>
           <Link

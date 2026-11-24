@@ -40,7 +40,7 @@ export default function OutcomeMetrics() {
           </h2>
           <p className="text-[var(--muted)] max-w-xl mx-auto leading-relaxed">
             Flagship work is a lead system for local trade, or a platform for local
-            listings. Agents stay in research.
+            listings. Agentic workflows are scoped in discovery when they fit.
           </p>
         </div>
 
