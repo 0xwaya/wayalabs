@@ -4,6 +4,7 @@ import {
   type MailEnv,
 } from "@/lib/contact-delivery";
 import {
+  crmConfig,
   fileSourcedCandidate,
   type CrmEnv,
 } from "@/lib/leads/crm";
@@ -35,15 +36,17 @@ function enabled(flag: string | undefined, defaultOn: boolean): boolean {
 async function fileAll(
   candidates: SourcedCandidateIntake[],
   env: SourceJobEnv,
-): Promise<{ inserted: number; errors: number }> {
+): Promise<{ inserted: number; errors: number; skippedNotConfigured: boolean }> {
   let inserted = 0;
   let errors = 0;
+  let skippedNotConfigured = false;
   for (const candidate of candidates) {
     const result = await fileSourcedCandidate(candidate, env);
     if (result.ok && result.inserted) inserted += 1;
+    if (!result.ok && result.skipped) skippedNotConfigured = true;
     if (!result.ok && !result.skipped) errors += 1;
   }
-  return { inserted, errors };
+  return { inserted, errors, skippedNotConfigured };
 }
 
 function renderSourceReport(input: {
@@ -96,34 +99,53 @@ export async function runLeadSourceJob(
   const runSba = enabled(env.LEAD_SOURCE_SBA, true);
   const runAi = enabled(env.LEAD_SOURCE_AI_INTENT, true);
 
-  let sba: SourcedCandidateIntake[] = [];
-  let ai: SourcedCandidateIntake[] = [];
-
-  try {
-    if (runSba) {
-      sba = await fetchSbaTradeCandidates({ fetchImpl });
-    }
-  } catch (error) {
+  if ((runSba || runAi) && !crmConfig(env).configured) {
     return {
       ok: false,
-      status: 502,
-      error: error instanceof Error ? error.message : "SBA sourcer failed",
+      status: 503,
+      error: "CRM is not configured. Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY.",
     };
   }
 
-  try {
-    if (runAi) {
-      ai = await fetchAiIntentCandidates({ fetchImpl });
-    }
-  } catch (error) {
+  // Run channels in parallel so SBA + RSS stay inside the route maxDuration.
+  const [sbaResult, aiResult] = await Promise.allSettled([
+    runSba
+      ? fetchSbaTradeCandidates({ fetchImpl })
+      : Promise.resolve([] as SourcedCandidateIntake[]),
+    runAi
+      ? fetchAiIntentCandidates({ fetchImpl })
+      : Promise.resolve([] as SourcedCandidateIntake[]),
+  ]);
+
+  if (runSba && sbaResult.status === "rejected") {
+    const reason = sbaResult.reason;
     return {
       ok: false,
       status: 502,
-      error: error instanceof Error ? error.message : "AI intent sourcer failed",
+      error: reason instanceof Error ? reason.message : "SBA sourcer failed",
     };
   }
+
+  if (runAi && aiResult.status === "rejected") {
+    const reason = aiResult.reason;
+    return {
+      ok: false,
+      status: 502,
+      error: reason instanceof Error ? reason.message : "AI intent sourcer failed",
+    };
+  }
+
+  const sba = sbaResult.status === "fulfilled" ? sbaResult.value : [];
+  const ai = aiResult.status === "fulfilled" ? aiResult.value : [];
 
   const filed = await fileAll([...sba, ...ai], env);
+  if (filed.skippedNotConfigured) {
+    return {
+      ok: false,
+      status: 503,
+      error: "CRM is not configured. Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY.",
+    };
+  }
   if (filed.errors > 0 && filed.inserted === 0 && (sba.length > 0 || ai.length > 0)) {
     return {
       ok: false,

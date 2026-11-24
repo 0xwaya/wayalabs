@@ -112,23 +112,32 @@ export async function fetchAiIntentCandidates(options?: {
   queries?: readonly string[];
   limit?: number;
   fetchImpl?: typeof fetch;
+  /** Per-request timeout; kept short so parallel RSS fits the source route budget. */
+  timeoutMs?: number;
 }): Promise<SourcedCandidateIntake[]> {
   const queries = options?.queries ?? AI_INTENT_QUERIES;
   const fetchImpl = options?.fetchImpl ?? fetch;
   const limit = options?.limit ?? 40;
-  const collected: NewsItem[] = [];
+  const timeoutMs = options?.timeoutMs ?? 8_000;
 
-  for (const query of queries) {
-    const response = await fetchImpl(googleNewsRssUrl(query), {
-      headers: {
-        "User-Agent": "WayalabsLeadEngine/1.0 (+https://wayalabs.com)",
-        Accept: "application/rss+xml, application/xml, text/xml, */*",
-      },
-      signal: AbortSignal.timeout(12_000),
-    });
-    if (!response.ok) continue;
-    const xml = await response.text();
-    collected.push(...parseRssItems(xml));
+  const results = await Promise.allSettled(
+    queries.map(async (query) => {
+      const response = await fetchImpl(googleNewsRssUrl(query), {
+        headers: {
+          "User-Agent": "WayalabsLeadEngine/1.0 (+https://wayalabs.com)",
+          Accept: "application/rss+xml, application/xml, text/xml, */*",
+        },
+        signal: AbortSignal.timeout(timeoutMs),
+      });
+      if (!response.ok) return [] as NewsItem[];
+      const xml = await response.text();
+      return parseRssItems(xml);
+    }),
+  );
+
+  const collected: NewsItem[] = [];
+  for (const result of results) {
+    if (result.status === "fulfilled") collected.push(...result.value);
   }
 
   return newsItemsToCandidates(collected).slice(0, limit);
