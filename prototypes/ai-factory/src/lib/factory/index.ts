@@ -16,5 +16,17 @@ export type {
   WebhookProvider,
 } from "./types-live";
 
-export { resolveCommerceKey, shouldBookCredit } from "./commerce-key";
-export type { CommerceKeyHints } from "./commerce-key";
+export {
+  canonicalizeCommerceKey,
+  collectNativeKeys,
+  createMemoryAliasStore,
+  linkCommerceAliases,
+  resolveAndCanonicalizeCommerceKey,
+  resolveCommerceKey,
+  shouldBookCredit,
+} from "./commerce-key";
+export type {
+  CommerceAliasLookup,
+  CommerceAliasWriter,
+  CommerceKeyHints,
+} from "./commerce-key";

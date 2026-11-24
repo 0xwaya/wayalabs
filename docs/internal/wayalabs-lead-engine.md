@@ -6,7 +6,7 @@ Internal. The studio’s own lead system, shaped like `lead-system-kit.md`.
 
 1. **Intake** — `/contact` form (and Cal booking as the parallel path)
 2. **Email** — Resend to `CONTACT_TO_EMAIL` (existing)
-3. **CRM** — Supabase `contacts` + `leads` after email succeeds; match by email
+3. **CRM** — Neon Postgres `contacts` + `leads` after email succeeds; match by email
 4. **Outbound sourcer** — weekday job pulls public signals into `sourced_candidates`
 5. **Digest** — weekday operator email of open inbound + sourced rows. Does **not** email leads or candidates.
 
@@ -32,14 +32,18 @@ Anon keys must not expose these tables. Service role only.
 
 ## Provisioning
 
-Org free-project cap may block a new `wayalabs` Supabase project (`urbanstone` + `queencity-soundboard`). To go live:
+**Database:** Neon org `wayalabs` · project `wayalabs` (`quiet-cherry-92183008`) · `aws-us-east-2` · database `wayalabs`.  
+CRM tables are already applied (`contacts`, `leads`, `sourced_candidates`). SQL sources remain in `supabase/migrations/` until moved to `db/migrations/`.
 
-1. Pause or upgrade one project, **or** upgrade the org
-2. Create project `wayalabs` in `us-east-1`
-3. Run migrations in `supabase/migrations/` (lead engine + sourced candidates)
-4. Set on Vercel: `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `CRON_SECRET` (≥16 chars)
-5. Optional toggles: `LEAD_SOURCE_SBA=0` or `LEAD_SOURCE_AI_INTENT=0` to disable a channel
-6. Redeploy
+To go live on Vercel:
+
+1. Copy the **pooled** connection string from Neon console → set `DATABASE_URL` on Vercel (wayalabs + ai-factory)
+2. Set `CRON_SECRET` (≥16 chars)
+3. Swap CRM client from Supabase JS → `@neondatabase/serverless` (until then, filing stays skipped unless legacy Supabase envs are set)
+4. Optional toggles: `LEAD_SOURCE_SBA=0` or `LEAD_SOURCE_AI_INTENT=0` to disable a channel
+5. Redeploy
+
+Do **not** reuse the Neon **Stone estimator** project for CRM/Factory data.
 
 ## Operator match rules (inbound)
 
