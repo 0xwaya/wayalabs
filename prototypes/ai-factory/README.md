@@ -27,7 +27,7 @@ Inspired by cyberpunk “AI ecosystem” ops UIs (spatial factory + terminal dri
 5. Streak + parallel-bay bonuses stack payouts  
 6. Working agents burn opex — keep funnels converting  
 
-Progress saves to `localStorage` (`wayalabs-ai-factory-v3`). Keys: `T` tick · `A` auto · `1–3` bay · `Shift+R` reset.
+Progress saves to `localStorage` (`wayalabs-ai-factory-v4`). Keys: `T` tick · `A` auto · `1–3` bay · `Shift+R` reset.
 
 ## Winning strategies (prototype targets)
 
@@ -39,6 +39,7 @@ Pulled from live AI-ops reels that convert (Factorio map + terminal + real money
 - **Multiple income bays** unlocking over time  
 - **Shareable neon ops aesthetic** for 9:16 tour clips  
 - Next: spatial map, live Stripe/Etsy proof rail, competitor-intel bay with originality guardrails  
+- **Production plan** (real bots, webhooks, connectors): [`docs/internal/ai-factory-production.md`](../../docs/internal/ai-factory-production.md)
 
 ## Run
 
