@@ -206,15 +206,23 @@ export default function AboutPage() {
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">Work with us</h2>
           <p className="text-[var(--muted)] mb-8">
-            We take on a limited number of projects at a time to maintain quality.
-            If what you&apos;ve seen here resonates — let&apos;s talk.
+            We take on a limited number of builds at a time. Start with discovery toward a
+            lead system or platform — agents stay in research.
           </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#f3f4f6] text-[#07080c] hover:bg-[#d7dbe3] font-semibold hover:opacity-90 transition-opacity"
-          >
-            Get in Touch <ArrowRight size={16} />
-          </Link>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#f3f4f6] text-[#07080c] hover:bg-[#d7dbe3] font-semibold hover:opacity-90 transition-opacity"
+            >
+              Book discovery <ArrowRight size={16} />
+            </Link>
+            <Link
+              href="/offers"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl border border-[var(--border)] text-sm font-medium hover:bg-[var(--card)] transition-colors"
+            >
+              See offers
+            </Link>
+          </div>
           <NewCustomerNote centered />
         </div>
       </section>

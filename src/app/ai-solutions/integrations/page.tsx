@@ -150,13 +150,13 @@ export default function IntegrationsPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#f3f4f6] text-[#07080c] hover:bg-[#d7dbe3] font-semibold hover:opacity-90 transition-opacity"
             >
-              Book a Call <ArrowRight size={16} />
+              Book a discovery call <ArrowRight size={16} />
             </Link>
             <Link
-              href="/case-studies"
+              href="/offers"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl border border-[var(--border)] text-sm font-medium hover:bg-[var(--card)] transition-colors"
             >
-              See Case Studies
+              See offers
             </Link>
           </div>
           <NewCustomerNote centered />

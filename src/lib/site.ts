@@ -1,10 +1,10 @@
 import { discoveryCreditSentence } from "@/lib/data/offers";
 
 /**
- * The /offers page stays published either way. Set this to true to list
- * Offers in the header, mobile menu, and footer again.
+ * List Offers in the header, mobile menu, and footer.
+ * /services permanently redirects to /offers (one commercial ladder).
  */
-export const showOffersInNavigation = false;
+export const showOffersInNavigation = true;
 
 /** One description for the document head, Open Graph, Twitter, and JSON-LD. */
 export const siteDescription =

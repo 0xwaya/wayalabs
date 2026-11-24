@@ -157,19 +157,27 @@ export default function AISolutionsPage() {
       {/* CTA */}
       <section className="py-20 px-6">
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">Not sure which service fits?</h2>
+          <h2 className="text-3xl font-bold mb-4">Not sure which offer fits?</h2>
           <p className="text-[var(--muted)] mb-8">
-            Book a 30-minute discovery call. We&apos;ll map your current pain points to the
-            right AI solution and give you a clear scope before any commitment.
+            Book a discovery call. We&apos;ll map the outcome to a lead system or platform
+            build — or a clear no-go — before anyone builds.
           </p>
-          <Link
-            href={CAL_BOOKING_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#f3f4f6] text-[#07080c] hover:bg-[#d7dbe3] font-semibold hover:opacity-90 transition-opacity"
-          >
-            Book a Call <ArrowRight size={16} />
-          </Link>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link
+              href={CAL_BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#f3f4f6] text-[#07080c] hover:bg-[#d7dbe3] font-semibold hover:opacity-90 transition-opacity"
+            >
+              Book a discovery call <ArrowRight size={16} />
+            </Link>
+            <Link
+              href="/offers"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl border border-[var(--border)] text-sm font-medium hover:bg-[var(--card)] transition-colors"
+            >
+              See offers
+            </Link>
+          </div>
           <NewCustomerNote centered />
         </div>
       </section>

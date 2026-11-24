@@ -6,13 +6,13 @@ import { Button, ButtonLink } from "@/components/ui/Button";
 import { Input, Textarea } from "@/components/ui/Input";
 import { CAL_BOOKING_URL } from "@/lib/booking";
 
-type Intent = "chatbot" | "agent" | "integration" | "platform" | "unsure";
+type Intent = "discovery" | "lead-system" | "platform" | "chatbot" | "unsure";
 
 const intents: { value: Intent; label: string; description: string }[] = [
-  { value: "chatbot", label: "AI Chatbot", description: "Support, sales, or onboarding bot" },
-  { value: "agent", label: "AI Agent", description: "Workflow or ops automation" },
-  { value: "integration", label: "AI Integration", description: "Connect LLM to existing tools" },
-  { value: "platform", label: "Web Platform", description: "AI-enhanced web build" },
+  { value: "discovery", label: "Discovery sprint", description: "One week, written go or no-go" },
+  { value: "lead-system", label: "Lead system", description: "Intake or chat, CRM, one job" },
+  { value: "platform", label: "Platform build", description: "Site, forms, email, data store" },
+  { value: "chatbot", label: "AI Chatbot", description: "On-site chat with human handoff" },
   { value: "unsure", label: "Not sure yet", description: "Help me figure it out" },
 ];
 

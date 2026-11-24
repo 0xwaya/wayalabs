@@ -172,7 +172,7 @@ export default async function CaseStudyPage({ params }: Props) {
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">Build something similar?</h2>
           <p className="text-[var(--muted)] mb-8">
-            Book a discovery call and we&apos;ll scope what this pattern would look like for your business.
+            Book a discovery call to scope this pattern for your business, or review the lead system and platform offers.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
@@ -181,7 +181,13 @@ export default async function CaseStudyPage({ params }: Props) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#f3f4f6] text-[#07080c] hover:bg-[#d7dbe3] font-semibold hover:opacity-90 transition-opacity"
             >
-              Book a Call <ArrowRight size={16} />
+              Book a discovery call <ArrowRight size={16} />
+            </Link>
+            <Link
+              href="/offers"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl border border-[var(--border)] text-sm font-medium hover:bg-[var(--card)] transition-colors"
+            >
+              See offers
             </Link>
             <Link
               href="/case-studies"

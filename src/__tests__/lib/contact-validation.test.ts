@@ -4,8 +4,31 @@ import {
   sanitize,
   isRateLimited,
   getClientIp,
+  isContactIntent,
+  ALLOWED_INTENTS,
   MAX_REQUESTS_PER_WINDOW,
 } from "@/lib/contact-validation";
+
+describe("isContactIntent", () => {
+  it("accepts the offer-aligned intents", () => {
+    expect(ALLOWED_INTENTS).toEqual([
+      "discovery",
+      "lead-system",
+      "platform",
+      "chatbot",
+      "unsure",
+    ]);
+    for (const intent of ALLOWED_INTENTS) {
+      expect(isContactIntent(intent)).toBe(true);
+    }
+  });
+
+  it("rejects retired package and agent intents", () => {
+    expect(isContactIntent("agent")).toBe(false);
+    expect(isContactIntent("integration")).toBe(false);
+    expect(isContactIntent("Launch Site")).toBe(false);
+  });
+});
 
 describe("isValidEmail", () => {
   it("accepts a standard email", () => {

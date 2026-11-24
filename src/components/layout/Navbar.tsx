@@ -10,7 +10,6 @@ import { showOffersInNavigation } from "@/lib/site";
 
 const navLinks = [
   { href: "/ai-solutions", label: "AI Solutions" },
-  { href: "/services", label: "Packages" },
   ...(showOffersInNavigation ? [{ href: "/offers", label: "Offers" }] : []),
   { href: "/case-studies", label: "Case Studies" },
   { href: "/process", label: "Process" },
@@ -59,7 +58,7 @@ export default function Navbar() {
         {/* CTA */}
         <div className="hidden md:flex">
           <ButtonLink href={CAL_BOOKING_URL} target="_blank" rel="noopener noreferrer" size="sm" variant="primary">
-            Book a Call
+            Book discovery
           </ButtonLink>
         </div>
 
@@ -96,7 +95,7 @@ export default function Navbar() {
             variant="primary"
             className="mt-2"
           >
-            Book a Call
+            Book discovery
           </ButtonLink>
         </div>
       )}

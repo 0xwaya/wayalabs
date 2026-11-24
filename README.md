@@ -73,7 +73,7 @@ src/
 │   │   ├── chatbots/page.tsx
 │   │   ├── agents/page.tsx
 │   │   └── integrations/page.tsx
-│   ├── services/page.tsx         # Packages
+│   ├── services/page.tsx         # Redirects to /offers
 │   ├── case-studies/
 │   │   ├── page.tsx
 │   │   └── [slug]/page.tsx
@@ -93,7 +93,6 @@ src/
 │   ├── home/                     # Hero, services, projects, process, CTA
 │   ├── layout/                   # Navbar, Footer
 │   ├── contact/ContactForm.tsx
-│   ├── services/                 # Package sections
 │   ├── ceo/CeoScenarioSampler.tsx
 │   └── ui/                       # Button, Input, SectionWrapper
 └── lib/
@@ -106,7 +105,7 @@ src/
     └── utils.ts                  # cn()
 ```
 
-`showOffersInNavigation` in `src/lib/site.ts` is false, so Offers stays out of the header, mobile menu, and footer. Tests live in `src/__tests__`.
+`showOffersInNavigation` in `src/lib/site.ts` is true, so Offers appears in the header, mobile menu, and footer. `/services` permanently redirects to `/offers`. Tests live in `src/__tests__`.
 
 ---
 
