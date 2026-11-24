@@ -150,7 +150,8 @@ export function selectFactory(factoryId: string): PublicState {
 export function startMission(missionId: string): PublicState {
   const s = state();
   const mission = s.missions.find((m) => m.id === missionId);
-  if (!mission || mission.status !== "available") {
+  // Allow replay of completed quests so the XP loop can continue.
+  if (!mission || (mission.status !== "available" && mission.status !== "completed")) {
     pushLog(s, "system", `Mission ${missionId} cannot start.`);
     return getState();
   }

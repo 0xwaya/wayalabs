@@ -29,6 +29,11 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+```bash
+npm test    # orchestrator + API unit tests
+npm run build
+```
+
 API: `GET/POST /api/factory` with actions `tick` | `reset` | `selectFactory` | `startMission`.
 
 ## Stack
