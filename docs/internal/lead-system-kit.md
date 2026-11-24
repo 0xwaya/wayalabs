@@ -3,6 +3,7 @@
 Internal. Productized shape for the Lead system offer ($7,000–$14,000). Customize knowledge, CRM fields, and the one approved job — not the whole architecture.
 
 Proof reference: Urban Stone Collective (`urbanstone.co`).
+Studio self-build: `wayalabs-lead-engine.md` (Wayalabs.com intake).
 
 ## Fixed shape
 

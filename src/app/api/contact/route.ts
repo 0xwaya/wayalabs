@@ -7,6 +7,7 @@ import {
   isValidEmail,
   sanitize,
 } from "@/lib/contact-validation";
+import { fileLead } from "@/lib/leads/crm";
 
 type ContactPayload = {
   name: string;
@@ -99,9 +100,23 @@ export async function POST(request: Request) {
       messageLength: message.length,
     });
 
-    const delivery = await deliverInquiry({ name, email, company, message, intent });
+    const inquiry = { name, email, company, message, intent };
+    const delivery = await deliverInquiry(inquiry);
     if (!delivery.ok) {
       return NextResponse.json({ error: delivery.error }, { status: delivery.status });
+    }
+
+    // Email first, then CRM. CRM failure is logged; the operator already has the mail.
+    const crm = await fileLead(inquiry);
+    if (crm.ok) {
+      console.info("[contact-crm]", {
+        matchedExisting: crm.matchedExisting,
+        leadIdLength: crm.leadId.length,
+      });
+    } else if (crm.skipped) {
+      console.info("[contact-crm]", { skipped: true, reason: crm.reason });
+    } else {
+      console.error("[contact-crm]", { error: "crm_file_failed" });
     }
 
     return NextResponse.json({ ok: true });

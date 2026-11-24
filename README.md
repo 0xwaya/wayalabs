@@ -83,7 +83,8 @@ src/
 │   │   └── [slug]/page.tsx
 │   ├── contact/page.tsx
 │   ├── lab/ceo-agent/page.tsx    # Orchestrator research sampler
-│   ├── api/contact/route.ts      # Contact form delivery
+│   ├── api/contact/route.ts      # Contact form → email, then CRM
+│   ├── api/leads/digest/route.ts # Weekday open-lead digest (operator only)
 │   ├── privacy/page.tsx
 │   ├── terms/page.tsx
 │   ├── offers/page.tsx           # In the repo; hidden from navigation
