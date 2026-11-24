@@ -32,7 +32,10 @@ export type Mission = {
   factoryId: string;
   title: string;
   brief: string;
+  /** Soft progression for factory/agent unlocks. */
   xpReward: number;
+  /** Primary win metric — simulated USD booked when the quest clears. */
+  revenueReward: number;
   requiredRoles: AgentRole[];
   status: MissionStatus;
   progress: number;
@@ -44,10 +47,14 @@ export type Factory = {
   id: string;
   name: string;
   theme: FactoryTheme;
+  /** Short bay label shown in the top income strip (e.g. CART, FORGE). */
+  bayLabel: string;
   tagline: string;
   level: number;
   xp: number;
   xpToNext: number;
+  /** Lifetime USD booked by this factory's agent team. */
+  revenue: number;
   unlocked: boolean;
   unlockLevel: number;
   color: string;
@@ -65,6 +72,10 @@ export type OrchestratorState = {
   version: number;
   tick: number;
   globalXp: number;
+  /** Spendable operating cash (USD). */
+  cash: number;
+  /** Cumulative revenue booked — the real score. */
+  lifetimeRevenue: number;
   questsCompleted: number;
   streak: number;
   factories: Factory[];

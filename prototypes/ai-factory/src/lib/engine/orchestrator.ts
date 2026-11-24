@@ -1,3 +1,8 @@
+import {
+  formatUsd,
+  nextIncomeGoal,
+  REVENUE_PER_COMMAND_LEVEL,
+} from "./money";
 import { createSeedState, STATE_VERSION, xpCurve } from "./seed";
 import type {
   Agent,
@@ -14,9 +19,17 @@ declare global {
 
 const STREAK_BONUS_EVERY = 3;
 const STREAK_BONUS_XP = 20;
+const STREAK_BONUS_CASH = 75;
+const PARALLEL_BONUS_CASH = 60;
+const PARALLEL_BONUS_XP = 10;
 const AGENT_XP_PER_LEVEL = 40;
+const OPEX_PER_WORKING_AGENT = 4;
+const MIN_CASH_TO_LAUNCH = 40;
 
-export type PublicState = OrchestratorState & { commandLevel: number };
+export type PublicState = OrchestratorState & {
+  commandLevel: number;
+  nextIncomeGoal: number;
+};
 
 export type FactorySession = {
   getState: () => PublicState;
@@ -29,14 +42,27 @@ export type FactorySession = {
 };
 
 function commandLevel(s: OrchestratorState): number {
-  return Math.max(1, Math.floor(s.globalXp / 120) + 1);
+  // Income is the primary progression driver — command unlocks from lifetime revenue.
+  return Math.max(1, Math.floor(s.lifetimeRevenue / REVENUE_PER_COMMAND_LEVEL) + 1);
 }
 
 export function withCommandLevel(s: OrchestratorState): PublicState {
   return {
     ...structuredClone(s),
     commandLevel: commandLevel(s),
+    nextIncomeGoal: nextIncomeGoal(s.lifetimeRevenue),
   };
+}
+
+function bookRevenue(s: OrchestratorState, amount: number, factoryId?: string) {
+  if (amount <= 0) return;
+  s.cash += amount;
+  s.lifetimeRevenue += amount;
+  if (factoryId) {
+    const factory = s.factories.find((f) => f.id === factoryId);
+    if (factory) factory.revenue += amount;
+  }
+  refreshLocks(s);
 }
 
 function pushLog(
@@ -167,7 +193,7 @@ function selectFactoryOn(s: OrchestratorState, factoryId: string) {
 
 function startMissionOn(s: OrchestratorState, missionId: string) {
   const mission = s.missions.find((m) => m.id === missionId);
-  // Allow replay of completed quests so the XP loop can continue.
+  // Allow replay of completed quests so the income loop can continue.
   if (!mission || (mission.status !== "available" && mission.status !== "completed")) {
     pushLog(s, "system", `Mission ${missionId} cannot start.`);
     return;
@@ -176,6 +202,16 @@ function startMissionOn(s: OrchestratorState, missionId: string) {
   const factory = s.factories.find((f) => f.id === mission.factoryId);
   if (!factory?.unlocked) {
     pushLog(s, "system", "Factory locked — cannot start mission.");
+    return;
+  }
+
+  if (s.cash < MIN_CASH_TO_LAUNCH) {
+    pushLog(
+      s,
+      "mission",
+      `Need ${formatUsd(MIN_CASH_TO_LAUNCH)} operating cash to launch — clear a payout first.`,
+      mission.factoryId,
+    );
     return;
   }
 
@@ -232,36 +268,41 @@ function completeMission(s: OrchestratorState, mission: Mission) {
   s.questsCompleted += 1;
   s.streak += 1;
 
-  let reward = mission.xpReward;
+  let xp = mission.xpReward;
+  let cash = mission.revenueReward;
+
   // Parallel ops bonus: another factory also active when this finishes.
   const otherActive = s.missions.some(
     (m) => m.id !== mission.id && m.status === "active",
   );
   if (otherActive) {
-    reward += 10;
+    xp += PARALLEL_BONUS_XP;
+    cash += PARALLEL_BONUS_CASH;
     pushLog(
       s,
       "bonus",
-      `Parallel ops bonus +10 XP on "${mission.title}".`,
+      `Parallel ops +${formatUsd(PARALLEL_BONUS_CASH)} / +${PARALLEL_BONUS_XP} XP.`,
       mission.factoryId,
     );
   }
 
   if (s.streak > 0 && s.streak % STREAK_BONUS_EVERY === 0) {
-    reward += STREAK_BONUS_XP;
+    xp += STREAK_BONUS_XP;
+    cash += STREAK_BONUS_CASH;
     pushLog(
       s,
       "bonus",
-      `Streak x${s.streak} — +${STREAK_BONUS_XP} XP surge.`,
+      `Streak x${s.streak} — +${formatUsd(STREAK_BONUS_CASH)} income surge.`,
       mission.factoryId,
     );
   }
 
-  awardFactoryXp(s, mission.factoryId, reward);
+  bookRevenue(s, cash, mission.factoryId);
+  awardFactoryXp(s, mission.factoryId, xp);
   pushLog(
     s,
     "mission",
-    `Quest complete: "${mission.title}" (+${reward} XP)`,
+    `Paid out: "${mission.title}" → ${formatUsd(cash)} (+${xp} XP)`,
     mission.factoryId,
   );
 
@@ -339,6 +380,12 @@ function tickOn(s: OrchestratorState) {
     advanceMission(s, mission);
   }
 
+  const working = s.agents.filter((a) => a.status === "working").length;
+  if (working > 0) {
+    const burn = working * OPEX_PER_WORKING_AGENT;
+    s.cash = Math.max(0, s.cash - burn);
+  }
+
   for (const agent of s.agents) {
     if (agent.status === "done") {
       agent.status = "idle";
@@ -374,7 +421,17 @@ export function migrateState(raw: unknown): OrchestratorState | null {
 
   const factories = seed.factories.map((f) => {
     const saved = factoryMap.get(f.id);
-    return saved ? { ...f, ...saved, id: f.id, name: f.name, theme: f.theme } : f;
+    if (!saved) return f;
+    return {
+      ...f,
+      ...saved,
+      id: f.id,
+      name: f.name,
+      theme: f.theme,
+      bayLabel: f.bayLabel,
+      tagline: f.tagline,
+      revenue: typeof saved.revenue === "number" ? saved.revenue : 0,
+    };
   });
 
   const agents = seed.agents.map((a) => {
@@ -404,6 +461,7 @@ export function migrateState(raw: unknown): OrchestratorState | null {
       requiredRoles: m.requiredRoles,
       steps: m.steps,
       xpReward: m.xpReward,
+      revenueReward: m.revenueReward,
     };
   });
 
@@ -415,6 +473,9 @@ export function migrateState(raw: unknown): OrchestratorState | null {
     version: STATE_VERSION,
     tick: typeof candidate.tick === "number" ? candidate.tick : 0,
     globalXp: typeof candidate.globalXp === "number" ? candidate.globalXp : 0,
+    cash: typeof candidate.cash === "number" ? candidate.cash : seed.cash,
+    lifetimeRevenue:
+      typeof candidate.lifetimeRevenue === "number" ? candidate.lifetimeRevenue : 0,
     questsCompleted:
       typeof candidate.questsCompleted === "number" ? candidate.questsCompleted : 0,
     streak: typeof candidate.streak === "number" ? candidate.streak : 0,

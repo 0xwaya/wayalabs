@@ -107,13 +107,18 @@ describe("startMission", () => {
 });
 
 describe("tick game loop", () => {
-  it("completes an active mission and awards XP", () => {
+  it("completes a funnel and books revenue + XP", () => {
     startMission("ms-nc-flash");
     const state = runUntil("ms-nc-flash", "completed");
     const mission = state.missions.find((m) => m.id === "ms-nc-flash");
     expect(mission?.status).toBe("completed");
     expect(mission?.progress).toBe(100);
     expect(state.globalXp).toBeGreaterThanOrEqual(55);
+    expect(state.lifetimeRevenue).toBeGreaterThanOrEqual(420);
+    expect(state.cash).toBeGreaterThan(750);
+    expect(state.factories.find((f) => f.id === "fx-neon-cart")?.revenue).toBeGreaterThanOrEqual(
+      420,
+    );
     expect(state.tick).toBeGreaterThan(0);
   });
 
@@ -132,14 +137,14 @@ describe("tick game loop", () => {
 });
 
 describe("command level unlock", () => {
-  it("unlocks Signal Hub at command level 3 (globalXp >= 240)", () => {
-    // 55 XP per flash + streak bonuses → a few completions reach CMD 3
-    for (let i = 0; i < 5; i++) {
+  it("unlocks Signal Hub when lifetime revenue reaches command 3 (~$1600)", () => {
+    // Flash pays $420; 4 clears (+streak cash) crosses $1600 lifetime
+    for (let i = 0; i < 4; i++) {
       startMission("ms-nc-flash");
       runUntil("ms-nc-flash", "completed");
     }
     const state = getState();
-    expect(state.globalXp).toBeGreaterThanOrEqual(240);
+    expect(state.lifetimeRevenue).toBeGreaterThanOrEqual(1600);
     expect(state.commandLevel).toBeGreaterThanOrEqual(3);
     expect(state.factories.find((f) => f.id === "fx-signal-hub")?.unlocked).toBe(
       true,
@@ -148,7 +153,7 @@ describe("command level unlock", () => {
 });
 
 describe("streak + session", () => {
-  it("tracks questsCompleted and streak bonuses", () => {
+  it("tracks questsCompleted and streak income bonuses", () => {
     for (let i = 0; i < 3; i++) {
       startMission("ms-nc-flash");
       runUntil("ms-nc-flash", "completed");
@@ -156,7 +161,8 @@ describe("streak + session", () => {
     const state = getState();
     expect(state.questsCompleted).toBe(3);
     expect(state.streak).toBe(3);
-    // Base 55*3 = 165 + streak bonus 20 on the 3rd clear
+    // Base 420*3 + streak $75 on the 3rd clear
+    expect(state.lifetimeRevenue).toBeGreaterThanOrEqual(420 * 3 + 75);
     expect(state.globalXp).toBeGreaterThanOrEqual(185);
     expect(state.logs.some((l) => l.kind === "bonus")).toBe(true);
   });
@@ -175,14 +181,19 @@ describe("streak + session", () => {
   it("migrateState merges saved progress onto current seed content", () => {
     const seed = createSeedState();
     seed.globalXp = 300;
+    seed.lifetimeRevenue = 900;
+    seed.cash = 1200;
     seed.questsCompleted = 4;
     seed.streak = 2;
     seed.factories[0]!.level = 2;
     seed.factories[0]!.xp = 10;
+    seed.factories[0]!.revenue = 900;
     const partial = {
       version: 1,
       tick: 12,
       globalXp: 300,
+      lifetimeRevenue: 900,
+      cash: 1200,
       factories: seed.factories,
       agents: seed.agents,
       missions: seed.missions.slice(0, 2),
@@ -190,9 +201,11 @@ describe("streak + session", () => {
       selectedFactoryId: "fx-neon-cart",
     };
     const migrated = migrateState(partial);
-    expect(migrated?.version).toBe(2);
+    expect(migrated?.version).toBe(3);
     expect(migrated?.globalXp).toBe(300);
+    expect(migrated?.lifetimeRevenue).toBe(900);
     expect(migrated?.missions.length).toBe(seed.missions.length);
+    expect(migrated?.missions.every((m) => m.revenueReward > 0)).toBe(true);
     expect(migrated?.questsCompleted).toBe(0);
   });
 });

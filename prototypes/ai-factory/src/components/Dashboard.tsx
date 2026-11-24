@@ -18,9 +18,10 @@ import {
   loadPersistedState,
   savePersistedState,
 } from "@/lib/engine/persist";
+import { formatUsd } from "@/lib/engine/money";
 import type { Agent, Factory, LogEvent, Mission } from "@/lib/engine/types";
 
-type Flash = { id: number; text: string; kind: "level" | "bonus" | "mission" };
+type Flash = { id: number; text: string; kind: "level" | "bonus" | "mission" | "income" };
 
 export default function Dashboard({ initial }: { initial: PublicState }) {
   const sessionRef = useRef<FactorySession | null>(null);
@@ -37,11 +38,19 @@ export default function Dashboard({ initial }: { initial: PublicState }) {
     commandLevel: initial.commandLevel,
     questsCompleted: initial.questsCompleted ?? 0,
     streak: initial.streak ?? 0,
+    lifetimeRevenue: initial.lifetimeRevenue ?? 0,
+    nextIncomeGoal: initial.nextIncomeGoal ?? 1000,
   });
 
   const apply = useCallback((next: PublicState) => {
     const prev = prevRef.current;
-    if (next.commandLevel > prev.commandLevel) {
+    if (next.lifetimeRevenue >= prev.nextIncomeGoal && prev.lifetimeRevenue < prev.nextIncomeGoal) {
+      setFlash({
+        id: Date.now(),
+        kind: "income",
+        text: `Income goal hit · ${formatUsd(prev.nextIncomeGoal)} lifetime`,
+      });
+    } else if (next.commandLevel > prev.commandLevel) {
       setFlash({
         id: Date.now(),
         kind: "level",
@@ -51,19 +60,22 @@ export default function Dashboard({ initial }: { initial: PublicState }) {
       setFlash({
         id: Date.now(),
         kind: "bonus",
-        text: `Streak x${next.streak} surge`,
+        text: `Streak x${next.streak} income surge`,
       });
     } else if ((next.questsCompleted ?? 0) > prev.questsCompleted) {
+      const gained = next.lifetimeRevenue - prev.lifetimeRevenue;
       setFlash({
         id: Date.now(),
         kind: "mission",
-        text: `Quest cleared · ${next.questsCompleted} total`,
+        text: `Revenue booked · ${formatUsd(gained)}`,
       });
     }
     prevRef.current = {
       commandLevel: next.commandLevel,
       questsCompleted: next.questsCompleted ?? 0,
       streak: next.streak ?? 0,
+      lifetimeRevenue: next.lifetimeRevenue ?? 0,
+      nextIncomeGoal: next.nextIncomeGoal,
     };
     setState(next);
     savePersistedState(next);
@@ -77,6 +89,8 @@ export default function Dashboard({ initial }: { initial: PublicState }) {
         commandLevel: next.commandLevel,
         questsCompleted: next.questsCompleted ?? 0,
         streak: next.streak ?? 0,
+        lifetimeRevenue: next.lifetimeRevenue ?? 0,
+        nextIncomeGoal: next.nextIncomeGoal,
       };
       setState(next);
     }
@@ -143,7 +157,7 @@ export default function Dashboard({ initial }: { initial: PublicState }) {
       {flash ? (
         <div
           className={`flash-banner panel px-4 py-2 text-center text-sm tracking-wider uppercase ${
-            flash.kind === "bonus"
+            flash.kind === "bonus" || flash.kind === "income"
               ? "text-[var(--amber)]"
               : flash.kind === "level"
                 ? "text-[var(--magenta)]"
@@ -164,16 +178,50 @@ export default function Dashboard({ initial }: { initial: PublicState }) {
             AI FACTORY
           </h1>
           <p className="mt-2 max-w-xl text-sm text-[var(--muted)] md:text-base">
-            Local multi-agent orchestration loop — quests, XP, unlocks. Progress
-            saves in this browser. Swap mock agents for real models later.
+            Build{" "}
+            <span className="text-[var(--lime)]">factories of agent teams</span>{" "}
+            that run{" "}
+            <span className="text-[var(--cyan)]">real-world tasks</span> through{" "}
+            <span className="text-[var(--amber)]">income funnels</span>. Mock
+            USD now — swap crews for live models + real payouts later.
           </p>
+          <div className="mt-3 max-w-md">
+            <div className="mb-1 flex justify-between text-[10px] tracking-wider text-[var(--muted)] uppercase">
+              <span>Lifetime → {formatUsd(state.nextIncomeGoal)}</span>
+              <span>
+                {Math.min(
+                  100,
+                  Math.round((state.lifetimeRevenue / state.nextIncomeGoal) * 100),
+                )}
+                %
+              </span>
+            </div>
+            <div className="bar">
+              <span
+                style={{
+                  width: `${Math.min(100, Math.round((state.lifetimeRevenue / state.nextIncomeGoal) * 100))}%`,
+                  background: "linear-gradient(90deg, var(--amber), var(--lime))",
+                }}
+              />
+            </div>
+          </div>
         </div>
         <div className="panel flex flex-wrap items-center gap-3 px-4 py-3 text-sm">
+          <Stat
+            label="CASH"
+            value={formatUsd(state.cash)}
+            accent="var(--amber)"
+            emphasize
+          />
+          <Stat
+            label="LIFETIME"
+            value={formatUsd(state.lifetimeRevenue)}
+            accent="var(--lime)"
+            emphasize
+          />
           <Stat label="CMD LVL" value={String(state.commandLevel)} accent="var(--magenta)" />
-          <Stat label="GLOBAL XP" value={String(state.globalXp)} accent="var(--cyan)" />
-          <Stat label="STREAK" value={String(state.streak ?? 0)} accent="var(--amber)" />
-          <Stat label="QUESTS" value={String(state.questsCompleted ?? 0)} accent="var(--lime)" />
-          <Stat label="TICK" value={String(state.tick)} accent="var(--lime)" />
+          <Stat label="STREAK" value={String(state.streak ?? 0)} accent="var(--cyan)" />
+          <Stat label="TICK" value={String(state.tick)} accent="var(--muted)" />
           <button
             type="button"
             className={`border px-3 py-1.5 hover:bg-white/5 ${
@@ -208,9 +256,56 @@ export default function Dashboard({ initial }: { initial: PublicState }) {
         </div>
       </header>
 
+      <section className="panel flex flex-wrap items-stretch gap-2 px-3 py-2">
+        {state.factories.map((factory) => (
+          <button
+            key={`bay-${factory.id}`}
+            type="button"
+            disabled={!factory.unlocked}
+            onClick={() =>
+              factory.unlocked && apply(sessionRef.current!.selectFactory(factory.id))
+            }
+            className={`min-w-[6.5rem] flex-1 border px-3 py-2 text-left transition ${
+              factory.id === state.selectedFactoryId
+                ? "border-current bg-white/5"
+                : "border-[var(--line)] hover:bg-white/5"
+            } ${factory.unlocked ? "" : "opacity-40"}`}
+            style={{ color: factory.color }}
+          >
+            <div className="text-[10px] tracking-[0.25em] text-[var(--muted)]">
+              {factory.bayLabel}
+              {!factory.unlocked ? " · LOCK" : ""}
+            </div>
+            <div className="font-[family-name:var(--font-orbitron)] text-lg neon-text">
+              {formatUsd(factory.revenue)}
+            </div>
+            <div className="text-[10px] text-[var(--muted)]">
+              {state.agents.filter(
+                (a) => a.factoryId === factory.id && a.status === "working",
+              ).length}{" "}
+              live · L{factory.level}
+            </div>
+          </button>
+        ))}
+        <div className="min-w-[6.5rem] flex-1 border border-[var(--line)] px-3 py-2">
+          <div className="text-[10px] tracking-[0.25em] text-[var(--muted)]">CREWS</div>
+          <div className="font-[family-name:var(--font-orbitron)] text-lg text-[var(--cyan)]">
+            {state.agents.filter((a) => a.status !== "locked").length}
+            <span className="text-sm text-[var(--muted)]">
+              /{state.agents.length}
+            </span>
+          </div>
+          <div className="text-[10px] text-[var(--muted)]">
+            {activeCount} funnel{activeCount === 1 ? "" : "s"} live
+          </div>
+        </div>
+      </section>
+
       {activeCount > 0 ? (
         <div className="flex flex-wrap gap-2 text-[10px] tracking-wider uppercase text-[var(--muted)]">
-          <span className="text-[var(--lime)]">{activeCount} active lane{activeCount > 1 ? "s" : ""}</span>
+          <span className="text-[var(--lime)]">
+            {activeCount} active funnel{activeCount > 1 ? "s" : ""}
+          </span>
           {state.missions
             .filter((m) => m.status === "active")
             .map((m) => {
@@ -223,7 +318,7 @@ export default function Dashboard({ initial }: { initial: PublicState }) {
                   style={{ borderColor: fx?.color }}
                   onClick={() => apply(sessionRef.current!.selectFactory(m.factoryId))}
                 >
-                  {fx?.name}: {m.title} · {m.progress}%
+                  {fx?.bayLabel}: {m.title} · {m.progress}% · {formatUsd(m.revenueReward)}
                 </button>
               );
             })}
@@ -239,6 +334,11 @@ export default function Dashboard({ initial }: { initial: PublicState }) {
             working={state.agents.some(
               (a) => a.factoryId === factory.id && a.status === "working",
             )}
+            crewOnline={
+              state.agents.filter(
+                (a) => a.factoryId === factory.id && a.status !== "locked",
+              ).length
+            }
             hotkey={String(index + 1)}
             onSelect={() => apply(sessionRef.current!.selectFactory(factory.id))}
           />
@@ -250,10 +350,11 @@ export default function Dashboard({ initial }: { initial: PublicState }) {
           <div className={`panel p-4 ${selected ? "live" : ""}`}>
             <div className="mb-3 flex items-center justify-between gap-2">
               <h2 className="font-[family-name:var(--font-orbitron)] text-lg tracking-wide text-[var(--cyan)]">
-                Agent Grid · {selected?.name ?? "—"}
+                Room Crew · {selected?.name ?? "—"}
               </h2>
               <span className="text-xs text-[var(--muted)]">
-                {agents.filter((a) => a.status === "working").length} working
+                {agents.filter((a) => a.status === "working").length} live · bay{" "}
+                {formatUsd(selected?.revenue ?? 0)}
               </span>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
@@ -265,7 +366,7 @@ export default function Dashboard({ initial }: { initial: PublicState }) {
 
           <div className="panel p-4">
             <h2 className="font-[family-name:var(--font-orbitron)] mb-3 text-lg tracking-wide text-[var(--lime)]">
-              Quest Board
+              Income Funnels
             </h2>
             <div className="flex flex-col gap-3">
               {missions.map((mission) => (
@@ -291,9 +392,9 @@ export default function Dashboard({ initial }: { initial: PublicState }) {
             ))}
           </div>
           <p className="mt-4 text-xs text-[var(--muted)]">
-            Keys: T tick · A auto · 1–3 factory · Shift+R reset. Parallel
-            factories + streak bonuses stack XP. Signal Hub opens at command
-            level 3.
+            Keys: T tick · A auto · 1–3 factory · Shift+R reset. Working agents
+            burn opex — keep cash flowing. Signal Hub unlocks at ~$1,600
+            lifetime (command 3).
           </p>
         </aside>
       </section>
@@ -305,15 +406,20 @@ function Stat({
   label,
   value,
   accent,
+  emphasize,
 }: {
   label: string;
   value: string;
   accent: string;
+  emphasize?: boolean;
 }) {
   return (
-    <div className="min-w-[3.75rem]">
+    <div className={emphasize ? "min-w-[5.5rem]" : "min-w-[3.75rem]"}>
       <div className="text-[10px] tracking-[0.2em] text-[var(--muted)]">{label}</div>
-      <div className="font-[family-name:var(--font-orbitron)] text-xl" style={{ color: accent }}>
+      <div
+        className={`font-[family-name:var(--font-orbitron)] ${emphasize ? "text-2xl neon-text" : "text-xl"}`}
+        style={{ color: accent }}
+      >
         {value}
       </div>
     </div>
@@ -324,12 +430,14 @@ function FactoryCard({
   factory,
   active,
   working,
+  crewOnline,
   hotkey,
   onSelect,
 }: {
   factory: Factory;
   active: boolean;
   working: boolean;
+  crewOnline: number;
   hotkey: string;
   onSelect: () => void;
 }) {
@@ -357,6 +465,9 @@ function FactoryCard({
         </span>
       </div>
       <p className="mt-2 text-xs text-[var(--muted)]">{factory.tagline}</p>
+      <p className="mt-1 text-[11px]" style={{ color: factory.color }}>
+        {formatUsd(factory.revenue)} booked · {crewOnline} agents online
+      </p>
       {factory.unlocked ? (
         <div className="mt-3">
           <div className="mb-1 flex justify-between text-[10px] text-[var(--muted)]">
@@ -440,8 +551,9 @@ function MissionCard({
             {mission.title}
           </div>
           <p className="mt-1 text-xs text-[var(--muted)]">{mission.brief}</p>
-          <p className="mt-2 text-[10px] tracking-wider text-[var(--cyan)] uppercase">
-            Roles · {mission.requiredRoles.join(" · ")} · +{mission.xpReward} XP
+          <p className="mt-2 text-[10px] tracking-wider text-[var(--amber)] uppercase">
+            Payout · {formatUsd(mission.revenueReward)} · +{mission.xpReward} XP ·{" "}
+            {mission.requiredRoles.join(" · ")}
           </p>
         </div>
         {canStart && mission.status !== "active" ? (
