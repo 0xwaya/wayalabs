@@ -10,6 +10,7 @@ import {
 } from "react";
 import {
   createSession,
+  getFunnelBlockers,
   type FactorySession,
   type PublicState,
 } from "@/lib/engine/orchestrator";
@@ -359,7 +360,12 @@ export default function Dashboard({ initial }: { initial: PublicState }) {
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               {agents.map((agent) => (
-                <AgentCard key={agent.id} agent={agent} color={selected?.color} />
+                <AgentCard
+                  key={agent.id}
+                  agent={agent}
+                  color={selected?.color}
+                  factoryLevel={selected?.level}
+                />
               ))}
             </div>
           </div>
@@ -373,6 +379,8 @@ export default function Dashboard({ initial }: { initial: PublicState }) {
                 <MissionCard
                   key={mission.id}
                   mission={mission}
+                  blockers={getFunnelBlockers(state, mission.id)}
+                  factoryLevel={selected?.level ?? 1}
                   onStart={() =>
                     apply(sessionRef.current!.startMission(mission.id))
                   }
@@ -485,7 +493,15 @@ function FactoryCard({
   );
 }
 
-function AgentCard({ agent, color }: { agent: Agent; color?: string }) {
+function AgentCard({
+  agent,
+  color,
+  factoryLevel,
+}: {
+  agent: Agent;
+  color?: string;
+  factoryLevel?: number;
+}) {
   return (
     <div
       className={`border border-[var(--line)] bg-black/25 p-3 ${
@@ -505,12 +521,14 @@ function AgentCard({ agent, color }: { agent: Agent; color?: string }) {
       </div>
       <p className="mt-2 min-h-[2.5rem] text-xs text-[var(--muted)]">
         {agent.status === "locked"
-          ? `Unlocks at factory level ${agent.unlockLevel}`
+          ? `Locked — bay must reach L${agent.unlockLevel} (now L${factoryLevel ?? 1})`
           : (agent.lastTask ?? "Standing by for orchestrator route")}
       </p>
-      <div className="bar mt-2">
-        <span style={{ width: `${agent.progress}%` }} />
-      </div>
+      {agent.status !== "locked" ? (
+        <div className="bar mt-2">
+          <span style={{ width: `${agent.progress}%` }} />
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -533,20 +551,30 @@ function StatusPill({ status }: { status: Agent["status"] }) {
 
 function MissionCard({
   mission,
+  blockers,
+  factoryLevel,
   onStart,
 }: {
   mission: Mission;
+  blockers: ReturnType<typeof getFunnelBlockers>;
+  factoryLevel: number;
   onStart: () => void;
 }) {
-  const canStart = mission.status === "available" || mission.status === "completed";
+  const isActive = mission.status === "active";
+  const lockedRoles = blockers.filter((b) => b.code === "locked_role");
+  const ready = !isActive && blockers.length === 0;
+  const lockHint =
+    lockedRoles[0]?.message ??
+    blockers.find((b) => b.code === "active" || b.code === "cash")?.message;
+
   return (
     <div
-      className={`border border-[var(--line)] bg-black/20 p-3 ${
-        mission.status === "active" ? "live" : ""
-      }`}
+      className={`border bg-black/20 p-3 ${
+        isActive ? "live border-[var(--lime)]/40" : "border-[var(--line)]"
+      } ${!ready && !isActive ? "opacity-70" : ""}`}
     >
       <div className="flex flex-wrap items-start justify-between gap-2">
-        <div>
+        <div className="min-w-0 flex-1">
           <div className="font-[family-name:var(--font-orbitron)] text-sm text-[var(--fg)]">
             {mission.title}
           </div>
@@ -555,50 +583,63 @@ function MissionCard({
             Payout · {formatUsd(mission.revenueReward)} · +{mission.xpReward} XP ·{" "}
             {mission.requiredRoles.join(" · ")}
           </p>
+          {!ready && !isActive && lockHint ? (
+            <p className="mt-2 text-[11px] text-[var(--magenta)]">{lockHint}</p>
+          ) : null}
         </div>
-        {canStart && mission.status !== "active" ? (
+        {isActive ? (
+          <span className="text-[10px] tracking-wider text-[var(--lime)] uppercase">
+            running · {mission.progress}%
+          </span>
+        ) : ready ? (
           <button
             type="button"
             onClick={onStart}
-            className="border border-[var(--lime)]/50 px-3 py-1.5 text-xs tracking-wider text-[var(--lime)] uppercase hover:bg-[var(--lime)]/10"
+            className="shrink-0 border border-[var(--lime)]/50 px-3 py-1.5 text-xs tracking-wider text-[var(--lime)] uppercase hover:bg-[var(--lime)]/10"
           >
-            {mission.status === "completed" ? "Replay" : "Launch"}
+            Launch
           </button>
         ) : (
-          <span className="text-[10px] tracking-wider text-[var(--amber)] uppercase">
-            {mission.status}
+          <span className="shrink-0 border border-[var(--magenta)]/40 px-2 py-1 text-[10px] tracking-wider text-[var(--magenta)] uppercase">
+            {lockedRoles.length > 0 ? `lock · bay L${factoryLevel}` : "blocked"}
           </span>
         )}
       </div>
-      <ol className="mt-3 space-y-1">
-        {mission.steps.map((step, index) => {
-          const done = mission.stepIndex > index || mission.status === "completed";
-          const current = mission.status === "active" && mission.stepIndex === index;
-          return (
-            <li
-              key={step}
-              className={`text-[11px] ${
-                done
-                  ? "text-[var(--lime)]/80"
-                  : current
-                    ? "text-[var(--cyan)]"
-                    : "text-[var(--muted)]/70"
-              }`}
-            >
-              <span className="mr-2 font-[family-name:var(--font-orbitron)] text-[10px]">
-                {done ? "◆" : current ? "▸" : "◇"}
-              </span>
-              {step}
-            </li>
-          );
-        })}
-      </ol>
-      {(mission.status === "active" || mission.status === "completed") && (
-        <div className="mt-3">
-          <div className="bar">
-            <span style={{ width: `${mission.progress}%` }} />
+      {isActive ? (
+        <>
+          <ol className="mt-3 space-y-1">
+            {mission.steps.map((step, index) => {
+              const done = mission.stepIndex > index;
+              const current = mission.stepIndex === index;
+              return (
+                <li
+                  key={step}
+                  className={`text-[11px] ${
+                    done
+                      ? "text-[var(--lime)]/80"
+                      : current
+                        ? "text-[var(--cyan)]"
+                        : "text-[var(--muted)]/70"
+                  }`}
+                >
+                  <span className="mr-2 font-[family-name:var(--font-orbitron)] text-[10px]">
+                    {done ? "◆" : current ? "▸" : "◇"}
+                  </span>
+                  {step}
+                </li>
+              );
+            })}
+          </ol>
+          <div className="mt-3">
+            <div className="bar">
+              <span style={{ width: `${mission.progress}%` }} />
+            </div>
           </div>
-        </div>
+        </>
+      ) : (
+        <p className="mt-2 text-[10px] tracking-wider text-[var(--muted)] uppercase">
+          {mission.steps.length} steps
+        </p>
       )}
     </div>
   );

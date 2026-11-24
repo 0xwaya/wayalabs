@@ -97,8 +97,8 @@ export function createSeedState(): OrchestratorState {
       status: "available",
       progress: 0,
       steps: [
-        "Unlock Reply Drone (factory L2)",
         "Qualify: triage VIP tickets",
+        "Resolve: draft replies + CSAT check",
         "Collect: close loop with sales notes",
       ],
       stepIndex: 0,
@@ -148,9 +148,9 @@ export function createSeedState(): OrchestratorState {
       status: "available",
       progress: 0,
       steps: [
-        "Unlock Dock Runner (factory L2)",
         "Stage outbound pallets",
-        "Scan + invoice → book revenue",
+        "Scan dock lanes",
+        "Invoice → book revenue",
       ],
       stepIndex: 0,
     },
@@ -199,9 +199,9 @@ export function createSeedState(): OrchestratorState {
       status: "available",
       progress: 0,
       steps: [
-        "Unlock Slot Broker (hub L2)",
         "Price premium windows",
-        "Reserve capacity → collect",
+        "Reserve capacity",
+        "Collect slot fees",
       ],
       stepIndex: 0,
     },
