@@ -1,46 +1,74 @@
-import { listOpenLeads, type CrmEnv } from "@/lib/leads/crm";
+import {
+  listOpenLeads,
+  listOpenSourcedCandidates,
+  type CrmEnv,
+} from "@/lib/leads/crm";
 import {
   contactDeliveryConfig,
   isMailbox,
   type MailEnv,
 } from "@/lib/contact-delivery";
-import type { LeadRecord } from "@/lib/leads/types";
+import type { LeadRecord, SourcedCandidateRecord } from "@/lib/leads/types";
 
 export type DigestEnv = CrmEnv & MailEnv;
 
 export type DigestResult =
-  | { ok: true; openCount: number; emailed: boolean }
+  | {
+      ok: true;
+      openCount: number;
+      sourcedCount: number;
+      emailed: boolean;
+    }
   | { ok: false; status: number; error: string };
 
-function renderDigest(leads: LeadRecord[]): { subject: string; text: string } {
+function renderDigest(
+  leads: LeadRecord[],
+  sourced: SourcedCandidateRecord[],
+): { subject: string; text: string } {
   const lines = [
-    `Open Wayalabs leads: ${leads.length}`,
-    "This digest goes to the operator only. It does not email the leads.",
+    `Open inbound leads: ${leads.length}`,
+    `Open sourced candidates: ${sourced.length}`,
+    "This digest goes to the operator only. It does not email leads or candidates.",
     "",
   ];
 
-  for (const lead of leads) {
-    const name = lead.contact?.name ?? "—";
-    const email = lead.contact?.email ?? "—";
-    const company = lead.contact?.company?.length ? lead.contact.company : "—";
-    lines.push(
-      `- ${name} <${email}> · ${company} · intent=${lead.intent} · ${lead.created_at}`,
-    );
+  if (leads.length > 0) {
+    lines.push("Inbound:");
+    for (const lead of leads) {
+      const name = lead.contact?.name ?? "—";
+      const email = lead.contact?.email ?? "—";
+      const company = lead.contact?.company?.length ? lead.contact.company : "—";
+      lines.push(
+        `- ${name} <${email}> · ${company} · intent=${lead.intent} · ${lead.created_at}`,
+      );
+    }
+    lines.push("");
+  } else {
+    lines.push("No open inbound leads.", "");
   }
 
-  if (leads.length === 0) {
-    lines.push("No open (status=new) leads.");
+  if (sourced.length > 0) {
+    lines.push("Sourced (review only — do not assume consent to contact):");
+    for (const c of sourced) {
+      lines.push(
+        `- [${c.source}] ${c.company_name} · ${c.city}, ${c.state} · ${c.signal_summary}`,
+      );
+      if (c.source_url) lines.push(`  ${c.source_url}`);
+    }
+  } else {
+    lines.push("No open sourced candidates.");
   }
 
+  const total = leads.length + sourced.length;
   return {
-    subject: `Wayalabs lead digest: ${leads.length} open`,
+    subject: `Wayalabs lead digest: ${total} open`,
     text: lines.join("\n"),
   };
 }
 
 /**
- * One approved scheduled job: email the operator a list of open leads.
- * Does not contact people who submitted the form.
+ * Weekday operator digest for inbound leads + sourced candidates.
+ * Does not contact people or companies.
  */
 export async function runLeadDigest(
   env: DigestEnv = process.env,
@@ -56,6 +84,11 @@ export async function runLeadDigest(
     };
   }
 
+  const sourced = await listOpenSourcedCandidates(env);
+  if (!sourced.ok) {
+    return { ok: false, status: 502, error: sourced.error };
+  }
+
   const { apiKey, from, to, configured } = contactDeliveryConfig(env);
   if (!configured || !isMailbox(to)) {
     return {
@@ -65,12 +98,14 @@ export async function runLeadDigest(
     };
   }
 
-  // Quiet success when the queue is empty — still a successful job run.
-  if (listed.leads.length === 0) {
-    return { ok: true, openCount: 0, emailed: false };
+  const openCount = listed.leads.length;
+  const sourcedCount = sourced.candidates.length;
+
+  if (openCount === 0 && sourcedCount === 0) {
+    return { ok: true, openCount: 0, sourcedCount: 0, emailed: false };
   }
 
-  const { subject, text } = renderDigest(listed.leads);
+  const { subject, text } = renderDigest(listed.leads, sourced.candidates);
   let response: Response;
   try {
     response = await fetchImpl("https://api.resend.com/emails", {
@@ -90,7 +125,7 @@ export async function runLeadDigest(
     return { ok: false, status: 502, error: "Unable to send digest email." };
   }
 
-  return { ok: true, openCount: listed.leads.length, emailed: true };
+  return { ok: true, openCount, sourcedCount, emailed: true };
 }
 
 export { renderDigest };

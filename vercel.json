@@ -1,6 +1,11 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "schedules": {
+    "lead-source": {
+      "schedule": "0 12 * * 1-5",
+      "path": "/api/leads/source",
+      "requestMethod": "GET"
+    },
     "lead-digest": {
       "schedule": "0 13 * * 1-5",
       "path": "/api/leads/digest",

@@ -1,5 +1,11 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
-import type { LeadIntake, LeadRecord, LeadStatus } from "@/lib/leads/types";
+import type {
+  LeadIntake,
+  LeadRecord,
+  LeadStatus,
+  SourcedCandidateIntake,
+  SourcedCandidateRecord,
+} from "@/lib/leads/types";
 
 export type CrmEnv = {
   SUPABASE_URL?: string;
@@ -151,4 +157,93 @@ export async function listOpenLeads(
   });
 
   return { ok: true, leads };
+}
+
+export type FileCandidateResult =
+  | { ok: true; id: string; inserted: boolean }
+  | { ok: false; skipped: true; reason: "not_configured" }
+  | { ok: false; skipped: false; error: string };
+
+/** Upsert outbound candidate by (source, external_id). Idempotent. */
+export async function fileSourcedCandidate(
+  intake: SourcedCandidateIntake,
+  env: CrmEnv = process.env,
+  client: SupabaseClient | null = createCrmClient(env),
+): Promise<FileCandidateResult> {
+  if (!client) {
+    return { ok: false, skipped: true, reason: "not_configured" };
+  }
+
+  const row = {
+    source: intake.source,
+    external_id: intake.externalId,
+    company_name: intake.companyName.trim(),
+    city: (intake.city ?? "").trim(),
+    state: (intake.state ?? "").trim().toUpperCase(),
+    industry: (intake.industry ?? "").trim(),
+    signal_summary: intake.signalSummary.trim(),
+    source_url: (intake.sourceUrl ?? "").trim(),
+    approved_at: intake.approvedAt ?? null,
+  };
+
+  const existing = await client
+    .from("sourced_candidates")
+    .select("id")
+    .eq("source", row.source)
+    .eq("external_id", row.external_id)
+    .maybeSingle();
+
+  if (existing.error) {
+    return { ok: false, skipped: false, error: existing.error.message };
+  }
+
+  if (existing.data?.id) {
+    return { ok: true, id: existing.data.id as string, inserted: false };
+  }
+
+  const insert = await client
+    .from("sourced_candidates")
+    .insert(row)
+    .select("id")
+    .single();
+
+  if (insert.error || !insert.data?.id) {
+    return {
+      ok: false,
+      skipped: false,
+      error: insert.error?.message ?? "candidate insert failed",
+    };
+  }
+
+  return { ok: true, id: insert.data.id as string, inserted: true };
+}
+
+export async function listOpenSourcedCandidates(
+  env: CrmEnv = process.env,
+  client: SupabaseClient | null = createCrmClient(env),
+  limit = 50,
+): Promise<
+  { ok: true; candidates: SourcedCandidateRecord[] } | { ok: false; error: string }
+> {
+  if (!client) {
+    return { ok: false, error: "CRM is not configured." };
+  }
+
+  const { data, error } = await client
+    .from("sourced_candidates")
+    .select(
+      "id, source, company_name, city, state, industry, signal_summary, source_url, status, created_at",
+    )
+    .eq("status", "new")
+    .order("created_at", { ascending: false })
+    .limit(limit);
+
+  if (error) {
+    return { ok: false, error: error.message };
+  }
+
+  return {
+    ok: true,
+    candidates: (data ?? []) as SourcedCandidateRecord[],
+  };
 }
