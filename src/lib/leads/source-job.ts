@@ -103,7 +103,7 @@ export async function runLeadSourceJob(
     return {
       ok: false,
       status: 503,
-      error: "CRM is not configured. Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY.",
+      error: "CRM is not configured. Set DATABASE_URL (Neon pooled connection).",
     };
   }
 
@@ -143,7 +143,7 @@ export async function runLeadSourceJob(
     return {
       ok: false,
       status: 503,
-      error: "CRM is not configured. Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY.",
+      error: "CRM is not configured. Set DATABASE_URL (Neon pooled connection).",
     };
   }
   if (filed.errors > 0 && filed.inserted === 0 && (sba.length > 0 || ai.length > 0)) {

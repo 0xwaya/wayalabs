@@ -39,7 +39,7 @@ To go live on Vercel:
 
 1. Copy the **pooled** connection string from Neon console → set `DATABASE_URL` on Vercel (wayalabs + ai-factory)
 2. Set `CRON_SECRET` (≥16 chars)
-3. Swap CRM client from Supabase JS → `@neondatabase/serverless` (until then, filing stays skipped unless legacy Supabase envs are set)
+3. CRM client uses `@neondatabase/serverless` + `DATABASE_URL` (already shipped)
 4. Optional toggles: `LEAD_SOURCE_SBA=0` or `LEAD_SOURCE_AI_INTENT=0` to disable a channel
 5. Redeploy
 
