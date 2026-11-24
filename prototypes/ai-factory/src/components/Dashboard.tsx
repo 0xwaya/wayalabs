@@ -21,6 +21,7 @@ import {
 } from "@/lib/engine/persist";
 import { formatUsd } from "@/lib/engine/money";
 import type { Agent, Factory, LogEvent, Mission } from "@/lib/engine/types";
+import ProofRail from "@/components/ProofRail";
 
 type Flash = { id: number; text: string; kind: "level" | "bonus" | "mission" | "income" };
 
@@ -322,6 +323,8 @@ export default function Dashboard({ initial }: { initial: PublicState }) {
             })}
         </div>
       ) : null}
+
+      <ProofRail />
 
       <section className="grid gap-3 md:grid-cols-3">
         {state.factories.map((factory, index) => (

@@ -1,4 +1,4 @@
-import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import { neon } from "@neondatabase/serverless";
 import type {
   LeadIntake,
   LeadRecord,
@@ -8,6 +8,8 @@ import type {
 } from "@/lib/leads/types";
 
 export type CrmEnv = {
+  DATABASE_URL?: string;
+  /** @deprecated Prefer DATABASE_URL (Neon). Kept for migration detection only. */
   SUPABASE_URL?: string;
   SUPABASE_SERVICE_ROLE_KEY?: string;
   [key: string]: string | undefined;
@@ -18,22 +20,203 @@ export type CrmResult =
   | { ok: false; skipped: true; reason: "not_configured" }
   | { ok: false; skipped: false; error: string };
 
+/** Injectable DB surface — Neon in prod, mocks in tests. */
+export type CrmDb = {
+  findContactByEmail(email: string): Promise<{ id: string } | null>;
+  updateContact(
+    id: string,
+    fields: { name: string; company: string; updatedAt: string },
+  ): Promise<void>;
+  insertContact(fields: {
+    email: string;
+    name: string;
+    company: string;
+  }): Promise<{ id: string }>;
+  insertLead(fields: {
+    contactId: string;
+    intent: string;
+    message: string;
+    source: string;
+    status: LeadStatus;
+  }): Promise<{ id: string }>;
+  listNewLeads(limit: number): Promise<LeadRecord[]>;
+  findCandidate(
+    source: string,
+    externalId: string,
+  ): Promise<{ id: string } | null>;
+  insertCandidate(row: {
+    source: string;
+    externalId: string;
+    companyName: string;
+    city: string;
+    state: string;
+    industry: string;
+    signalSummary: string;
+    sourceUrl: string;
+    approvedAt: string | null;
+  }): Promise<{ id: string }>;
+  listNewCandidates(limit: number): Promise<SourcedCandidateRecord[]>;
+};
+
 export function crmConfig(env: CrmEnv = process.env) {
-  const url = env.SUPABASE_URL?.trim() ?? "";
-  const serviceRoleKey = env.SUPABASE_SERVICE_ROLE_KEY?.trim() ?? "";
+  const databaseUrl = env.DATABASE_URL?.trim() ?? "";
   return {
-    url,
-    serviceRoleKey,
-    configured: url.length > 0 && serviceRoleKey.length > 0,
+    databaseUrl,
+    configured: databaseUrl.length > 0,
   };
 }
 
-export function createCrmClient(env: CrmEnv = process.env): SupabaseClient | null {
-  const { url, serviceRoleKey, configured } = crmConfig(env);
+export function createCrmClient(env: CrmEnv = process.env): CrmDb | null {
+  const { databaseUrl, configured } = crmConfig(env);
   if (!configured) return null;
-  return createClient(url, serviceRoleKey, {
-    auth: { persistSession: false, autoRefreshToken: false },
-  });
+  const sql = neon(databaseUrl);
+  return createNeonCrmDb(sql);
+}
+
+type NeonSql = (
+  strings: TemplateStringsArray,
+  ...params: unknown[]
+) => Promise<Record<string, unknown>[]>;
+
+function createNeonCrmDb(sql: NeonSql): CrmDb {
+  return {
+    async findContactByEmail(email) {
+      const rows = await sql`
+        SELECT id FROM contacts WHERE email = ${email} LIMIT 1
+      `;
+      const id = rows[0]?.id;
+      return typeof id === "string" ? { id } : null;
+    },
+
+    async updateContact(id, fields) {
+      await sql`
+        UPDATE contacts
+        SET name = ${fields.name},
+            company = ${fields.company},
+            updated_at = ${fields.updatedAt}::timestamptz
+        WHERE id = ${id}::uuid
+      `;
+    },
+
+    async insertContact(fields) {
+      const rows = await sql`
+        INSERT INTO contacts (email, name, company)
+        VALUES (${fields.email}, ${fields.name}, ${fields.company})
+        RETURNING id
+      `;
+      const id = rows[0]?.id;
+      if (typeof id !== "string") throw new Error("contact insert failed");
+      return { id };
+    },
+
+    async insertLead(fields) {
+      const rows = await sql`
+        INSERT INTO leads (contact_id, intent, message, source, status)
+        VALUES (
+          ${fields.contactId}::uuid,
+          ${fields.intent},
+          ${fields.message},
+          ${fields.source},
+          ${fields.status}::lead_status
+        )
+        RETURNING id
+      `;
+      const id = rows[0]?.id;
+      if (typeof id !== "string") throw new Error("lead insert failed");
+      return { id };
+    },
+
+    async listNewLeads(limit) {
+      const rows = await sql`
+        SELECT
+          l.id,
+          l.intent,
+          l.status,
+          l.created_at,
+          c.name AS contact_name,
+          c.email AS contact_email,
+          c.company AS contact_company
+        FROM leads l
+        JOIN contacts c ON c.id = l.contact_id
+        WHERE l.status = 'new'
+        ORDER BY l.created_at DESC
+        LIMIT ${limit}
+      `;
+      return rows.map((row) => ({
+        id: String(row.id),
+        intent: String(row.intent),
+        status: row.status as LeadStatus,
+        created_at: toIso(row.created_at),
+        contact: {
+          name: String(row.contact_name ?? ""),
+          email: String(row.contact_email ?? ""),
+          company: String(row.contact_company ?? ""),
+        },
+      }));
+    },
+
+    async findCandidate(source, externalId) {
+      const rows = await sql`
+        SELECT id FROM sourced_candidates
+        WHERE source = ${source} AND external_id = ${externalId}
+        LIMIT 1
+      `;
+      const id = rows[0]?.id;
+      return typeof id === "string" ? { id } : null;
+    },
+
+    async insertCandidate(row) {
+      const rows = await sql`
+        INSERT INTO sourced_candidates (
+          source, external_id, company_name, city, state, industry,
+          signal_summary, source_url, approved_at
+        ) VALUES (
+          ${row.source},
+          ${row.externalId},
+          ${row.companyName},
+          ${row.city},
+          ${row.state},
+          ${row.industry},
+          ${row.signalSummary},
+          ${row.sourceUrl},
+          ${row.approvedAt}
+        )
+        RETURNING id
+      `;
+      const id = rows[0]?.id;
+      if (typeof id !== "string") throw new Error("candidate insert failed");
+      return { id };
+    },
+
+    async listNewCandidates(limit) {
+      const rows = await sql`
+        SELECT
+          id, source, company_name, city, state, industry,
+          signal_summary, source_url, status, created_at
+        FROM sourced_candidates
+        WHERE status = 'new'
+        ORDER BY created_at DESC
+        LIMIT ${limit}
+      `;
+      return rows.map((row) => ({
+        id: String(row.id),
+        source: String(row.source),
+        company_name: String(row.company_name),
+        city: String(row.city ?? ""),
+        state: String(row.state ?? ""),
+        industry: String(row.industry ?? ""),
+        signal_summary: String(row.signal_summary),
+        source_url: String(row.source_url ?? ""),
+        status: row.status as SourcedCandidateRecord["status"],
+        created_at: toIso(row.created_at),
+      }));
+    },
+  };
+}
+
+function toIso(value: unknown): string {
+  if (value instanceof Date) return value.toISOString();
+  return String(value);
 }
 
 /**
@@ -43,120 +226,73 @@ export function createCrmClient(env: CrmEnv = process.env): SupabaseClient | nul
 export async function fileLead(
   intake: LeadIntake,
   env: CrmEnv = process.env,
-  client: SupabaseClient | null = createCrmClient(env),
+  db: CrmDb | null = createCrmClient(env),
 ): Promise<CrmResult> {
-  if (!client) {
+  if (!db) {
     return { ok: false, skipped: true, reason: "not_configured" };
   }
 
-  const email = intake.email.trim().toLowerCase();
-  const name = intake.name.trim();
-  const company = intake.company.trim();
-  const now = new Date().toISOString();
+  try {
+    const email = intake.email.trim().toLowerCase();
+    const name = intake.name.trim();
+    const company = intake.company.trim();
+    const now = new Date().toISOString();
 
-  const existing = await client
-    .from("contacts")
-    .select("id")
-    .eq("email", email)
-    .maybeSingle();
+    const existing = await db.findContactByEmail(email);
+    let contactId: string;
+    let matchedExisting = false;
 
-  if (existing.error) {
-    return { ok: false, skipped: false, error: existing.error.message };
-  }
-
-  let contactId = existing.data?.id as string | undefined;
-  let matchedExisting = false;
-
-  if (contactId) {
-    matchedExisting = true;
-    const update = await client
-      .from("contacts")
-      .update({ name, company, updated_at: now })
-      .eq("id", contactId);
-    if (update.error) {
-      return { ok: false, skipped: false, error: update.error.message };
+    if (existing) {
+      matchedExisting = true;
+      contactId = existing.id;
+      await db.updateContact(contactId, { name, company, updatedAt: now });
+    } else {
+      const inserted = await db.insertContact({ email, name, company });
+      contactId = inserted.id;
     }
-  } else {
-    const insert = await client
-      .from("contacts")
-      .insert({ email, name, company })
-      .select("id")
-      .single();
-    if (insert.error || !insert.data?.id) {
-      return {
-        ok: false,
-        skipped: false,
-        error: insert.error?.message ?? "contact insert failed",
-      };
-    }
-    contactId = insert.data.id as string;
-  }
 
-  const lead = await client
-    .from("leads")
-    .insert({
-      contact_id: contactId,
+    const lead = await db.insertLead({
+      contactId,
       intent: intake.intent,
       message: intake.message,
       source: intake.source ?? "contact_form",
-      status: "new" satisfies LeadStatus,
-    })
-    .select("id")
-    .single();
+      status: "new",
+    });
 
-  if (lead.error || !lead.data?.id) {
+    return {
+      ok: true,
+      contactId,
+      leadId: lead.id,
+      matchedExisting,
+    };
+  } catch (err) {
     return {
       ok: false,
       skipped: false,
-      error: lead.error?.message ?? "lead insert failed",
+      error: err instanceof Error ? err.message : "CRM write failed",
     };
   }
-
-  return {
-    ok: true,
-    contactId,
-    leadId: lead.data.id as string,
-    matchedExisting,
-  };
 }
 
 /** Open leads for the operator digest. Never emails the lead. */
 export async function listOpenLeads(
   env: CrmEnv = process.env,
-  client: SupabaseClient | null = createCrmClient(env),
+  db: CrmDb | null = createCrmClient(env),
   limit = 50,
 ): Promise<{ ok: true; leads: LeadRecord[] } | { ok: false; error: string }> {
-  if (!client) {
+  if (!db) {
     return { ok: false, error: "CRM is not configured." };
   }
 
-  const { data, error } = await client
-    .from("leads")
-    .select("id, intent, status, created_at, contact:contacts(name, email, company)")
-    .eq("status", "new")
-    .order("created_at", { ascending: false })
-    .limit(limit);
-
-  if (error) {
-    return { ok: false, error: error.message };
-  }
-
-  const leads: LeadRecord[] = (data ?? []).map((row) => {
-    const contactRaw = row.contact as
-      | { name: string; email: string; company: string }
-      | { name: string; email: string; company: string }[]
-      | null;
-    const contact = Array.isArray(contactRaw) ? (contactRaw[0] ?? null) : contactRaw;
+  try {
+    const leads = await db.listNewLeads(limit);
+    return { ok: true, leads };
+  } catch (err) {
     return {
-      id: row.id as string,
-      intent: row.intent as string,
-      status: row.status as LeadStatus,
-      created_at: row.created_at as string,
-      contact,
+      ok: false,
+      error: err instanceof Error ? err.message : "CRM read failed",
     };
-  });
-
-  return { ok: true, leads };
+  }
 }
 
 export type FileCandidateResult =
@@ -168,82 +304,57 @@ export type FileCandidateResult =
 export async function fileSourcedCandidate(
   intake: SourcedCandidateIntake,
   env: CrmEnv = process.env,
-  client: SupabaseClient | null = createCrmClient(env),
+  db: CrmDb | null = createCrmClient(env),
 ): Promise<FileCandidateResult> {
-  if (!client) {
+  if (!db) {
     return { ok: false, skipped: true, reason: "not_configured" };
   }
 
-  const row = {
-    source: intake.source,
-    external_id: intake.externalId,
-    company_name: intake.companyName.trim(),
-    city: (intake.city ?? "").trim(),
-    state: (intake.state ?? "").trim().toUpperCase(),
-    industry: (intake.industry ?? "").trim(),
-    signal_summary: intake.signalSummary.trim(),
-    source_url: (intake.sourceUrl ?? "").trim(),
-    approved_at: intake.approvedAt ?? null,
-  };
+  try {
+    const existing = await db.findCandidate(intake.source, intake.externalId);
+    if (existing) {
+      return { ok: true, id: existing.id, inserted: false };
+    }
 
-  const existing = await client
-    .from("sourced_candidates")
-    .select("id")
-    .eq("source", row.source)
-    .eq("external_id", row.external_id)
-    .maybeSingle();
-
-  if (existing.error) {
-    return { ok: false, skipped: false, error: existing.error.message };
-  }
-
-  if (existing.data?.id) {
-    return { ok: true, id: existing.data.id as string, inserted: false };
-  }
-
-  const insert = await client
-    .from("sourced_candidates")
-    .insert(row)
-    .select("id")
-    .single();
-
-  if (insert.error || !insert.data?.id) {
+    const inserted = await db.insertCandidate({
+      source: intake.source,
+      externalId: intake.externalId,
+      companyName: intake.companyName.trim(),
+      city: (intake.city ?? "").trim(),
+      state: (intake.state ?? "").trim().toUpperCase(),
+      industry: (intake.industry ?? "").trim(),
+      signalSummary: intake.signalSummary.trim(),
+      sourceUrl: (intake.sourceUrl ?? "").trim(),
+      approvedAt: intake.approvedAt ?? null,
+    });
+    return { ok: true, id: inserted.id, inserted: true };
+  } catch (err) {
     return {
       ok: false,
       skipped: false,
-      error: insert.error?.message ?? "candidate insert failed",
+      error: err instanceof Error ? err.message : "candidate insert failed",
     };
   }
-
-  return { ok: true, id: insert.data.id as string, inserted: true };
 }
 
 export async function listOpenSourcedCandidates(
   env: CrmEnv = process.env,
-  client: SupabaseClient | null = createCrmClient(env),
+  db: CrmDb | null = createCrmClient(env),
   limit = 50,
 ): Promise<
   { ok: true; candidates: SourcedCandidateRecord[] } | { ok: false; error: string }
 > {
-  if (!client) {
+  if (!db) {
     return { ok: false, error: "CRM is not configured." };
   }
 
-  const { data, error } = await client
-    .from("sourced_candidates")
-    .select(
-      "id, source, company_name, city, state, industry, signal_summary, source_url, status, created_at",
-    )
-    .eq("status", "new")
-    .order("created_at", { ascending: false })
-    .limit(limit);
-
-  if (error) {
-    return { ok: false, error: error.message };
+  try {
+    const candidates = await db.listNewCandidates(limit);
+    return { ok: true, candidates };
+  } catch (err) {
+    return {
+      ok: false,
+      error: err instanceof Error ? err.message : "CRM read failed",
+    };
   }
-
-  return {
-    ok: true,
-    candidates: (data ?? []) as SourcedCandidateRecord[],
-  };
 }

@@ -1,5 +1,10 @@
-import { describe, expect, it, vi } from "vitest";
-import { crmConfig, fileLead, listOpenLeads } from "@/lib/leads/crm";
+import { describe, expect, it } from "vitest";
+import {
+  crmConfig,
+  fileLead,
+  listOpenLeads,
+  type CrmDb,
+} from "@/lib/leads/crm";
 
 const intake = {
   name: "Ada Lovelace",
@@ -9,66 +14,61 @@ const intake = {
   intent: "discovery",
 };
 
-function mockClient(handlers: {
-  maybeSingle?: { data: { id: string } | null; error: null | { message: string } };
-  updateError?: { message: string } | null;
-  insertContact?: { data: { id: string } | null; error: null | { message: string } };
-  insertLead?: { data: { id: string } | null; error: null | { message: string } };
-  list?: { data: unknown[]; error: null | { message: string } };
-}) {
-  const from = vi.fn((table: string) => {
-    if (table === "contacts") {
-      return {
-        select: () => ({
-          eq: () => ({
-            maybeSingle: async () =>
-              handlers.maybeSingle ?? { data: null, error: null },
-          }),
-        }),
-        update: () => ({
-          eq: async () => ({ error: handlers.updateError ?? null }),
-        }),
-        insert: () => ({
-          select: () => ({
-            single: async () =>
-              handlers.insertContact ?? {
-                data: { id: "contact_new" },
-                error: null,
-              },
-          }),
-        }),
-      };
-    }
-    if (table === "leads") {
-      return {
-        insert: () => ({
-          select: () => ({
-            single: async () =>
-              handlers.insertLead ?? { data: { id: "lead_1" }, error: null },
-          }),
-        }),
-        select: () => ({
-          eq: () => ({
-            order: () => ({
-              limit: async () =>
-                handlers.list ?? { data: [], error: null },
-            }),
-          }),
-        }),
-      };
-    }
-    throw new Error(`unexpected table ${table}`);
-  });
-
-  return { from } as never;
+function mockDb(handlers: {
+  contact?: { id: string } | null;
+  leads?: Array<{
+    id: string;
+    intent: string;
+    status: "new";
+    created_at: string;
+    contact: { name: string; email: string; company: string };
+  }>;
+}): CrmDb {
+  return {
+    async findContactByEmail() {
+      return handlers.contact === undefined
+        ? null
+        : handlers.contact;
+    },
+    async updateContact() {},
+    async insertContact() {
+      return { id: "contact_new" };
+    },
+    async insertLead() {
+      return { id: "lead_1" };
+    },
+    async listNewLeads() {
+      return (handlers.leads ?? []).map((row) => ({
+        id: row.id,
+        intent: row.intent,
+        status: row.status,
+        created_at: row.created_at,
+        contact: row.contact,
+      }));
+    },
+    async findCandidate() {
+      return null;
+    },
+    async insertCandidate() {
+      return { id: "cand_1" };
+    },
+    async listNewCandidates() {
+      return [];
+    },
+  };
 }
 
 describe("crmConfig", () => {
-  it("is unconfigured without both URL and service role", () => {
+  it("is configured only when DATABASE_URL is set", () => {
     expect(crmConfig({}).configured).toBe(false);
-    expect(crmConfig({ SUPABASE_URL: "https://x.supabase.co" }).configured).toBe(
-      false,
-    );
+    expect(
+      crmConfig({ SUPABASE_URL: "https://x.supabase.co" }).configured,
+    ).toBe(false);
+    expect(
+      crmConfig({
+        DATABASE_URL: "postgresql://user:pass@host/db?sslmode=require",
+      }).configured,
+    ).toBe(true);
   });
 });
 
@@ -83,7 +83,7 @@ describe("fileLead", () => {
   });
 
   it("inserts a new contact and lead", async () => {
-    const result = await fileLead(intake, {}, mockClient({}));
+    const result = await fileLead(intake, {}, mockDb({}));
     expect(result).toEqual({
       ok: true,
       contactId: "contact_new",
@@ -96,9 +96,7 @@ describe("fileLead", () => {
     const result = await fileLead(
       intake,
       {},
-      mockClient({
-        maybeSingle: { data: { id: "contact_existing" }, error: null },
-      }),
+      mockDb({ contact: { id: "contact_existing" } }),
     );
     expect(result).toEqual({
       ok: true,
@@ -113,23 +111,20 @@ describe("listOpenLeads", () => {
   it("maps joined contact rows", async () => {
     const result = await listOpenLeads(
       {},
-      mockClient({
-        list: {
-          data: [
-            {
-              id: "lead_1",
-              intent: "discovery",
-              status: "new",
-              created_at: "2026-11-24T12:00:00.000Z",
-              contact: {
-                name: "Ada",
-                email: "ada@example.com",
-                company: "Analytical Engines",
-              },
+      mockDb({
+        leads: [
+          {
+            id: "lead_1",
+            intent: "discovery",
+            status: "new",
+            created_at: "2026-11-24T12:00:00.000Z",
+            contact: {
+              name: "Ada",
+              email: "ada@example.com",
+              company: "Analytical Engines",
             },
-          ],
-          error: null,
-        },
+          },
+        ],
       }),
     );
     expect(result.ok).toBe(true);

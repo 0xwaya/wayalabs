@@ -275,7 +275,7 @@ FACTORY_APPROVAL_CHANNEL=
 CRON_SECRET=
 ```
 
-Legacy `SUPABASE_URL` / `SUPABASE_SERVICE_ROLE_KEY` remain optional until the lead-engine CRM client is swapped to `@neondatabase/serverless`.
+CRM reads `DATABASE_URL` only. Legacy `SUPABASE_*` keys are unused.
 
 ---
 
@@ -290,12 +290,15 @@ Legacy `SUPABASE_URL` / `SUPABASE_SERVICE_ROLE_KEY` remain optional until the le
 ### Phase 1 — Durable skeleton (no live side effects)
 
 - [x] Neon project `wayalabs` provisioned; CRM tables + `factory_commerce_aliases` applied
-- [ ] Neon migrations: runs, steps, ledger, webhook_events, bots
-- [ ] CRM client: swap Supabase JS → `@neondatabase/serverless` + `DATABASE_URL`
-- [ ] Server `GET state` from DB; floor can dual-read (feature flag)
-- [ ] Webhook receivers: Stripe + Shopify verify + persist + alias link (no booking yet)
+- [x] Neon migrations: `factory_webhook_events`, `factory_ledger_entries`, `factory_runs` (`db/migrations/`)
+- [x] CRM client: swap Supabase JS → `@neondatabase/serverless` + `DATABASE_URL`
+- [x] Webhook receiver: Stripe verify + persist + alias link (no booking yet)
+- [x] Floor **Proof rail** (`GET /api/factory/proofs`)
+- [x] `FACTORY_MODE=sandbox` on Vercel
+- [ ] Server `GET state` from DB; floor dual-read (feature flag)
+- [ ] Shopify webhook twin of Stripe ingest
 - [ ] Connector health pings on a cron (`/api/factory/connectors/health`)
-- [ ] Keep sandbox tick path for visitors without creds
+- [ ] Keep sandbox tick path for visitors without creds (already default)
 
 ### Phase 2 — Shadow bots
 

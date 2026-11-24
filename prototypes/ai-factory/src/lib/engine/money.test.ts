@@ -1,10 +1,17 @@
 import { describe, expect, it } from "vitest";
-import { formatUsd, nextIncomeGoal } from "./money";
+import { formatMoneyCents, formatUsd, nextIncomeGoal } from "./money";
 
 describe("formatUsd", () => {
   it("formats positive and negative amounts", () => {
     expect(formatUsd(1450)).toBe("$1,450");
     expect(formatUsd(-40)).toBe("-$40");
+  });
+});
+
+describe("formatMoneyCents", () => {
+  it("preserves cents and currency", () => {
+    expect(formatMoneyCents(1999, "usd")).toBe("$19.99");
+    expect(formatMoneyCents(1050, "eur")).toMatch(/10[.,]50/);
   });
 });
 
