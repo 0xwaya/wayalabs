@@ -84,12 +84,13 @@ export default function AboutPage() {
               About
             </p>
             <h1 className="text-5xl font-bold tracking-tight mb-6">
-              AI systems, explored through{" "}
-              <span className="gradient-text">architecture and orchestration.</span>
+              Lead systems and platforms for{" "}
+              <span className="gradient-text">operators who need leads.</span>
             </h1>
             <p className="text-lg text-[var(--muted)] leading-relaxed">
-              Wayalabs builds a custom stack for the business. Chatbots are live.
-              Client brands shown here are client projects, not our products. Agents and orchestrators stay in research and are not for sale.
+              Wayalabs builds lead systems for local trade and platforms for local
+              listings. Chatbots ship inside those builds. Client brands shown here are
+              client projects, not our products. Agents stay in research and are not for sale.
             </p>
           </div>
 

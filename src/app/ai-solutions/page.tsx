@@ -9,7 +9,7 @@ import { MessageSquare, Cpu, Plug, Globe, BarChart3, ArrowRight } from "lucide-r
 export const metadata: Metadata = {
   title: "AI Solutions",
   description:
-    `Custom chatbots are live. Agents and orchestrators stay in research. ${discoveryCreditSentence}`,
+    `Lead systems and platforms for local operators. Chatbots ship inside live builds. Agents stay in research and are not for sale. ${discoveryCreditSentence}`,
   alternates: { canonical: "/ai-solutions" },
   openGraph: pageOpenGraph("/ai-solutions"),
 };
