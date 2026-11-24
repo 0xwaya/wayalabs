@@ -40,6 +40,7 @@ Pulled from live AI-ops reels that convert (Factorio map + terminal + real money
 - **Shareable neon ops aesthetic** for 9:16 tour clips  
 - Next: spatial map, live Stripe/Etsy proof rail, competitor-intel bay with originality guardrails  
 - **Production plan** (real bots, webhooks, connectors): [`docs/internal/ai-factory-production.md`](../../docs/internal/ai-factory-production.md)
+- **Phase 0 contracts:** [`src/lib/factory/`](./src/lib/factory/) · OpenAPI [`openapi/factory-v0.yaml`](./openapi/factory-v0.yaml)
 
 ## Run
 

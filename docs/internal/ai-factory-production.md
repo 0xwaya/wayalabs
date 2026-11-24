@@ -272,8 +272,8 @@ CRON_SECRET=
 ### Phase 0 — Contract freeze (this doc)
 
 - [x] Map mock agents → bots / connectors / proofs
-- [ ] Freeze `ProofEvent` + `StepJob` TypeScript types in prototype
-- [ ] OpenAPI sketch for `/api/hooks/*` and `/api/factory/runs`
+- [x] Freeze `ProofEvent` + `StepJob` TypeScript types in prototype (`prototypes/ai-factory/src/lib/factory/`)
+- [x] OpenAPI sketch for `/api/hooks/*` and `/api/factory/runs` (`prototypes/ai-factory/openapi/factory-v0.yaml`)
 
 ### Phase 1 — Durable skeleton (no live side effects)
 
@@ -316,6 +316,7 @@ CRON_SECRET=
 
 | Phase | Done when |
 |---|---|
+| 0 | Live TS contracts + OpenAPI sketch checked in; commerce_key dedupe helpers tested |
 | 1 | Webhook replay is idempotent; runs survive deploy; sandbox still playable |
 | 2 | Operator can approve/reject a draft email from a Flash Drop run |
 | 3 | $1 real (or Stripe live) payment with `run_id` appears on CART tile + ledger |
@@ -336,12 +337,11 @@ CRON_SECRET=
 
 ## Immediate next engineering slice
 
-Smallest vertical that teaches the architecture without live risk:
+Phase 0 done. Smallest Phase 1 vertical without live risk:
 
-1. Add `src/lib/factory/types-live.ts` — `ProofEvent`, `StepJob`, `LedgerEntry`
-2. Migration `factory_webhook_events` + `factory_ledger_entries`
-3. `POST /api/hooks/stripe` — verify, store, no side effects
-4. Floor panel **Proof rail** reading last events (service-backed)
-5. Feature flag: `FACTORY_MODE=sandbox` default on Vercel
+1. Migration `factory_webhook_events` + `factory_ledger_entries` (honor `commerce_key` uniques)
+2. `POST /api/hooks/stripe` — verify, store, no side effects
+3. Floor panel **Proof rail** reading last events (service-backed)
+4. Feature flag: `FACTORY_MODE=sandbox` default on Vercel
 
 Then wire Flash Drop step 3 to *wait* on a matching Stripe test event before calling `bookRevenue`.
