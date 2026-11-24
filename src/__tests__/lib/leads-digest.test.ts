@@ -18,9 +18,9 @@ const leads: LeadRecord[] = [
 
 describe("renderDigest", () => {
   it("is addressed to the operator and lists leads", () => {
-    const rendered = renderDigest(leads);
+    const rendered = renderDigest(leads, []);
     expect(rendered.subject).toContain("1 open");
-    expect(rendered.text).toContain("does not email the leads");
+    expect(rendered.text).toContain("does not email leads or candidates");
     expect(rendered.text).toContain("ada@example.com");
   });
 });

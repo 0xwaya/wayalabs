@@ -27,6 +27,7 @@ export async function GET(request: Request) {
   return NextResponse.json({
     ok: true,
     openCount: result.openCount,
+    sourcedCount: result.sourcedCount,
     emailed: result.emailed,
   });
 }
