@@ -1,9 +1,28 @@
-/** Format integer cents-free USD for the HUD. */
+/** Format integer dollars for the HUD (sandbox economy). */
 export function formatUsd(amount: number): string {
   const n = Math.round(amount);
   const abs = Math.abs(n);
   const formatted = abs.toLocaleString("en-US");
   return n < 0 ? `-$${formatted}` : `$${formatted}`;
+}
+
+/** Format Stripe-style minor units with currency (preserves cents). */
+export function formatMoneyCents(
+  amountCents: number,
+  currency: string | null | undefined = "usd",
+): string {
+  const code = (currency ?? "usd").toLowerCase();
+  try {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: code.toUpperCase(),
+      currencyDisplay: "narrowSymbol",
+    }).format(amountCents / 100);
+  } catch {
+    const dollars = amountCents / 100;
+    const sign = dollars < 0 ? "-" : "";
+    return `${sign}${code.toUpperCase()} ${Math.abs(dollars).toFixed(2)}`;
+  }
 }
 
 /** Lifetime revenue milestones that drive command progression. */

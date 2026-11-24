@@ -47,11 +47,11 @@ describe("mapStripeEvent", () => {
         },
       },
     });
-    expect(mapped.kind).toBe("payment_captured");
-    expect(mapped.runId).toBe("run_1");
-    expect(mapped.hints.stripePaymentIntentId).toBe("pi_abc");
-    expect(mapped.hints.shopifyOrderId).toBe("901");
-    expect(mapped.amountCents).toBe(51000);
+    expect(mapped?.kind).toBe("payment_captured");
+    expect(mapped?.runId).toBe("run_1");
+    expect(mapped?.hints.stripePaymentIntentId).toBe("pi_abc");
+    expect(mapped?.hints.shopifyOrderId).toBe("901");
+    expect(mapped?.amountCents).toBe(51000);
   });
 
   it("maps refund events", () => {
@@ -60,6 +60,16 @@ describe("mapStripeEvent", () => {
       type: "charge.refunded",
       data: { object: { id: "ch_1", amount: 1000, currency: "usd" } },
     });
-    expect(mapped.kind).toBe("payment_refunded");
+    expect(mapped?.kind).toBe("payment_refunded");
+  });
+
+  it("ignores unsupported event types", () => {
+    expect(
+      mapStripeEvent({
+        id: "evt_fail",
+        type: "payment_intent.payment_failed",
+        data: { object: { id: "pi_x" } },
+      }),
+    ).toBeNull();
   });
 });

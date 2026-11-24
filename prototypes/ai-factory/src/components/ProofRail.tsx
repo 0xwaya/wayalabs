@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { formatUsd } from "@/lib/engine/money";
+import { formatMoneyCents } from "@/lib/engine/money";
 
 type ProofRow = {
   id: string;
@@ -90,7 +90,7 @@ export default function ProofRail() {
                 <span className="text-[var(--amber)]">
                   {proof.amountCents == null
                     ? "—"
-                    : formatUsd(proof.amountCents / 100)}
+                    : formatMoneyCents(proof.amountCents, proof.currency)}
                 </span>
               </div>
               <p className="mt-1 truncate text-[var(--muted)]">

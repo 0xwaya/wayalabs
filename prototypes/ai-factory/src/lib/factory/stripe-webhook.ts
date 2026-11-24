@@ -72,13 +72,32 @@ export function verifyStripeWebhook(
   return { ok: true, payload };
 }
 
-export function mapStripeEvent(event: StripeEventLike): {
+const STRIPE_KIND_BY_TYPE: Record<string, ProofKind> = {
+  "payment_intent.succeeded": "payment_captured",
+  "charge.succeeded": "payment_captured",
+  "charge.refunded": "payment_refunded",
+  "refund.created": "payment_refunded",
+  "refund.updated": "payment_refunded",
+  "charge.dispute.created": "dispute_opened",
+  "charge.dispute.funds_withdrawn": "dispute_opened",
+};
+
+export type MappedStripeProof = {
   kind: ProofKind;
   hints: CommerceKeyHints;
   amountCents: number | null;
   currency: string | null;
   runId: string | null;
-} {
+};
+
+/**
+ * Map supported Stripe events to proofs. Returns null for unsupported types
+ * (e.g. payment_intent.payment_failed) so they are not stored as captures.
+ */
+export function mapStripeEvent(event: StripeEventLike): MappedStripeProof | null {
+  const kind = STRIPE_KIND_BY_TYPE[event.type];
+  if (!kind) return null;
+
   const obj = event.data?.object ?? {};
   const meta = (obj.metadata ?? {}) as Record<string, unknown>;
   const runId =
@@ -119,22 +138,17 @@ export function mapStripeEvent(event: StripeEventLike): {
   const currency =
     typeof obj.currency === "string" ? obj.currency.toLowerCase() : null;
 
-  const hints: CommerceKeyHints = {
-    stripePaymentIntentId: paymentIntentId,
-    stripeChargeId: chargeId,
-    shopifyOrderId,
+  return {
+    kind,
+    hints: {
+      stripePaymentIntentId: paymentIntentId,
+      stripeChargeId: chargeId,
+      shopifyOrderId,
+      runId,
+      externalId: event.id,
+    },
+    amountCents,
+    currency,
     runId,
-    externalId: event.id,
   };
-
-  let kind: ProofKind = "payment_captured";
-  if (event.type.includes("refund") || event.type === "charge.refunded") {
-    kind = "payment_refunded";
-  } else if (event.type.includes("dispute")) {
-    kind = "dispute_opened";
-  } else if (event.type === "payment_intent.succeeded" || event.type === "charge.succeeded") {
-    kind = "payment_captured";
-  }
-
-  return { kind, hints, amountCents, currency, runId };
 }

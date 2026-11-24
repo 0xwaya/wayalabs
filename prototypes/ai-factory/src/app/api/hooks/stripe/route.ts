@@ -28,6 +28,18 @@ export async function POST(request: Request) {
   }
 
   const mapped = mapStripeEvent(verified.payload);
+  if (!mapped) {
+    return NextResponse.json({
+      accepted: true,
+      ignored: true,
+      reason: `Unsupported Stripe event type: ${verified.payload.type}`,
+      duplicate: false,
+      evidenceOnly: true,
+      proofEventId: null,
+      ledgerEntryId: null,
+    });
+  }
+
   const result = await ingestProofEvent(sql, {
     provider: "stripe",
     eventId: verified.payload.id,
