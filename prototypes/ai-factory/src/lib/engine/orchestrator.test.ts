@@ -1,11 +1,14 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import {
+  createSession,
   getState,
+  migrateState,
   resetState,
   selectFactory,
   startMission,
   tick,
 } from "./orchestrator";
+import { createSeedState } from "./seed";
 
 beforeEach(() => {
   resetState();
@@ -130,7 +133,7 @@ describe("tick game loop", () => {
 
 describe("command level unlock", () => {
   it("unlocks Signal Hub at command level 3 (globalXp >= 240)", () => {
-    // 55 XP per flash → 5 completions = 275 XP → commandLevel 3
+    // 55 XP per flash + streak bonuses → a few completions reach CMD 3
     for (let i = 0; i < 5; i++) {
       startMission("ms-nc-flash");
       runUntil("ms-nc-flash", "completed");
@@ -141,5 +144,55 @@ describe("command level unlock", () => {
     expect(state.factories.find((f) => f.id === "fx-signal-hub")?.unlocked).toBe(
       true,
     );
+  });
+});
+
+describe("streak + session", () => {
+  it("tracks questsCompleted and streak bonuses", () => {
+    for (let i = 0; i < 3; i++) {
+      startMission("ms-nc-flash");
+      runUntil("ms-nc-flash", "completed");
+    }
+    const state = getState();
+    expect(state.questsCompleted).toBe(3);
+    expect(state.streak).toBe(3);
+    // Base 55*3 = 165 + streak bonus 20 on the 3rd clear
+    expect(state.globalXp).toBeGreaterThanOrEqual(185);
+    expect(state.logs.some((l) => l.kind === "bonus")).toBe(true);
+  });
+
+  it("createSession isolates client state from the global store", () => {
+    const session = createSession();
+    session.startMission("ms-fl-batch");
+    expect(session.getState().missions.find((m) => m.id === "ms-fl-batch")?.status).toBe(
+      "active",
+    );
+    expect(getState().missions.find((m) => m.id === "ms-fl-batch")?.status).toBe(
+      "available",
+    );
+  });
+
+  it("migrateState merges saved progress onto current seed content", () => {
+    const seed = createSeedState();
+    seed.globalXp = 300;
+    seed.questsCompleted = 4;
+    seed.streak = 2;
+    seed.factories[0]!.level = 2;
+    seed.factories[0]!.xp = 10;
+    const partial = {
+      version: 1,
+      tick: 12,
+      globalXp: 300,
+      factories: seed.factories,
+      agents: seed.agents,
+      missions: seed.missions.slice(0, 2),
+      logs: [],
+      selectedFactoryId: "fx-neon-cart",
+    };
+    const migrated = migrateState(partial);
+    expect(migrated?.version).toBe(2);
+    expect(migrated?.globalXp).toBe(300);
+    expect(migrated?.missions.length).toBe(seed.missions.length);
+    expect(migrated?.questsCompleted).toBe(0);
   });
 });

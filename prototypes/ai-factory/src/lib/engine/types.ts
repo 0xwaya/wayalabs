@@ -57,7 +57,7 @@ export type LogEvent = {
   id: string;
   at: string;
   factoryId: string | null;
-  kind: "system" | "route" | "agent" | "mission" | "level";
+  kind: "system" | "route" | "agent" | "mission" | "level" | "bonus";
   message: string;
 };
 
@@ -65,6 +65,8 @@ export type OrchestratorState = {
   version: number;
   tick: number;
   globalXp: number;
+  questsCompleted: number;
+  streak: number;
   factories: Factory[];
   agents: Agent[];
   missions: Mission[];

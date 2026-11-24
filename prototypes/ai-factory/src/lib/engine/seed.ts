@@ -2,6 +2,8 @@ import type { Agent, Factory, Mission, OrchestratorState } from "./types";
 
 const xpCurve = (level: number) => 80 + level * 40;
 
+export const STATE_VERSION = 2;
+
 export function createSeedState(): OrchestratorState {
   const factories: Factory[] = [
     {
@@ -93,6 +95,22 @@ export function createSeedState(): OrchestratorState {
       stepIndex: 0,
     },
     {
+      id: "ms-nc-recover",
+      factoryId: "fx-neon-cart",
+      title: "Abandoned Cart Recovery",
+      brief: "Pulse win-back offers and answer the surge of reply threads.",
+      xpReward: 65,
+      requiredRoles: ["marketing", "support"],
+      status: "available",
+      progress: 0,
+      steps: [
+        "Segment abandoned carts",
+        "Fire win-back pulse",
+        "Reply Drone closes objections",
+      ],
+      stepIndex: 0,
+    },
+    {
       id: "ms-fl-batch",
       factoryId: "fx-forge-line",
       title: "Batch 17: Zero Defect Run",
@@ -124,12 +142,62 @@ export function createSeedState(): OrchestratorState {
       ],
       stepIndex: 0,
     },
+    {
+      id: "ms-fl-night",
+      factoryId: "fx-forge-line",
+      title: "Night Shift Overclock",
+      brief: "Hold yield under load while logistics feeds the line.",
+      xpReward: 80,
+      requiredRoles: ["ops", "quality", "logistics"],
+      status: "available",
+      progress: 0,
+      steps: [
+        "Line Captain sets night cadence",
+        "Caliper Eye samples mid-run",
+        "Dock Runner keeps WIP flowing",
+      ],
+      stepIndex: 0,
+    },
+    {
+      id: "ms-sh-clear",
+      factoryId: "fx-signal-hub",
+      title: "Backlog Grid Clear",
+      brief: "Re-weave delayed lanes and push yard throughput.",
+      xpReward: 85,
+      requiredRoles: ["logistics", "ops"],
+      status: "available",
+      progress: 0,
+      steps: [
+        "Route Weaver remaps delayed lanes",
+        "Yard Boss clears dwell pods",
+        "Confirm grid SLA green",
+      ],
+      stepIndex: 0,
+    },
+    {
+      id: "ms-sh-auction",
+      factoryId: "fx-signal-hub",
+      title: "Hot Lane Auction",
+      brief: "Sell premium slots while logistics holds capacity.",
+      xpReward: 95,
+      requiredRoles: ["sales", "logistics"],
+      status: "available",
+      progress: 0,
+      steps: [
+        "Unlock Slot Broker (hub L2)",
+        "Price hot-lane windows",
+        "Route Weaver reserves capacity",
+      ],
+      stepIndex: 0,
+    },
   ];
 
   return {
-    version: 1,
+    version: STATE_VERSION,
     tick: 0,
     globalXp: 0,
+    questsCompleted: 0,
+    streak: 0,
     factories,
     agents,
     missions,
