@@ -15,9 +15,9 @@ const shareTech = Share_Tech_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AI Factory · Wayalabs Prototype",
+  title: "AI Factory · Wayalabs",
   description:
-    "Run AI agent factories that book revenue. Wayalabs prototype — quests pay out, lifetime income unlocks the grid.",
+    "Command the AI Factory floor — deploy crews, clear production runs, unlock bays, and climb the cash ladder.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

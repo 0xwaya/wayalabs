@@ -225,7 +225,7 @@ export function createSeedState(): OrchestratorState {
         factoryId: null,
         kind: "system",
         message:
-          "Wayalabs AI Factory online. Build agent teams → run real-world funnels → book income.",
+          "AI Factory online. Crews standing by — launch a production run to earn.",
       },
     ],
     selectedFactoryId: "fx-neon-cart",

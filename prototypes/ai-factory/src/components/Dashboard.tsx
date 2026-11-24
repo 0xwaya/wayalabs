@@ -173,18 +173,15 @@ export default function Dashboard({ initial }: { initial: PublicState }) {
       <header className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
           <p className="text-xs tracking-[0.35em] text-[var(--cyan)] uppercase">
-            Wayalabs · Product Prototype
+            Wayalabs · Command Floor
           </p>
           <h1 className="font-[family-name:var(--font-orbitron)] brand-flicker neon-text mt-1 text-3xl text-[var(--lime)] md:text-5xl">
             AI FACTORY
           </h1>
           <p className="mt-2 max-w-xl text-sm text-[var(--muted)] md:text-base">
-            Build{" "}
-            <span className="text-[var(--lime)]">factories of agent teams</span>{" "}
-            that run{" "}
-            <span className="text-[var(--cyan)]">real-world tasks</span> through{" "}
-            <span className="text-[var(--amber)]">income funnels</span>. Mock
-            USD now — swap crews for live models + real payouts later.
+            Spin up bays, deploy your crew, clear production runs, and{" "}
+            <span className="text-[var(--amber)]">rack up cash</span>. Level
+            the floor. Unlock the hub. Keep the lines hot.
           </p>
           <div className="mt-3 max-w-md">
             <div className="mb-1 flex justify-between text-[10px] tracking-wider text-[var(--muted)] uppercase">
