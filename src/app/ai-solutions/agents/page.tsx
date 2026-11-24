@@ -126,10 +126,10 @@ export default function AgentsPage() {
       {/* CTA */}
       <section className="py-20 px-6">
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">Start with one bounded workflow</h2>
+          <h2 className="text-3xl font-bold mb-4">Agents stay in research</h2>
           <p className="text-[var(--muted)] mb-8">
-            Describe a repetitive task and the tools it touches. We&apos;ll assess its scope,
-            data boundaries, and a practical way to verify whether automation helps.
+            Agent pilots are not for sale. For live work today, start with discovery toward
+            a lead system or platform build.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
@@ -138,13 +138,13 @@ export default function AgentsPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#f3f4f6] text-[#07080c] hover:bg-[#d7dbe3] font-semibold hover:opacity-90 transition-opacity"
             >
-              Book a Call <ArrowRight size={16} />
+              Book a discovery call <ArrowRight size={16} />
             </Link>
             <Link
-              href="/case-studies/openclaw-agent"
+              href="/offers"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl border border-[var(--border)] text-sm font-medium hover:bg-[var(--card)] transition-colors"
             >
-              See Agent Case Study
+              See offers
             </Link>
           </div>
           <NewCustomerNote centered />

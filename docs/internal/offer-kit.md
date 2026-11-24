@@ -2,7 +2,9 @@
 
 Internal. The public page is [/offers](https://wayalabs.com/offers). It shows discovery, the platform build, and the lead system. Watch, the build block, and agent pilots stay here.
 
-Updated 3 November 2026. The 40% first-invoice discount is retired. These are the prices. Not booked revenue.
+Updated 24 November 2026. The 40% first-invoice discount is retired. These are the prices. Not booked revenue.
+
+The public site has one commercial ladder: `/offers`. `/services` redirects there. Do not reintroduce a second package grid.
 
 ## Rules
 
@@ -35,3 +37,13 @@ Half of the discovery amount due, before the working session: $600 of $1,200.
 `Discovery credit, fee paid on [date]`
 
 Show the build amount, then the credit line when it applies.
+
+## After the build
+
+Attach Watch ($400 / month) by default at handoff. Offer Build block ($1,200 / month) when they want a scheduled capacity block. See `close-checklist.md`.
+
+## Kits
+
+- Lead system shape: `lead-system-kit.md`
+- Platform shape: `platform-kit.md`
+

@@ -7,7 +7,7 @@ import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
 import { discoveryCreditSentence } from "@/lib/data/offers";
 
 export const metadata: Metadata = {
-  title: "Contact — Book a Call",
+  title: "Contact — Book discovery",
   description:
     `Book a discovery call with Wayalabs. ${discoveryCreditSentence}`,
   alternates: { canonical: "/contact" },
@@ -16,8 +16,8 @@ export const metadata: Metadata = {
 
 const trustSignals = [
   { icon: CalendarDays, label: "Response within 1 business day" },
-  { icon: MessageSquare, label: "No commitment required on the call" },
-  { icon: Mail, label: "Clear scope and estimate after discovery" },
+  { icon: MessageSquare, label: "Discovery ends in a written go or no-go" },
+  { icon: Mail, label: "Lead system and platform builds after discovery" },
 ];
 
 export default function ContactPage() {
@@ -27,15 +27,15 @@ export default function ContactPage() {
       <section className="py-24 px-6 grid-bg border-b border-[var(--border)]">
         <div className="max-w-7xl mx-auto">
           <p className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)] mb-4">
-            Get in Touch
+            Discovery
           </p>
           <h1 className="text-5xl font-bold tracking-tight mb-5 max-w-2xl">
-            Let&apos;s talk about{" "}
-            <span className="gradient-text">your AI opportunity</span>
+            Start with a{" "}
+            <span className="gradient-text">discovery sprint</span>
           </h1>
           <p className="text-lg text-[var(--muted)] max-w-xl leading-relaxed">
-            Tell us what you want to build or automate. We&apos;ll respond with a clear,
-            honest assessment — and a path forward if it&apos;s a good fit.
+            Tell us the outcome you need. We&apos;ll map systems in and out, the data
+            boundary, and whether a lead system or platform build is the right next step.
           </p>
           <NewCustomerNote />
         </div>
@@ -90,7 +90,13 @@ export default function ContactPage() {
                 <CalendarDays size={15} />
                 Open calendar
               </a>
-              <p className="text-xs text-[var(--muted)] mt-2">30-min exploratory call or 15-min meeting</p>
+              <p className="text-xs text-[var(--muted)] mt-2">
+                Book discovery, then see{" "}
+                <a href="/offers" className="underline underline-offset-4 hover:text-[var(--foreground)]">
+                  lead system and platform offers
+                </a>
+                .
+              </p>
             </div>
 
           </div>

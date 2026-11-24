@@ -35,6 +35,15 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: __dirname,
   },
+  async redirects() {
+    return [
+      {
+        source: "/services",
+        destination: "/offers",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

@@ -49,8 +49,8 @@ export default function CTABanner() {
                 Book a discovery call
                 <ArrowRight size={16} />
               </ButtonLink>
-              <ButtonLink href="/case-studies" size="lg" variant="secondary">
-                View live work
+              <ButtonLink href="/offers" size="lg" variant="secondary">
+                See lead system and platform
               </ButtonLink>
             </div>
 

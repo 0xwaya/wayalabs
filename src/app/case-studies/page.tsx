@@ -115,16 +115,24 @@ export default function CaseStudiesPage() {
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">Want to be the next case study?</h2>
           <p className="text-[var(--muted)] mb-8">
-            Book a discovery call and let&apos;s map out what AI can do for your business.
+            Start with a discovery sprint. If a lead system or platform build fits, that fee is credited in full within 60 days.
           </p>
-          <Link
-            href={CAL_BOOKING_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#f3f4f6] text-[#07080c] hover:bg-[#d7dbe3] font-semibold hover:opacity-90 transition-opacity"
-          >
-            Book a Call <ArrowRight size={16} />
-          </Link>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link
+              href={CAL_BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#f3f4f6] text-[#07080c] hover:bg-[#d7dbe3] font-semibold hover:opacity-90 transition-opacity"
+            >
+              Book a discovery call <ArrowRight size={16} />
+            </Link>
+            <Link
+              href="/offers"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl border border-[var(--border)] text-sm font-medium hover:bg-[var(--card)] transition-colors"
+            >
+              See offers
+            </Link>
+          </div>
           <NewCustomerNote centered />
         </div>
       </section>

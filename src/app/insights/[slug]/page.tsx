@@ -131,14 +131,22 @@ export default async function InsightDetailPage({ params }: Props) {
           <p className="text-[var(--muted)] mb-8">
             We can discuss a scoped project and its research, implementation, and evaluation needs.
           </p>
-          <Link
-            href={CAL_BOOKING_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#f3f4f6] text-[#07080c] hover:bg-[#d7dbe3] font-semibold hover:opacity-90 transition-opacity"
-          >
-            Book a Call <ArrowRight size={16} />
-          </Link>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link
+              href={CAL_BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#f3f4f6] text-[#07080c] hover:bg-[#d7dbe3] font-semibold hover:opacity-90 transition-opacity"
+            >
+              Book a discovery call <ArrowRight size={16} />
+            </Link>
+            <Link
+              href="/offers"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl border border-[var(--border)] text-sm font-medium hover:bg-[var(--card)] transition-colors"
+            >
+              See offers
+            </Link>
+          </div>
           <NewCustomerNote centered />
         </div>
       </section>

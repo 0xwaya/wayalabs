@@ -49,8 +49,8 @@ export default function Hero() {
             Book a discovery call
             <ArrowRight size={16} />
           </ButtonLink>
-          <ButtonLink href="/case-studies" variant="secondary" size="md">
-            View live work
+          <ButtonLink href="/offers" variant="secondary" size="md">
+            Discovery, lead system, platform
             <ChevronRight size={16} />
           </ButtonLink>
         </div>

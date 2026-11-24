@@ -35,7 +35,7 @@ const footerLinks = {
     { href: "/insights", label: "Insights" },
   ],
   Contact: [
-    { href: CAL_BOOKING_URL, label: "Book a Call" },
+    { href: CAL_BOOKING_URL, label: "Book discovery" },
     { href: "mailto:admin@wayalabs.com", label: "admin@wayalabs.com" },
   ],
 };

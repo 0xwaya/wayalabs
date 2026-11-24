@@ -4,12 +4,17 @@ export const MAX_REQUESTS_PER_WINDOW = 5;
 // Internal request log. Exported with underscore prefix for test-time injection.
 export const _requestLog = new Map<string, number[]>();
 
-export type ContactIntent = "chatbot" | "agent" | "integration" | "platform" | "unsure";
+export type ContactIntent =
+  | "discovery"
+  | "lead-system"
+  | "platform"
+  | "chatbot"
+  | "unsure";
 export const ALLOWED_INTENTS: ContactIntent[] = [
-  "chatbot",
-  "agent",
-  "integration",
+  "discovery",
+  "lead-system",
   "platform",
+  "chatbot",
   "unsure",
 ];
 
