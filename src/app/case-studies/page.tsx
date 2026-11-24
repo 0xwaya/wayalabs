@@ -11,7 +11,7 @@ import { categoryColors } from "@/lib/data/categories";
 export const metadata: Metadata = {
   title: "Case Studies",
   description:
-    `Client proof: Urban Stone Collective lead system and Queen City Soundboard platform. Research notes for Echo and Grok operators are labeled not for sale. ${discoveryCreditSentence}`,
+    `Client proof: Urban Stone Collective lead system and Queen City Soundboard platform. Echo and Grok operator notes are studio research that informs client agent integrations. ${discoveryCreditSentence}`,
   alternates: { canonical: "/case-studies" },
   openGraph: pageOpenGraph("/case-studies"),
 };
@@ -23,7 +23,7 @@ export default function CaseStudiesPage() {
       <section className="py-24 px-6 grid-bg border-b border-[var(--border)]">
         <div className="max-w-7xl mx-auto">
           <p className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)] mb-4">
-            Client proof · research labeled
+            Client proof · studio research
           </p>
           <h1 className="text-5xl font-bold tracking-tight mb-5 max-w-2xl">
             Lead systems and platforms{" "}
@@ -31,8 +31,8 @@ export default function CaseStudiesPage() {
           </h1>
           <p className="text-lg text-[var(--muted)] max-w-xl leading-relaxed">
             Primary ICP: local trade and service (Urban Stone). Secondary: local
-            listings (Queen City Soundboard). Agent runtimes below are research —
-            not for sale.
+            listings (Queen City Soundboard). Echo and Grok notes below are studio
+            research — the same class of agent can be integrated when discovery names it.
           </p>
         </div>
       </section>

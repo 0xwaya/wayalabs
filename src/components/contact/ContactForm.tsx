@@ -6,13 +6,20 @@ import { Button, ButtonLink } from "@/components/ui/Button";
 import { Input, Textarea } from "@/components/ui/Input";
 import { CAL_BOOKING_URL } from "@/lib/booking";
 
-type Intent = "discovery" | "lead-system" | "platform" | "chatbot" | "unsure";
+type Intent =
+  | "discovery"
+  | "lead-system"
+  | "platform"
+  | "chatbot"
+  | "agentic"
+  | "unsure";
 
 const intents: { value: Intent; label: string; description: string }[] = [
   { value: "discovery", label: "Discovery sprint", description: "One week, written go or no-go" },
   { value: "lead-system", label: "Lead system", description: "Intake or chat, CRM, one job" },
   { value: "platform", label: "Platform build", description: "Site, forms, email, data store" },
   { value: "chatbot", label: "AI Chatbot", description: "On-site chat with human handoff" },
+  { value: "agentic", label: "Agentic workflow", description: "OpenClaw, Grok, or similar — scoped in discovery" },
   { value: "unsure", label: "Not sure yet", description: "Help me figure it out" },
 ];
 

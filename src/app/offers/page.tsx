@@ -155,7 +155,9 @@ export default function OffersPage() {
             ))}
           </div>
           <p className="mt-6 text-sm text-[var(--muted)]">
-            Agents and orchestrators stay in research and are not for sale.
+            Agentic workflows and agent integrations (OpenClaw, Grok, and similar) are
+            scoped in discovery into the named build. There is no standalone agent-pilot
+            package on this page.
           </p>
         </div>
       </section>
@@ -209,7 +211,8 @@ export default function OffersPage() {
           </p>
           <p className="mt-4 text-sm text-[var(--muted)] leading-relaxed">
             Concurrent builds are capped so each handoff stays clean. Start dates are
-            confirmed on the discovery call — we do not sell agent pilots to fill a slot.
+            confirmed on the discovery call. We do not invent a standalone agent-pilot
+            SKU to fill a slot.
           </p>
         </div>
       </section>

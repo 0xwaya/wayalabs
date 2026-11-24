@@ -71,7 +71,7 @@ export const caseStudies = [
     title: "OpenClaw, private Echo runtime",
     client: "Internal runtime",
     url: "",
-    category: "Research · not for sale",
+    category: "Studio research",
     tags: ["OpenClaw", "Sandbox", "Gated tools"],
     summary:
       "Echo is the private OpenClaw deployment. It runs in a private cloud network, with the session sandboxed and tool use behind gates. This note states that boundary only. It is not a client deployment, and no measured result is published.",
@@ -102,7 +102,7 @@ export const caseStudies = [
     title: "Grok operator environments",
     client: "Internal studio workflow",
     url: "",
-    category: "Research · not for sale",
+    category: "Studio research",
     tags: ["Grok", "Virtual environments", "Human review"],
     summary:
       "Grok sessions run in an isolated checkout, and in a Python virtual environment when the project needs one. They review the studio repos, draft changes, and stop for a person to approve. They do not post, purchase, or deploy on their own.",

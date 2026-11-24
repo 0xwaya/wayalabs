@@ -8,7 +8,7 @@ import { discoveryCreditSentence } from "@/lib/data/offers";
 export const metadata: Metadata = {
   title: "About Wayalabs",
   description:
-    `Wayalabs builds lead systems for local trade and platforms for local listings. Agents stay in research and are not for sale. ${discoveryCreditSentence}`,
+    `Wayalabs builds lead systems for local trade and platforms for local listings. Agentic workflows and agent integrations are scoped in discovery. ${discoveryCreditSentence}`,
   alternates: { canonical: "/about" },
   openGraph: pageOpenGraph("/about"),
 };
@@ -51,13 +51,13 @@ const work = [
   },
   {
     name: "Grok operator environments",
-    type: "Research · not for sale",
+    type: "Studio research · internal workflow",
     url: "",
     accent: "#d7dbe3",
   },
   {
     name: "OpenClaw, private Echo runtime",
-    type: "Research · not for sale",
+    type: "Studio research · private runtime",
     url: "",
     accent: "#f3f4f6",
   },
@@ -89,8 +89,9 @@ export default function AboutPage() {
             </h1>
             <p className="text-lg text-[var(--muted)] leading-relaxed">
               Wayalabs builds lead systems for local trade and platforms for local
-              listings. Chatbots ship inside those builds. Client brands shown here are
-              client projects, not our products. Agents stay in research and are not for sale.
+              listings. Chatbots ship inside those builds. Agentic workflows and agent
+              integrations (OpenClaw, Grok, and similar) are scoped in discovery. Client
+              brands shown here are client projects, not our products.
             </p>
           </div>
 
@@ -208,7 +209,7 @@ export default function AboutPage() {
           <h2 className="text-3xl font-bold mb-4">Work with us</h2>
           <p className="text-[var(--muted)] mb-8">
             We take on a limited number of builds at a time. Start with discovery toward a
-            lead system or platform — agents stay in research.
+            lead system, platform, or discovery-scoped agentic workflow.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link

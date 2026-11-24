@@ -16,8 +16,8 @@ Internal. Run at handoff for every platform or lead-system build. Watch and Buil
 
 ## Do not
 
-- Sell agent pilots or orchestrators
-- Invent a new SKU at close
+- Invent a standalone agent-pilot SKU at close
+- Invent any new public SKU at close
 - Leave recurring unmentioned because “they might ask later”
 
 ## Capacity

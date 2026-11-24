@@ -15,7 +15,7 @@ The public site has one commercial ladder: `/offers`. `/services` redirects ther
 - The credit applies once, to that one build. It is not refused.
 - The public offers are the stack, custom built for the buyer. Client businesses are not for sale.
 - Watch and the build block are not on the public page.
-- Agent pilots and orchestrators are not for sale. They stay in research. Echo stays in the private network.
+- There is no standalone Agent pilot SKU on `/offers`. Agentic workflows and agent integrations (OpenClaw, Grok, and similar) are scoped in discovery and built into the named engagement. Echo stays in the private network. See `agents-messaging.md`.
 
 ## Ladder
 
@@ -26,7 +26,8 @@ The public site has one commercial ladder: `/offers`. `/services` redirects ther
 | Lead system | Intake or chat, email, CRM, one scheduled job, custom for the buyer | $7,000–$14,000 | Yes. On-site chat of this kind is live and still being improved |
 | Watch | Monitoring and small fixes | $400 / month | No |
 | Build block | A scheduled block of build changes | $1,200 / month | No |
-| Agent pilot | Scoped prototype | Unlisted | Do not sell |
+| Agentic workflow / agent integration | Scoped in discovery into a lead system, platform, or integration build | Priced inside that build | Yes, via discovery — no standalone pilot SKU |
+| Agent pilot (standalone package) | Unlisted productized pilot | Unlisted | Do not list until demo + price + support exist |
 
 ## Deposit
 
@@ -50,4 +51,5 @@ Attach Watch ($400 / month) by default at handoff. Offer Build block ($1,200 / m
 - ICP: `icp.md`
 - Funnel tracking: `funnel-metrics.md`
 - Capacity: `capacity.md`
+- Agents wording: `agents-messaging.md`
 

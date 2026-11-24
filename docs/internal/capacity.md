@@ -19,11 +19,13 @@ In order:
 
 ## Never
 
-- Sell agent pilots or orchestrators to fill a slot
-- Invent a new SKU because capacity is tight
+- Invent a standalone agent-pilot SKU to fill a slot
+- Invent any new public SKU because capacity is tight
 - Skip discovery to jump straight into a build
 - Drop Watch invites because “we’re busy”
 
 ## Agents
 
-Echo, CEO orchestrator, and Grok operator sessions stay research / studio workflow. They compress delivery under human approval. They are not a product line until there is a reviewed demo, pricing, and support model — then update `offer-kit.md` first.
+Agentic workflows and integrations (OpenClaw, Grok, and similar) are valid scoped work when discovery names them — they count against the concurrent-build cap like any other build.
+
+Echo, CEO orchestrator, and Grok operator sessions as **studio tools** stay internal. A standalone Agent pilot package stays off `/offers` until demo, price, and support exist in `offer-kit.md`. See `agents-messaging.md`.

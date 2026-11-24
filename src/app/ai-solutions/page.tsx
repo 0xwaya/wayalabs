@@ -9,7 +9,7 @@ import { MessageSquare, Cpu, Plug, Globe, BarChart3, ArrowRight } from "lucide-r
 export const metadata: Metadata = {
   title: "AI Solutions",
   description:
-    `Lead systems and platforms for local operators. Chatbots ship inside live builds. Agents stay in research and are not for sale. ${discoveryCreditSentence}`,
+    `Lead systems and platforms for local operators. Chatbots ship inside live builds. Agentic workflows and agent integrations are scoped in discovery. ${discoveryCreditSentence}`,
   alternates: { canonical: "/ai-solutions" },
   openGraph: pageOpenGraph("/ai-solutions"),
 };
@@ -29,9 +29,9 @@ const primaryServices = [
     icon: Cpu,
     title: "AI Agents",
     slug: "agents",
-    tagline: "Research · not for sale",
+    tagline: "Workflows · integrations · discovery-scoped",
     description:
-      "Research into multi-step agents and orchestrators with scoped tools, explicit routing, durable job state, and human review. Not a product line. Capacity goes to lead systems and platforms.",
+      "Agentic workflows and agent integrations (OpenClaw, Grok, and similar) with scoped tools, explicit routing, durable job state, and human review. No standalone pilot package — starts with discovery.",
     accent: "#c5cad3",
     outcomes: ["Role-aware routing", "Tool boundaries", "Human approvals"],
   },
@@ -72,12 +72,13 @@ export default function AISolutionsPage() {
             Solutions
           </p>
           <h1 className="text-5xl font-bold tracking-tight mb-5 max-w-3xl">
-            Lead systems and platforms.{" "}
-            <span className="gradient-text">Agents stay research.</span>
+            Lead systems, platforms, and{" "}
+            <span className="gradient-text">agentic workflows</span>
           </h1>
           <p className="text-lg text-[var(--muted)] max-w-2xl leading-relaxed">
-            Chatbots ship inside live lead systems. Agents and orchestrators are not for
-            sale. Client brands shown are client projects, not products for purchase.
+            Chatbots ship inside live lead systems. Agentic workflows and agent
+            integrations are scoped in discovery. Client brands shown are client
+            projects, not products for purchase.
           </p>
         </div>
       </section>

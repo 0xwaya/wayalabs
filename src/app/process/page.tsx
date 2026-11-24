@@ -87,7 +87,7 @@ const phases = [
 const principles = [
   {
     title: "One ladder only",
-    description: "Discovery, lead system, or platform. Agents stay in research and are not sold as a pilot.",
+    description: "Discovery, then lead system, platform, or a discovery-scoped agentic workflow. No standalone agent-pilot SKU on /offers.",
   },
   {
     title: "Same kit, custom edges",

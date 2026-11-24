@@ -10,7 +10,7 @@ import { discoveryCreditSentence } from "@/lib/data/offers";
 
 export const metadata: Metadata = {
   description:
-    `Wayalabs builds lead systems for local trade and platforms for local listings. Chatbots ship inside those builds. Agents stay in research. ${discoveryCreditSentence}`,
+    `Wayalabs builds lead systems for local trade and platforms for local listings. Chatbots ship inside those builds. Agentic workflows and agent integrations are scoped in discovery. ${discoveryCreditSentence}`,
   alternates: { canonical: "/" },
   openGraph: pageOpenGraph("https://wayalabs.com"),
 };
