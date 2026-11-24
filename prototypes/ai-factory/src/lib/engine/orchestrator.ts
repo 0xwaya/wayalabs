@@ -262,7 +262,11 @@ function startMissionOn(s: OrchestratorState, missionId: string) {
   );
 }
 
-function completeMission(s: OrchestratorState, mission: Mission) {
+function completeMission(
+  s: OrchestratorState,
+  mission: Mission,
+  parallelEligible: boolean,
+) {
   mission.status = "completed";
   mission.progress = 100;
   s.questsCompleted += 1;
@@ -271,11 +275,9 @@ function completeMission(s: OrchestratorState, mission: Mission) {
   let xp = mission.xpReward;
   let cash = mission.revenueReward;
 
-  // Parallel ops bonus: another factory also active when this finishes.
-  const otherActive = s.missions.some(
-    (m) => m.id !== mission.id && m.status === "active",
-  );
-  if (otherActive) {
+  // Parallel ops bonus uses the active set snapshotted at tick start
+  // so simultaneous clears both qualify (order-independent).
+  if (parallelEligible) {
     xp += PARALLEL_BONUS_XP;
     cash += PARALLEL_BONUS_CASH;
     pushLog(
@@ -315,7 +317,11 @@ function completeMission(s: OrchestratorState, mission: Mission) {
   }
 }
 
-function advanceMission(s: OrchestratorState, mission: Mission) {
+function advanceMission(
+  s: OrchestratorState,
+  mission: Mission,
+  parallelEligible: boolean,
+) {
   const role = mission.requiredRoles[mission.stepIndex] ?? mission.requiredRoles.at(-1);
   if (!role) return;
   const agent = pickAgent(s, mission.factoryId, role);
@@ -358,7 +364,7 @@ function advanceMission(s: OrchestratorState, mission: Mission) {
     mission.progress = Math.min(99, Math.round((mission.stepIndex / total) * 100));
 
     if (mission.stepIndex >= total) {
-      completeMission(s, mission);
+      completeMission(s, mission, parallelEligible);
     }
   } else if (agent.status === "working") {
     agent.progress = Math.min(100, agent.progress + pace);
@@ -372,12 +378,13 @@ function advanceMission(s: OrchestratorState, mission: Mission) {
 function tickOn(s: OrchestratorState) {
   s.tick += 1;
 
-  const activeFactoryIds = new Set(
-    s.missions.filter((m) => m.status === "active").map((m) => m.factoryId),
-  );
+  const activeMissions = s.missions.filter((m) => m.status === "active");
+  const activeFactoryIds = new Set(activeMissions.map((m) => m.factoryId));
+  // Snapshot before any completes so simultaneous clears both get the bonus.
+  const parallelEligible = activeMissions.length >= 2;
 
-  for (const mission of s.missions.filter((m) => m.status === "active")) {
-    advanceMission(s, mission);
+  for (const mission of activeMissions) {
+    advanceMission(s, mission, parallelEligible);
   }
 
   const working = s.agents.filter((a) => a.status === "working").length;

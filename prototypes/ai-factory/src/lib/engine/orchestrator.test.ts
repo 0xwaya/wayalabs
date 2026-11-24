@@ -167,6 +167,18 @@ describe("streak + session", () => {
     expect(state.logs.some((l) => l.kind === "bonus")).toBe(true);
   });
 
+  it("runs income funnels on two bays in parallel", () => {
+    startMission("ms-nc-flash");
+    startMission("ms-fl-batch");
+    const mid = tick();
+    expect(mid.missions.filter((m) => m.status === "active")).toHaveLength(2);
+    runUntil("ms-nc-flash", "completed");
+    runUntil("ms-fl-batch", "completed");
+    const state = getState();
+    expect(state.factories.find((f) => f.id === "fx-neon-cart")?.revenue).toBeGreaterThan(0);
+    expect(state.factories.find((f) => f.id === "fx-forge-line")?.revenue).toBeGreaterThan(0);
+  });
+
   it("createSession isolates client state from the global store", () => {
     const session = createSession();
     session.startMission("ms-fl-batch");
