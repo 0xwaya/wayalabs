@@ -18,10 +18,18 @@ describe("createSeedState", () => {
     expect(locked[0]?.unlockLevel).toBe(3);
   });
 
-  it("seeds agents and missions per unlocked factory", () => {
+  it("seeds income bays, agent crews, and funnel missions", () => {
     const state = createSeedState();
     expect(state.agents.length).toBeGreaterThanOrEqual(8);
+    expect(state.missions.length).toBeGreaterThanOrEqual(8);
+    expect(state.missions.filter((m) => m.factoryId === "fx-signal-hub").length).toBe(2);
     expect(state.missions.every((m) => m.status === "available")).toBe(true);
+    expect(state.missions.every((m) => m.revenueReward > 0)).toBe(true);
+    expect(state.factories.every((f) => f.bayLabel.length > 0)).toBe(true);
+    expect(state.cash).toBe(750);
+    expect(state.lifetimeRevenue).toBe(0);
+    expect(state.questsCompleted).toBe(0);
+    expect(state.streak).toBe(0);
     expect(state.selectedFactoryId).toBe("fx-neon-cart");
   });
 

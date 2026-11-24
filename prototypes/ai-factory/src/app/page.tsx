@@ -1,7 +1,9 @@
 import Dashboard from "@/components/Dashboard";
-import { getState } from "@/lib/engine/orchestrator";
+import { withCommandLevel } from "@/lib/engine/orchestrator";
+import { createSeedState } from "@/lib/engine/seed";
 
 export default function Home() {
-  const initial = getState();
+  // Fresh seed per request — gameplay runs client-side with local persistence.
+  const initial = withCommandLevel(createSeedState());
   return <Dashboard initial={initial} />;
 }
