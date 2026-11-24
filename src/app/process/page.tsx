@@ -67,20 +67,20 @@ const phases = [
   },
   {
     number: "04",
-    title: "Optimise",
+    title: "Handoff & care",
     duration: "Ongoing",
     accent: "#d7dbe3",
     description:
-      "AI systems degrade without ongoing attention. Optimise is a continuous loop — evaluating outputs, improving prompts, and evolving the system with your business.",
+      "Every build closes with an operator handoff. We invite ongoing monitoring and scheduled build capacity at that moment — so the system does not sit unattended after launch.",
     activities: [
-      "Weekly conversation log review and failure mode analysis",
-      "Prompt A/B testing and model evaluation cycles",
-      "Conversion and funnel analysis for customer-facing AI",
-      "Capacity planning as usage scales",
-      "New use case identification from production patterns",
-      "Quarterly system health review and roadmap planning",
+      "Operator handoff: how to run the system without Wayalabs in the loop",
+      "Data boundary restated for the operator",
+      "Invitation to ongoing monitoring and small fixes",
+      "Optional scheduled build capacity for feature work",
+      "Conversation or intake log review when chat or forms are in scope",
+      "No new SKUs invented at close — use the published ladder only",
     ],
-    deliverable: "Continuous improvement reports, prompt version history, and a live roadmap for the next iteration.",
+    deliverable: "Handoff note plus a clear invite for post-launch care. Recurring pricing is confirmed at close, not on the public offers page.",
   },
 ];
 

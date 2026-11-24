@@ -1,27 +1,29 @@
-const architecture = [
+import Link from "next/link";
+
+const proofs = [
   {
-    value: "Python",
-    label: "CEO orchestrator runtime",
-    sub: "Current R&D implementation",
-    accent: "#d7dbe3",
+    value: "Lead system",
+    label: "Urban Stone Collective",
+    sub: "Quotes, chat, CRM, permit job",
+    href: "/case-studies/urban-stone",
   },
   {
-    value: "Flask + Socket.IO",
-    label: "Dashboard and chat transport",
-    sub: "Local executive-agent prototype",
-    accent: "#c5cad3",
+    value: "Platform",
+    label: "Queen City Soundboard",
+    sub: "Site, forms, store, handoff",
+    href: "/case-studies/queen-city-soundboard",
   },
   {
-    value: "LangGraph",
-    label: "Stateful agent orchestration",
-    sub: "CEO routing with selected roles",
-    accent: "#f3f4f6",
+    value: "Trade / local",
+    label: "Primary ICP",
+    sub: "Service businesses with a sales inbox",
+    href: "/offers",
   },
   {
-    value: "Durable jobs",
-    label: "Single-process worker model",
-    sub: "Persisted status; interrupted work is not replayed",
-    accent: "#f3f4f6",
+    value: "Listings",
+    label: "Secondary ICP",
+    sub: "Local calendars and operator review",
+    href: "/offers",
   },
 ];
 
@@ -31,39 +33,32 @@ export default function OutcomeMetrics() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-14">
           <p className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)] mb-3">
-            CEO Orchestrator · R&D
+            Who we build for
           </p>
-          <h2 className="text-4xl font-bold tracking-tight">
-            Stack and orchestration
+          <h2 className="text-4xl font-bold tracking-tight mb-4">
+            Same shapes. Your business on top.
           </h2>
+          <p className="text-[var(--muted)] max-w-xl mx-auto leading-relaxed">
+            Flagship work is a lead system for local trade, or a platform for local
+            listings. Agents stay in research.
+          </p>
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-          {architecture.map(({ value, label, sub, accent }) => (
-            <div
+          {proofs.map(({ value, label, sub, href }) => (
+            <Link
               key={label}
-              className="relative p-8 rounded-2xl border border-[var(--border)] bg-[var(--card)] overflow-hidden"
+              href={href}
+              className="relative p-8 rounded-2xl border border-[var(--border)] bg-[var(--card)] overflow-hidden hover:border-[#d7dbe360] transition-colors"
             >
-              {/* Glow top accent */}
               <div
                 aria-hidden
-                className="absolute top-0 left-0 right-0 h-0.5 rounded-t-2xl"
-                style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }}
+                className="absolute top-0 left-0 right-0 h-0.5 rounded-t-2xl bg-[#d7dbe3]"
               />
-              <div
-                className="text-4xl font-bold mb-2 gradient-text"
-                style={{
-                  background: `linear-gradient(135deg, ${accent}, #ffffff90)`,
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
-              >
-                {value}
-              </div>
+              <div className="text-2xl font-bold mb-2 tracking-tight">{value}</div>
               <div className="text-sm font-medium text-[var(--foreground)] mb-1">{label}</div>
               <div className="text-xs text-[var(--muted)]">{sub}</div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

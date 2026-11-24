@@ -19,7 +19,7 @@ const platformPrice = formatUsdRange(platformOffer.priceFromUsd, platformOffer.p
 const leadPrice = formatUsdRange(leadSystemOffer.priceFromUsd, leadSystemOffer.priceToUsd);
 
 export const metadata: Metadata = {
-  title: "Discovery, platform builds, and lead systems",
+  title: "Discovery, lead systems, and platform builds",
   description: offersPageDescription,
   alternates: { canonical: "/offers" },
   openGraph: pageOpenGraph("/offers"),
@@ -56,21 +56,6 @@ const offerJsonLd = {
       position: 2,
       item: {
         "@type": "AggregateOffer",
-        name: platformOffer.name,
-        url: "https://wayalabs.com/offers",
-        description: platformOffer.summary,
-        lowPrice: String(platformOffer.priceFromUsd),
-        highPrice: String(platformOffer.priceToUsd),
-        priceCurrency: "USD",
-        availability: "https://schema.org/InStock",
-        seller,
-      },
-    },
-    {
-      "@type": "ListItem",
-      position: 3,
-      item: {
-        "@type": "AggregateOffer",
         name: leadSystemOffer.name,
         url: "https://wayalabs.com/offers",
         description: leadSystemOffer.summary,
@@ -81,9 +66,25 @@ const offerJsonLd = {
         seller,
       },
     },
+    {
+      "@type": "ListItem",
+      position: 3,
+      item: {
+        "@type": "AggregateOffer",
+        name: platformOffer.name,
+        url: "https://wayalabs.com/offers",
+        description: platformOffer.summary,
+        lowPrice: String(platformOffer.priceFromUsd),
+        highPrice: String(platformOffer.priceToUsd),
+        priceCurrency: "USD",
+        availability: "https://schema.org/InStock",
+        seller,
+      },
+    },
   ],
 };
 
+/** Public order: Discovery → Lead system (flagship) → Platform. */
 const publishedOffers = [
   {
     ...discoveryOffer,
@@ -91,14 +92,29 @@ const publishedOffers = [
     priceNote: discoveryOffer.duration,
   },
   {
-    ...platformOffer,
-    price: platformPrice,
-    priceNote: "Fixed for the agreed scope",
-  },
-  {
     ...leadSystemOffer,
     price: leadPrice,
     priceNote: "Fixed for the agreed scope",
+    proof: { href: "/case-studies/urban-stone", label: "Urban Stone pattern" },
+  },
+  {
+    ...platformOffer,
+    price: platformPrice,
+    priceNote: "Fixed for the agreed scope",
+    proof: { href: "/case-studies/queen-city-soundboard", label: "Queen City Soundboard pattern" },
+  },
+];
+
+const icpRows = [
+  {
+    title: "Local trade and service",
+    body: "Quotes, permits, sales inbox. Discovery → lead system.",
+    href: "/case-studies/urban-stone",
+  },
+  {
+    title: "Local listings and calendars",
+    body: "Submissions, operator review, public site. Discovery → platform.",
+    href: "/case-studies/queen-city-soundboard",
   },
 ];
 
@@ -111,13 +127,35 @@ export default function OffersPage() {
             Engagements
           </p>
           <h1 className="text-5xl font-bold tracking-tight mb-5 max-w-3xl">
-            A stack <span className="gradient-text">custom built for the business</span>
+            One ladder.{" "}
+            <span className="gradient-text">Custom for the business.</span>
           </h1>
           <p className="text-lg text-[var(--muted)] max-w-2xl leading-relaxed">
-            A discovery sprint is {discoveryPrice}. A platform build is {platformPrice}. A lead
-            system is {leadPrice}. Each one is built for that business. Live client sites show
-            the same kind of stack; those brands are client projects shown as proof. If the build starts within{" "}
-            {DISCOVERY_CREDIT_DAYS} days of the discovery payment, that fee is credited in full.
+            Discovery is {discoveryPrice}. A lead system is {leadPrice}. A platform build is{" "}
+            {platformPrice}. Same kit shape each time; your knowledge, CRM fields, and one job
+            on top. If a build starts within {DISCOVERY_CREDIT_DAYS} days of the discovery
+            payment, that fee is credited in full.
+          </p>
+        </div>
+      </section>
+
+      <section className="py-16 px-6 border-b border-[var(--border)]">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-xl font-semibold mb-6">Who this is for</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {icpRows.map((row) => (
+              <Link
+                key={row.title}
+                href={row.href}
+                className="p-6 rounded-2xl border border-[var(--border)] bg-[var(--card)] hover:border-[#d7dbe360] transition-colors"
+              >
+                <h3 className="text-lg font-semibold mb-2">{row.title}</h3>
+                <p className="text-sm text-[var(--muted)] leading-relaxed">{row.body}</p>
+              </Link>
+            ))}
+          </div>
+          <p className="mt-6 text-sm text-[var(--muted)]">
+            Agents and orchestrators stay in research and are not for sale.
           </p>
         </div>
       </section>
@@ -125,14 +163,14 @@ export default function OffersPage() {
       <section className="py-20 px-6">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
           {publishedOffers.map((offer) => (
-            <div key={offer.id} className="p-8 rounded-2xl border border-[var(--border)] bg-[var(--card)]">
+            <div key={offer.id} className="p-8 rounded-2xl border border-[var(--border)] bg-[var(--card)] flex flex-col">
               <p className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)] mb-3">
                 {offer.priceNote}
               </p>
               <h2 className="text-2xl font-bold mb-2">{offer.name}</h2>
               <p className="text-3xl font-bold tracking-tight mb-4">{offer.price}</p>
               <p className="text-[var(--muted)] leading-relaxed mb-6">{offer.summary}</p>
-              <ul className="space-y-3">
+              <ul className="space-y-3 flex-1">
                 {offer.includes.map((item) => (
                   <li key={item} className="flex items-start gap-3 text-sm text-[var(--muted)]">
                     <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#d7dbe3] flex-shrink-0" />
@@ -140,6 +178,14 @@ export default function OffersPage() {
                   </li>
                 ))}
               </ul>
+              {"proof" in offer && offer.proof ? (
+                <Link
+                  href={offer.proof.href}
+                  className="mt-6 text-sm font-medium text-[#d7dbe3] hover:opacity-80 transition-opacity inline-flex items-center gap-1"
+                >
+                  {offer.proof.label} <ArrowRight size={14} />
+                </Link>
+              ) : null}
             </div>
           ))}
         </div>
@@ -156,6 +202,11 @@ export default function OffersPage() {
               </li>
             ))}
           </ul>
+          <p className="mt-8 text-sm text-[var(--muted)] leading-relaxed">
+            After launch, every build closes with an operator handoff and an invite for
+            ongoing monitoring or scheduled build capacity. Those recurring options are
+            confirmed at close — they are not listed as public SKUs here.
+          </p>
         </div>
       </section>
 

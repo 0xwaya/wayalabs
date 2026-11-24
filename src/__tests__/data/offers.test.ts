@@ -41,6 +41,7 @@ describe("public offers", () => {
     expect(offersPageDescription).toMatch(/\$1,200/);
     expect(offersPageDescription).toMatch(/\$10,000/);
     expect(offersPageDescription).toMatch(/\$7,000/);
+    expect(offersPageDescription).toMatch(/local trade/);
   });
 
   it("keeps watch, the build block, and agent pilots off this module", () => {

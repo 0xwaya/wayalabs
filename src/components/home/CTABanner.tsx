@@ -29,13 +29,12 @@ export default function CTABanner() {
               Discovery
             </p>
             <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-5">
-              Scope the work before{" "}
-              <span className="gradient-text">anyone builds it</span>
+              Scope the lead system or platform{" "}
+              <span className="gradient-text">before anyone builds</span>
             </h2>
             <p className="text-[var(--muted)] max-w-xl mx-auto mb-10 leading-relaxed">
-              A discovery call maps the workflow, the systems involved, and whether
-              a build is the right next step. You leave with a written brief, not
-              a promised metric.
+              One week. Outcome, systems in and out, data boundary, go or no-go.
+              Built for local trade operators and local listings — not agent pilots.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

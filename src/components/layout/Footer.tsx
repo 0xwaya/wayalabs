@@ -61,8 +61,8 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-sm text-[var(--muted)] leading-relaxed max-w-xs">
-              Custom stacks and automations for the business. Chatbots are live.
-              We build tech stacks and LLM/AI integrations. Agents and orchestrators are coming soon.
+              Lead systems for local trade. Platforms for local listings. Discovery
+              first. Agents stay in research — not for sale.
             </p>
             <div className="flex items-center gap-4 mt-6">
               <a

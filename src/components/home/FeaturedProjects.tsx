@@ -6,7 +6,7 @@ const projects = [
     id: "urban-stone",
     title: "Urban Stone Collective",
     subtitle: "Countertop Fabrication — Website & Lead System",
-    category: "AI-Enhanced Web Platform",
+    category: "Lead system · live client",
     description:
       "Website and lead system for a granite, quartz, and quartzite countertop fabricator serving greater Cincinnati and Northern Kentucky. Quote requests and the Onyx chat email sales@. Onyx uses Ollama. A permit lead-sourcer runs unattended, and new leads are filed in a private CRM.",
     tags: ["Lead Capture", "Permit sourcer", "CRM"],
@@ -19,7 +19,7 @@ const projects = [
     id: "queen-city-soundboard",
     title: "Queen City Soundboard",
     subtitle: "Cincinnati & NKY Live Events Guide",
-    category: "AI-Enhanced Web Platform",
+    category: "Platform · live client",
     description:
       "A guide to live music, comedy, and cultural events across Cincinnati and Northern Kentucky. Local calendar, official ticket links, city pages, and event submissions held for review. Social images are hosted by the site. Posting them is not automated yet.",
     tags: ["Event Calendar", "Structured Data", "Local SEO"],
@@ -32,7 +32,7 @@ const projects = [
     id: "openclaw-agent",
     title: "OpenClaw, private Echo runtime",
     subtitle: "Cloud network, sandbox, gated tools",
-    category: "AI Agent",
+    category: "Research · not for sale",
     description:
       "Echo keeps OpenClaw in a private cloud network. The session is sandboxed, and tool use sits behind gates. It is not a client deployment, and the private configuration is not published here.",
     tags: ["Sandbox", "Gated tools", "Private network"],
@@ -45,7 +45,7 @@ const projects = [
     id: "grok-operators",
     title: "Grok operator environments",
     subtitle: "Isolated checkouts, review before any push",
-    category: "AI Agent",
+    category: "Research · not for sale",
     description:
       "Grok sessions work inside one checkout per project, and a Python virtual environment when the runtime needs one. They draft changes for the live sites and the other agents, then stop for approval. Scheduled work stays native to each project.",
     tags: ["Human review", "Isolated environments", "Native workflows"],
@@ -66,7 +66,7 @@ export default function FeaturedProjects() {
               Case Studies
             </p>
             <h2 className="text-4xl font-bold tracking-tight">
-              Selected project work
+              Client proof first. Research labeled.
             </h2>
           </div>
           <Link
