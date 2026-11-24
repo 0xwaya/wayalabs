@@ -11,7 +11,7 @@ import { categoryColors } from "@/lib/data/categories";
 export const metadata: Metadata = {
   title: "Case Studies",
   description:
-    `Selected Wayalabs project notes for Urban Stone Collective, Queen City Soundboard, Grok operator environments, and the private Echo runtime for OpenClaw. ${discoveryCreditSentence}`,
+    `Client proof: Urban Stone Collective lead system and Queen City Soundboard platform. Research notes for Echo and Grok operators are labeled not for sale. ${discoveryCreditSentence}`,
   alternates: { canonical: "/case-studies" },
   openGraph: pageOpenGraph("/case-studies"),
 };
@@ -23,15 +23,16 @@ export default function CaseStudiesPage() {
       <section className="py-24 px-6 grid-bg border-b border-[var(--border)]">
         <div className="max-w-7xl mx-auto">
           <p className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)] mb-4">
-            Project Notes
+            Client proof · research labeled
           </p>
           <h1 className="text-5xl font-bold tracking-tight mb-5 max-w-2xl">
-            Selected work,{" "}
-            <span className="gradient-text">with clear scope</span>
+            Lead systems and platforms{" "}
+            <span className="gradient-text">we already run</span>
           </h1>
           <p className="text-lg text-[var(--muted)] max-w-xl leading-relaxed">
-            Project descriptions distinguish delivered scope from internal
-            explorations and avoid implying results that have not been measured.
+            Primary ICP: local trade and service (Urban Stone). Secondary: local
+            listings (Queen City Soundboard). Agent runtimes below are research —
+            not for sale.
           </p>
         </div>
       </section>

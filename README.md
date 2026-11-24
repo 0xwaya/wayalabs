@@ -27,10 +27,9 @@
 
 This repository is the source for [wayalabs.com](https://wayalabs.com).
 
-- **AI Chatbots** — live, and custom built for the business
-- **AI Integrations** — LLM + CRM + docs + APIs
-- **AI-Enhanced Web Platforms** — frontend and backend intelligence in one build
-- **AI Agents** — agents and orchestrators stay in research and are coming soon, not for sale yet
+- **Discovery → Lead system / Platform** — the public commercial ladder on `/offers`
+- **AI Chatbots** — live inside lead systems, custom for the business
+- **AI Agents** — research only; not for sale
 
 The homepage, Open Graph, Twitter, and organization JSON-LD share one description from `src/lib/site.ts`. Page-level titles and descriptions override it. Do not set `title`, `description`, or `url` on the root `openGraph` or `twitter` objects, or inner pages will keep advertising the homepage.
 

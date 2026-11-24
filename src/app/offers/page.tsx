@@ -207,6 +207,10 @@ export default function OffersPage() {
             ongoing monitoring or scheduled build capacity. Those recurring options are
             confirmed at close — they are not listed as public SKUs here.
           </p>
+          <p className="mt-4 text-sm text-[var(--muted)] leading-relaxed">
+            Concurrent builds are capped so each handoff stays clean. Start dates are
+            confirmed on the discovery call — we do not sell agent pilots to fill a slot.
+          </p>
         </div>
       </section>
 
@@ -214,9 +218,10 @@ export default function OffersPage() {
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">Book the discovery sprint</h2>
           <p className="text-[var(--muted)] mb-8">
-            The call confirms the outcome and the systems in scope for that business. The invoice
-            is {discoveryPrice}. A platform or lead-system build started within {DISCOVERY_CREDIT_DAYS}{" "}
-            days of that payment credits the fee in full. The credit is not refused.
+            The call confirms the outcome, the systems in scope, and the earliest build start
+            if a slot is open. The invoice is {discoveryPrice}. A platform or lead-system build
+            started within {DISCOVERY_CREDIT_DAYS} days of that payment credits the fee in full.
+            The credit is not refused.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link

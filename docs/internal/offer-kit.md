@@ -49,4 +49,5 @@ Attach Watch ($400 / month) by default at handoff. Offer Build block ($1,200 / m
 - Discovery deliverable: `discovery-brief-template.md`
 - ICP: `icp.md`
 - Funnel tracking: `funnel-metrics.md`
+- Capacity: `capacity.md`
 

@@ -19,3 +19,7 @@ Internal. Run at handoff for every platform or lead-system build. Watch and Buil
 - Sell agent pilots or orchestrators
 - Invent a new SKU at close
 - Leave recurring unmentioned because “they might ask later”
+
+## Capacity
+
+If concurrent builds are at the cap, do not open another build at close. See `capacity.md`.

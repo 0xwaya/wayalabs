@@ -8,7 +8,7 @@ import { discoveryCreditSentence } from "@/lib/data/offers";
 export const metadata: Metadata = {
   title: "About Wayalabs",
   description:
-    `Wayalabs builds a custom stack for the business. Chatbots are live. Agents and orchestrators stay in research. ${discoveryCreditSentence}`,
+    `Wayalabs builds lead systems for local trade and platforms for local listings. Agents stay in research and are not for sale. ${discoveryCreditSentence}`,
   alternates: { canonical: "/about" },
   openGraph: pageOpenGraph("/about"),
 };
@@ -39,25 +39,25 @@ const values = [
 const work = [
   {
     name: "Urban Stone Collective",
-    type: "AI-Enhanced Web Platform",
+    type: "Lead system · live client",
     url: "urbanstone.co",
     accent: "#d7dbe3",
   },
   {
     name: "Queen City Soundboard",
-    type: "AI-Enhanced Web Platform",
+    type: "Platform · live client",
     url: "queencitysoundboard.com",
     accent: "#c5cad3",
   },
   {
     name: "Grok operator environments",
-    type: "Internal workflow · isolated checkouts, human approval",
+    type: "Research · not for sale",
     url: "",
     accent: "#d7dbe3",
   },
   {
     name: "OpenClaw, private Echo runtime",
-    type: "Private cloud network · sandbox · gated tools",
+    type: "Research · not for sale",
     url: "",
     accent: "#f3f4f6",
   },
@@ -89,7 +89,7 @@ export default function AboutPage() {
             </h1>
             <p className="text-lg text-[var(--muted)] leading-relaxed">
               Wayalabs builds a custom stack for the business. Chatbots are live.
-              Client brands shown here are client projects, not our products. Agents and orchestrators are coming soon.
+              Client brands shown here are client projects, not our products. Agents and orchestrators stay in research and are not for sale.
             </p>
           </div>
 

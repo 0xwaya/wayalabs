@@ -7,9 +7,9 @@ import { discoveryCreditSentence } from "@/lib/data/offers";
 import { Cpu, CheckCircle, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "AI Agents",
+  title: "AI Agents — research, not for sale",
   description:
-    `Agents and orchestrators are in active development and coming to Wayalabs clients in the near future. ${discoveryCreditSentence}`,
+    `Agents and orchestrators stay in research at Wayalabs and are not for sale. Live work is discovery toward a lead system or platform. ${discoveryCreditSentence}`,
   alternates: { canonical: "/ai-solutions/agents" },
   openGraph: pageOpenGraph("/ai-solutions/agents"),
 };
@@ -60,12 +60,13 @@ export default function AgentsPage() {
           </div>
           <h1 className="text-5xl font-bold tracking-tight mb-5 max-w-3xl">
               Agents and orchestrators are{" "}
-              <span className="gradient-text">coming soon</span>
+              <span className="gradient-text">not for sale</span>
           </h1>
           <p className="text-lg text-[var(--muted)] max-w-2xl leading-relaxed mb-10">
-            They are not a product yet, but they are coming soon. A private runtime is running. A client agent is
-            scoped only after that research says it is ready. The work stays bounded:
-            one task, approved tools, and a person reviewing consequential actions.
+            Research only. A private runtime exists for studio learning. We do not sell
+            agent pilots to fill capacity. For live work, start with discovery toward a
+            lead system or platform — bounded tools and human review stay design principles
+            there too.
           </p>
         </div>
       </section>
