@@ -1,13 +1,13 @@
-# AI Factory — Wayalabs product prototype
+# AI Factory — package note
 
-This package lives under `prototypes/ai-factory` in the Wayalabs site repo until it is promoted to a standalone GitHub repository (`0xwaya/ai-factory`).
+Own Next.js app under `prototypes/ai-factory` (not wired into wayalabs.com).
 
-## Run from this folder
+- **Docs + snapshots:** [README.md](./README.md)
+- **License:** [LICENSE](./LICENSE) — Proprietary
+- **Production plan:** [`docs/internal/ai-factory-production.md`](../../docs/internal/ai-factory-production.md)
 
 ```bash
 cd prototypes/ai-factory
 npm install
 npm run dev
 ```
-
-It is **not** wired into the main wayalabs.com Next app. Own `package.json`, own `next` app.

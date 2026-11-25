@@ -205,6 +205,14 @@ Configure environment variables in the Vercel dashboard (Settings → Environmen
 
 ---
 
+## Prototypes
+
+| Package | Description | License |
+|---|---|---|
+| [`prototypes/ai-factory`](./prototypes/ai-factory) | **AI Factory** — command-floor prototype: agent crews, income funnels, Neon proofs, Stripe webhooks. [Live](https://ai-factory-pink.vercel.app) | Proprietary |
+
+---
+
 ## Related repositories
 
 | Repo | Description |
@@ -215,4 +223,5 @@ Configure environment variables in the Vercel dashboard (Settings → Environmen
 
 ## License
 
-MIT © [Wayalabs](https://wayalabs.com)
+- **wayalabs.com site** (`src/`, site docs): MIT © [Wayalabs](https://wayalabs.com)
+- **AI Factory prototype** (`prototypes/ai-factory/`): [Proprietary — All Rights Reserved](./prototypes/ai-factory/LICENSE)
