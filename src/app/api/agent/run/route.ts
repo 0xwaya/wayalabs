@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { DEFAULT_GOAL, playbooks } from "@/lib/agent/planner";
+import { DEFAULT_GOAL, goalNames } from "@/lib/agent/planner";
 import { runAgent } from "@/lib/agent/runner";
 
 export const runtime = "nodejs";
@@ -11,8 +11,8 @@ function authorized(request: Request): boolean {
   return request.headers.get("authorization") === `Bearer ${secret}`;
 }
 
-async function respond(goal: string, dryRun: boolean) {
-  const run = await runAgent({ goal, dryRun });
+async function respond(goal: string, dryRun: boolean, objective?: string) {
+  const run = await runAgent({ goal, dryRun, objective });
   if ("ok" in run) {
     return NextResponse.json({ error: run.error }, { status: run.status });
   }
@@ -27,7 +27,10 @@ export async function GET(request: Request) {
   return respond(DEFAULT_GOAL, false);
 }
 
-/** Operator entry point: `{ "goal": "digest", "dryRun": true }`. */
+/**
+ * Operator entry point: `{ "goal": "digest", "dryRun": true }`. Goal `auto`
+ * lets the model choose skills toward an optional free-text `objective`.
+ */
 export async function POST(request: Request) {
   if (!authorized(request)) {
     return new NextResponse("Unauthorized", { status: 401 });
@@ -42,14 +45,17 @@ export async function POST(request: Request) {
   const input = (body && typeof body === "object" ? body : {}) as {
     goal?: unknown;
     dryRun?: unknown;
+    objective?: unknown;
   };
 
   const goal = typeof input.goal === "string" ? input.goal : DEFAULT_GOAL;
-  if (!Object.hasOwn(playbooks, goal)) {
+  if (!goalNames.includes(goal)) {
     return NextResponse.json(
-      { error: `Unknown goal: ${goal}`, goals: Object.keys(playbooks) },
+      { error: `Unknown goal: ${goal}`, goals: goalNames },
       { status: 400 },
     );
   }
-  return respond(goal, input.dryRun === true);
+  const objective =
+    typeof input.objective === "string" ? input.objective.slice(0, 1000) : undefined;
+  return respond(goal, input.dryRun === true, objective);
 }

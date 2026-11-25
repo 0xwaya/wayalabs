@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { playbooks } from "@/lib/agent/planner";
+import { goalNames } from "@/lib/agent/planner";
 import { createDefaultRegistry } from "@/lib/agent/skills";
 
 export const runtime = "nodejs";
@@ -15,7 +15,7 @@ export async function GET(request: Request) {
     return new NextResponse("Unauthorized", { status: 401 });
   }
   return NextResponse.json({
-    goals: Object.keys(playbooks),
+    goals: goalNames,
     skills: createDefaultRegistry()
       .list()
       .map(({ name, description, risk }) => ({ name, description, risk })),

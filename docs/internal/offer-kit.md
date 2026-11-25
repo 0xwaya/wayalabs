@@ -47,6 +47,7 @@ Attach Watch ($400 / month) by default at handoff. Offer Build block ($1,200 / m
 
 - Lead system shape: `lead-system-kit.md`
 - Platform shape: `platform-kit.md`
+- Agentic workflow shape (inside a build, no standalone SKU): `agent-kit.md`
 - Discovery deliverable: `discovery-brief-template.md`
 - ICP: `icp.md`
 - Funnel tracking: `funnel-metrics.md`

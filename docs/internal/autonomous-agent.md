@@ -5,7 +5,7 @@ without a person triggering each one. Code in `src/lib/agent/`.
 
 ## How it works
 
-1. A **goal** names a playbook (`weekday-ops`, `health`, `snapshot`, `source`, `digest`).
+1. A **goal** names a playbook (`weekday-ops`, `health`, `snapshot`, `source`, `digest`) or is `auto`.
 2. The **planner** reads what has happened so far and picks the next skill, or finishes.
 3. The **runner** executes that skill, records a step (reason, status, attempts, duration, summary), and loops.
 
@@ -13,6 +13,27 @@ Skill failures do not abort the run. They are recorded and the planner decides
 what the failure means (for example, a failed CRM snapshot skips sourcing and the digest but still checks the site).
 
 Budgets stop runaway loops: 8 steps and 50 seconds by default. One retry for failures a skill marks `retryable`.
+
+## Native model planner (`auto`)
+
+Goal `auto` replaces the fixed playbook with Grok (xAI chat completions) choosing the
+next skill toward a free-text `objective`. This replaces driving the same skills from an
+external Grok agent: the model runs inside the app, calls the registry directly, and the
+runner enforces the limits.
+
+- The model sees skill names, descriptions, risk labels, and prior step results (counts and summaries, no lead data).
+- It can only pick a registered skill that has not run yet, or finish. Anything else is rejected.
+- Step and time budgets, retries, and `dryRun` still apply. The model cannot override them.
+- If the model is unreachable, returns a non-2xx, or replies badly, that step falls back to the `weekday-ops` rules and the trace says so.
+- No `XAI_API_KEY`: `auto` runs `weekday-ops` rules. The run's `planner` field says `llm` or `rules`.
+
+Env: `XAI_API_KEY`, `AGENT_MODEL` (default `grok-4`), `AGENT_LLM_BASE_URL` (default `https://api.x.ai/v1`).
+
+```bash
+curl -X POST -H "Authorization: Bearer $CRON_SECRET" \
+  -d '{"goal":"auto","objective":"Check the site and CRM, then only digest if something needs review","dryRun":true}' \
+  https://wayalabs.com/api/agent/run
+```
 
 ## Skills
 
