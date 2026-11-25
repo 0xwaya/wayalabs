@@ -7,6 +7,9 @@ export type AgentEnv = CrmEnv &
     LEAD_SOURCE_AI_INTENT?: string;
     SITE_URL?: string;
     AGENT_BACKLOG_LIMIT?: string;
+    XAI_API_KEY?: string;
+    AGENT_MODEL?: string;
+    AGENT_LLM_BASE_URL?: string;
   };
 
 /** `read` skills observe. `write` skills change state or notify the operator. */
@@ -45,6 +48,8 @@ export type StepRecord = {
 
 export type AgentState = {
   goal: string;
+  /** Free-text objective, used by the model-driven planner. */
+  objective?: string;
   env: AgentEnv;
   steps: StepRecord[];
 };
@@ -54,7 +59,7 @@ export type Decision =
   | { type: "finish"; summary: string };
 
 /** Looks at what has happened so far and picks the next skill, or stops. */
-export type Planner = (state: AgentState) => Decision;
+export type Planner = (state: AgentState) => Decision | Promise<Decision>;
 
 export type RunStatus =
   | "completed"
@@ -64,6 +69,7 @@ export type RunStatus =
 
 export type AgentRun = {
   goal: string;
+  planner: "rules" | "llm";
   dryRun: boolean;
   status: RunStatus;
   startedAt: string;

@@ -1,6 +1,8 @@
 import type { AgentState, Decision, Planner, StepRecord } from "@/lib/agent/types";
 
 export const DEFAULT_GOAL = "weekday-ops";
+/** Model-driven goal. Falls back to the weekday-ops rules without an API key. */
+export const AUTO_GOAL = "auto";
 const DEFAULT_BACKLOG_LIMIT = 40;
 
 function attempted(state: AgentState, skill: string): boolean {
@@ -109,6 +111,8 @@ export const playbooks: Record<string, Planner> = {
   source: single("lead.source"),
   digest: single("lead.digest"),
 };
+
+export const goalNames = [...Object.keys(playbooks), AUTO_GOAL];
 
 export function plannerFor(goal: string): Planner | undefined {
   return Object.hasOwn(playbooks, goal) ? playbooks[goal] : undefined;
