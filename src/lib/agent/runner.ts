@@ -1,4 +1,5 @@
-import { plannerFor } from "@/lib/agent/planner";
+import { createLlmPlanner, llmConfigured } from "@/lib/agent/llm-planner";
+import { AUTO_GOAL, DEFAULT_GOAL, plannerFor } from "@/lib/agent/planner";
 import { createDefaultRegistry } from "@/lib/agent/skills";
 import type { SkillRegistry } from "@/lib/agent/registry";
 import type {
@@ -13,6 +14,8 @@ import type {
 
 export type RunOptions = {
   goal: string;
+  /** What the model-driven planner should accomplish (goal `auto`). */
+  objective?: string;
   env?: AgentEnv;
   fetchImpl?: typeof fetch;
   registry?: SkillRegistry;
@@ -63,14 +66,30 @@ function finalStatus(steps: StepRecord[], budgetHit: boolean): RunStatus {
 export async function runAgent(
   options: RunOptions,
 ): Promise<AgentRun | RunError> {
-  const planner = options.planner ?? plannerFor(options.goal);
+  const registry = options.registry ?? createDefaultRegistry();
+  const env = options.env ?? process.env;
+  const fetchImpl = options.fetchImpl ?? fetch;
+
+  let planner = options.planner;
+  let plannerKind: AgentRun["planner"] = "rules";
+  if (!planner && options.goal === AUTO_GOAL) {
+    if (llmConfigured(env)) {
+      planner = createLlmPlanner({
+        registry,
+        env,
+        fetchImpl,
+        fallback: plannerFor(DEFAULT_GOAL)!,
+      });
+      plannerKind = "llm";
+    } else {
+      planner = plannerFor(DEFAULT_GOAL);
+    }
+  }
+  planner ??= plannerFor(options.goal);
   if (!planner) {
     return { ok: false, status: 400, error: `Unknown goal: ${options.goal}` };
   }
 
-  const registry = options.registry ?? createDefaultRegistry();
-  const env = options.env ?? process.env;
-  const fetchImpl = options.fetchImpl ?? fetch;
   const now = options.now ?? (() => new Date());
   const sleep = options.sleep ?? defaultSleep;
   const dryRun = options.dryRun ?? false;
@@ -79,7 +98,12 @@ export async function runAgent(
   const deadline = now().getTime() + (options.deadlineMs ?? 50_000);
   const startedAt = now().toISOString();
 
-  const state: AgentState = { goal: options.goal, env, steps: [] };
+  const state: AgentState = {
+    goal: options.goal,
+    objective: options.objective,
+    env,
+    steps: [],
+  };
   let summary = "";
   let budgetHit = false;
 
@@ -90,7 +114,7 @@ export async function runAgent(
       break;
     }
 
-    const decision = planner(state);
+    const decision = await planner(state);
     if (decision.type === "finish") {
       summary = decision.summary;
       break;
@@ -160,6 +184,7 @@ export async function runAgent(
 
   return {
     goal: options.goal,
+    planner: plannerKind,
     dryRun,
     status: finalStatus(state.steps, budgetHit),
     startedAt,
