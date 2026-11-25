@@ -86,6 +86,8 @@ src/
 │   ├── api/contact/route.ts      # Contact form → email, then CRM
 │   ├── api/leads/source/route.ts # Weekday SBA + AI-intent sourcer (operator only)
 │   ├── api/leads/digest/route.ts # Weekday open-lead digest (operator only)
+│   ├── api/agent/run/route.ts    # Autonomous ops agent (operator only)
+│   ├── api/agent/skills/route.ts # Agent goals and skills (operator only)
 │   ├── privacy/page.tsx
 │   ├── terms/page.tsx
 │   ├── offers/page.tsx           # In the repo; hidden from navigation
@@ -99,6 +101,7 @@ src/
 └── lib/
     ├── site.ts                   # Shared description; navigation flags
     ├── seo.ts                    # Per-page Open Graph helper
+    ├── agent/                    # Multi-skill autonomous agent: planner, runner, skills
     ├── booking.ts
     ├── contact-validation.ts
     ├── contact-delivery.ts
