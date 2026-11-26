@@ -4,8 +4,9 @@ import Link from "next/link";
 import { CAL_BOOKING_URL } from "@/lib/booking";
 import { NewCustomerNote } from "@/components/offers/NewCustomerNote";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight, Clock } from "lucide-react";
+import { ArrowLeft, ArrowRight, Clock, FileDown } from "lucide-react";
 import { categoryColors, insightPosts } from "@/lib/data/insights";
+import { InsightMarkdown } from "@/components/insights/InsightMarkdown";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -62,11 +63,19 @@ export default async function InsightDetailPage({ params }: Props) {
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4">{post.title}</h1>
           <p className="text-lg text-[var(--muted)] leading-relaxed mb-6">{post.excerpt}</p>
 
-          <div className="flex items-center gap-4 text-xs text-[var(--muted)]">
+          <div className="flex flex-wrap items-center gap-4 text-xs text-[var(--muted)]">
             <span>{post.date}</span>
             <span className="flex items-center gap-1">
               <Clock size={11} /> {post.readTime}
             </span>
+            {post.pdfUrl ? (
+              <a
+                href={post.pdfUrl}
+                className="inline-flex items-center gap-1.5 text-[var(--foreground)] hover:opacity-80"
+              >
+                <FileDown size={12} /> Download the PDF
+              </a>
+            ) : null}
           </div>
         </div>
       </section>
@@ -122,6 +131,24 @@ export default async function InsightDetailPage({ params }: Props) {
             </h2>
             <p className="leading-relaxed">{post.sections.takeaway}</p>
           </div>
+
+          {post.body ? (
+            <div className="pt-4 border-t border-[var(--border)]">
+              <h2 className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)] mb-6">
+                Full brief
+              </h2>
+              {post.pdfUrl ? (
+                <p className="text-sm text-[var(--muted)] mb-8">
+                  This is the November 2026 publication, including charts, tables, and sources.{" "}
+                  <a href={post.pdfUrl} className="underline underline-offset-2 decoration-[var(--border)] hover:text-[var(--foreground)]">
+                    Download the typographic PDF
+                  </a>
+                  .
+                </p>
+              ) : null}
+              <InsightMarkdown content={post.body} />
+            </div>
+          ) : null}
         </article>
       </section>
 

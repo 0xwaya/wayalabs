@@ -1,3 +1,5 @@
+import { aiPoliciesUsChina2026Body } from "@/content/insights/ai-policies-us-china-2026";
+
 export type InsightPost = {
   slug: string;
   title: string;
@@ -6,6 +8,8 @@ export type InsightPost = {
   readTime: string;
   date: string;
   accent: string;
+  pdfUrl?: string;
+  body?: string;
   sections: {
     context: string;
     approach: string;
@@ -18,36 +22,40 @@ export type InsightPost = {
 export const insightPosts: InsightPost[] = [
   {
     slug: "ai-policies-us-china-2026",
-    title: "AI Global Policies, the US-China Race, and Practical Guardrails (November 2026)",
+    title: "The US–China AI Race: models, compute, chips, and practical guardrails (November 2026)",
     excerpt:
-      "Architecture-first guardrails for builders operating in a fragmented AI policy environment. US innovation-first vs China WAICO, recent US legislative signals, and Wayalabs practices.",
+      "A sourced November 2026 scoreboard of the US–China AI race — frontier models, compute and chips, open weights, in-force law, and an illustrative Wayalabs guardrail architecture. A 14-page PDF accompanies this post.",
     category: "Strategy",
-    readTime: "12 min read",
-    date: "Nov 22, 2026",
+    readTime: "18 min read",
+    date: "Nov 26, 2026",
     accent: "#c5cad3",
+    pdfUrl: "/research/ai-race-nov2026/wayalabs-ai-race-nov2026.pdf",
+    body: aiPoliciesUsChina2026Body,
     sections: {
       context:
-        "As of November 22, 2026, global AI governance remains fragmented. The United States prioritizes innovation and technological leadership through voluntary industry commitments and targeted export controls. China advances a state-directed model focused on self-sufficiency, open-weight models, and capacity-building via the World Artificial Intelligence Cooperation Organization (WAICO). Competing coalitions—US-led Pax Silica for supply-chain security and China-led WAICO for Global South engagement—shape the landscape alongside UN dialogues and the EU’s regulatory framework. The US maintains a lead in frontier models and compute, while China gains ground in adoption, efficiency, and infrastructure. Recent US developments include Senate passage of BAAJA, a bipartisan SAFE AI Act outline, and tightened chip controls. California’s SB 53 has required frontier safety frameworks since January 2026.",
+        "As of 26 November 2026, every model in the top ten of the Artificial Analysis Intelligence Index (v5.0.2) is from a US lab. Anthropic’s Claude Fable 5.2 leads at 64.8. The highest-scoring generally available Chinese system on the same board is Moonshot’s Kimi K3.1 Pro, at 47, and it is open-weight. Epoch AI estimates the US received 72% of 27.4 million H100-equivalent arrivals from 2022 through June 2026, against 10% for China. California’s SB 53 and SB 243, Texas TRAIGA, EU GPAI duties, China’s labeling rules, and Korea’s AI Basic Act are already in force. The mid-November BIS interim final rule formally rescinded the never-enforced AI Diffusion Rule and added a remote-access license above 12 million TPP. BAAJA has passed the Senate but is not law; the SAFE AI Act is an outline only.",
       approach:
-        "Wayalabs treats guardrails as architectural and operational requirements rather than post-hoc policy overlays. Core practices drawn from Wayalabs R&D and published work: begin with system boundaries, data access limits, failure modes, and testable acceptance criteria. Chatbots use only approved source material, include explicit escalation boundaries and human handoff, and are evaluated against defined questions. Agents (still in research) incorporate tool permissions, durable state management, and mandatory human review before any consequential action. Deployment includes observability, integration testing, monitoring, and clear escalation paths. Operational examples include isolated checkouts, sandboxed runtimes with gated tools, and operator sessions that draft changes and stop for human approval. No unattended posting, purchasing, or deployment. This layered model—input boundaries, process controls with human gates, output evaluation, and continuous monitoring—operates independently of shifting national regulations while remaining compatible with emerging federal or state safety expectations.",
+        "Wayalabs treats guardrails as architectural and operational requirements, not as a post-hoc overlay. The practices below are illustrative and unaudited — they describe how we design our own systems, and they are not a certification or a substitute for legal advice. We start with system boundaries, data access limits, failure modes, and testable acceptance criteria. Chatbots use only approved source material, with explicit escalation and a human handoff. Agents get tool permissions, durable state, and a person in the loop before any consequential action. There is no unattended posting, purchasing, or deployment. Hard-stop refusals (biological weapons, offensive cyber, CSAM, and prohibited weapons assistance) are never retried on a less-guarded fallback model. This architecture is written to be compatible with California SB 53 and SB 243, Texas TRAIGA, the EU GPAI provider duties that have applied since 2 August 2025, and the New York RAISE Act when it takes effect on 1 January 2027. Voluntary industry pledges, including the White House Accord on Super Intelligence, are signals, not a safe harbor.",
       checklist: [
-        "Document data boundaries and acceptance criteria at the start of every project",
-        "Implement human approval gates for tool use and high-impact actions",
-        "Maintain audit logs and evaluation cycles for compliance readiness and quality",
-        "Treat voluntary industry commitments and emerging legislative outlines as signals rather than settled law",
-        "Prefer verifiable, scoped deployments over unconstrained autonomy",
-        "Define system boundaries, failure modes, and testable criteria before building",
-        "Enforce approved source material and explicit escalation for chatbots",
+        "Document data boundaries, failure modes, and testable acceptance criteria at the start of every project",
+        "Use a closed US or EU-region frontier API as the default path when the task is hard and data residency allows it",
+        "Keep an open-weight fallback in your VPC; read the license, including any MaaS gate, before you serve anyone else’s users",
+        "Never retry a hard-stop refusal on a less-guarded fallback model",
+        "Require human approval for send, pay, deploy, and delete — no unattended posting, purchasing, or deployment",
+        "Keep a hash-chained, append-only audit log and a must-refuse / must-answer eval gate in CI",
+        "Track in-force law and pending law in two different columns (SB 53 is in force; BAAJA and the SAFE AI Act are not)",
+        "Treat 879,868 H200-class approvals as of 11 May 2026 as an approvals figure, not shipments",
       ],
       metrics: [
-        "Boundary compliance rate",
-        "Human review latency and precision",
-        "Incident detection and reporting time",
+        "Boundary and hard-stop compliance rate on a must-refuse / must-answer set",
+        "Human-review latency and precision for ask-gated tools",
+        "Incident detection and reporting time (SB 53 / NY RAISE)",
         "Evaluation coverage against acceptance criteria",
         "Escalation quality and handoff success",
+        "License and residency checks before an open-weight fallback is served",
       ],
       takeaway:
-        "The AI policy environment in late 2026 is defined by competition between innovation-first and state-directed models, with limited formal global coordination. Technical leadership remains concentrated, but diffusion and adoption dynamics are shifting. Organizations that embed clear boundaries, human oversight, and continuous evaluation from the architecture stage can operate effectively amid this fragmentation. Wayalabs’ approach illustrates one such practical path. Prepared by Wayalabs (wayalabs.com).",
+        "The United States still holds the frontier models and the verified compute. Chinese labs hold the most capable open weights and a fast-moving efficiency stack. Policy is not “unregulated”: it is a set of already-binding state, EU, Chinese, and Korean rules, plus a November wave of federal activity that is easy to over-read. Build for the rules that are in force, keep an eval harness that will survive the next index reset, and do not unattended-post your way into the next case caption.",
     },
   },
   {
