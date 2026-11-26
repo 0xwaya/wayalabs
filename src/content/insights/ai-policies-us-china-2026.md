@@ -80,7 +80,7 @@ On the open-weight board the picture flips. Kimi K3.1 Pro leads at 47. The next 
 
 ![Selected frontier model releases, August 2025 to November 2026](/research/ai-race-nov2026/charts/03-model-timeline.png)
 
-*Figure 3. Selected generally available frontier releases, August 2025 – November 2026. Dates from vendor announcements. Parameter counts are vendor- or card-reported. Not exhaustive. GLM-5.4 (23 Nov) is announced but not yet on the AA board; Qwen4-Max is closed, with smaller open Qwen4 models promised. [S2, S3, S4, S5, S6, S7, S39, S40, S41]*
+*Figure 2. Selected generally available frontier releases, August 2025 – November 2026. Dates from vendor announcements. Parameter counts are vendor- or card-reported. Not exhaustive. GLM-5.4 (23 Nov) is announced but not yet on the AA board; Qwen4-Max is closed, with smaller open Qwen4 models promised. [S2, S3, S4, S5, S6, S7, S39, S40, S41]*
 
 Two November arrivals are new since our 22 November brief. Google released Gemini 4 Neon on 18 November at $3 / $15 with a 1 million-token context window; it is already third on the index. [S4] Z.ai released GLM-5.4 on 23 November as the first Loop Transformer flagship — 28 layers of a GLM-5 base, looped for two iterations, “Architectural Modifications at 750B Scale.” An API is “coming soon,” and the company plans to open-source the weights “responsibly after completing necessary safety hardening.” Secondary benchmark claims for GLM-5.4 are not repeated; we use only the official blog. [S7]
 
@@ -94,7 +94,7 @@ Electricity is the commonly cited Chinese scale advantage, and the generation ga
 
 ![Largest operational AI campuses by estimated IT power](/research/ai-race-nov2026/charts/12-datacenters.png)
 
-*Figure 6. Largest operational AI campuses by estimated IT power (MW), Epoch AI update of 19 Nov 2026. Estimates, not audited utility filings. Source: Epoch AI. [S9]*
+*Figure 3. Largest operational AI campuses by estimated IT power (MW), Epoch AI update of 19 Nov 2026. Estimates, not audited utility filings. Source: Epoch AI. [S9]*
 
 On the accelerator side, the public comparison is a **roadmap**, not a bake-off of measured silicon. Huawei’s published Ascend family lists the 950PR and 950DT at 2 FP4 petaFLOPS, the 960DT at 4 FP4 petaFLOPS (Q1 2027), and the 960PR at 8 (Q3 2027). Nvidia’s VR200 is quoted at 50 NVFP4 petaFLOPS of inference performance, with a Q4 2026 window that was still prospective when this brief was set. [S11, S12] High-bandwidth memory, not peak FLOPS, remains the constraint most engineers actually hit. Analyst figures for CXMT HBM3 yield and SMIC wafer starts circulate widely; they are not independently confirmed here and are omitted from the chart.
 
@@ -102,7 +102,7 @@ The January 2025 AI Diffusion Rule was published and never enforced; Commerce sa
 
 ![US export-control path from the AI Diffusion Rule to the November 2026 IFR](/research/ai-race-nov2026/charts/07-export-timeline.png)
 
-*Figure 8. US export-control path, 2025–2026. The 16–19 November IFR formally rescinds the Diffusion Rule (including model-weight FDP provisions) and requires a license when an overseas data center supplies more than 12 million TPP (≈750 H200s, or ≈42 Vera Rubins per CSIS) to China-headquartered or D:5 customers, with a 90-day wind-down. Indonesia, Malaysia, Singapore, Thailand, and Brazil were added to diversion-licensing lists. Sources: BIS Federal Register (19 Nov 2026); House Foreign Affairs / CNBC (19 Nov 2026); CSIS. [S13, S14, S42]*
+*Figure 4. US export-control path, 2025–2026. The 16–19 November IFR formally rescinds the Diffusion Rule (including model-weight FDP provisions) and requires a license when an overseas data center supplies more than 12 million TPP (≈750 H200s, or ≈42 Vera Rubins per CSIS) to China-headquartered or D:5 customers, with a 90-day wind-down. Indonesia, Malaysia, Singapore, Thailand, and Brazil were added to diversion-licensing lists. Sources: BIS Federal Register (19 Nov 2026); House Foreign Affairs / CNBC (19 Nov 2026); CSIS. [S13, S14, S42]*
 
 The USCC’s 2026 annual report (18 November) argues that the PLA still seeks advanced Nvidia parts, that distillation of US closed models into cheaper open weights is a live path, and that export controls added urgency to — but did not start — China’s localization drive. [S19] California Attorney General Rob Bonta issued an investigative subpoena to Nvidia on 19 November concerning chips and confidential information reaching China, and whether investors were misled. It is an investigation, not a finding. [S36]
 
@@ -135,7 +135,7 @@ Open weights are not a synonym for “permissive.” Kimi K3’s license gates m
 
 ![Efficiency stack from sparse MoE and hybrid attention down to serving frameworks](/research/ai-race-nov2026/charts/09-efficiency-stack.png)
 
-*Figure 10. Recurring efficiency stack in 2026 open-weight releases, as described in vendor technical reports (Moonshot, DeepSeek, Z.ai, MiniMax, Alibaba). Effects are vendor-reported unless independently noted. Multi-token prediction and speculative decoding (Kimi K3 → an EAGLE-3 draft) sit in the serving layer, alongside vLLM, SGLang, TokenSpeed, and Huawei-oriented stacks (vLLM-Ascend, xLLM). [S5, S6, S7, S40]*
+*Figure 5. Recurring efficiency stack in 2026 open-weight releases, as described in vendor technical reports (Moonshot, DeepSeek, Z.ai, MiniMax, Alibaba). Effects are vendor-reported unless independently noted. Multi-token prediction and speculative decoding (Kimi K3 → an EAGLE-3 draft) sit in the serving layer, alongside vLLM, SGLang, TokenSpeed, and Huawei-oriented stacks (vLLM-Ascend, xLLM). [S5, S6, S7, S40]*
 
 The pattern is consistent enough to treat as a design language: ultra-sparse MoE so most parameters stay cold; hybrid linear and sparse attention (KDA, MLA, DSA, CSA, HCA, MSA) so the KV cache does not explode at long context; native 4-bit weights, often with quantization-aware training; then RL (GRPO and close cousins) plus on-policy distillation. GLM-5.3 is a post-training run on an earlier base, not a new pretrain. GLM-5.4’s looped 28 layers try to buy depth without a proportional memory bill. None of this, on its own, closes a 15-point Intelligence Index gap. It does change the cost of serving a token in a self-hosted VPC.
 
@@ -147,18 +147,7 @@ Global AI governance is fragmented, and it is a mistake to describe that fragmen
 
 On 19 November in Shenzhen, President Trump told APEC he opposes “any form of globalist regulation” that would “control and stifle” superintelligence. [S32] That is a political position, not a repeal of state law. Executive Order 14365 (11 December 2025) pressures state AI statutes but does not preempt them. The Senate had already rejected a state-AI moratorium 99–1 on 1 July 2025. [S28, S45]
 
-
-    **** [
-    **** [
-    **** [
-    **** [
-    ******** [
-    **** [
-    **** [
-    **** [
-    **** [
-    **** [
-    **** [
+On 20 November the UK government rejected a call for an AI Bill and a statutory single regulator. [S50]
 
 | Instrument | Status | What it actually requires (short) |
 | --- | --- | --- |
@@ -186,7 +175,7 @@ The short version: start with system boundaries, data access limits, failure mod
 
 ![Reference guardrail architecture for an agent product](/research/ai-race-nov2026/charts/11-guardrail-architecture.png)
 
-*Figure 12. Reference architecture for an agent product. Illustrative, not an audit of Wayalabs systems. “Ask” tools (send, pay, deploy, delete) stop for a person. The audit log is append-only JSONL; each event carries the hash of the previous line. An evaluation harness with must-refuse and must-answer sets is a CI gate, not a slide.*
+*Figure 6. Reference architecture for an agent product. Illustrative, not an audit of Wayalabs systems. “Ask” tools (send, pay, deploy, delete) stop for a person. The audit log is append-only JSONL; each event carries the hash of the previous line. An evaluation harness with must-refuse and must-answer sets is a CI gate, not a slide.*
 
 How this maps, at a high level, to rules already in force:
 

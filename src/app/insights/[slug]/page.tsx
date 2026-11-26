@@ -7,6 +7,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, Clock, FileDown } from "lucide-react";
 import { categoryColors, insightPosts } from "@/lib/data/insights";
 import { InsightMarkdown } from "@/components/insights/InsightMarkdown";
+import { isSafeSitePath } from "@/lib/safe-url";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -41,6 +42,7 @@ export default async function InsightDetailPage({ params }: Props) {
   }
 
   const accent = categoryColors[post.category] ?? post.accent;
+  const pdfHref = post.pdfUrl && isSafeSitePath(post.pdfUrl) ? post.pdfUrl : undefined;
 
   return (
     <div className="min-h-screen">
@@ -60,7 +62,7 @@ export default async function InsightDetailPage({ params }: Props) {
             {post.category}
           </span>
 
-          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4">{post.title}</h1>
+          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4 break-words text-balance">{post.title}</h1>
           <p className="text-lg text-[var(--muted)] leading-relaxed mb-6">{post.excerpt}</p>
 
           <div className="flex flex-wrap items-center gap-4 text-xs text-[var(--muted)]">
@@ -68,9 +70,9 @@ export default async function InsightDetailPage({ params }: Props) {
             <span className="flex items-center gap-1">
               <Clock size={11} /> {post.readTime}
             </span>
-            {post.pdfUrl ? (
+            {pdfHref ? (
               <a
-                href={post.pdfUrl}
+                href={pdfHref}
                 className="inline-flex items-center gap-1.5 text-[var(--foreground)] hover:opacity-80"
               >
                 <FileDown size={12} /> Download the PDF
@@ -81,7 +83,7 @@ export default async function InsightDetailPage({ params }: Props) {
       </section>
 
       <section className="py-16 px-6">
-        <article className="max-w-4xl mx-auto space-y-12 overflow-x-hidden">
+        <article className="max-w-4xl mx-auto min-w-0 space-y-12 overflow-x-hidden">
           <div className="p-6 rounded-2xl border border-[var(--border)] bg-[var(--card)]">
             <h2 className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)] mb-3">
               Why this matters
@@ -137,10 +139,10 @@ export default async function InsightDetailPage({ params }: Props) {
               <h2 className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)] mb-6">
                 Full brief
               </h2>
-              {post.pdfUrl ? (
+              {pdfHref ? (
                 <p className="text-sm text-[var(--muted)] mb-8">
-                  This is the November 2026 publication, including charts, tables, and sources.{" "}
-                  <a href={post.pdfUrl} className="underline underline-offset-2 decoration-[var(--border)] hover:text-[var(--foreground)]">
+                  A typographic PDF accompanies this brief, including charts, tables, and sources.{" "}
+                  <a href={pdfHref} className="underline underline-offset-2 decoration-[var(--border)] hover:text-[var(--foreground)]">
                     Download the typographic PDF
                   </a>
                   .
