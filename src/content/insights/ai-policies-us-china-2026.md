@@ -36,6 +36,21 @@ This is a Wayalabs Insights publication for builders. Every number in a chart or
 
 Earlier Wayalabs draft language said our practices operate “independently of shifting national regulations.” That sentence is withdrawn. California’s Transparency in Frontier AI Act (SB 53) and companion chatbot statute (SB 243) have been in force since 1 January 2026. The architecture in section 07 is written to be compatible with those duties, with Texas TRAIGA, with the EU GPAI provider obligations that have applied since 2 August 2025, and with the New York RAISE Act when it takes effect on 1 January 2027. Voluntary industry pledges are signals, not a safe harbor.
 
+
+
+![The US–China AI race: a sourced head-to-head scoreboard as of 26 November 2026](/research/ai-race-nov2026/infographics/a-us-vs-china.png)
+
+*Infographic 1. US vs China head-to-head on verified 26 Nov 2026 figures. Sources on the image.*
+
+![Global AI policy blocs as of 26 November 2026](/research/ai-race-nov2026/infographics/b-policy-blocs.png)
+
+*Infographic 2. Global policy blocs, separating rules in force from headlines that are not yet law. Sources on the image.*
+
+![Frontier lab landscape, 26 November 2026](/research/ai-race-nov2026/infographics/c-lab-landscape.png)
+
+*Infographic 3. Frontier lab landscape. Only AA Intelligence Index v5.0.2 scores retrieved on 26 Nov 2026 are shown.*
+
+
 *02 · The scoreboard*
 
 ## Closed US systems occupy the top of the board. An open Chinese model is the story underneath it.
@@ -63,10 +78,6 @@ Grok 4.7 (xAI, 21 Sep; $2 / $6, 500K context) is generally available but was not
 
 On the open-weight board the picture flips. Kimi K3.1 Pro leads at 47. The next cluster — Tencent Hy4 (35), DeepSeek V4.1 Flash 1017 (32), GLM-5.3 (32) — is also Chinese. The highest-scoring US open-weight model in the top ten we retrieved is Thinking Machines’ Inkling 2 Small, at 31. [S1] Meta’s Muse Spark Open (816B total / 42B active, released 15 October under the Muse Model License) does not appear in that top ten; no score is invented for it. [S39]
 
-![Open-weight Artificial Analysis Intelligence Index scores](/research/ai-race-nov2026/charts/02-aa-index-open.png)
-
-*Figure 2. Open-weight models on Artificial Analysis Intelligence Index v5.0.2, 26 Nov 2026. DeepSeek V4.1 Flash 1017 scored 33 on v5.0.1 and 32 on v5.0.2; only the current version is plotted. Source: Artificial Analysis. [S1]*
-
 ![Selected frontier model releases, August 2025 to November 2026](/research/ai-race-nov2026/charts/03-model-timeline.png)
 
 *Figure 3. Selected generally available frontier releases, August 2025 – November 2026. Dates from vendor announcements. Parameter counts are vendor- or card-reported. Not exhaustive. GLM-5.4 (23 Nov) is announced but not yet on the AA board; Qwen4-Max is closed, with smaller open Qwen4 models promised. [S2, S3, S4, S5, S6, S7, S39, S40, S41]*
@@ -79,14 +90,6 @@ Two November arrivals are new since our 22 November brief. Google released Gemin
 
 Epoch AI’s arrivals series, covering 2022 through June 2026, puts 19.8 million of 27.4 million H100-equivalents in the United States (72%) and 2.6 million in China (10%), with the EU at 1.4 million (5%) and the rest of the world at 3.6 million (13%). Epoch also reports that the US share widened over the period: roughly 60–63% in 2022–24, 72% in 2025, and 78% in the first half of 2026. [S8] Those are verified or estimated arrivals, not announced “planned capacity.”
 
-![Share of H100-equivalent arrivals by region](/research/ai-race-nov2026/charts/04-compute-share.png)
-
-*Figure 4. Share of 27.4 million H100-equivalent arrivals, 2022–June 2026. Source: Epoch AI. [S8]*
-
-![China versus US electricity generation](/research/ai-race-nov2026/charts/05-electricity.png)
-
-*Figure 5. China generated about 10.6 trillion kWh in 2025, roughly 2.4× the US figure of 4.43 thousand TWh (4.43 trillion kWh). Sources: China official energy statistics; US EIA. [S10]*
-
 Electricity is the commonly cited Chinese scale advantage, and the generation gap is real. It is not a lead in operational AI campuses. Epoch’s IT-power estimates, updated 19 November 2026, place the largest operating sites in the United States: New Carlisle 1,037 MW, Colossus 2 946 MW, Stargate Abilene 824 MW, and Fairwater Atlanta 636 MW. DayOne Nusajaya (Malaysia) is fifth, at 473 MW. About 80% of Epoch’s estimates fall within 1.4× of true value. [S9] A previously circulated “250+ Chinese data centers” talking point is dropped.
 
 ![Largest operational AI campuses by estimated IT power](/research/ai-race-nov2026/charts/12-datacenters.png)
@@ -94,10 +97,6 @@ Electricity is the commonly cited Chinese scale advantage, and the generation ga
 *Figure 6. Largest operational AI campuses by estimated IT power (MW), Epoch AI update of 19 Nov 2026. Estimates, not audited utility filings. Source: Epoch AI. [S9]*
 
 On the accelerator side, the public comparison is a **roadmap**, not a bake-off of measured silicon. Huawei’s published Ascend family lists the 950PR and 950DT at 2 FP4 petaFLOPS, the 960DT at 4 FP4 petaFLOPS (Q1 2027), and the 960PR at 8 (Q3 2027). Nvidia’s VR200 is quoted at 50 NVFP4 petaFLOPS of inference performance, with a Q4 2026 window that was still prospective when this brief was set. [S11, S12] High-bandwidth memory, not peak FLOPS, remains the constraint most engineers actually hit. Analyst figures for CXMT HBM3 yield and SMIC wafer starts circulate widely; they are not independently confirmed here and are omitted from the chart.
-
-![Huawei Ascend roadmap versus Nvidia VR200 inference peak](/research/ai-race-nov2026/charts/06-chip-compare.png)
-
-*Figure 7. Vendor-published peak figures: Huawei Ascend 950/960 roadmap versus Nvidia VR200 inference (NVFP4). These are not measured, like-for-like silicon results, and the numeric gap should not be read as a shipping-product comparison. Sources: Huawei and Nvidia product materials. [S11, S12]*
 
 The January 2025 AI Diffusion Rule was published and never enforced; Commerce said so in May 2025. In December 2025 the administration allowed H200 licenses for approved China customers. As of 11 May 2026, 879,868 H200-class chips (Nvidia H200 and comparable AMD MI325X) had been approved out of 3.4 million requested — an approvals figure, not shipments. Nvidia later stopped H200 shipments to China. [S14, S46] There is no confirmed license for Blackwell or B30A parts. The 20 November Trump–Xi meeting in Shenzhen produced no new chip deal; the President said only older chips should be sold to China. [S32]
 
@@ -113,23 +112,6 @@ The USCC’s 2026 annual report (18 November) argues that the PLA still seeks ad
 
 Public 2026 capital-expenditure guidance from the four largest US hyperscalers is the most carefully sourced window we have on the build-out. The figures below are **company-wide capex guidance**, not an AI-only carve-out, and they are not summed here into a single industry number.
 
-![2026 total capex guidance for Amazon, Alphabet, Microsoft, and Meta](/research/ai-race-nov2026/charts/08-hyperscaler-capex.png)
-
-*Figure 9. 2026 total capex guidance, not AI-only. Amazon ≈$220B (official Q3, 29 Oct); Alphabet $195–205B (held, Q3 call); Microsoft ≈$170B (trimmed from $175B, FY27 Q1 / CNBC 29 Oct); Meta $135–145B (21 Oct official). Sources: company filings and earnings calls as cited. [S15, S16, S17, S18]*
-
-| Company / lab | Home | Current public flagship(s) | Open-weight posture | What we can source |
-| --- | --- | --- | --- | --- |
-| Anthropic | US | Claude Fable 5.2 (9 Nov); Mythos for vetted programs | Closed | List prices and AA rank as in §02. No public parameter count. [S2] |
-| OpenAI | US | GPT-6.2 Astra / Sol (17 Nov) | gpt-oss remains the Aug 2025 open release; gpt-oss-safeguard (Oct 2025) is Apache 2.0. No successor announced. | List prices and AA ranks as in §02. [S3] |
-| Google DeepMind | US | Gemini 4 Neon, Carbon, Hydrogen | Closed flagship; Gemma line is separate and is not on the AA top ten retrieved here | Neon 18 Nov; Carbon promo pricing ends 30 Nov. [S4] |
-| xAI | US | Grok 4.7 (21 Sep) | Closed | $2 / $6, 500K context. No AA top-twelve score retrieved on 26 Nov. [S1] |
-| Meta | US | Muse Wonder (closed, 12 Oct); Muse Spark Open (15 Oct) | Spark Open is 816B / 42B under the Muse Model License | Spark Open is not in the AA open top ten we retrieved. Muse Ember (25 Nov) appears in trackers and is not independently verified here. [S39] |
-| Moonshot (Kimi) | CN | Kimi K3 (weights 27 Jul); K3.1 Pro (API 23 Oct, weights 4 Nov) | K3: 2.8T / 104B, 16 of 896 experts, Kimi K3 License. K3.1 Pro: custom license, KDA + Gated DSA. | AA v5.0.2 score 47. License has a MaaS gate above $20M / 12 months and attribution above 100M MAU or $20M monthly revenue. [S5] |
-| DeepSeek | CN | V4 Pro / Flash (24 Apr); V4.1-Flash-1017 (17 Oct) | V4 Pro 1.6T / 49B, Flash 284B / 13B, MIT, CSA + HCA, FP4 experts. AA lists V4.1 Flash as 552B / 16B. | V4.1 Flash 1017 scores 32 on v5.0.2. [S6] |
-| Z.ai (GLM) | CN | GLM-5.3 (Aug); GLM-5.4 (23 Nov) | 5.3 is 744B / 40B (AA lists 753B / 40B), DSA. 5.3-Flash 320B / 18B, MIT. 5.4 weights not yet released. | 5.3 scores 32 on v5.0.2. 5.4 is a Loop Transformer; API “coming soon.” GLM-Legal (12 Oct) has no public weights. [S7] |
-| Alibaba (Qwen) | CN | Qwen4-Max (16 Nov) | Qwen4-Max is closed (2.4T / 71B, 1M context). Smaller open Qwen4 models promised. | No AA score retrieved; omitted from the index charts. [S41] |
-| MiniMax | CN | M3 (1 Jun) | ~428B / 22–23B, MSA, open weights | Architecture from the vendor report; no AA top-ten score claimed here. [S40] |
-| Thinking Machines | US | Inkling 2 Small | Open-weight | Highest US open-weight score in the top ten we retrieved: 31. [S1] |
 
 Private lab valuations and unannounced funding rounds are omitted. GLM-5.4 API pricing had not been published when this brief was set.
 
@@ -165,9 +147,6 @@ Global AI governance is fragmented, and it is a mistake to describe that fragmen
 
 On 19 November in Shenzhen, President Trump told APEC he opposes “any form of globalist regulation” that would “control and stifle” superintelligence. [S32] That is a political position, not a repeal of state law. Executive Order 14365 (11 December 2025) pressures state AI statutes but does not preempt them. The Senate had already rejected a state-AI moratorium 99–1 on 1 July 2025. [S28, S45]
 
-![Policy and law timeline July 2025 to November 2026](/research/ai-race-nov2026/charts/10-policy-timeline.png)
-
-*Figure 11. Selected policy and law, July 2025 – November 2026. Binding status is in the event text and in the table below. BAAJA has not passed the House. The SAFE AI Act is an outline only. California’s mid-November emergency-shutdown proposal is a recommendation, not enacted law. Sources as cited in §09. [S20]–S35 S43 S44*
 
     **** [
     **** [
@@ -219,30 +198,6 @@ How this maps, at a high level, to rules already in force:
 | Documentation, downstream information, training-content summary, copyright policy | EU GPAI (in force) | A model card and data-boundary note for any system we place on the market in the EU; no claim that a small integrator is itself a GPAI provider without a facts-and-circumstances analysis. |
 | Explicit and metadata labeling of synthetic content | China labeling rules (in force) | If a product is offered in that market, labels are a product requirement, not a post-process. |
 
-```python
-#! /usr/bin/env python3
-# Illustrative only — not production code, and not an audit of any system.
-
-HARD_STOP = {"bio", "cyber", "csam", "weapons"}
-ASK_TOOLS = {"post", "purchase", "deploy", "delete", "pay", "send"}
-
-def handle(request, input_verdict):
-    if input_verdict.category in HARD_STOP:
-        append_audit(request, "hard_stop")
-        return Refuse(input_verdict)          # never retried on a fallback model
-    model = pick_model(request)               # closed frontier API, or open weights in-VPC
-    draft, tools = complete_and_plan(model, request)
-    for tool in tools:
-        decision = policy(tool)               # default deny
-        if tool.name in ASK_TOOLS or decision == "ask":
-            if not human_approve(tool, draft):
-                return Refuse("unattended action blocked")
-        elif decision != "allow":
-            return Refuse("default deny")
-    output = output_guard(draft)              # probe, then a policy reasoner
-    append_audit(request, output)             # hash-chained JSONL
-    return output
-```
 
 *08 · Takeaways*
 
@@ -373,5 +328,7 @@ Wayalabs did not audit any lab, regulator, or hyperscaler. Nothing in this brief
 - **S48.** House Science, Space, and Technology Committee AI markups, 25 Jun and 21 Jul 2026.
 
 - **S49.** Launch of the House AI Safety and Innovation Caucus (Reps. Whitesides, Moran, and Beyer), 19 Nov 2026.
+
+- **S50.** UK Government response to the Joint Committee on Human Rights report *Human Rights and the Regulation of AI*, 20 Nov 2026.
 
 Prepared by Wayalabs (wayalabs.com · admin@wayalabs.com) on 26 November 2026. This publication is for information and education. It is not legal advice, is not an audit, and does not create a client relationship. Scores, prices, and statutes change; re-check primaries before you ship. © 2026 Wayalabs. Charts may be reused with attribution to Wayalabs and to the underlying source cited in each caption.

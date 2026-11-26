@@ -81,7 +81,7 @@ export default async function InsightDetailPage({ params }: Props) {
       </section>
 
       <section className="py-16 px-6">
-        <article className="max-w-4xl mx-auto space-y-12">
+        <article className="max-w-4xl mx-auto space-y-12 overflow-x-hidden">
           <div className="p-6 rounded-2xl border border-[var(--border)] bg-[var(--card)]">
             <h2 className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)] mb-3">
               Why this matters

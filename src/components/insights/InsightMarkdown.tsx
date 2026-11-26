@@ -50,14 +50,24 @@ const components: Components = {
       {children}
     </a>
   ),
-  img: ({ src, alt }) => (
-    <span className="block my-6 rounded-2xl border border-[var(--border)] bg-white p-3">
-      {/* Public-folder charts are authored on a light background. */}
-      <img src={src} alt={alt ?? ""} className="w-full h-auto rounded-lg" />
-    </span>
-  ),
+  img: ({ src, alt }) => {
+    const poster = typeof src === "string" && src.includes("/infographics/");
+    return (
+      <span
+        className={
+          poster
+            ? "block my-6 overflow-hidden rounded-2xl border border-[var(--border)] bg-[#07080c]"
+            : "block my-6 overflow-hidden rounded-2xl border border-[var(--border)] bg-white p-3"
+        }
+      >
+        {/* Charts are light; infographics are dark posters. Always scale to the column width. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={src} alt={alt ?? ""} className="block w-full h-auto max-w-full" />
+      </span>
+    );
+  },
   table: ({ children }) => (
-    <div className="my-6 overflow-x-auto rounded-2xl border border-[var(--border)]">
+    <div className="my-6 max-w-full overflow-x-auto rounded-2xl border border-[var(--border)]">
       <table className="w-full text-sm text-left">{children}</table>
     </div>
   ),
@@ -75,7 +85,7 @@ const components: Components = {
     </td>
   ),
   pre: ({ children }) => (
-    <pre className="my-6 overflow-x-auto rounded-2xl border border-[var(--border)] bg-[var(--card)] p-4 text-xs leading-relaxed">
+    <pre className="my-6 max-w-full overflow-x-auto rounded-2xl border border-[var(--border)] bg-[var(--card)] p-4 text-xs leading-relaxed">
       {children}
     </pre>
   ),
@@ -99,7 +109,7 @@ const components: Components = {
 
 export function InsightMarkdown({ content }: { content: string }) {
   return (
-    <div className="insight-body">
+    <div className="insight-body max-w-full overflow-x-hidden">
       <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
         {content}
       </ReactMarkdown>
