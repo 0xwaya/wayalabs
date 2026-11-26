@@ -8,7 +8,9 @@ export type InsightPost = {
   readTime: string;
   date: string;
   accent: string;
+  /** Optional root-relative public path, e.g. /research/....pdf. Must pass isSafeSitePath. */
   pdfUrl?: string;
+  /** Optional markdown body, rendered only on the slug page via InsightMarkdown (no raw HTML). */
   body?: string;
   sections: {
     context: string;
