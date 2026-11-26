@@ -39,17 +39,22 @@ vi.mock("next/image", () => ({
     width,
     height,
     className,
+    unoptimized,
   }: {
     src: string;
     alt: string;
     width?: number;
     height?: number;
     className?: string;
-  }) => (
-    // Test stand-in for next/image so jsdom can assert src/alt without the optimizer.
-    // eslint-disable-next-line @next/next/no-img-element
-    <img src={src} alt={alt} width={width} height={height} className={className} />
-  ),
+    unoptimized?: boolean;
+  }) => {
+    // Mirror the production optimizer: only skip /_next/image when unoptimized is set.
+    const resolved = unoptimized ? src : `/_next/image?url=${encodeURIComponent(src)}`;
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img src={resolved} alt={alt} width={width} height={height} className={className} />
+    );
+  },
 }));
 
 const FEATURED_SLUG = "ai-policies-us-china-2026";
@@ -129,6 +134,14 @@ describe("Insights slug pages", () => {
       const image = container.querySelector(`img[src="${src}"]`);
       expect(image, src).not.toBeNull();
       expect(image?.getAttribute("alt")?.trim().length).toBeGreaterThan(8);
+    }
+
+    const rendered = [...container.querySelectorAll("img")];
+    expect(rendered.length).toBeGreaterThanOrEqual(INFOGRAPHICS.length);
+    for (const image of rendered) {
+      const src = image.getAttribute("src") ?? "";
+      expect(src, src).not.toContain("/_next/image");
+      expect(src.startsWith("/research/")).toBe(true);
     }
 
     expect(container.querySelector("pre")).toBeNull();

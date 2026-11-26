@@ -100,6 +100,9 @@ const components: Components = {
           sizes="(min-width: 896px) 896px, 100vw"
           className="block h-auto w-full max-w-full"
           style={{ width: "100%", height: "auto" }}
+          // Serve static public/ files directly. Vercel /_next/image is 402 when the
+          // image-optimization quota is exhausted (x-vercel-error: OPTIMIZED_IMAGE_REQUEST_PAYMENT_REQUIRED).
+          unoptimized
         />
       </span>
     );
